@@ -1,13 +1,14 @@
 {
-  "name": "elton-reader-books",
-  "version": "3.1.2",
-  "description": "Read EPUB, FB2 and PDF books inside Obsidian, highlight passages and turn them into notes.",
+  "name": "kindle-reader",
+  "version": "1.0.0",
+  "description": "Read EPUB, FB2 and PDF books inside Obsidian, with highlights, notes, and reading progress that syncs with your vault.",
   "main": "main.js",
   "type": "module",
   "scripts": {
     "postinstall": "node patch-pdfjs.cjs",
-    "dev": "node esbuild.config.mjs",
-    "build": "node esbuild.config.mjs production && node patch-pdfjs.cjs"
+    "dev": "cross-env PLUGIN_DIR=vault/.obsidian/plugins/kindle-reader node esbuild.config.mjs",
+    "build": "cross-env PLUGIN_DIR=vault/.obsidian/plugins/kindle-reader node esbuild.config.mjs production && node patch-pdfjs.cjs",
+    "lint": "eslint ."
   },
   "keywords": [
     "obsidian",
@@ -18,9 +19,10 @@
     "reader",
     "highlights"
   ],
-  "author": "Elton Labs",
+  "author": "Bernardo",
   "license": "MIT",
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "esbuild": "0.28.1",
     "eslint": "^9.39.5",
     "eslint-plugin-obsidianmd": "^0.4.1",
@@ -29,9 +31,12 @@
   },
   "dependencies": {
     "epubjs": "^0.3.93",
+    "jquery": "^4.0.0",
     "jszip": "^3.10.1",
     "localforage": "^1.10.0",
-    "pdfjs-dist": "^6.2.108"
+    "pdfjs-dist": "^6.2.108",
+    "translate-google": "^1.5.0",
+    "turn.js": "^1.0.5"
   },
   "overrides": {
     "@xmldom/xmldom": "^0.9.12",

@@ -118,8 +118,23 @@ const neutralise = {
   },
 };
 
+const copyStaticFiles = {
+  name: "copy-static",
+  setup(build) {
+    build.onEnd(() => {
+      const outDir = process.env.PLUGIN_DIR;
+      if (outDir && outDir !== ".") {
+        if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+        fs.copyFileSync("manifest.json", path.join(outDir, "manifest.json"));
+        fs.copyFileSync("styles.css", path.join(outDir, "styles.css"));
+        console.log("Copied manifest.json and styles.css to " + outDir);
+      }
+    });
+  }
+};
+
 const ctx = await esbuild.context({
-  entryPoints: ["src/main.js"],
+  entryPoints: ["src/main.ts"],
   bundle: true,
   // Obsidian supplies these at runtime; bundling them would break the plugin.
   external: [
@@ -164,9 +179,9 @@ const ctx = await esbuild.context({
   // read the sources in src/ anyway.
   sourcemap: prod ? false : "inline",
   treeShaking: true,
-  outfile: "main.js",
+  outfile: process.env.PLUGIN_DIR ? path.join(process.env.PLUGIN_DIR, "main.js") : "main.js",
   banner: { js: banner },
-  plugins: [neutralise],
+  plugins: [neutralise, copyStaticFiles],
   minify: false,
   // Injected as a plain string literal; setupWorker() reads it as __PDF_WORKER_CODE__.
   define: { __PDF_WORKER_CODE__: JSON.stringify(workerCode) },

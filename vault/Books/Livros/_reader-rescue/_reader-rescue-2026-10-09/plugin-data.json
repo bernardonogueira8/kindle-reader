@@ -1,0 +1,161 @@
+{
+  "settings": {
+    "language": "pt",
+    "booksFolder": "",
+    "noteTemplate": "",
+    "notesFolder": "",
+    "bookNotesFolder": "",
+    "autoBookNote": false,
+    "quotesToBookNote": false,
+    "dataFolder": "",
+    "bookTemplates": {},
+    "exportColors": true,
+    "theme": "eink",
+    "libTheme": "auto",
+    "fontSize": 18,
+    "fontFamily": "inter",
+    "lineHeight": 1.8,
+    "columns": "1",
+    "textAlign": "justify",
+    "vAlign": "top",
+    "translateEnabled": false,
+    "translateTo": "pt",
+    "bookNoteLinks": {
+      "Books/Livros/A cor dos dados.pdf": "A cor dos dados — pág.1"
+    },
+    "bookNotePrompted": {
+      "Books/Livros/A cor dos dados.pdf": true
+    },
+    "coverFits": {},
+    "syncMode": "auto",
+    "pdfShowFiguresOnTextPages": true,
+    "libCoverSize": 176,
+    "libCategory": "status:reading",
+    "readerAdvOpen": false,
+    "readerHistOpen": false,
+    "askNoteTitle": true,
+    "shortNoteTitles": true,
+    "defaultHlColor": "yellow",
+    "bookTags": {},
+    "navMode": "click",
+    "timerEnabled": true,
+    "dailyGoalMin": 15,
+    "readingLog": {},
+    "lifetimeSeconds": 0,
+    "immersive": true,
+    "mobileTopInset": 0,
+    "onboarded": true,
+    "promptedRepaired": true,
+    "figuresShownByDefault": true,
+    "einkMode": true,
+    "aiEnabled": false,
+    "aiProvider": "eltonlabs",
+    "aiKey": "",
+    "aiModel": "",
+    "aiBase": "",
+    "aiInto": "русском",
+    "aiSystem": "",
+    "languagePicked": true,
+    "readMode": "pages",
+    "pageTurnAnimation": true,
+    "progressToFrontmatter": false,
+    "quoteTemplate": "",
+    "quoteBacklinks": true,
+    "quoteBacklinkLabel": "",
+    "noteOpenMode": "split",
+    "maxLineCh": 60,
+    "notesNextToBook": false,
+    "perDevice": false,
+    "deviceProfiles": {},
+    "lastSeenVersion": "1.0.0",
+    "whatsNewNote": true
+  },
+  "progressBackups": {
+    "Books/Livros/A cor dos dados.pdf": [
+      {
+        "pct": 0.006024096385542169,
+        "percent": 1,
+        "lastRead": 1791569518610,
+        "ts": 1791569519306
+      },
+      {
+        "pct": 0.030120481927710843,
+        "percent": 3,
+        "lastRead": 1791569583769,
+        "ts": 1791569705616
+      },
+      {
+        "pct": 0.05421686746987952,
+        "percent": 5,
+        "lastRead": 1791569727231,
+        "ts": 1791569727231,
+        "manual": true,
+        "block": 60
+      },
+      {
+        "pct": 0.05612244897959184,
+        "percent": 6,
+        "lastRead": 1791569849837,
+        "ts": 1791569849837,
+        "manual": true,
+        "block": 74
+      },
+      {
+        "pct": 0,
+        "percent": 0,
+        "lastRead": 1791569849887,
+        "ts": 1791569849887,
+        "manual": true,
+        "block": 64
+      },
+      {
+        "pct": 0.0663265306122449,
+        "percent": 7,
+        "lastRead": 1791569861138,
+        "ts": 1791569861138,
+        "manual": true,
+        "block": 74
+      },
+      {
+        "pct": 0,
+        "percent": 0,
+        "lastRead": 1791569861222,
+        "ts": 1791569861222,
+        "manual": true,
+        "block": 74
+      },
+      {
+        "pct": 0.06930693069306931,
+        "percent": 7,
+        "lastRead": 1791572737516,
+        "ts": 1791572737516,
+        "manual": true,
+        "block": 74
+      },
+      {
+        "pct": 0.08280254777070063,
+        "percent": 8,
+        "lastRead": 1791572743723,
+        "ts": 1791573964281
+      }
+    ],
+    "Books/Livros/12 Perguntas Essenciais para Qualquer Projeto de Dados Um guia simples e poderoso para transformar dados em decisões.pdf": [
+      {
+        "pct": 0.15151515151515152,
+        "percent": 15,
+        "lastRead": 1791553303746,
+        "ts": 1791573582410
+      },
+      {
+        "pct": 0.17886178861788618,
+        "percent": 18,
+        "lastRead": 1791573633879,
+        "ts": 1791573633879,
+        "manual": true,
+        "block": 98
+      }
+    ]
+  },
+  "highlightsBackups": {},
+  "lastBookPath": "Books/Livros/A cor dos dados.pdf"
+}
