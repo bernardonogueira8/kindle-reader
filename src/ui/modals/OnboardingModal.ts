@@ -8,7 +8,8 @@ export interface OnboardSlide {
   body: string | string[];
 }
 
-export const ONBOARD_SLIDES: OnboardSlide[] = [
+export function getOnboardSlides(): OnboardSlide[] {
+  return [
   {
     emoji: "\u{1F4D6}",
     title: __ertr("Welcome to Book Reader!"),
@@ -258,13 +259,25 @@ export const ONBOARD_SLIDES: OnboardSlide[] = [
     ]
   }
 ];
+}
+
+export const ONBOARD_SLIDES: OnboardSlide[] = new Proxy([] as OnboardSlide[], {
+  get(target, prop, receiver) {
+    const slides = getOnboardSlides();
+    const val = Reflect.get(slides, prop, receiver);
+    if (typeof val === 'function') {
+      return (val as (...args: unknown[]) => unknown).bind(slides);
+    }
+    return val;
+  }
+});
 
 export class OnboardingModal extends Modal {
-  plugin: any;
+  plugin: unknown;
   idx = 0;
   _finished = false;
 
-  constructor(app: App, plugin?: any) {
+  constructor(app: App, plugin?: unknown) {
     super(app);
     this.plugin = plugin || null;
   }
@@ -283,8 +296,9 @@ export class OnboardingModal extends Modal {
   }
 
   _go(dir: number): void {
+    const slides = getOnboardSlides();
     const n = this.idx + dir;
-    if (n < 0 || n >= ONBOARD_SLIDES.length) return;
+    if (n < 0 || n >= slides.length) return;
     this.idx = n;
     this._render();
   }
@@ -292,17 +306,18 @@ export class OnboardingModal extends Modal {
   _markSeen(): void {
     if (this._finished) return;
     this._finished = true;
-    if (this.plugin && !this.plugin.settings.onboarded) {
-      this.plugin.settings.onboarded = true;
-      this.plugin.saveAll();
+    if (this.plugin && !(this.plugin as unknown).settings?.onboarded) {
+      (this.plugin as unknown).settings.onboarded = true;
+      (this.plugin as unknown).saveAll?.();
     }
   }
 
   _render(): void {
     const { contentEl } = this;
     contentEl.empty();
-    const s = ONBOARD_SLIDES[this.idx];
-    const total = ONBOARD_SLIDES.length;
+    const slides = getOnboardSlides();
+    const s = slides[this.idx];
+    const total = slides.length;
     const last = this.idx === total - 1;
     const card = contentEl.createDiv("er-onb-card" + (s.tone === "warn" ? " er-onb-warn" : ""));
     card.createDiv("er-onb-emoji").setText(s.emoji);
@@ -310,7 +325,7 @@ export class OnboardingModal extends Modal {
     const body = card.createDiv("er-onb-body");
     (Array.isArray(s.body) ? s.body : [s.body]).forEach((p) => body.createEl("p").setText(p));
     const dots = contentEl.createDiv("er-onb-dots");
-    ONBOARD_SLIDES.forEach((_, i) => {
+    slides.forEach((_, i) => {
       const d = dots.createDiv("er-onb-dot" + (i === this.idx ? " er-onb-dot-on" : ""));
       d.setAttribute("aria-label", __ertr("Screen {0}", i + 1));
       d.addEventListener("click", () => {

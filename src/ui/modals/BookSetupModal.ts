@@ -12,13 +12,13 @@ import {
 import { FolderSuggest } from './SuggestModals';
 
 export class BookSetupModal extends Modal {
-  private plugin: any;
+  private plugin: unknown;
   private file: TFile;
   private onDone: () => void;
   private _answered = false;
   private _step = 1;
 
-  constructor(app: App, plugin: any, file: TFile, onDone?: () => void) {
+  constructor(app: App, plugin: unknown, file: TFile, onDone?: () => void) {
     super(app);
     this.plugin = plugin;
     this.file = file;

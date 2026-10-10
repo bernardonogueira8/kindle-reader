@@ -49,7 +49,7 @@ export class TemplatePicker extends FuzzySuggestModal<TFile> {
   }
 }
 
-export const FolderSuggest: (new (app: App, inputEl: HTMLInputElement) => any) | null = AbstractInputSuggest
+export const FolderSuggest: (new (app: App, inputEl: HTMLInputElement) => unknown) | null = AbstractInputSuggest
   ? class extends AbstractInputSuggest<string> {
       private _inputEl: HTMLInputElement;
 
@@ -82,7 +82,7 @@ export const FolderSuggest: (new (app: App, inputEl: HTMLInputElement) => any) |
     }
   : null;
 
-export function attachFolderSuggest(app: App, textComp: any): void {
+export function attachFolderSuggest(app: App, textComp: unknown): void {
   try {
     if (FolderSuggest && textComp && textComp.inputEl) {
       new FolderSuggest(app, textComp.inputEl);
@@ -92,7 +92,7 @@ export function attachFolderSuggest(app: App, textComp: any): void {
   }
 }
 
-export function attachPathInput(app: App, textComp: any, commit: (val: string) => void): any {
+export function attachPathInput(app: App, textComp: unknown, commit: (val: string) => void): unknown {
   attachFolderSuggest(app, textComp);
   const el = textComp.inputEl;
   let dirty = false;

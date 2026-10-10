@@ -8,15 +8,13 @@
  */
 import { SettingsTab } from './ui/SettingsTab';
 import { registerCommands } from './commands';
-import { BookQuickOpen } from './ui/BookQuickOpen';
-import { SettingsGroupModal } from './ui/SettingsGroupModal';
 import { LibraryModal } from './ui/LibraryModal';
 import { LibraryView, LIB_VIEW_TYPE } from './ui/LibraryView';
-import { AbstractInputSuggest, FuzzySuggestModal, ItemView, MarkdownRenderer, Menu, Modal, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, TFolder, normalizePath, requestUrl } from "obsidian";
+import { App, MarkdownRenderer, Menu, Modal, Notice, Platform, Plugin, PluginManifest, Scope, Setting, TFile, requestUrl } from "obsidian";
 import * as pdfjsLib from "pdfjs-dist";
 import ePub from "epubjs";
 
-import { __ertr, __erSetLang, __erLang } from './utils/i18n';
+import { __ertr, __erSetLang } from './utils/i18n';
 import { svgIcon, iconLabel, docOf, winOf, selOf, icon } from './utils/icons';
 import { THEMES, erTheme, erLibTheme, FONTS, HL_COLORS, hlColorCss } from './utils/theme';
 export { svgIcon, iconLabel, docOf, winOf, selOf, icon };
@@ -33,7 +31,7 @@ import { ReaderModal } from './ui/ReaderModal';
 export { ReaderView, ReaderModal };
 
 export { setupWorker, decodeFb2, fb2Href, addBookFileMenu, deleteBookFromVault };
-const VIEW_TYPE = "elton-reader";
+const VIEW_TYPE = "kindle-reader";
 import { KindleReaderSettings, DEFAULT_SETTINGS, DEFAULT, AI_PROVIDERS, aiConfig } from './settings';
 import { BookProgress, ProgressBackup, BookHighlight, HighlightBackup, ThumbCache, ReadingLog, DeviceProfile } from './types';
 export { KindleReaderSettings, DEFAULT_SETTINGS, DEFAULT, AI_PROVIDERS, aiConfig };
@@ -56,7 +54,8 @@ import {
   TemplatePicker,
   FolderSuggest,
   attachFolderSuggest,
-  attachPathInput
+  attachPathInput,
+  ReadSettingsModal
 } from './ui/modals';
 export {
   ConfirmModal,
@@ -140,7 +139,12 @@ export { Paginator, SHORT_PAGE_GAP };
 // Only the LOOK is per device. Folders, templates, highlight colours and
 // reading progress stay shared — those are decisions about the vault, not about
 // the screen you happen to be holding.
-const DEVICE_KEYS = ["theme", "fontSize", "fontFamily", "lineHeight", "columns", "textAlign", "vAlign", "einkMode"];
+const DEVICE_KEYS = [
+  "theme", "fontSize", "fontFamily", "lineHeight",
+  "paragraphSpacing", "wordSpacing", "letterSpacing",
+  "pageMargin",
+  "columns", "textAlign", "vAlign", "einkMode"
+];
 function erDeviceKey() {
   try {
     if (Platform) {
@@ -669,23 +673,12 @@ function escHtml(s) {
 async function copyToClipboard(text) {
   if (!text) return false;
   try {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
+    if (navigator?.clipboard?.writeText) {
       await navigator.clipboard.writeText(text);
       return true;
     }
   } catch { /* optional step; a failure here must not interrupt reading */ }
-  try {
-    const ta = activeDocument.createElement("textarea");
-    ta.value = text;
-    ta.addClass("er-offscreen");
-    activeDocument.body.appendChild(ta);
-    ta.select();
-    const ok = activeDocument.execCommand("copy");
-    activeDocument.body.removeChild(ta);
-    return ok;
-  } catch {
-    return false;
-  }
+  return false;
 }
 // Open an image full-screen over everything (works on desktop and the mobile
 // modal). Tap the image again to zoom to 100% (then pan); tap the backdrop, the
@@ -694,7 +687,7 @@ async function copyToClipboard(text) {
 function openImageLightbox(src, app, ownerEl) {
   if (!src) return;
   const doc = docOf(ownerEl);
-  const ov = doc.createElement("div");
+  const ov = doc.win.createDiv();
   ov.className = "er-lightbox";
   // Image is a direct flex child centered with margin:auto. Unlike
   // align-items/justify-content:center, margin:auto keeps the top-left edge
@@ -770,10 +763,10 @@ const EltonReader = class extends Plugin {
   _bookCmdTimer?: number;
   _onbShown?: boolean;
   _wnShown?: boolean;
-  _openReaderModal?: any;
+  _openReaderModal?: (modal: Modal) => void;
 
-  constructor() {
-    super(...arguments);
+  constructor(...args: [App, PluginManifest]) {
+    super(...args);
     this.settings = { ...DEFAULT };
     this.progress = {};
     this.thumbCache = {};
@@ -790,11 +783,13 @@ const EltonReader = class extends Plugin {
     // exact paragraph it came from, so clicking it opens the book there. Using
     // the app's own URI scheme rather than something bespoke means the link
     // works from anywhere a link works — a note, the daily journal, a canvas.
-    this.registerObsidianProtocolHandler("elton-reader", (params) => {
+    const handleProto = (params: Record<string, string>) => {
       // `block` for a quote, `page` for a note made from a scanned page — the
       // latter has no paragraph to anchor to.
       this.openBookAt(params.book || "", params.block, params.page);
-    });
+    };
+    this.registerObsidianProtocolHandler("kindle-reader", handleProto);
+    this.registerObsidianProtocolHandler("elton-reader", handleProto);
     this.registerExtensions(["epub"], VIEW_TYPE);
     // FB2 in its own try/catch for the same reason as PDF below: Obsidian has no
     // built-in handler for it, but another plugin might have claimed it, and that
@@ -973,9 +968,8 @@ const EltonReader = class extends Plugin {
     return erPath(folder ? `${folder}/reading-progress.json` : "reading-progress.json");
   }
   async loadAll() {
-    let _a, _b, _c;
     const d = await this.loadData();
-    this.settings = { ...DEFAULT, ...(_a = d == null ? void 0 : d.settings) != null ? _a : {} };
+    this.settings = { ...DEFAULT, ...(d?.settings ?? {}) };
     // Overlay whatever THIS device last looked like (no-op unless enabled).
     applyDeviceProfile(this.settings);
     // An older install may carry a null here from a build that derived this
@@ -1014,8 +1008,7 @@ const EltonReader = class extends Plugin {
     if (!this.settings.promptedRepaired) {
       const asked = this.settings.bookNotePrompted || {};
       const links = this.settings.bookNoteLinks || {};
-      let freed = 0;
-      for (const k of Object.keys(asked)) if (!links[k]) { delete asked[k]; freed++; }
+      for (const k of Object.keys(asked)) if (!links[k]) delete asked[k];
       this.settings.promptedRepaired = true;
       // Previously logged how many books were repaired. It ran once per install
       // and told the reader nothing they could act on, so it only added noise to
@@ -1033,7 +1026,7 @@ const EltonReader = class extends Plugin {
       await this._saveLocalData();
     }
     // One-time migration: if old data.json had progress, move it to vault file
-    const oldProgress = (_b = d == null ? void 0 : d.progress) != null ? _b : {};
+    const oldProgress = d?.progress ?? {};
     if (Object.keys(oldProgress).length > 0 && Object.keys(this.progress).length === 0) {
       this.progress = oldProgress;
       await this._saveProgressToVault();
@@ -1918,7 +1911,7 @@ async function createNoteFromPdfPage(view, pageNo, btn) {
     // A scanned page has no paragraph to anchor to, so the backlink points at
     // the page — still one click from the note back to where it came from.
     const back = plugin.settings.quoteBacklinks !== false
-      ? ` [${backlinkLabel(plugin)}](obsidian://elton-reader?book=${encodeURIComponent(file.path)}&page=${pageNo})`
+      ? ` [${backlinkLabel(plugin)}](obsidian://kindle-reader?book=${encodeURIComponent(file.path)}&page=${pageNo})`
       : "";
     const body = `${quote}\n\n${__ertr("— from [[{0}]], p. {1}", linkName, pageNo)}${back}\n`;
     await resolveNotesFolder(app, folderOverride);
@@ -2601,7 +2594,7 @@ async function extractPdf(file, app, settings = {}, onProgress) {
         const full = Math.max(1, Math.min(2, 1600 / Math.max(base.width, base.height, 1)));
         for (const [scale2, budget] of [[full, 15e3], [full / 2, 8e3]]) {
           const vp2 = page.getViewport({ scale: scale2 });
-          const cv2 = document.createElement("canvas");
+          const cv2 = createEl("canvas");
           cv2.width = Math.ceil(vp2.width);
           cv2.height = Math.ceil(vp2.height);
           const ctx2 = cv2.getContext("2d");
@@ -2624,7 +2617,7 @@ async function extractPdf(file, app, settings = {}, onProgress) {
       const left = Math.min(ax, bx), top = Math.min(ay, by);
       const cw = Math.max(1, Math.round(Math.abs(bx - ax)));
       const ch = Math.max(1, Math.round(Math.abs(by - ay)));
-      const cv = document.createElement("canvas");
+      const cv = createEl("canvas");
       cv.width = cw;
       cv.height = ch;
       const ctx = cv.getContext("2d");
@@ -3671,7 +3664,7 @@ function wrapBlockRange(block, start, end, hl) {
     let n = t.node;
     if (t.e < n.textContent.length) n.splitText(t.e);
     if (t.s > 0) n = n.splitText(t.s);
-    const span = docOf(block).createElement("span");
+    const span = docOf(block).win.createSpan();
     span.className = "er-hl";
     span.style.background = hl.color;
     span.setAttribute("data-hl-id", hl.id);
@@ -3703,202 +3696,6 @@ ${link}
     console.error("Elton Reader: append to book note failed", e);
   }
 }
-const ReadSettingsModal = class extends Modal {
-  constructor(app, view) {
-    super(app);
-    this.view = view;
-  }
-  async _apply(needsRecalculation) {
-    const v = this.view;
-    window.clearTimeout(this._saveT);
-    this._saveT = window.setTimeout(() => { v.plugin.saveAll(); }, 500);
-    if (typeof v.applyVars === "function") v.applyVars();
-    if (typeof v._applyTheme === "function") v._applyTheme();
-    if (needsRecalculation && v.bookHtml) {
-      let block = null;
-      try { block = v.pager ? v.pager.currentBlockIndex() : null; } catch { /* optional step; a failure here must not interrupt reading */ }
-      if (v.file && v.pager && typeof block === "number" && block >= 0) {
-        v.plugin.saveNow(v.file.path, v.pager.spread, v.pager.total, block);
-      }
-      if (typeof v.repaginate === "function") await v.repaginate();
-      else if (typeof v._repaginate === "function") await v._repaginate();
-      if (v.pager && typeof block === "number" && block >= 0) {
-        const [cur, tot] = v.pager.jumpTo(v.pager.spreadForBlock(block));
-        const ui = v.updateUI || v._updateUI;
-        if (typeof ui === "function") ui.call(v, cur, tot);
-        if (v.file) v.plugin.saveNow(v.file.path, cur, tot, block);
-      }
-    }
-    this._paintPreview();
-  }
-  _paintPreview() {
-    const p = this.previewEl;
-    if (!p) return;
-    const s = this.view.plugin.settings;
-    const t = erTheme(s);
-    p.style.fontFamily = FONTS[s.fontFamily] || FONTS.georgia;
-    p.style.fontSize = `${s.fontSize || 18}px`;
-    p.style.lineHeight = String(s.lineHeight || 1.8);
-    p.style.textAlign = s.textAlign || "left";
-    p.style.background = t.bg;
-    p.style.color = t.text;
-  }
-  _seg(host, label, items, current, onPick, hint, compact) {
-    host.createDiv("er-pan-sec").setText(label);
-    const row = host.createDiv("er-col-row er-rs-seg" + (compact ? " er-rs-num" : ""));
-    const btns = [];
-    for (const [value, text, fontFamily] of items) {
-      const b = row.createDiv("er-col-btn");
-      b.setText(text);
-      if (fontFamily) b.style.fontFamily = fontFamily;
-      if (value === current()) b.addClass("active");
-      b.addEventListener("click", async () => {
-        for (const x of btns) x.removeClass("active");
-        b.addClass("active");
-        await onPick(value);
-      });
-      btns.push(b);
-    }
-    if (hint) host.createDiv("er-pan-hint").setText(hint);
-    return row;
-  }
-  onOpen() {
-    const v = this.view;
-    const s = v.plugin.settings;
-    this.modalEl.addClass("er-rs-modal");
-    const c = this.contentEl;
-    c.empty();
-    c.addClass("er-rs");
-    c.createDiv("er-rs-title").setText(__ertr("Reading settings"));
-    this.previewEl = c.createDiv("er-rs-preview");
-    this.previewEl.setText(__ertr("This is what the book text will look like"));
-    this._paintPreview();
-    c.addEventListener("click", () => window.setTimeout(() => this._paintPreview(), 80), true);
-    const grid = c.createDiv("er-rs-grid");
-    const colA = grid.createDiv("er-rs-col");
-    const colB = grid.createDiv("er-rs-col");
-    const colC = grid.createDiv("er-rs-col");
-    colA.createDiv("er-rs-h").setText(__ertr("Appearance"));
-    this._seg(
-      colA,
-      __ertr("Theme"),
-      [["auto", __ertr("Match Obsidian")], ["light", __ertr("Light")], ["dark", __ertr("Dark")], ["sepia", "Sepia"], ["eink", "E-ink"]],
-      () => s.einkMode ? "eink" : s.theme,
-      async (t) => {
-        if (t === "eink") s.einkMode = true;
-        else {
-          s.einkMode = false;
-          s.theme = t;
-        }
-        await this._apply(false);
-      }
-    );
-    this._seg(
-      colA,
-      __ertr("Font"),
-      Object.keys(FONTS).map((f) => [f, f.charAt(0).toUpperCase() + f.slice(1), FONTS[f]]),
-      () => s.fontFamily,
-      async (f) => {
-        s.fontFamily = f;
-        await this._apply(true);
-      }
-    );
-    colA.createDiv("er-pan-sec").setText(__ertr("Font size"));
-    const szRow = colA.createDiv("er-sz-row");
-    const szMinus = szRow.createDiv("er-sz-btn");
-    szMinus.setText("A−");
-    const szLbl = szRow.createDiv("er-sz-label");
-    szLbl.setText(`${s.fontSize}px`);
-    const szPlus = szRow.createDiv("er-sz-btn");
-    szPlus.setText("A+");
-    const chSz = async (d) => {
-      s.fontSize = Math.min(32, Math.max(12, (s.fontSize || 18) + d));
-      szLbl.setText(`${s.fontSize}px`);
-      await this._apply(true);
-    };
-    szMinus.addEventListener("click", () => chSz(-1));
-    szPlus.addEventListener("click", () => chSz(1));
-    const lineHeightOptions = [1.4, 1.6, 1.8, 2.1];
-    this._seg(
-      colA,
-      __ertr("Line spacing"),
-      lineHeightOptions.map((x) => [x, String(x)]),
-      () => lineHeightOptions.find((x) => Math.abs((s.lineHeight || 1.8) - x) < 0.05),
-      async (x) => {
-        s.lineHeight = x;
-        await this._apply(true);
-      },
-      null,
-      true
-    );
-    colB.createDiv("er-rs-h").setText(__ertr("Page"));
-    if (erDeviceKey() !== "phone") this._seg(
-      colB,
-      __ertr("Pages side by side"),
-      [["1", __ertr("One")], ["2", __ertr("Two")]],
-      () => String(s.columns || "2"),
-      async (n) => {
-        s.columns = n;
-        await this._apply(true);
-      },
-      __ertr("Two pages are available only on wider screens.")
-    );
-    this._seg(
-      colB,
-      __ertr("Page turning"),
-      [["pages", __ertr("Pages")], ["scroll", __ertr("Scrolling")], ["flip", __ertr("Realistic flip")]],
-      () => s.readMode || "pages",
-      async (m) => {
-        if (m === (s.readMode || "pages")) return;
-        const v = this.view;
-        try {
-          if (v.file && v.pager) {
-            v.plugin.saveNow(v.file.path, v.pager.spread, v.pager.total, v.pager.currentBlockIndex());
-          }
-        } catch { /* optional step; a failure here must not interrupt reading */ }
-        s.readMode = m;
-        await this._apply(false);
-        const file = v.file;
-        if (!file) return;
-        if (typeof v.openFile === "function") await v.openFile(file);
-        else if (typeof v._loadBook === "function") await v._loadBook();
-      }
-    );
-    if (erDeviceKey() !== "phone") this._seg(
-      colB,
-      __ertr("Line width"),
-      [[0, __ertr("Auto")], [60, "60"], [70, "70"], [80, "80"], [90, "90"]],
-      () => Number(s.maxLineCh) || 0,
-      async (n) => {
-        s.maxLineCh = n;
-        await this._apply(true);
-      },
-      __ertr("Sets how many characters fit on a line. Shorter lines are easier to read."),
-      true
-    );
-    colC.createDiv("er-rs-h").setText(__ertr("Reading"));
-    buildReaderExtraSettings(v, colC);
-    const foot = c.createDiv("er-rs-foot");
-    if (typeof v._renderHistory === "function") {
-      foot.createDiv("er-pan-sec").setText(__ertr("Jump back"));
-      v._histRow = foot.createDiv("er-hist-row");
-      v._renderHistory();
-    }
-    const act = foot.createDiv("er-act-row");
-    const help = act.createDiv("er-act-btn");
-    iconLabel(help, "info", __ertr("Help"));
-    help.addEventListener("click", () => {
-      this.close();
-      new InfoModal(this.app, v.plugin, v.file).open();
-    });
-  }
-  onClose() {
-    window.clearTimeout(this._saveT);
-    if (this.view && this.view.plugin) this.view.plugin.saveAll();
-    if (this.view) this.view._histRow = null;
-    this.contentEl.empty();
-  }
-};
 function processTemplateManually(tplText, title) {
   let today;
   try {
@@ -4038,7 +3835,7 @@ function addBookFileMenu(app, menu, file) {
     const tree = explorer.view;
     if (tree && typeof tree.revealInFolder === "function") tree.revealInFolder(file);
   }));
-  app.workspace.trigger("file-menu", menu, file, "elton-reader");
+  app.workspace.trigger("file-menu", menu, file, "kindle-reader");
   return menu;
 }
 function deleteBookFromVault(app, plugin, file, after) {
@@ -4078,7 +3875,7 @@ function quoteMarkdown(plugin, hl, bookFile) {
   const page = hl && hl.page ? __ertr(", p. {0}", hl.page) : "";
   let link = "";
   if (plugin.settings.quoteBacklinks !== false && bookFile && typeof hl.block === "number" && hl.block >= 0) {
-    link = ` [${backlinkLabel(plugin)}](obsidian://elton-reader?book=${encodeURIComponent(bookFile.path)}&block=${hl.block})`;
+    link = ` [${backlinkLabel(plugin)}](obsidian://kindle-reader?book=${encodeURIComponent(bookFile.path)}&block=${hl.block})`;
   }
   const comment = hl && hl.comment ? `
 >
@@ -4151,7 +3948,7 @@ async function exportHighlightsToBookNote(app, plugin, bookFile, highlights) {
     }
     let where = hl.page ? __ertr(" *(p. {0})*", hl.page) : "";
     if (plugin.settings.quoteBacklinks !== false && bookFile && typeof hl.block === "number" && hl.block >= 0) {
-      const uri = `obsidian://elton-reader?book=${encodeURIComponent(bookFile.path)}&block=${hl.block}`;
+      const uri = `obsidian://kindle-reader?book=${encodeURIComponent(bookFile.path)}&block=${hl.block}`;
       where += ` [${backlinkLabel(plugin)}](${uri})`;
     }
     const cmt = hl.comment ? `
@@ -4296,7 +4093,8 @@ export {
   createNoteFromSelection,
   quoteMarkdown,
   hlCommentMd,
-  exportHighlightsMenu
+  exportHighlightsMenu,
+  ReadSettingsModal
 };
 
 export { EltonReader as KindleReaderPlugin };

@@ -1,6 +1,6 @@
 import { PluginSettingTab, App, Setting, Notice, Platform } from 'obsidian';
 import { __ertr, __erSetLang } from '../utils/i18n';
-import { AI_PROVIDERS, aiConfig, QUOTE_TEMPLATE_DEFAULT } from '../settings';
+import { AI_PROVIDERS, QUOTE_TEMPLATE_DEFAULT } from '../settings';
 import { SettingsGroupModal } from './SettingsGroupModal';
 import { OnboardingModal, WhatsNewModal, WHATS_NEW, attachPathInput } from './modals';
 import { HL_COLORS } from '../utils/theme';
@@ -13,7 +13,7 @@ import {
 } from '../main';
 
 export class SettingsTab extends PluginSettingTab {
-  plugin: any;
+  plugin: unknown;
   _tab: string = "read";
 
   // A row that stands for a whole group: name, one line on what is inside, and
@@ -27,7 +27,7 @@ export class SettingsTab extends PluginSettingTab {
         .onClick(() => new SettingsGroupModal(this.app, name, build).open()));
   }
 
-  constructor(app: App, plugin: any) {
+  constructor(app: App, plugin: unknown) {
     super(app, plugin);
     this.plugin = plugin;
   }
@@ -45,7 +45,6 @@ export class SettingsTab extends PluginSettingTab {
   display() {
     const { containerEl: c } = this;
     c.empty();
-    c.createEl("h2", { text: "Kindle Reader" });
 
     const TABS = [
       { id: "read", label: __ertr("Reading") },
@@ -120,7 +119,7 @@ export class SettingsTab extends PluginSettingTab {
     cell(__ertr("daily average"), fmtReadTime(st.avgPerDay));
     cell(__ertr("best day"), fmtReadTime(st.best));
 
-    const peak = st.recent.reduce((a: number, r: any) => Math.max(a, r.sec), 0);
+    const peak = st.recent.reduce((a: number, r: unknown) => Math.max(a, r.sec), 0);
     if (peak > 0) {
       const chart = card.createDiv({ cls: "er-stats-chart" });
       const bars = chart.createDiv({ cls: "er-stats-bars" });
@@ -143,7 +142,7 @@ export class SettingsTab extends PluginSettingTab {
   _tabReading(c: HTMLElement) {
     this._statsCard(c);
 
-    c.createEl("h3", { cls: "er-set-h", text: __ertr("Page & Navigation") });
+    new Setting(c).setClass("er-set-h").setName(__ertr("Page & Navigation")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Line width"))
@@ -180,7 +179,7 @@ export class SettingsTab extends PluginSettingTab {
         this.plugin.settings.pageTurnAnimation = v;
         await this.plugin.saveAll();
         for (const leaf of this.app.workspace.getLeavesOfType(VIEW_TYPE)) {
-          const view: any = leaf.view;
+          const view: unknown = leaf.view;
           if (view && view.pager && view.pager.flow) {
             view.pager.animate = v;
             view.pager.flow.toggleClass("er-flow-anim", v);
@@ -202,7 +201,7 @@ export class SettingsTab extends PluginSettingTab {
           this._refreshReaderViews();
         }));
 
-    c.createEl("h3", { cls: "er-set-h", text: __ertr("Reading goal") });
+    new Setting(c).setClass("er-set-h").setName(__ertr("Reading goal")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Reading-goal timer"))
@@ -215,7 +214,7 @@ export class SettingsTab extends PluginSettingTab {
     new Setting(c)
       .setName(__ertr("Daily goal, minutes"))
       .setDesc(__ertr("How many minutes a day you want to read. Today's progress is in the card at the top of this tab."))
-      .addSlider((sl) => sl.setLimits(5, 120, 5).setValue(this.plugin.settings.dailyGoalMin || 15).setDynamicTooltip().onChange(async (v) => {
+      .addSlider((sl) => sl.setLimits(5, 120, 5).setValue(this.plugin.settings.dailyGoalMin || 15).onChange(async (v) => {
         this.plugin.settings.dailyGoalMin = v;
         await this.plugin.saveAll();
       }));
@@ -223,7 +222,7 @@ export class SettingsTab extends PluginSettingTab {
 
   // ── Tab: Appearance ───────────────────────────────────────────────────────
   _groupAppearance(c: HTMLElement) {
-    c.createEl("h3", { text: __ertr("Theme & Colors") });
+    new Setting(c).setName(__ertr("Theme & Colors")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Reader theme"))
@@ -261,20 +260,22 @@ export class SettingsTab extends PluginSettingTab {
     new Setting(c)
       .setName(__ertr("Library cover card size"))
       .setDesc(__ertr("Width of book cover cards on the library shelf (120px - 280px)."))
-      .addSlider((sl) => sl.setLimits(120, 280, 8).setValue(this.plugin.settings.libCoverSize || 176).setDynamicTooltip().onChange(async (v) => {
+      .addSlider((sl) => sl.setLimits(120, 280, 8).setValue(this.plugin.settings.libCoverSize || 176).onChange(async (v) => {
         this.plugin.settings.libCoverSize = v;
         await this.plugin.saveAll();
       }));
 
-    c.createEl("h3", { text: __ertr("Typography & Columns") });
+    new Setting(c).setName(__ertr("Typography & Columns")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Font family"))
       .setDesc(__ertr("Typeface used for the book text."))
       .addDropdown((d) => d
-        .addOption("georgia", "Georgia (Serif)")
-        .addOption("lora", "Lora (Book serif)")
-        .addOption("inter", "Inter (Clean sans-serif)")
+        .addOption("bookerly", "Bookerly (amazon serif)")
+        .addOption("caecilia", "Caecilia (slab serif)")
+        .addOption("georgia", "Georgia (serif)")
+        .addOption("lora", "Lora (book serif)")
+        .addOption("inter", "Inter (clean sans-serif)")
         .setValue(this.plugin.settings.fontFamily || "georgia")
         .onChange(async (v) => {
           this.plugin.settings.fontFamily = v;
@@ -285,7 +286,7 @@ export class SettingsTab extends PluginSettingTab {
     new Setting(c)
       .setName(__ertr("Font size"))
       .setDesc(__ertr("Size of the book text in pixels."))
-      .addSlider((sl) => sl.setLimits(12, 34, 1).setValue(this.plugin.settings.fontSize || 18).setDynamicTooltip().onChange(async (v) => {
+      .addSlider((sl) => sl.setLimits(12, 34, 1).setValue(this.plugin.settings.fontSize || 18).onChange(async (v) => {
         this.plugin.settings.fontSize = v;
         await this.plugin.saveAll();
         this._applyThemeToViews();
@@ -294,7 +295,7 @@ export class SettingsTab extends PluginSettingTab {
     new Setting(c)
       .setName(__ertr("Line spacing"))
       .setDesc(__ertr("Relative line height multiplier for text lines."))
-      .addSlider((sl) => sl.setLimits(1.2, 2.4, 0.1).setValue(this.plugin.settings.lineHeight || 1.8).setDynamicTooltip().onChange(async (v) => {
+      .addSlider((sl) => sl.setLimits(1.2, 2.4, 0.1).setValue(this.plugin.settings.lineHeight || 1.8).onChange(async (v) => {
         this.plugin.settings.lineHeight = v;
         await this.plugin.saveAll();
         this._applyThemeToViews();
@@ -342,7 +343,7 @@ export class SettingsTab extends PluginSettingTab {
           this._refreshReaderViews();
         }));
 
-    c.createEl("h3", { text: __ertr("Display Features") });
+    new Setting(c).setName(__ertr("Display Features")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Show pictures from the book"))
@@ -374,7 +375,7 @@ export class SettingsTab extends PluginSettingTab {
           }));
     }
 
-    c.createEl("h3", { text: __ertr("Devices & Special Screens") });
+    new Setting(c).setName(__ertr("Devices & Special Screens")).setHeading();
 
     new Setting(c)
       .setName(__ertr("A separate look on each device"))
@@ -400,7 +401,7 @@ export class SettingsTab extends PluginSettingTab {
 
   // ── Tab: Notes ────────────────────────────────────────────────────────────
   _tabNotes(c: HTMLElement) {
-    c.createEl("h3", { text: __ertr("Where notes go") });
+    new Setting(c).setName(__ertr("Where notes go")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Folder for new notes"))
@@ -453,13 +454,13 @@ export class SettingsTab extends PluginSettingTab {
         }));
     }
 
-    c.createEl("h3", { text: __ertr("Quotes and highlights") });
+    new Setting(c).setName(__ertr("Quotes and highlights")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Default highlight colour"))
       .setDesc(__ertr("Which colour to use when commenting on a passage without choosing a colour first."))
       .addDropdown((d) => {
-        HL_COLORS.forEach((col: any) => d.addOption(col.id, col.name));
+        HL_COLORS.forEach((col: unknown) => d.addOption(col.id, col.name));
         d.setValue(this.plugin.settings.defaultHlColor || HL_COLORS[0].id)
           .onChange(async (v) => {
             this.plugin.settings.defaultHlColor = v;
@@ -509,7 +510,7 @@ export class SettingsTab extends PluginSettingTab {
         await this.plugin.saveAll();
       }));
 
-    c.createEl("h3", { text: __ertr("The book note") });
+    new Setting(c).setName(__ertr("The book note")).setHeading();
 
     new Setting(c)
       .setName(__ertr("A separate note per book"))
@@ -547,7 +548,7 @@ export class SettingsTab extends PluginSettingTab {
         await this.plugin.saveAll();
       }));
 
-    c.createEl("h3", { text: __ertr("Template") });
+    new Setting(c).setName(__ertr("Template")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Note template"))
@@ -613,7 +614,6 @@ export class SettingsTab extends PluginSettingTab {
 
   _groupAi(c: HTMLElement, redraw: () => void) {
     const s = this.plugin.settings;
-    const cfg = aiConfig(s);
 
     new Setting(c)
       .setName(__ertr("Service"))
@@ -711,7 +711,7 @@ export class SettingsTab extends PluginSettingTab {
         });
       });
 
-    c.createEl("h3", { text: __ertr("Syncing across devices") });
+    new Setting(c).setName(__ertr("Syncing across devices")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Sync method"))
@@ -719,7 +719,7 @@ export class SettingsTab extends PluginSettingTab {
       .addDropdown((d) => d
         .addOption("auto", __ertr("Auto (recommended)"))
         .addOption("obsidian", "Obsidian Sync")
-        .addOption("remotely", "Remotely Save / Self-hosted")
+        .addOption("remotely", "Remotely save / self-hosted")
         .addOption("cloud", __ertr("iCloud / Google Drive / folder"))
         .addOption("none", __ertr("No syncing"))
         .setValue(this.plugin.settings.syncMode || "auto")
@@ -729,7 +729,7 @@ export class SettingsTab extends PluginSettingTab {
           this._redraw();
         }));
 
-    c.createEl("h3", { text: __ertr("Cleanup") });
+    new Setting(c).setName(__ertr("Cleanup")).setHeading();
 
     const thumbSet = new Setting(c)
       .setName(__ertr("Cover cache"))
@@ -744,18 +744,18 @@ export class SettingsTab extends PluginSettingTab {
     const progSet = new Setting(c)
       .setName(__ertr("Progress"))
       .setDesc(__ertr("Tracked books: {0}", Object.keys(this.plugin.progress || {}).length))
-      .addButton((b) => b.setButtonText(__ertr("Clear")).setWarning().onClick(async () => {
+      .addButton((b) => b.setButtonText(__ertr("Clear")).setClass("mod-warning").onClick(async () => {
         this.plugin.progress = {};
         await this.plugin.saveAll();
         new Notice(__ertr("Progress cleared"));
         progSet.setDesc(__ertr("Tracked books: {0}", 0));
       }));
 
-    const hlCount = Object.values(this.plugin.highlights || {}).reduce((s: number, a: any) => s + (Array.isArray(a) ? a.length : 0), 0);
+    const hlCount = Object.values(this.plugin.highlights || {}).reduce((s: number, a: unknown) => s + (Array.isArray(a) ? a.length : 0), 0);
     const hlSet = new Setting(c)
       .setName(__ertr("Highlights"))
       .setDesc(__ertr("Total highlights: {0}", hlCount))
-      .addButton((b) => b.setButtonText(__ertr("Clear all")).setWarning().onClick(async () => {
+      .addButton((b) => b.setButtonText(__ertr("Clear all")).setClass("mod-warning").onClick(async () => {
         this.plugin.highlights = {};
         await this.plugin._saveHighlightsToVault();
         new Notice(__ertr("Highlights cleared"));
@@ -765,10 +765,10 @@ export class SettingsTab extends PluginSettingTab {
     const memCount = () => {
       const s = this.plugin.settings;
       return new Set([].concat(
-        Object.keys(s.bookNoteLinks || {}) as any,
-        Object.keys(s.bookNotePrompted || {}) as any,
-        Object.keys(s.bookTags || {}) as any,
-        Object.keys(s.bookTemplates || {}) as any
+        Object.keys(s.bookNoteLinks || {}) as unknown,
+        Object.keys(s.bookNotePrompted || {}) as unknown,
+        Object.keys(s.bookTags || {}) as unknown,
+        Object.keys(s.bookTemplates || {}) as unknown
       )).size;
     };
 
@@ -777,7 +777,7 @@ export class SettingsTab extends PluginSettingTab {
       .setDesc(__ertr("Books: {0}. Linked notes, categories, per-book templates and prompted flags.", memCount()));
 
     let armed = false;
-    memSet.addButton((b) => b.setButtonText(__ertr("Forget all books")).setWarning().onClick(async () => {
+    memSet.addButton((b) => b.setButtonText(__ertr("Forget all books")).setClass("mod-warning").onClick(async () => {
       if (!armed) {
         armed = true;
         b.setButtonText(__ertr("Really forget?"));
@@ -804,7 +804,7 @@ export class SettingsTab extends PluginSettingTab {
 
   // ── Tab: About ────────────────────────────────────────────────────────────
   _tabAbout(c: HTMLElement) {
-    c.createEl("h3", { text: __ertr("Help & Documentation") });
+    new Setting(c).setName(__ertr("Help & Documentation")).setHeading();
 
     new Setting(c)
       .setName(__ertr("Plugin guide"))
@@ -821,17 +821,17 @@ export class SettingsTab extends PluginSettingTab {
         .onClick(() => new WhatsNewModal(this.app, this.plugin, WHATS_NEW.slice(0, 4)).open()));
 
     const aboutCard = c.createDiv({ cls: "er-set-note er-about-card" });
-    aboutCard.createEl("h4", { text: "Kindle Reader" });
+    aboutCard.createDiv({ cls: "er-about-title", text: "Kindle Reader" });
     aboutCard.createEl("p", {
       text: __ertr("Version {0}. Read EPUB, FB2 and PDF books with realistic flip, highlights, and vault-synced progress.", this.plugin.manifest.version)
     });
     const sub = aboutCard.createDiv();
-    sub.createEl("span", { text: __ertr("Based on Book Reader by Elton. Extended and maintained with modern TypeScript and responsive UI.") });
+    sub.createSpan({ text: __ertr("Based on Book Reader by Elton. Extended and maintained with modern TypeScript and responsive UI.") });
   }
 
   private _refreshReaderViews() {
     for (const leaf of this.app.workspace.getLeavesOfType(VIEW_TYPE)) {
-      const view: any = leaf.view;
+      const view: unknown = leaf.view;
       if (view && view.bookHtml && typeof view.repaginate === "function") {
         view.repaginate();
       }
@@ -840,7 +840,7 @@ export class SettingsTab extends PluginSettingTab {
 
   private _applyThemeToViews() {
     for (const leaf of this.app.workspace.getLeavesOfType(VIEW_TYPE)) {
-      const view: any = leaf.view;
+      const view: unknown = leaf.view;
       if (view && typeof view.applyVars === "function") {
         view.applyVars();
         if (view.bookHtml && typeof view.repaginate === "function") {

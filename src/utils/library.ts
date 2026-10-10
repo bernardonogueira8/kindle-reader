@@ -9,7 +9,7 @@ export interface LibChip {
   sub?: boolean;
 }
 
-export function bookStatusOf(prog: any): "new" | "reading" | "done" {
+export function bookStatusOf(prog: unknown): "new" | "reading" | "done" {
   if (!prog || !prog.lastRead) return "new";
   const pct = typeof prog.percent === "number" ? prog.percent : 0;
   if (pct >= 98) return "done";
@@ -20,7 +20,7 @@ export function bookStatusOf(prog: any): "new" | "reading" | "done" {
 export function buildLibChips(
   files: TFile[],
   booksFolder: string,
-  getProgress: (p: string) => any,
+  getProgress: (p: string) => unknown,
   getTags: ((p: string) => string[]) | null,
   activeChip: string
 ): LibChip[] {
@@ -80,7 +80,7 @@ export function filterLibBooks(
   chipId: string,
   query: string,
   booksFolder: string,
-  getProgress: (p: string) => any,
+  getProgress: (p: string) => unknown,
   getTags: ((p: string) => string[]) | null
 ): TFile[] {
   const needle = (query || "").trim().toLowerCase();
@@ -98,13 +98,13 @@ export function filterLibBooks(
   });
 }
 
-export function bookTagsOf(settings: any, bookPath: string): string[] {
+export function bookTagsOf(settings: unknown, bookPath: string): string[] {
   const m = (settings && settings.bookTags) || {};
   const v = m[bookPath];
   return Array.isArray(v) ? v.filter(Boolean) : [];
 }
 
-export function allBookTags(settings: any): string[] {
+export function allBookTags(settings: unknown): string[] {
   const m = (settings && settings.bookTags) || {};
   const set = new Set<string>();
   for (const k of Object.keys(m)) {

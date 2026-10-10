@@ -1,13 +1,24 @@
-import { App, TFile, TFolder } from 'obsidian';
+import { App, TFile } from 'obsidian';
 import { erPath } from './path';
 import { __ertr } from './i18n';
 import { BookHighlight } from '../types';
 
-export function _readerSettings(app: App): any {
-  const plugins = (app as any).plugins?.plugins;
+export function _readerSettings(app: App): unknown {
+  const plugins = (app as unknown).plugins?.plugins;
   const p = plugins ? (plugins['kindle-reader'] || plugins['elton-reader-books']) : null;
   return p?.settings || {};
 }
+
+export function bookNoteAction(
+  s: { bookNoteLinks?: Record<string, string>; bookNotePrompted?: Record<string, boolean>; autoBookNote?: boolean },
+  path: string
+): 'linked' | 'prompted' | 'auto' | 'setup' {
+  if (s.bookNoteLinks && s.bookNoteLinks[path]) return 'linked';
+  if (s.bookNotePrompted && s.bookNotePrompted[path]) return 'prompted';
+  if (s.autoBookNote) return 'auto';
+  return 'setup';
+}
+
 
 export function noteTemplatePath(app: App, bookFile?: TFile | null): string {
   const s = _readerSettings(app);
@@ -30,7 +41,7 @@ export function inboxNotePath(app: App, name: string, override?: string | null):
   return erPath(f ? `${f}/${name}.md` : `${name}.md`);
 }
 
-export async function resolveNotesFolder(app: App, override?: string | null): Promise<any> {
+export async function resolveNotesFolder(app: App, override?: string | null): Promise<unknown> {
   const f = typeof override === 'string' && override !== '' ? erPath(override) : notesFolderPath(app);
   if (!f) return app.vault.getRoot();
   let folder = app.vault.getAbstractFileByPath(f);
@@ -65,7 +76,7 @@ export async function writeBookProperty(app: App, noteName: string, bookFile: TF
     if (!noteName || !bookFile) return;
     const note = resolveBookNote(app, noteName);
     if (!note) return;
-    await (app as any).fileManager.processFrontMatter(note, (fm: any) => {
+    await (app as unknown).fileManager.processFrontMatter(note, (fm: unknown) => {
       fm.book = `[[${bookFile.path}]]`;
     });
   } catch (e) {
@@ -73,7 +84,7 @@ export async function writeBookProperty(app: App, noteName: string, bookFile: TF
   }
 }
 
-export function bookNoteFromFrontmatter(plugin: any, bookFile: TFile | null): string {
+export function bookNoteFromFrontmatter(plugin: unknown, bookFile: TFile | null): string {
   try {
     const app = plugin?.app;
     if (!app || !bookFile) return '';
@@ -91,7 +102,7 @@ export function bookNoteFromFrontmatter(plugin: any, bookFile: TFile | null): st
   return '';
 }
 
-export function bookNoteLinkFor(plugin: any, bookFile: TFile | null): string {
+export function bookNoteLinkFor(plugin: unknown, bookFile: TFile | null): string {
   if (!bookFile) return '';
   const map = plugin?.settings?.bookNoteLinks;
   const raw = map ? (map[bookFile.path] ?? '') : '';
@@ -159,7 +170,7 @@ export function parseNoteTags(raw: string): string[] {
 
 export function allVaultTags(app: App): string[] {
   try {
-    const counts = (app.metadataCache as any)?.getTags?.();
+    const counts = (app.metadataCache as unknown)?.getTags?.();
     if (!counts) return [];
     return Object.keys(counts)
       .map((t) => t.replace(/^#/, ''))

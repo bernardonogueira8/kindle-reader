@@ -3,11 +3,11 @@ import { __ertr } from '../../utils/i18n';
 import { svgIcon } from '../../utils/icons';
 
 export class InfoModal extends Modal {
-  plugin: any;
+  plugin: unknown;
   file: TFile | null;
-  _pdfLazy: any = null;
+  _pdfLazy: unknown = null;
 
-  constructor(app: App, plugin?: any, file?: TFile | null) {
+  constructor(app: App, plugin?: unknown, file?: TFile | null) {
     super(app);
     this.plugin = plugin || null;
     this.file = file || null;

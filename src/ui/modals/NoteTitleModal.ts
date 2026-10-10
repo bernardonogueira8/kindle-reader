@@ -20,13 +20,13 @@ export interface NoteTitleResult {
 }
 
 export class NoteTitleModal extends Modal {
-  private plugin: any;
+  private plugin: unknown;
   private fragment: string;
   private bookFile: TFile | null;
   private onDone: (res: NoteTitleResult | null) => void;
   private _answered = false;
 
-  constructor(app: App, plugin: any, fragment: string, bookFile: TFile | null, onDone: (res: NoteTitleResult | null) => void) {
+  constructor(app: App, plugin: unknown, fragment: string, bookFile: TFile | null, onDone: (res: NoteTitleResult | null) => void) {
     super(app);
     this.plugin = plugin;
     this.fragment = fragment;

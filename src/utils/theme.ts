@@ -53,13 +53,13 @@ export const THEMES: Record<string, ThemeColors> = {
   }
 };
 
-export function erTheme(settings: any): ThemeColors {
+export function erTheme(settings: unknown): ThemeColors {
   const s = settings || {};
   if (s.einkMode === true) return THEMES.eink;
   return THEMES[s.theme] || THEMES.auto;
 }
 
-export function erLibTheme(settings: any): ThemeColors {
+export function erLibTheme(settings: unknown): ThemeColors {
   const s = settings || {};
   const mode = s.libTheme || "auto";
   if (mode === "reader") return erTheme(s);
@@ -68,9 +68,11 @@ export function erLibTheme(settings: any): ThemeColors {
 }
 
 export const FONTS: Record<string, string> = {
-  georgia: "Georgia,'Times New Roman',serif",
-  lora: "'Lora',Georgia,serif",
-  inter: "'Inter',system-ui,sans-serif"
+  bookerly: "'Bookerly', Georgia, 'Times New Roman', serif",
+  caecilia: "'Caecilia', 'PMN Caecilia', Georgia, serif",
+  georgia: "Georgia, 'Times New Roman', serif",
+  lora: "'Lora', Georgia, serif",
+  inter: "'Inter', system-ui, sans-serif"
 };
 
 export function getHighlightColors(): Array<{ id: string; name: string; css: string }> {

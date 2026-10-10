@@ -7,7 +7,8 @@ export interface ReleaseItem {
   items: string[];
 }
 
-export const WHATS_NEW: ReleaseItem[] = [
+export function getWhatsNew(): ReleaseItem[] {
+  return [
   { v: "3.1.2", items: [
     __ertr("PDFs open again on iPhone and iPad, where the book used to be replaced by a readableStream error"),
     __ertr("PDFs whose font brings no character table are no longer shown as gibberish: the text is restored, and it can be selected and searched again"),
@@ -75,6 +76,18 @@ export const WHATS_NEW: ReleaseItem[] = [
     __ertr("The plugin is nearly 4 MB lighter")
   ] }
 ];
+}
+
+export const WHATS_NEW: ReleaseItem[] = new Proxy([] as ReleaseItem[], {
+  get(target, prop, receiver) {
+    const list = getWhatsNew();
+    const val = Reflect.get(list, prop, receiver);
+    if (typeof val === 'function') {
+      return (val as (...args: unknown[]) => unknown).bind(list);
+    }
+    return val;
+  }
+});
 
 export function cmpVer(a: string, b: string): number {
   const pa = String(a || "0").split(".").map((n) => parseInt(n, 10) || 0);
@@ -87,15 +100,15 @@ export function cmpVer(a: string, b: string): number {
 }
 
 export function whatsNewSince(lastSeen: string, current: string, log?: ReleaseItem[]): ReleaseItem[] {
-  return (log || WHATS_NEW).filter((r) => cmpVer(r.v, lastSeen) > 0 && cmpVer(r.v, current) <= 0);
+  return (log || getWhatsNew()).filter((r) => cmpVer(r.v, lastSeen) > 0 && cmpVer(r.v, current) <= 0);
 }
 
 export class WhatsNewModal extends Modal {
-  plugin: any;
+  plugin: unknown;
   releases: ReleaseItem[];
   noteFile: TFile | null;
 
-  constructor(app: App, plugin: any, releases: ReleaseItem[], noteFile?: TFile | null) {
+  constructor(app: App, plugin: unknown, releases: ReleaseItem[], noteFile?: TFile | null) {
     super(app);
     this.plugin = plugin;
     this.releases = releases;
@@ -109,7 +122,7 @@ export class WhatsNewModal extends Modal {
     const card = c.createDiv("er-onb-card er-wn-card");
     card.createDiv("er-onb-emoji").setText("✨");
     card.createDiv("er-onb-title").setText(__ertr("What's new"));
-    card.createDiv("er-wn-sub").setText(__ertr("Book Reader updated to {0}", this.plugin.manifest.version));
+    card.createDiv("er-wn-sub").setText(__ertr("Book Reader updated to {0}", (this.plugin as unknown)?.manifest?.version || ""));
     const wrap = card.createDiv("er-wn-wrap");
     for (const r of this.releases) {
       const grp = wrap.createDiv("er-wn-rel");
@@ -118,7 +131,7 @@ export class WhatsNewModal extends Modal {
       for (const it of r.items) {
         const row = ul.createDiv("er-wn-item");
         row.createSpan({ cls: "er-wn-dot", text: "✦" });
-        row.createSpan({ text: it });
+        row.createSpan({ text: __ertr(it) });
       }
     }
     const nav = c.createDiv("er-onb-nav er-wn-nav");

@@ -398,7 +398,7 @@ Object.assign(__erPT, {
   "Typeface used for the book text.": "Tipo de letra usado no texto do livro.",
   "Font size": "Tamanho da fonte",
   "Size of the book text in pixels.": "Tamanho do texto do livro em pixels.",
-  "Line spacing": "Espaçamento entre linhas",
+  "Line spacing": "Entre linhas",
   "Relative line height multiplier for text lines.": "Multiplicador de altura de linha para o texto.",
   "Number of columns": "Número de colunas",
   "Display one page column or two pages side-by-side (two pages require wide screen).": "Exibe uma coluna de página ou duas páginas lado a lado (duas páginas requerem tela larga).",
@@ -514,6 +514,30 @@ Object.assign(__erPT, {
   "Show": "Mostrar",
   "Version {0}. Read EPUB, FB2 and PDF books with realistic flip, highlights, and vault-synced progress.": "Versão {0}. Leia livros EPUB, FB2 e PDF com folha realista, destaques e sincronização no cofre.",
   "Based on Book Reader by Elton. Extended and maintained with modern TypeScript and responsive UI.": "Baseado no Book Reader de Elton. Expandido e mantido com TypeScript moderno e interface responsiva.",
+  "Paragraph spacing": "Entre parágrafos",
+  "Word spacing": "Entre palavras",
+  "Letter spacing": "Entre caracteres",
+  "Text spacing": "Espaçamento do texto",
+  "Decrease": "Diminuir",
+  "Increase": "Aumentar",
+  "Margins": "Margens da página",
+  "Narrow": "Estreita",
+  "Normal": "Normal",
+  "Wide": "Larga",
+  "Extra wide": "Extra ampla",
+  "Adjusts the side margins around the text column.": "Ajusta o espaçamento das margens laterais na coluna de texto.",
+  "< 1 min left": "< 1 min restante",
+  "{0} min left": "{0} min restantes",
+  "{0} h left": "{0} h restantes",
+  "{0} h {1} min left": "{0} h {1} min restantes",
+  "{0} pages left": "{0} págs restantes",
+  "Time left in book": "Tempo restante no livro",
+  "Current time": "Hora atual",
+  "Finished": "Concluído",
+  "Calculating…": "Calculando…",
+  "Reading progress": "Progresso de leitura",
+  "Previous page": "Página anterior",
+  "Next page": "Próxima página",
 
   "Реалистичный лист": "Folha realista",
   "Реалистичный лист (Flip book)": "Folha realista (Flip book)",
@@ -545,7 +569,7 @@ for (const key in __erEN) {
 }
 export let __erLang = "en";
 export function __erSetLang(v) { __erLang = v || "en"; }
-export function __ertr(s: string, ...args: any[]): string {
+export function __ertr(s: string, ...args: unknown[]): string {
   const lang = __erLang || 'en';
   const russian = __erRU[s] || s;
   let out = lang === 'ru' ? russian : s;

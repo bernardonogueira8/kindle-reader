@@ -24,15 +24,15 @@ import {
 } from '../utils/library';
 
 export class LibraryModal extends Modal {
-  plugin: any;
+  plugin: unknown;
   _grid: HTMLElement | null = null;
   _dropBound = false;
   _coverResizeObs: ResizeObserver | null = null;
-  _thumbQueue: Promise<any> | null = null;
+  _thumbQueue: Promise<unknown> | null = null;
   _thumbDirty = false;
   _thumbSaveT: number | undefined = undefined;
 
-  constructor(app: App, plugin: any) {
+  constructor(app: App, plugin: unknown) {
     super(app);
     this.plugin = plugin;
   }
@@ -57,7 +57,7 @@ export class LibraryModal extends Modal {
     brand.createDiv("er-lib-logo").setText("\u{1F4DA}");
     const hw = brand.createDiv("er-lib-hw");
     hw.createDiv("er-lib-title").setText(__ertr("Library"));
-    hw.createDiv("er-lib-sub").setText("Kindle Reader");
+    hw.createDiv("er-lib-sub").setText("Kindle reader");
 
     const addBtn = hdr.createDiv("er-lib-add");
     addBtn.setAttribute("role", "button");
@@ -223,7 +223,7 @@ export class LibraryModal extends Modal {
 
   _pickBooks(): void {
     const doc = docOf(this.contentEl);
-    const inp = doc.createElement("input");
+    const inp = doc.win.createEl("input");
     inp.type = "file";
     inp.accept = ".pdf,.epub,.fb2,application/pdf,application/epub+zip";
     inp.multiple = true;
@@ -276,9 +276,9 @@ export class LibraryModal extends Modal {
       const dropped = Array.from(e.dataTransfer?.files || []);
       let usable = dropped;
 
-      if (items.length === dropped.length && typeof (items[0] as any)?.webkitGetAsEntry === "function") {
+      if (items.length === dropped.length && typeof (items[0] as unknown)?.webkitGetAsEntry === "function") {
         usable = dropped.filter((f, i) => {
-          const entry = (items[i] as any).webkitGetAsEntry();
+          const entry = (items[i] as unknown).webkitGetAsEntry();
           return !entry || entry.isFile;
         });
         const folders = dropped.length - usable.length;
@@ -328,7 +328,7 @@ export class LibraryModal extends Modal {
     const all = fileList || [];
 
     const extOf = (f: File) => {
-      const raw = (f && f.name) || ((f as any)?.path ? String((f as any).path).split(/[\\/]/).pop() : "");
+      const raw = (f && f.name) || ((f as unknown)?.path ? String((f as unknown).path).split(/[\\/]/).pop() : "");
       const n = String(raw || "").trim().replace(/[.\s]+$/, "");
       const dot = n.lastIndexOf(".");
       const e = dot > 0 ? n.slice(dot + 1).toLowerCase() : "";
@@ -346,13 +346,13 @@ export class LibraryModal extends Modal {
       const detail = rejected
         .slice(0, 5)
         .map((f) => {
-          const nm = (f && f.name) || (f as any)?.path || "?";
+          const nm = (f && f.name) || (f as unknown)?.path || "?";
           return `${nm} [${extOf(f) || "—"}${f && f.type ? ", " + f.type : ""}]`;
         })
         .join("; ");
       console.warn("Kindle Reader: rejected on import —", rejected.map((f) => ({
         name: f && f.name,
-        path: (f as any)?.path,
+        path: (f as unknown)?.path,
         type: f && f.type,
         size: f && f.size,
         seenAs: extOf(f)
@@ -496,7 +496,7 @@ export class LibraryModal extends Modal {
     });
   }
 
-  async loadThumb(file: TFile, coverEl: HTMLElement, ph: HTMLElement): Promise<any> {
+  async loadThumb(file: TFile, coverEl: HTMLElement, ph: HTMLElement): Promise<unknown> {
     const own = this.coverFromBookNote(file);
     if (own) {
       this.showImg(coverEl, ph, own);
@@ -577,7 +577,7 @@ export class LibraryModal extends Modal {
   async makePdfThumb(file: TFile): Promise<string> {
     await setupWorker(this.app);
     const buf = await this.app.vault.readBinary(file);
-    const task = (pdfjsLib as any).getDocument({
+    const task = (pdfjsLib as unknown).getDocument({
       data: buf,
       isEvalSupported: false
     });
@@ -586,14 +586,14 @@ export class LibraryModal extends Modal {
     const base = page.getViewport({ scale: 1 });
     const scale = Math.min(2.5, Math.max(1, 520 / (base.width || 400)));
     const vp = page.getViewport({ scale });
-    const cv = document.createElement("canvas");
+    const cv = createEl("canvas");
     cv.width = Math.ceil(vp.width);
     cv.height = Math.ceil(vp.height);
     const ctx = cv.getContext("2d");
     if (ctx) {
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, cv.width, cv.height);
-      await page.render({ canvasContext: ctx, viewport: vp, canvas: cv } as any).promise;
+      await page.render({ canvasContext: ctx, viewport: vp, canvas: cv } as unknown).promise;
     }
     const url = cv.toDataURL("image/jpeg", 0.85);
     try {

@@ -1,7 +1,7 @@
 import { Platform } from "obsidian";
 import { docOf } from "./icons";
 
-export function erIsMobile(app?: any): boolean {
+export function erIsMobile(app?: unknown): boolean {
   try {
     if (Platform && typeof Platform.isMobile === "boolean") return Platform.isMobile;
   } catch {

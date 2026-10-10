@@ -1,0 +1,194 @@
+{
+  "main": {
+    "id": "dcdfdc75f8b26bcc",
+    "type": "split",
+    "children": [
+      {
+        "id": "b03b5f001e219523",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e3e6599ed2f7a1fd",
+            "type": "leaf",
+            "state": {
+              "type": "elton-library",
+              "state": {},
+              "icon": "library",
+              "title": "Biblioteca"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b5ce8fbdb8cfb735",
+    "type": "split",
+    "children": [
+      {
+        "id": "f2e942d80b748681",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f08b22efdd052aba",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "45a62b66961fd772",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "90578408e1626869",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "98629556045ac920",
+    "type": "split",
+    "children": [
+      {
+        "id": "0af4e6b9c49500f3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6d1104a6383f2d1a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos"
+            }
+          },
+          {
+            "id": "f4f0fd18fe05814a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída"
+            }
+          },
+          {
+            "id": "dcf322ce9a96348a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "a77b28925cf78d42",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas as propriedades"
+            }
+          },
+          {
+            "id": "4a4aaafc4a7c6aeb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false,
+      "kindle-reader:Kindle Reader — Library": false
+    }
+  },
+  "active": "e3e6599ed2f7a1fd",
+  "lastOpenFiles": [
+    "Books/Livros/A cor dos dados — pág.1.md",
+    "Books/Livros/do cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste cap.md",
+    "Books/Livros/reading-highlights.json",
+    "Books/Livros/var a direções bem ruins 3D, cores sem sentido, gráficos.md",
+    "Books/Livros/reading-progress.json"
+  ]
+}

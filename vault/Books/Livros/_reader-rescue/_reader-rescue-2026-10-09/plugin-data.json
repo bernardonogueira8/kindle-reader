@@ -3,43 +3,39 @@
     "language": "pt",
     "booksFolder": "",
     "noteTemplate": "",
-    "notesFolder": "",
+    "notesFolder": "Books/Livros",
     "bookNotesFolder": "",
-    "autoBookNote": false,
-    "quotesToBookNote": false,
-    "dataFolder": "",
+    "autoBookNote": true,
+    "quotesToBookNote": true,
+    "dataFolder": "Books/Livros",
     "bookTemplates": {},
     "exportColors": true,
-    "theme": "eink",
+    "theme": "auto",
     "libTheme": "auto",
     "fontSize": 18,
-    "fontFamily": "inter",
+    "fontFamily": "georgia",
     "lineHeight": 1.8,
     "columns": "1",
     "textAlign": "justify",
     "vAlign": "top",
     "translateEnabled": false,
     "translateTo": "pt",
-    "bookNoteLinks": {
-      "Books/Livros/A cor dos dados.pdf": "A cor dos dados — pág.1"
-    },
-    "bookNotePrompted": {
-      "Books/Livros/A cor dos dados.pdf": true
-    },
+    "bookNoteLinks": {},
+    "bookNotePrompted": {},
     "coverFits": {},
     "syncMode": "auto",
     "pdfShowFiguresOnTextPages": true,
     "libCoverSize": 176,
-    "libCategory": "status:reading",
+    "libCategory": "all",
     "readerAdvOpen": false,
     "readerHistOpen": false,
     "askNoteTitle": true,
     "shortNoteTitles": true,
     "defaultHlColor": "yellow",
     "bookTags": {},
-    "navMode": "click",
+    "navMode": "buttons",
     "timerEnabled": true,
-    "dailyGoalMin": 15,
+    "dailyGoalMin": 30,
     "readingLog": {},
     "lifetimeSeconds": 0,
     "immersive": true,
@@ -47,115 +43,206 @@
     "onboarded": true,
     "promptedRepaired": true,
     "figuresShownByDefault": true,
-    "einkMode": true,
+    "einkMode": false,
     "aiEnabled": false,
     "aiProvider": "eltonlabs",
     "aiKey": "",
     "aiModel": "",
     "aiBase": "",
-    "aiInto": "русском",
+    "aiInto": "English",
     "aiSystem": "",
     "languagePicked": true,
     "readMode": "pages",
     "pageTurnAnimation": true,
-    "progressToFrontmatter": false,
+    "progressToFrontmatter": true,
     "quoteTemplate": "",
     "quoteBacklinks": true,
     "quoteBacklinkLabel": "",
     "noteOpenMode": "split",
-    "maxLineCh": 60,
+    "maxLineCh": 0,
     "notesNextToBook": false,
     "perDevice": false,
     "deviceProfiles": {},
     "lastSeenVersion": "1.0.0",
-    "whatsNewNote": true
+    "whatsNewNote": true,
+    "lastNoteFolder": "Books/Livros",
+    "lastNoteTags": ""
   },
   "progressBackups": {
-    "Books/Livros/A cor dos dados.pdf": [
+    "Books/Livros/Storytelling com dados Cole Nussbaum.pdf": [
       {
-        "pct": 0.006024096385542169,
-        "percent": 1,
-        "lastRead": 1791569518610,
-        "ts": 1791569519306
-      },
-      {
-        "pct": 0.030120481927710843,
-        "percent": 3,
-        "lastRead": 1791569583769,
-        "ts": 1791569705616
-      },
-      {
-        "pct": 0.05421686746987952,
-        "percent": 5,
-        "lastRead": 1791569727231,
-        "ts": 1791569727231,
-        "manual": true,
-        "block": 60
-      },
-      {
-        "pct": 0.05612244897959184,
-        "percent": 6,
-        "lastRead": 1791569849837,
-        "ts": 1791569849837,
-        "manual": true,
-        "block": 74
-      },
-      {
-        "pct": 0,
-        "percent": 0,
-        "lastRead": 1791569849887,
-        "ts": 1791569849887,
-        "manual": true,
-        "block": 64
-      },
-      {
-        "pct": 0.0663265306122449,
-        "percent": 7,
-        "lastRead": 1791569861138,
-        "ts": 1791569861138,
-        "manual": true,
-        "block": 74
-      },
-      {
-        "pct": 0,
-        "percent": 0,
-        "lastRead": 1791569861222,
-        "ts": 1791569861222,
-        "manual": true,
-        "block": 74
-      },
-      {
-        "pct": 0.06930693069306931,
-        "percent": 7,
-        "lastRead": 1791572737516,
-        "ts": 1791572737516,
-        "manual": true,
-        "block": 74
-      },
-      {
-        "pct": 0.08280254777070063,
-        "percent": 8,
-        "lastRead": 1791572743723,
-        "ts": 1791573964281
+        "pct": 0.04294478527607362,
+        "percent": 4,
+        "lastRead": 1791576689017,
+        "ts": 1791584849692
       }
     ],
-    "Books/Livros/12 Perguntas Essenciais para Qualquer Projeto de Dados Um guia simples e poderoso para transformar dados em decisões.pdf": [
+    "Books/Livros/Aplicando Aprendizado De Máquina À Prontuários Eletrônicos Do Paciente.pdf": [
       {
-        "pct": 0.15151515151515152,
-        "percent": 15,
-        "lastRead": 1791553303746,
-        "ts": 1791573582410
-      },
+        "pct": 0.07377049180327869,
+        "percent": 7,
+        "lastRead": 1791553336327,
+        "ts": 1791585589091
+      }
+    ],
+    "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.pdf": [
       {
-        "pct": 0.17886178861788618,
-        "percent": 18,
-        "lastRead": 1791573633879,
-        "ts": 1791573633879,
-        "manual": true,
-        "block": 98
+        "pct": 0.0012165450121654502,
+        "percent": 0,
+        "lastRead": 1791585624421,
+        "ts": 1791585624981
       }
     ]
   },
-  "highlightsBackups": {},
-  "lastBookPath": "Books/Livros/A cor dos dados.pdf"
+  "highlightsBackups": {
+    "Books/Livros/Storytelling com dados Cole Nussbaum.pdf": [
+      {
+        "ts": 1791584872454,
+        "count": 1,
+        "sig": "hmv1jdiw12z93",
+        "items": [
+          {
+            "id": "hmv1jdiw12z93",
+            "color": "yellow",
+            "text": "o cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "d",
+            "post": "",
+            "created": 1791584872417
+          }
+        ]
+      },
+      {
+        "ts": 1791584879318,
+        "count": 2,
+        "sig": "hmv1jdiw12z93,hmv1jdo7d9e2e",
+        "items": [
+          {
+            "id": "hmv1jdiw12z93",
+            "color": "yellow",
+            "text": "o cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "d",
+            "post": "",
+            "created": 1791584872417
+          },
+          {
+            "id": "hmv1jdo7d9e2e",
+            "color": "yellow",
+            "text": "do cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791584879305
+          }
+        ]
+      },
+      {
+        "ts": 1791584888649,
+        "count": 1,
+        "sig": "hmv1jdiw12z93",
+        "items": [
+          {
+            "id": "hmv1jdiw12z93",
+            "color": "yellow",
+            "text": "o cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "d",
+            "post": "",
+            "created": 1791584872417
+          }
+        ]
+      },
+      {
+        "ts": 1791584892031,
+        "count": 0,
+        "sig": "",
+        "items": []
+      },
+      {
+        "ts": 1791584895084,
+        "count": 1,
+        "sig": "hmv1je0d5pxtw",
+        "items": [
+          {
+            "id": "hmv1je0d5pxtw",
+            "color": "yellow",
+            "text": "do cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791584895065
+          }
+        ]
+      },
+      {
+        "ts": 1791584915398,
+        "count": 0,
+        "sig": "",
+        "items": []
+      }
+    ],
+    "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.pdf": [
+      {
+        "ts": 1791585628839,
+        "count": 1,
+        "sig": "hmv1jtqhdlwgd",
+        "items": [
+          {
+            "id": "hmv1jtqhdlwgd",
+            "color": "yellow",
+            "text": "Simulação versus previsão Simulações em código Fazendo o trabalho sozinho Construindo um universo de simulação que funciona sozinho Uma simulação de física Notas Finais sobre Simulações Simulações Estatísticas Simulações de aprendizagem profunda Mais recursos Capítulo 5. Armazenando Dados Temporais Definindo Requisitos Dados ativos versus dados armazenados Soluções de banco de dados SQL versus NoSQL Soluções populares de banco de dados e arquivos de séries temporais Soluções de arquivos NumPy Pandas Equivalentes R padrão Matriz X",
+            "block": 5,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791585628753
+          }
+        ]
+      },
+      {
+        "ts": 1791585663398,
+        "count": 3,
+        "sig": "hmv1jtqhdlwgd,hmv1juh4pm09a,hmv1juh4qbynl",
+        "items": [
+          {
+            "id": "hmv1jtqhdlwgd",
+            "color": "yellow",
+            "text": "Simulação versus previsão Simulações em código Fazendo o trabalho sozinho Construindo um universo de simulação que funciona sozinho Uma simulação de física Notas Finais sobre Simulações Simulações Estatísticas Simulações de aprendizagem profunda Mais recursos Capítulo 5. Armazenando Dados Temporais Definindo Requisitos Dados ativos versus dados armazenados Soluções de banco de dados SQL versus NoSQL Soluções populares de banco de dados e arquivos de séries temporais Soluções de arquivos NumPy Pandas Equivalentes R padrão Matriz X",
+            "block": 5,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791585628753
+          },
+          {
+            "id": "hmv1juh4pm09a",
+            "color": "yellow",
+            "text": "não é muito surpreendente que uma das primeiras inovações em séries temporais na saúde da população tenha vindo de um vendedor de chapéus e não de um médico. Pensando bem, isso faz sentido: nos séculos anteriores, um vendedor de chapéus urbanos provavelmente teria mais prática na manutenção de registros e na arte de detectar tendências do que um médico.",
+            "block": 183,
+            "occ": 0,
+            "pre": "s médicos, mas explicar por que ",
+            "post": "",
+            "created": 1791585663289
+          },
+          {
+            "id": "hmv1juh4qbynl",
+            "color": "yellow",
+            "text": "O inovador foi John Graunt, um armarinho londrino do século XVII. Graunt realizou um estudo dos registros de óbitos mantidos ",
+            "block": 184,
+            "occ": 0,
+            "pre": "",
+            "post": "nas paróquias de Londres desde 2",
+            "created": 1791585663290
+          }
+        ]
+      }
+    ]
+  },
+  "lastBookPath": "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.pdf"
 }

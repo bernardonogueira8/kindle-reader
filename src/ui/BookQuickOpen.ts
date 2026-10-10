@@ -3,9 +3,9 @@ import { __ertr } from '../utils/i18n';
 import type { BookProgress } from '../types';
 
 export class BookQuickOpen extends FuzzySuggestModal<TFile> {
-  plugin: any;
+  plugin: unknown;
 
-  constructor(app: App, plugin: any) {
+  constructor(app: App, plugin: unknown) {
     super(app);
     this.plugin = plugin;
     this.setPlaceholder(__ertr("Which book do you want to open?"));

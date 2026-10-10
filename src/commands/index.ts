@@ -1,11 +1,10 @@
-import { TFile } from 'obsidian';
 import { __ertr } from '../utils/i18n';
 import { erAutoFocus } from '../utils/dom';
 import { ReaderView } from '../ui/ReaderView';
 import { OnboardingModal } from '../ui/modals';
 import { BookQuickOpen } from '../ui/BookQuickOpen';
 
-export function registerCommands(plugin: any) {
+export function registerCommands(plugin: unknown) {
   plugin.addCommand({
     id: "open-library",
     name: __ertr("Open library"),

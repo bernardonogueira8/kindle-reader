@@ -1,4 +1,4 @@
-import { erTheme, FONTS } from '../utils/theme';
+import { FONTS } from '../utils/theme';
 
 export const SHORT_PAGE_GAP = 0.35;
 
@@ -9,6 +9,10 @@ export interface PaginatorSettings {
   fontSize?: number;
   fontFamily?: string;
   lineHeight?: number;
+  paragraphSpacing?: number;
+  wordSpacing?: number;
+  letterSpacing?: number;
+  pageMargin?: string;
   textAlign?: string;
   vAlign?: string;
   maxLineCh?: number;
@@ -92,7 +96,14 @@ export class Paginator {
 
     const cols = settings.columns === '2' && aW > 700 ? 2 : 1;
     const gap = cols === 2 ? 48 : 0;
-    const basePad = cols === 2 ? 48 : aW <= 600 ? 26 : aW <= 820 ? 42 : 60;
+
+    let marginMult = 1.0;
+    if (settings.pageMargin === 'compact') marginMult = 0.55;
+    else if (settings.pageMargin === 'wide') marginMult = 1.6;
+    else if (settings.pageMargin === 'extra') marginMult = 2.3;
+
+    const basePadRaw = cols === 2 ? 48 : aW <= 600 ? 26 : aW <= 820 ? 42 : 60;
+    const basePad = Math.max(10, Math.round(basePadRaw * marginMult));
     const padVt = Math.min(basePad, 40);
     const padVtBot = padVt;
     const aHinner = aH - padVt - padVtBot;
@@ -144,6 +155,8 @@ export class Paginator {
       font-family:${FONTS[settings.fontFamily || ''] || FONTS.georgia || 'serif'};
       font-size:${settings.fontSize || 18}px;
       line-height:${settings.lineHeight || 1.8};
+      letter-spacing:${settings.letterSpacing != null ? settings.letterSpacing : 0}px;
+      word-spacing:${settings.wordSpacing != null ? settings.wordSpacing : 0}px;
       color:var(--er-text);
       background:var(--er-bg);
       overflow:hidden;
@@ -160,7 +173,7 @@ export class Paginator {
 .er-flow p,.er-flow li{
   break-inside:auto;-webkit-column-break-inside:auto;orphans:1;widows:1}
 .er-flow p,.er-flow h1,.er-flow h2,.er-flow h3,.er-flow h4{
-  padding-left:${pad}px;padding-right:${pad}px;margin:0 0 .75em}
+  padding-left:${pad}px;padding-right:${pad}px;margin:0 0 ${settings.paragraphSpacing != null ? settings.paragraphSpacing : 0.75}em}
 .er-flow h1,.er-flow h2,.er-flow h3,.er-flow h4{margin-top:1.1em}
 .er-flow>p:first-of-type,.er-flow .er-section:first-child>p:first-child,
 .er-flow .er-section:first-child>h1:first-child,.er-flow .er-section:first-child>h2:first-child,
@@ -398,35 +411,32 @@ export class Paginator {
     const clipH = this.clip.offsetHeight || 700;
     const isTwoCol = this.cols === 2;
 
-    const leaf = document.createElement('div');
+    const leaf = createDiv();
     leaf.className = `er-flip-leaf ${isTwoCol ? (direction === 1 ? 'er-flip-right' : 'er-flip-left') : 'er-flip-full'}`;
     leaf.style.width = isTwoCol ? `${clipW / 2}px` : `${clipW}px`;
     leaf.style.height = `${clipH}px`;
 
-    const front = document.createElement('div');
+    const front = createDiv();
     front.className = 'er-flip-front';
-    const back = document.createElement('div');
+    const back = createDiv();
     back.className = 'er-flip-back';
-    const shadow = document.createElement('div');
+    const shadow = createDiv();
     shadow.className = 'er-flip-shadow';
 
     // Clone flow content to show on turning front leaf
     const cloneFront = this.flow.cloneNode(true) as HTMLElement;
-    cloneFront.style.position = 'absolute';
-    cloneFront.style.top = this.flow.style.top;
-    cloneFront.style.pointerEvents = 'none';
+    cloneFront.setCssStyles({
+      position: 'absolute',
+      top: this.flow.style.top,
+      pointerEvents: 'none',
+    });
 
     const currentOffset = this._spreadOffset();
-    if (isTwoCol && direction === 1) {
-      cloneFront.style.left = `-${clipW / 2}px`;
-      cloneFront.style.transform = `translate3d(${-Math.round(currentOffset)}px, 0, 0)`;
-    } else if (isTwoCol && direction === -1) {
-      cloneFront.style.left = '0px';
-      cloneFront.style.transform = `translate3d(${-Math.round(currentOffset)}px, 0, 0)`;
-    } else {
-      cloneFront.style.left = '0px';
-      cloneFront.style.transform = `translate3d(${-Math.round(currentOffset)}px, 0, 0)`;
-    }
+    const leftVal = (isTwoCol && direction === 1) ? `-${clipW / 2}px` : '0px';
+    cloneFront.setCssStyles({
+      left: leftVal,
+      transform: `translate3d(${-Math.round(currentOffset)}px, 0, 0)`,
+    });
 
     front.appendChild(cloneFront);
     front.appendChild(shadow);
@@ -436,11 +446,9 @@ export class Paginator {
     this._activeLeaf = leaf;
 
     // Set initial 3D orientation
-    if (direction === 1) {
-      leaf.style.transform = 'rotateY(0deg)';
-    } else {
-      leaf.style.transform = 'rotateY(-180deg)';
-    }
+    leaf.setCssStyles({
+      transform: direction === 1 ? 'rotateY(0deg)' : 'rotateY(-180deg)',
+    });
 
     // Force style calculation
     leaf.getBoundingClientRect();
@@ -452,11 +460,9 @@ export class Paginator {
     // Trigger smooth 3D flip animation
     window.requestAnimationFrame(() => {
       leaf.classList.add('er-flip-turning');
-      if (direction === 1) {
-        leaf.style.transform = 'rotateY(-180deg)';
-      } else {
-        leaf.style.transform = 'rotateY(0deg)';
-      }
+      leaf.setCssStyles({
+        transform: direction === 1 ? 'rotateY(-180deg)' : 'rotateY(0deg)',
+      });
     });
 
     this._flipTimeout = window.setTimeout(() => {
@@ -508,7 +514,7 @@ export class Paginator {
   }
 
   _blocks(): NodeListOf<Element> {
-    return this.flow ? this.flow.querySelectorAll('p,h1,h2,h3,h4') : ([] as any);
+    return this.flow ? this.flow.querySelectorAll('p,h1,h2,h3,h4') : ([] as unknown);
   }
 
   _blockIndexAtScroll(): number {

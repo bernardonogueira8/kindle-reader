@@ -14,6 +14,10 @@ export interface KindleReaderSettings {
   fontSize: number;
   fontFamily: string;
   lineHeight: number;
+  paragraphSpacing: number;
+  wordSpacing: number;
+  letterSpacing: number;
+  pageMargin: string;
   columns: string;
   textAlign: string;
   vAlign: string;
@@ -61,7 +65,7 @@ export interface KindleReaderSettings {
   maxLineCh: number;
   notesNextToBook: boolean;
   perDevice: boolean;
-  deviceProfiles: any;
+  deviceProfiles: unknown;
   lastSeenVersion: string;
   whatsNewNote: boolean;
 }
@@ -100,6 +104,10 @@ export const DEFAULT_SETTINGS: KindleReaderSettings = {
   fontSize: 18,
   fontFamily: "georgia",
   lineHeight: 1.8,
+  paragraphSpacing: 0.75,
+  wordSpacing: 0,
+  letterSpacing: 0,
+  pageMargin: "normal",
   columns: "2",
   // Text alignment inside the reading column: "left" (default), "justify",
   // "center" or "right".

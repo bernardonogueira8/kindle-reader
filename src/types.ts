@@ -1,4 +1,3 @@
-import { App, Plugin, TFile } from 'obsidian';
 import { KindleReaderSettings } from './settings';
 
 export interface BookProgress {
@@ -43,6 +42,10 @@ export interface DeviceProfile {
   fontSize?: number;
   fontFamily?: string;
   lineHeight?: number;
+  paragraphSpacing?: number;
+  wordSpacing?: number;
+  letterSpacing?: number;
+  pageMargin?: string;
   columns?: string;
   textAlign?: string;
   vAlign?: string;

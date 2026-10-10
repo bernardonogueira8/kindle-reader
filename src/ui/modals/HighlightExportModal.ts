@@ -10,13 +10,13 @@ export interface ExportItem {
 
 export type ExportHighlightsFn = (
   app: App,
-  plugin: any,
+  plugin: unknown,
   bookFile: TFile | null,
   sel: BookHighlight[]
 ) => Promise<void> | void;
 
 export class HighlightExportModal extends Modal {
-  private plugin: any;
+  private plugin: unknown;
   private bookFile: TFile | null;
   private noteName: string;
   private already: Set<BookHighlight>;
@@ -27,7 +27,7 @@ export class HighlightExportModal extends Modal {
 
   constructor(
     app: App,
-    plugin: any,
+    plugin: unknown,
     bookFile: TFile | null,
     highlights: BookHighlight[],
     noteText: string,

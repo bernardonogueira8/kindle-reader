@@ -1,11 +1,11 @@
-import { ItemView, WorkspaceLeaf, TFile, Menu, Notice, Platform } from "obsidian";
+import { ItemView, TFile, Menu, Notice, Platform } from "obsidian";
 import { Paginator } from "../reader/Paginator";
-import { __ertr, __erLang } from "../utils/i18n";
-import { svgIcon, iconLabel, docOf, winOf, selOf, icon } from "../utils/icons";
-import { THEMES, erTheme, erLibTheme, FONTS, HL_COLORS, hlColorCss } from "../utils/theme";
-import { erPath, bookRelFolder, bookCategoryOf } from "../utils/path";
-import { erAutoFocus, erBlurOnTapOutside, erIsMobile } from "../utils/dom";
-import { GoToPageModal, ConfirmModal, HighlightCommentModal } from "./modals";
+import { __ertr } from "../utils/i18n";
+import { svgIcon, iconLabel, docOf, selOf } from "../utils/icons";
+import { erTheme, FONTS, HL_COLORS, hlColorCss } from "../utils/theme";
+import { erAutoFocus } from "../utils/dom";
+import { bookNoteAction } from "../utils/notes";
+import { GoToPageModal, ReadSettingsModal, BookSetupModal, InfoModal } from "./modals";
 import {
   VIEW_TYPE,
   erRevealWhenSettled,
@@ -70,6 +70,12 @@ export class ReaderView extends ItemView {
     this._lastWidth = 0;
     this._pendingSel = null;
     this._editHlId = null;
+    this.timeLeftEl = null;
+    this.clockEl = null;
+    this._clockTimer = null;
+    this._pageTurnTimes = [];
+    this._lastTurnTime = null;
+    this._timeLeftMode = "time";
   }
   getViewType() {
     return VIEW_TYPE;
@@ -139,13 +145,20 @@ export class ReaderView extends ItemView {
     }));
   }
   async openFile(file) {
-    let _a2, _b;
-    let _a;
+    if (Platform && (Platform.isAndroidApp || Platform.isAndroid)) {
+      try {
+        if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+          void document.documentElement.requestFullscreen().catch(() => {});
+        }
+      } catch {
+        /* optional */
+      }
+    }
     this.file = file;
     this.ext = file.extension === "epub" ? "epub" : file.extension === "fb2" ? "fb2" : "pdf";
     this.bookHtml = "";
     this.tocItems = [];
-    (_b = (_a2 = this._pdfLazy) == null ? void 0 : _a2.destroy) == null ? void 0 : _b.call(_a2);
+    this._pdfLazy?.destroy?.();
     this._pdfLazy = null;
     this._pdfOutline = null;
     this.titleEl.setText(file.basename);
@@ -369,7 +382,7 @@ export class ReaderView extends ItemView {
     svgIcon(lb, "arrow-left");
     lb.addEventListener("click", () => this.plugin.openLibrary());
     this.titleEl = top.createDiv("er-top-title");
-    this.titleEl.setText("Book Reader");
+    this.titleEl.setText("Book reader");
     const tr = top.createDiv("er-top-right");
     this.timerBtnEl = tr.createDiv("er-timerbtn");
     this.timerIconEl = this.timerBtnEl.createDiv("er-timer-ic");
@@ -414,11 +427,27 @@ export class ReaderView extends ItemView {
     this.areaEl = root.createDiv("er-area");
     if ((this.plugin.settings.navMode || "buttons") === "click") root.addClass("er-navclick");
     const bot = root.createDiv("er-bot");
-    const pv = bot.createDiv("er-navbtn");
+    const pv = bot.createDiv("er-navbtn er-navbtn-prev");
     svgIcon(pv, "chevron-left");
+    pv.setAttribute("aria-label", __ertr("Previous page"));
     pv.addEventListener("click", () => this.nav("prev"));
-    const center = bot.createDiv("er-bot-center");
-    this.locEl = center.createDiv("er-loc er-loc-clickable");
+
+    const footContent = bot.createDiv("er-bot-content");
+
+    // Lado inferior esquerdo: Tempo restante (horas e minutos)
+    const leftCol = footContent.createDiv("er-bot-col er-bot-left");
+    this.timeLeftEl = leftCol.createDiv("er-bot-time-left");
+    this.timeLeftEl.setText(__ertr("Calculating…"));
+    this.timeLeftEl.setAttribute("aria-label", __ertr("Time left in book"));
+    this.timeLeftEl.addEventListener("click", () => this._toggleTimeLeftDisplay());
+
+    // Centralizado: Relógio visível da hora atual + localização
+    const centerCol = footContent.createDiv("er-bot-col er-bot-center");
+    this.clockEl = centerCol.createDiv("er-bot-clock");
+    this.clockEl.setText(this._getCurrentTimeStr());
+    this.clockEl.setAttribute("aria-label", __ertr("Current time"));
+
+    this.locEl = centerCol.createDiv("er-loc er-loc-clickable");
     this.locEl.setAttribute("aria-label", __ertr("Go to page"));
     this.locEl.addEventListener("click", () => {
       if (!this.file || !this.pager || !this.pager.total) return;
@@ -428,11 +457,30 @@ export class ReaderView extends ItemView {
         this.plugin.saveProgress(this.file.path, cur, tot, this.pager.currentBlockIndex());
       }).open();
     });
-    this.pctEl = center.createDiv("er-pct");
+
+    // Lado inferior direito: % do livro
+    const rightCol = footContent.createDiv("er-bot-col er-bot-right");
+    this.pctEl = rightCol.createDiv("er-pct");
     this.pctEl.setText("0%");
-    const nx = bot.createDiv("er-navbtn");
+    this.pctEl.setAttribute("aria-label", __ertr("Reading progress"));
+    this.pctEl.addEventListener("click", () => {
+      if (!this.file || !this.pager || !this.pager.total) return;
+      new GoToPageModal(this.app, this.pager.total, this.pager.spread, (n) => {
+        const [cur, tot] = this.pager.jumpTo(n - 1);
+        this.updateUI(cur, tot);
+        this.plugin.saveProgress(this.file.path, cur, tot, this.pager.currentBlockIndex());
+      }).open();
+    });
+
+    const nx = bot.createDiv("er-navbtn er-navbtn-next");
     svgIcon(nx, "chevron-right");
+    nx.setAttribute("aria-label", __ertr("Next page"));
     nx.addEventListener("click", () => this.nav("next"));
+
+    if (this._clockTimer) window.clearInterval(this._clockTimer);
+    this._clockTimer = window.setInterval(() => {
+      if (this.clockEl) this.clockEl.setText(this._getCurrentTimeStr());
+    }, 10000);
     this.overlayEl = root.createDiv("er-overlay");
     this.overlayEl.addEventListener("click", () => this.closePanel());
     this.settPan = root.createDiv("er-panel");
@@ -506,7 +554,6 @@ export class ReaderView extends ItemView {
       menu.showAtMouseEvent(e);
     });
     this.registerDomEvent(docOf(this.containerEl), "keydown", (e) => {
-      let _a;
       if (!this.bookHtml)
         return;
       const ae = docOf(this.areaEl).activeElement;
@@ -609,6 +656,7 @@ export class ReaderView extends ItemView {
   _navNow(dir) {
     if (!this.bookHtml) return;
     this._hideHlPopup();
+    this._recordPageTurn();
     const [cur, total] = dir === "next" ? this.pager.next() : this.pager.prev();
     this.updateUI(cur, total);
     this.plugin.saveProgress(this.file.path, cur, total, this.pager.currentBlockIndex());
@@ -644,14 +692,76 @@ export class ReaderView extends ItemView {
     const list = enrichHighlights(this, this.plugin.getHighlights(this.file.path));
     exportHighlightsMenu(this.app, this.plugin, this.file, list, evt);
   }
+  _getCurrentTimeStr() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, "0");
+    const m = String(now.getMinutes()).padStart(2, "0");
+    return `${h}:${m}`;
+  }
+  _recordPageTurn() {
+    const now = Date.now();
+    if (this._lastTurnTime) {
+      const elapsedSec = (now - this._lastTurnTime) / 1000;
+      if (elapsedSec >= 6 && elapsedSec <= 300) {
+        if (!this._pageTurnTimes) this._pageTurnTimes = [];
+        this._pageTurnTimes.push(elapsedSec);
+        if (this._pageTurnTimes.length > 8) this._pageTurnTimes.shift();
+      }
+    }
+    this._lastTurnTime = now;
+  }
+  _toggleTimeLeftDisplay() {
+    this._timeLeftMode = this._timeLeftMode === "pages" ? "time" : "pages";
+    if (this.pager) {
+      this._updateTimeLeft(this.pager.spread, this.pager.total);
+    }
+  }
+  _updateTimeLeft(cur, total) {
+    if (!this.timeLeftEl) return;
+    if (total == null || total <= 0) {
+      this.timeLeftEl.setText("");
+      return;
+    }
+    const remainingSpreads = Math.max(0, total - (cur + 1));
+    if (remainingSpreads === 0) {
+      this.timeLeftEl.setText(__ertr("Finished"));
+      return;
+    }
+    if (this._timeLeftMode === "pages") {
+      this.timeLeftEl.setText(__ertr("{0} pages left", remainingSpreads));
+      return;
+    }
+    let secPerSpread = 65;
+    if (this._pageTurnTimes && this._pageTurnTimes.length >= 2) {
+      const sum = this._pageTurnTimes.reduce((a, b) => a + b, 0);
+      secPerSpread = Math.max(20, Math.min(180, Math.round(sum / this._pageTurnTimes.length)));
+    }
+    const secLeft = remainingSpreads * secPerSpread;
+    const minsLeft = Math.round(secLeft / 60);
+    if (minsLeft < 1) {
+      this.timeLeftEl.setText(__ertr("< 1 min left"));
+    } else if (minsLeft < 60) {
+      this.timeLeftEl.setText(__ertr("{0} min left", minsLeft));
+    } else {
+      const h = Math.floor(minsLeft / 60);
+      const m = minsLeft % 60;
+      if (m === 0) {
+        this.timeLeftEl.setText(__ertr("{0} h left", h));
+      } else {
+        this.timeLeftEl.setText(__ertr("{0} h {1} min left", h, m));
+      }
+    }
+  }
   updateUI(cur, total) {
     if (this.contentEl) this.contentEl.toggleClass("er-scrolling", !!(this.pager && this.pager.scrollMode));
     const pct = total > 0 ? Math.round((cur + 1) / total * 100) : 0;
-    this.pbarFill.style.width = `${pct}%`;
+    if (this.pbarFill) this.pbarFill.style.width = `${pct}%`;
     const bookPage = currentBookPage(this);
     const where = this.ext === "pdf" ? __ertr("Spread {0} of {1}", cur + 1, total) : `${cur + 1} / ${total}`;
-    this.locEl.setText(bookPage ? __ertr("p. {0}", bookPage) + " \xB7 " + where : where);
-    this.pctEl.setText(`${pct}%`);
+    if (this.locEl) this.locEl.setText(bookPage ? __ertr("p. {0}", bookPage) + " · " + where : where);
+    if (this.pctEl) this.pctEl.setText(`${pct}%`);
+    if (this.clockEl) this.clockEl.setText(this._getCurrentTimeStr());
+    this._updateTimeLeft(cur, total);
     renderVisibleFigures(this);
   }
   // ── Settings panel ────────────────────────────────────
@@ -717,9 +827,9 @@ export class ReaderView extends ItemView {
     });
     secA(__ertr("Font"));
     const ffRow = adv.createDiv("er-ff-row");
-    ["georgia", "lora", "inter"].forEach((f) => {
+    Object.keys(FONTS).forEach((f) => {
       const btn = ffRow.createDiv("er-ff-btn");
-      btn.setText({ georgia: "Georgia", lora: "Lora", inter: "Inter" }[f]);
+      btn.setText(f.charAt(0).toUpperCase() + f.slice(1));
       btn.style.fontFamily = FONTS[f];
       if (this.plugin.settings.fontFamily === f)
         btn.addClass("active");
@@ -1125,6 +1235,19 @@ export class ReaderView extends ItemView {
     erHideVeil(this);
     let _a;
     stopReadingTimer(this);
+    if (this._clockTimer) {
+      window.clearInterval(this._clockTimer);
+      this._clockTimer = null;
+    }
+    if (Platform && (Platform.isAndroidApp || Platform.isAndroid)) {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) {
+          void document.exitFullscreen().catch(() => {});
+        }
+      } catch {
+        /* optional */
+      }
+    }
     window.clearTimeout(this._immTimer);
     (_a = this._resizeObs) == null ? void 0 : _a.disconnect();
     window.clearTimeout(this._resizeTimer);

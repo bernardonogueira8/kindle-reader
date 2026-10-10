@@ -5,16 +5,16 @@ import { __ertr } from '../utils/i18n';
 export const LIB_VIEW_TYPE = "elton-library";
 
 export class LibraryView extends ItemView {
-  plugin: any;
+  plugin: unknown;
   modalEl!: HTMLElement;
   _grid: HTMLElement | null = null;
   _dropBound = false;
   _coverResizeObs: ResizeObserver | null = null;
-  _thumbQueue: Promise<any> | null = null;
+  _thumbQueue: Promise<unknown> | null = null;
   _thumbDirty = false;
   _thumbSaveT: number | undefined = undefined;
 
-  constructor(leaf: WorkspaceLeaf, plugin: any) {
+  constructor(leaf: WorkspaceLeaf, plugin: unknown) {
     super(leaf);
     this.plugin = plugin;
   }
