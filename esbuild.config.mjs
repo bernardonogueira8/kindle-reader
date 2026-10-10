@@ -127,6 +127,9 @@ const copyStaticFiles = {
         if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
         fs.copyFileSync("manifest.json", path.join(outDir, "manifest.json"));
         fs.copyFileSync("styles.css", path.join(outDir, "styles.css"));
+        if (fs.existsSync(path.join(outDir, "main.js"))) {
+          fs.copyFileSync(path.join(outDir, "main.js"), "main.js");
+        }
         console.log("Copied manifest.json and styles.css to " + outDir);
       }
     });
@@ -182,7 +185,7 @@ const ctx = await esbuild.context({
   outfile: process.env.PLUGIN_DIR ? path.join(process.env.PLUGIN_DIR, "main.js") : "main.js",
   banner: { js: banner },
   plugins: [neutralise, copyStaticFiles],
-  minify: false,
+  minify: prod,
   // Injected as a plain string literal; setupWorker() reads it as __PDF_WORKER_CODE__.
   define: { __PDF_WORKER_CODE__: JSON.stringify(workerCode) },
 });

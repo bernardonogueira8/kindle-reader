@@ -508,7 +508,7 @@ export class LibraryModal extends Modal {
       return;
     }
 
-    this._thumbQueue = (this._thumbQueue || Promise.resolve()).then(async () => {
+    this._thumbQueue = (this._thumbQueue != null ? this._thumbQueue : Promise.resolve()).then(async () => {
       if (this.plugin.thumbCache[file.path]) {
         this.showImg(coverEl, ph, this.plugin.thumbCache[file.path]);
         return;
@@ -593,7 +593,7 @@ export class LibraryModal extends Modal {
     if (ctx) {
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, cv.width, cv.height);
-      await page.render({ canvasContext: ctx, viewport: vp, canvas: cv } as unknown).promise;
+      await (page.render({ canvasContext: ctx, viewport: vp, canvas: cv } as unknown as Parameters<typeof page.render>[0])).promise;
     }
     const url = cv.toDataURL("image/jpeg", 0.85);
     try {

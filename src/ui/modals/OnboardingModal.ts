@@ -333,9 +333,10 @@ export class OnboardingModal extends Modal {
   _markSeen(): void {
     if (this._finished) return;
     this._finished = true;
-    if (this.plugin && !(this.plugin as unknown).settings?.onboarded) {
-      (this.plugin as unknown).settings.onboarded = true;
-      (this.plugin as unknown).saveAll?.();
+    const p = this.plugin as { settings?: { onboarded?: boolean }; saveAll?: () => Promise<void> | void } | null;
+    if (p?.settings && !p.settings.onboarded) {
+      p.settings.onboarded = true;
+      void p.saveAll?.();
     }
   }
 

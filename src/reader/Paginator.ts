@@ -78,7 +78,7 @@ export class Paginator {
     this.animate = settings.pageTurnAnimation !== false;
 
     /* 1. Clip — measure real px after one frame */
-    this.clip = isReusedLayout ? this.clip! : container.createDiv('er-clip');
+    this.clip = isReusedLayout ? this.clip : container.createDiv('er-clip');
     this.clip.style.cssText = `flex:1;align-self:stretch;position:relative;min-width:0;min-height:0;`;
     if (this.scrollMode) this.clip.addClass('er-clip-scroll');
     else this.clip.removeClass('er-clip-scroll');
@@ -134,7 +134,7 @@ export class Paginator {
     }
 
     /* 3. Flow element */
-    this.flow = isReusedLayout ? this.flow! : this.clip.createDiv('er-flow');
+    this.flow = isReusedLayout && this.flow ? this.flow : this.clip.createDiv('er-flow');
     this.flow.style.cssText = `
       width:${flowW}px;
       ${
@@ -248,10 +248,10 @@ export class Paginator {
     /* 5. Count columns */
     const endEl = this.flow.querySelector('.er-end');
     const measure = (): number => {
-      const fRect = this.flow!.getBoundingClientRect();
+      const fRect = this.flow.getBoundingClientRect();
       let lastX = endEl ? endEl.getBoundingClientRect().right - fRect.left : 0;
       if (lastX <= 0) {
-        for (const el of Array.from(this.flow!.querySelectorAll(
+        for (const el of Array.from(this.flow.querySelectorAll(
           'p,h1,h2,h3,h4,h5,h6,img,li,pre,table,blockquote,figure,dd,dt'
         ))) {
           const r = el.getBoundingClientRect().right - fRect.left;
@@ -278,8 +278,8 @@ export class Paginator {
         () => {
           if (this._scrollT) window.clearTimeout(this._scrollT);
           this._scrollT = window.setTimeout(() => {
-            const h = this.clip!.clientHeight || 1;
-            const at = Math.max(0, Math.min(Math.round(this.clip!.scrollTop / h), this.total - 1));
+            const h = this.clip.clientHeight || 1;
+            const at = Math.max(0, Math.min(Math.round(this.clip.scrollTop / h), this.total - 1));
             if (at === this.spread) return;
             this.spread = at;
             if (this.onSpreadChange) this.onSpreadChange(at, this.total);
@@ -310,7 +310,8 @@ export class Paginator {
         for (const el of Array.from(this.flow.querySelectorAll('p,h1,h2,h3,h4'))) {
           const x = el.getBoundingClientRect().left - fRect2.left;
           const k = Math.round(x / slot);
-          if (!this._colX.has(k) || x < this._colX.get(k)!) this._colX.set(k, x);
+          const curr = this._colX.get(k);
+          if (curr === undefined || x < curr) this._colX.set(k, x);
         }
       }
     } catch {
@@ -328,7 +329,8 @@ export class Paginator {
     const mode = this._vAlign || 'top';
     if (mode === 'top' || !this.flow) return 0;
     if (!this._vCache) this._vCache = new Map();
-    if (this._vCache.has(this.spread)) return this._vCache.get(this.spread)!;
+    const cached = this._vCache.get(this.spread);
+    if (cached !== undefined) return cached;
     let off = 0;
     try {
       if (!this._blockGeom) {
@@ -368,7 +370,8 @@ export class Paginator {
         if (bestK === null || Math.abs(kk - k) < Math.abs(bestK - k)) bestK = kk;
       }
       if (bestK !== null) {
-        return this._colX.get(bestK)! + (k - bestK) * (this._pitch || this.sw / (this.cols || 1));
+        const base = this._colX.get(bestK) ?? 0;
+        return base + (k - bestK) * (this._pitch || this.sw / (this.cols || 1));
       }
     }
     return this.spread * this.sw;
@@ -393,7 +396,7 @@ export class Paginator {
       this.flow.removeClass('er-flow-anim');
       this.flow.getBoundingClientRect();
       this.flow.style.transform = t;
-      window.requestAnimationFrame(() => this.flow!.toggleClass('er-flow-anim', this.animate !== false));
+      window.requestAnimationFrame(() => this.flow?.toggleClass('er-flow-anim', this.animate !== false));
     } else {
       this.flow.style.transform = t;
     }

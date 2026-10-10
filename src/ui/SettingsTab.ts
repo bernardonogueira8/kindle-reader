@@ -772,12 +772,12 @@ export class SettingsTab extends PluginSettingTab {
 
     const memCount = () => {
       const s = this.plugin.settings;
-      return new Set([].concat(
-        Object.keys(s.bookNoteLinks || {}) as unknown,
-        Object.keys(s.bookNotePrompted || {}) as unknown,
-        Object.keys(s.bookTags || {}) as unknown,
-        Object.keys(s.bookTemplates || {}) as unknown
-      )).size;
+      return new Set([
+        ...Object.keys(s.bookNoteLinks || {}),
+        ...Object.keys(s.bookNotePrompted || {}),
+        ...Object.keys(s.bookTags || {}),
+        ...Object.keys(s.bookTemplates || {})
+      ]).size;
     };
 
     const memSet = new Setting(c)

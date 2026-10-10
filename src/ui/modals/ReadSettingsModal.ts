@@ -881,7 +881,7 @@ export class ReadSettingsModal extends Modal {
     iconLabel(helpBtn, 'info', __ertr('Help'));
     helpBtn.addEventListener('click', () => {
       this.close();
-      new InfoModal(this.app, this.view.plugin as never, this.view.file || null).open();
+      new InfoModal(this.app, this.view.plugin, this.view.file || null).open();
     });
 
     const doneBtn = foot.createDiv('er-rs-foot-done');

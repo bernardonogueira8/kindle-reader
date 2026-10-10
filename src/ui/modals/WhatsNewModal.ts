@@ -138,8 +138,8 @@ export class WhatsNewModal extends Modal {
     c.empty();
     const card = c.createDiv("er-onb-card er-wn-card");
     card.createDiv("er-onb-emoji").setText("✨");
-    card.createDiv("er-onb-title").setText(__ertr("What's new"));
-    card.createDiv("er-wn-sub").setText(__ertr("Kindle Reader updated to {0}", (this.plugin as unknown)?.manifest?.version || ""));
+    const version = (this.plugin as { manifest?: { version?: string } } | null)?.manifest?.version || "";
+    card.createDiv("er-wn-sub").setText(__ertr("Kindle Reader updated to {0}", version));
     const wrap = card.createDiv("er-wn-wrap");
     for (const r of this.releases) {
       const grp = wrap.createDiv("er-wn-rel");
@@ -171,7 +171,9 @@ export class WhatsNewModal extends Modal {
       open.setText(__ertr("Saved as the note «{0}» - open it", this.noteFile.basename));
       open.addEventListener("click", () => {
         this.close();
-        this.app.workspace.getLeaf(true).openFile(this.noteFile!);
+        if (this.noteFile) {
+          void this.app.workspace.getLeaf(true).openFile(this.noteFile);
+        }
       });
     }
     const help = c.createDiv("er-onb-skip");

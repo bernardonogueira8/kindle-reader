@@ -14,6 +14,21 @@ export class LibraryView extends ItemView {
   _thumbDirty = false;
   _thumbSaveT: number | undefined = undefined;
 
+  declare _pickBooks: LibraryModal['_pickBooks'];
+  declare _setupDropZone: LibraryModal['_setupDropZone'];
+  declare _targetDir: LibraryModal['_targetDir'];
+  declare _freeBookPath: LibraryModal['_freeBookPath'];
+  declare _importBooks: LibraryModal['_importBooks'];
+  declare _refresh: LibraryModal['_refresh'];
+  declare _sizeCovers: LibraryModal['_sizeCovers'];
+  declare renderCard: LibraryModal['renderCard'];
+  declare loadThumb: LibraryModal['loadThumb'];
+  declare coverFromBookNote: LibraryModal['coverFromBookNote'];
+  declare showImg: LibraryModal['showImg'];
+  declare makePdfThumb: LibraryModal['makePdfThumb'];
+  declare makeFb2Thumb: LibraryModal['makeFb2Thumb'];
+  declare makeEpubThumb: LibraryModal['makeEpubThumb'];
+
   constructor(leaf: WorkspaceLeaf, plugin: unknown) {
     super(leaf);
     this.plugin = plugin;
@@ -64,11 +79,4 @@ for (const name of Object.getOwnPropertyNames(LibraryModal.prototype)) {
     Object.getOwnPropertyDescriptor(LibraryModal.prototype, name)!
   );
 }
-
-export interface LibraryView extends Pick<LibraryModal,
-  '_pickBooks' | '_setupDropZone' | '_targetDir' | '_freeBookPath' |
-  '_importBooks' | '_refresh' | '_sizeCovers' | 'renderCard' |
-  'loadThumb' | 'coverFromBookNote' | 'showImg' | 'makePdfThumb' |
-  'makeFb2Thumb' | 'makeEpubThumb'
-> {}
 
