@@ -1,7 +1,7 @@
 {
   "id": "kindle-reader",
   "name": "Kindle Reader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "1.7.2",
   "description": "Kindle-reader is based on Book Reader by Elton, which provided the original URL import base. This project was substantially rewritten and extended with new features.",
   "author": "Bernardo",
