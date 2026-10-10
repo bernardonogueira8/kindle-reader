@@ -74,6 +74,12 @@ The API key you enter is stored in the plugin's settings inside your vault. If y
 No account is required for the plugin itself, and there is no telemetry, no analytics and no ads.
 
 ---
+## What's Changed in v1.0.2
+
+- **Bundle Optimization**: Minified production build, reducing `main.js` from 5.25 MB to 3.87 MB (fully compatible with Obsidian Sync Standard).
+- **Security & Dependencies**: Removed deprecated and vulnerable dependencies (`safe-eval`, `jquery`, `translate-google`). Native Obsidian `requestUrl` is used for in-app translation.
+- **Code Quality**: Resolved all TypeScript and ESLint warnings.
+- **Reader Enhancements**: Layout margin presets (Narrow, Medium, Wide), immersive full-screen toggle on mobile, improved progress footer with estimated reading time, current clock, and percentage.
 
 ## What's new in 1.0.1
 
