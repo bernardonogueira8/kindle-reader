@@ -10,18 +10,26 @@
     "dataFolder": "Books/Livros",
     "bookTemplates": {},
     "exportColors": true,
-    "theme": "auto",
+    "theme": "light",
     "libTheme": "auto",
-    "fontSize": 18,
-    "fontFamily": "georgia",
+    "fontSize": 21,
+    "fontFamily": "bookerly",
     "lineHeight": 1.8,
+    "paragraphSpacing": 0.75,
+    "wordSpacing": 0,
+    "letterSpacing": 0,
+    "pageMargin": "compact",
     "columns": "1",
     "textAlign": "justify",
     "vAlign": "top",
     "translateEnabled": false,
     "translateTo": "pt",
-    "bookNoteLinks": {},
-    "bookNotePrompted": {},
+    "bookNoteLinks": {
+      "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf": "Criar um segundo cérebro (Tiago Forte)"
+    },
+    "bookNotePrompted": {
+      "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf": true
+    },
     "coverFits": {},
     "syncMode": "auto",
     "pdfShowFiguresOnTextPages": true,
@@ -52,7 +60,7 @@
     "aiInto": "English",
     "aiSystem": "",
     "languagePicked": true,
-    "readMode": "pages",
+    "readMode": "scroll",
     "pageTurnAnimation": true,
     "progressToFrontmatter": true,
     "quoteTemplate": "",
@@ -90,7 +98,81 @@
         "pct": 0.0012165450121654502,
         "percent": 0,
         "lastRead": 1791585624421,
-        "ts": 1791585624981
+        "ts": 1791591566159
+      },
+      {
+        "pct": 0.014627659574468085,
+        "percent": 1,
+        "lastRead": 1791591598066,
+        "ts": 1791591598066,
+        "manual": true,
+        "block": 49
+      },
+      {
+        "pct": 0.018731988472622477,
+        "percent": 2,
+        "lastRead": 1791591721995,
+        "ts": 1791591721995,
+        "manual": true,
+        "block": 11
+      },
+      {
+        "pct": 0.005580357142857143,
+        "percent": 1,
+        "lastRead": 1791591723285,
+        "ts": 1791591723285,
+        "manual": true,
+        "block": 11
+      }
+    ],
+    "Books/Livros/12 Perguntas Essenciais para Qualquer Projeto de Dados Um guia simples e poderoso para transformar dados em decisões.pdf": [
+      {
+        "pct": 0,
+        "percent": 0,
+        "lastRead": 1791591455689,
+        "ts": 1791591455689,
+        "manual": true,
+        "block": 0
+      },
+      {
+        "pct": 0.014705882352941176,
+        "percent": 1,
+        "lastRead": 1791591496133,
+        "ts": 1791591496133,
+        "manual": true,
+        "block": 0
+      },
+      {
+        "pct": 0.16176470588235295,
+        "percent": 16,
+        "lastRead": 1791591527146,
+        "ts": 1791591527146,
+        "manual": true,
+        "block": 83
+      },
+      {
+        "pct": 0.1111111111111111,
+        "percent": 11,
+        "lastRead": 1791591528298,
+        "ts": 1791591528298,
+        "manual": true,
+        "block": 80
+      },
+      {
+        "pct": 0.14516129032258066,
+        "percent": 15,
+        "lastRead": 1791591533052,
+        "ts": 1791591533052,
+        "manual": true,
+        "block": 78
+      }
+    ],
+    "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf": [
+      {
+        "pct": 0.0030959752321981426,
+        "percent": 0,
+        "lastRead": 1791591828701,
+        "ts": 1791591829824
       }
     ]
   },
@@ -241,8 +323,151 @@
             "created": 1791585663290
           }
         ]
+      },
+      {
+        "ts": 1791591763183,
+        "count": 9,
+        "sig": "hmv1nh6myzauo,hmv1nh6mzzb67,hmv1nh6n00gzr,hmv1nh6n0r0kk,hmv1nh6n1c4sd,hmv1nh6n1pxs2,hmv1nh6n2l5gu,hmv1nh6n2qxee,hmv1nh6n3nyls",
+        "items": [
+          {
+            "id": "hmv1nh6myzauo",
+            "color": "yellow",
+            "text": "Encontrar e organizar dados de séries temporais — Dr. Andreas W. Kempa-Liehr Análise Professor experiente,",
+            "block": 19,
+            "occ": 0,
+            "pre": "• ",
+            "post": "",
+            "created": 1791591761626
+          },
+          {
+            "id": "hmv1nh6mzzb67",
+            "color": "yellow",
+            "text": "• Realizar análise exploratória de dados de séries temporais",
+            "block": 20,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761627
+          },
+          {
+            "id": "hmv1nh6n00gzr",
+            "color": "yellow",
+            "text": "Departamento de Ciências da Engenharia,",
+            "block": 21,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761628
+          },
+          {
+            "id": "hmv1nh6n0r0kk",
+            "color": "yellow",
+            "text": "• Armazenar dados temporais Universidade de Auckland",
+            "block": 22,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761628
+          },
+          {
+            "id": "hmv1nh6n1c4sd",
+            "color": "yellow",
+            "text": "• Simular dados de séries temporais",
+            "block": 23,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761629
+          },
+          {
+            "id": "hmv1nh6n1pxs2",
+            "color": "yellow",
+            "text": "• Gerar e selecionar recursos para uma série temporal Aileen Nielsen é uma Nova York Engenheiro de software baseado na cidade",
+            "block": 24,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761629
+          },
+          {
+            "id": "hmv1nh6n2qxee",
+            "color": "yellow",
+            "text": "• Medir erro e analista de dados. Ela trabalhou em séries temporais em uma variedade de é",
+            "block": 25,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761630
+          },
+          {
+            "id": "hmv1nh6n2l5gu",
+            "color": "yellow",
+            "text": "• Prever e classificar séries temporais com aprendizado de máquina ou profundo disciplinas, de uma área de saúde é",
+            "block": 26,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761630
+          },
+          {
+            "id": "hmv1nh6n3nyls",
+            "color": "yellow",
+            "text": "• Avaliar precisão e desempenho início d",
+            "block": 27,
+            "occ": 0,
+            "pre": "",
+            "post": "e uma campanha política, de um l",
+            "created": 1791591761631
+          }
+        ]
+      }
+    ],
+    "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf": [
+      {
+        "ts": 1791591834125,
+        "count": 1,
+        "sig": "hmv1niqk94rc3",
+        "items": [
+          {
+            "id": "hmv1niqk94rc3",
+            "color": "yellow",
+            "text": "Relacionar ideias e reconhecer padrões em diferentes áreas da sua vida, para que saiba como viver melhor.",
+            "block": 26,
+            "occ": 0,
+            "pre": "• ",
+            "post": "",
+            "created": 1791591834105
+          }
+        ]
+      },
+      {
+        "ts": 1791591889905,
+        "count": 2,
+        "sig": "hmv1niqk94rc3,hmv1njxltq6gx",
+        "items": [
+          {
+            "id": "hmv1niqk94rc3",
+            "color": "yellow",
+            "text": "Relacionar ideias e reconhecer padrões em diferentes áreas da sua vida, para que saiba como viver melhor.",
+            "block": 26,
+            "occ": 0,
+            "pre": "• ",
+            "post": "",
+            "created": 1791591834105
+          },
+          {
+            "id": "hmv1njxltq6gx",
+            "color": "yellow",
+            "text": " atual das suas vidas. À medida que as suas vidas forem mudando, eles serão capazes de adaptar a forma como usam as notas, para que continuem a ser relevantes e úteis.",
+            "block": 261,
+            "occ": 0,
+            "pre": "ormas que complementam o período",
+            "post": "",
+            "created": 1791591889889
+          }
+        ]
       }
     ]
   },
-  "lastBookPath": "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.pdf"
+  "lastBookPath": "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf"
 }

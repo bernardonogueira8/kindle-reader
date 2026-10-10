@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "b03b5f001e219523",
+        "id": "65cd948cbd290d18",
         "type": "tabs",
         "children": [
           {
-            "id": "e3e6599ed2f7a1fd",
+            "id": "ffa3a3f170e9ad3e",
             "type": "leaf",
             "state": {
               "type": "elton-library",
@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "98629556045ac920",
@@ -183,8 +182,11 @@
       "kindle-reader:Kindle Reader — Library": false
     }
   },
-  "active": "e3e6599ed2f7a1fd",
+  "active": "ffa3a3f170e9ad3e",
   "lastOpenFiles": [
+    "Books/Livros/Criar um segundo cérebro (Tiago Forte).md",
+    "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.md",
+    "Books/Livros/12 Perguntas Essenciais para Qualquer Projeto de Dados Um guia simples e poderoso para transformar d.md",
     "Books/Livros/A cor dos dados — pág.1.md",
     "Books/Livros/do cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste cap.md",
     "Books/Livros/reading-highlights.json",

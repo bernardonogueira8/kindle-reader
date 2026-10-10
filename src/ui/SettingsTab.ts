@@ -16,6 +16,10 @@ export class SettingsTab extends PluginSettingTab {
   plugin: unknown;
   _tab: string = "read";
 
+  override getSettingDefinitions() {
+    return [];
+  }
+
   // A row that stands for a whole group: name, one line on what is inside, and
   // the button that opens it.
   _group(c: HTMLElement, { name, desc, build }: { name: string; desc: string; build: (c: HTMLElement, redraw: () => void) => void }) {
@@ -37,12 +41,16 @@ export class SettingsTab extends PluginSettingTab {
     const el = this.containerEl;
     const scroller = el.scrollHeight > el.clientHeight ? el : (el.closest(".vertical-tab-content") || el.parentElement || el);
     const y = scroller.scrollTop;
-    this.display();
+    this._render();
     scroller.scrollTop = y;
     window.requestAnimationFrame(() => { scroller.scrollTop = y; });
   }
 
   display() {
+    this._render();
+  }
+
+  _render() {
     const { containerEl: c } = this;
     c.empty();
 
@@ -79,7 +87,7 @@ export class SettingsTab extends PluginSettingTab {
       const el = bar.createDiv("er-set-tab");
       el.setText(t.label);
       if (t.id === this._tab) el.addClass("er-set-tab-on");
-      el.addEventListener("click", () => { this._tab = t.id; this.display(); });
+      el.addEventListener("click", () => { this._tab = t.id; this._redraw(); });
     });
 
     const body = c.createDiv("er-set-body");
@@ -384,7 +392,7 @@ export class SettingsTab extends PluginSettingTab {
       .addToggle((t) => t.setValue(this.plugin.settings.perDevice === true).onChange(async (v) => {
         this.plugin.settings.perDevice = v;
         await this.plugin.saveAll();
-        this.display();
+        this._redraw();
       }));
 
     new Setting(c)
@@ -575,7 +583,7 @@ export class SettingsTab extends PluginSettingTab {
       .addToggle((t) => t.setValue(this.plugin.settings.aiEnabled === true).onChange(async (v) => {
         this.plugin.settings.aiEnabled = v;
         await this.plugin.saveAll();
-        this.display();
+        this._redraw();
       }));
 
     if (this.plugin.settings.aiEnabled) {
