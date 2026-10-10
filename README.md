@@ -96,7 +96,7 @@ No account is required for the plugin itself, and there is no telemetry, no anal
 
 **Code quality and compatibility.** 100% ESLint compliance, fixed deprecations for Obsidian 1.13+, and performance improvements.
 
-## What's new in 3.1
+## What's new in 1.0.0
 
 **It loads where it used to refuse to.** On older Obsidian builds, Huawei tablets and some Windows installs the plugin failed with "Failed to load plugin" — the PDF engine expected a JavaScript feature those browser engines do not have. It is supplied now, so those devices get a working reader.
 
@@ -105,8 +105,6 @@ No account is required for the plugin itself, and there is no telemetry, no anal
 **The link back to the book is worded by you.** Set your own label instead of "↪ to this spot in the book" in the settings.
 
 **Fixes.** Tapping a highlight in the list now jumps to its place even on pages that have not been drawn yet; the selection bar no longer lands on empty space at the start of a paragraph or across a page break; on Android the top bar keeps clear of the clock, with a manual inset for skins that hide the status-bar height. What's new is also saved as a note in your vault.
-
-## What's new in 3.0
 
 **Ask an AI about a passage.** Select text and press ✨: a translation, a breakdown of the words that are actually hard, why the phrasing is what it is, and the etymology where it helps you remember. Use your own OpenRouter or OpenAI key, the Elton AI proxy, or a **local Ollama / LM Studio** — with a local model the passage never leaves your machine. Off until you set it up.
 
@@ -314,7 +312,11 @@ O plugin não exige uma conta e não tem telemetria, análise de uso ou anúncio
 
 **Qualidade e estabilidade.** 100% em conformidade com as diretrizes do Obsidian e regras do ESLint, com resolução de avisos de depreciação para o Obsidian 1.13+.
 
-## Novidades da versão 3.1
+**Apoie o projeto.** Se você gosta de usar o Kindle Reader e quer apoiar o
+desenvolvimento e a manutenção contínua, considere comprar um café em
+buymeacoffee.com/bernardonogueira8 ☕
+
+## Novidades da versão 1.0.0
 
 **Funciona em dispositivos onde antes não carregava.** Em versões antigas do
 Obsidian, tablets Huawei e algumas instalações do Windows, o plugin falhava com
@@ -336,8 +338,6 @@ vazio no início de um parágrafo ou entre páginas. No Android, a barra superio
 não fica sobre o relógio; também é possível definir manualmente o espaçamento em
 interfaces que não informam a altura da barra de status. As novidades também são
 salvas como uma nota no vault.
-
-## Novidades da versão 3.0
 
 **Converse com uma IA sobre um trecho.** Selecione o texto e pressione ✨ para
 obter uma tradução, entender as palavras realmente difíceis, descobrir por que a
