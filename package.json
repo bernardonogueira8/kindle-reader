@@ -1,6 +1,6 @@
 {
   "name": "kindle-reader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Read EPUB, FB2 and PDF books inside Obsidian, with highlights, notes, and reading progress that syncs with your vault.",
   "main": "main.js",
   "type": "module",
@@ -31,12 +31,10 @@
   },
   "dependencies": {
     "epubjs": "^0.3.93",
-    "jquery": "^4.0.0",
     "jszip": "^3.10.1",
     "localforage": "^1.10.0",
     "pdfjs-dist": "^6.2.108",
-    "translate-google": "^1.5.0",
-    "turn.js": "^1.0.5"
+    "translate-google": "^1.5.0"
   },
   "overrides": {
     "@xmldom/xmldom": "^0.9.12",

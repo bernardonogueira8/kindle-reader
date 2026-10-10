@@ -71,7 +71,7 @@
     "notesNextToBook": false,
     "perDevice": false,
     "deviceProfiles": {},
-    "lastSeenVersion": "1.0.0",
+    "lastSeenVersion": "1.0.1",
     "whatsNewNote": true,
     "lastNoteFolder": "Books/Livros",
     "lastNoteTags": ""
@@ -173,6 +173,12 @@
         "percent": 0,
         "lastRead": 1791591828701,
         "ts": 1791591829824
+      },
+      {
+        "pct": 0.16408668730650156,
+        "percent": 16,
+        "lastRead": 1791591886890,
+        "ts": 1791592108948
       }
     ]
   },

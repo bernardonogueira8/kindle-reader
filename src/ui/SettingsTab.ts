@@ -828,6 +828,18 @@ export class SettingsTab extends PluginSettingTab {
         .setButtonText(__ertr("Show"))
         .onClick(() => new WhatsNewModal(this.app, this.plugin, WHATS_NEW.slice(0, 4)).open()));
 
+    new Setting(c).setName(__ertr("Support & development")).setHeading();
+
+    new Setting(c)
+      .setName(__ertr("Buy me a coffee"))
+      .setDesc(__ertr("If you enjoy using Kindle Reader and want to support continued development, consider buying me a coffee!"))
+      .addButton((b) => b
+        .setButtonText(__ertr("Support the project ☕"))
+        .setCta()
+        .onClick(() => {
+          window.open("https://buymeacoffee.com/bernardonogueira8", "_blank");
+        }));
+
     const aboutCard = c.createDiv({ cls: "er-set-note er-about-card" });
     aboutCard.createDiv({ cls: "er-about-title", text: "Kindle Reader" });
     aboutCard.createEl("p", {

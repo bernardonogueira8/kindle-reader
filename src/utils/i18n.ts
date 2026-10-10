@@ -561,6 +561,40 @@ Object.assign(__erPT, {
   "Компьютер": "Computador",
   "Планшет": "Tablet",
   "Телефон": "Telefone",
+  "Support & development": "Apoio & desenvolvimento",
+  "Buy me a coffee": "Compre um café para mim",
+  "Buy me a coffee ☕": "Compre um café para mim ☕",
+  "If you enjoy using Kindle Reader and want to support continued development, consider buying me a coffee!": "Se você gosta do Kindle Reader e deseja apoiar o desenvolvimento contínuo, considere me pagar um café!",
+  "Support the project ☕": "Apoiar o projeto ☕",
+  "Support the project": "Apoiar o projeto",
+  "Kindle Reader is completely free, open-source and offline.": "O Kindle Reader é totalmente gratuito, de código aberto e offline.",
+  "If you enjoy using the plugin and want to support continued development, consider buying me a coffee: buymeacoffee.com/bernardonogueira8.": "Se você gosta do plugin e deseja apoiar o desenvolvimento contínuo, considere me pagar um café: buymeacoffee.com/bernardonogueira8.",
+  "Your support helps keep the project active and brings new improvements!": "Seu apoio ajuda a manter o projeto ativo e trazer novas melhorias!",
+  "Support the project: buymeacoffee.com/bernardonogueira8 ☕": "Apoiar o projeto: buymeacoffee.com/bernardonogueira8 ☕",
+  "Support the project: buy me a coffee at buymeacoffee.com/bernardonogueira8 ☕": "Apoiar o projeto: compre um café para mim em buymeacoffee.com/bernardonogueira8 ☕",
+  "Kindle Reader updated to {0}": "Kindle Reader atualizado para {0}",
+  "Full-screen mode on Android when opening books for an immersive reading experience": "Modo tela cheia no Android ao abrir livros para uma experiência de leitura imersiva",
+  "Enhanced 3-column footer: time remaining to finish reading on the left, real-time clock in the center, and book percentage on the right": "Rodapé triplo aprimorado: tempo restante para terminar à esquerda, relógio em tempo real no centro e porcentagem do livro à direita",
+  "Interactive reading time: tap the time remaining in the footer to toggle between hours/minutes and pages left": "Tempo de leitura interativo: toque no tempo restante no rodapé para alternar entre horas/minutos e páginas restantes",
+  "Advanced typography controls: sliders for line height, paragraph spacing, word spacing, and letter spacing": "Controles avançados de tipografia: controles deslizantes para altura da linha, espaçamento entre parágrafos, entre palavras e entre caracteres",
+  "Custom text margins: choose between Narrow, Normal, Wide, and Extra wide column margins": "Margens de texto personalizadas: escolha entre margens Estreita, Normal, Larga e Extra larga",
+  "Kindle fonts added: Bookerly and Caecilia are now available in the font selector": "Fontes do Kindle adicionadas: Bookerly e Caecilia agora estão disponíveis no seletor de fontes",
+  "Project stability: complete ESLint cleanup, strict code standards, and deprecation fixes for Obsidian 1.13+": "Estabilidade do projeto: limpeza completa de ESLint, padrões rígidos de código e correção de depreciações para Obsidian 1.13+",
+  "Welcome to Kindle Reader! Rebranded and rewritten with modern modular architecture": "Bem-vindo ao Kindle Reader! Renomeado e reescrito com arquitetura modular moderna",
+  "Support for EPUB, FB2, and PDF books offline directly inside Obsidian": "Suporte a livros EPUB, FB2 e PDF totalmente offline dentro do Obsidian",
+  "Highlights and notes: multiple colors, attached comments, and automatic linking with book notes": "Destaques e notas: múltiplas cores, comentários anexados e vínculo automático com notas de livros",
+  "Custom themes: Light, Sepia, Dark, and E-ink modes with instant switching": "Temas personalizados: modos Claro, Sépia, Escuro e E-ink com troca instantânea",
+  "Visual library with book covers, reading progress, and categorized shelves": "Biblioteca visual com capas de livros, progresso de leitura e estantes categorizadas",
+  "Welcome to Kindle Reader!": "Bem-vindo ao Kindle Reader!",
+  "It's a cozy Kindle-style book reader right inside Obsidian. Read, highlight what matters and turn highlights into notes — without leaving your vault.": "Um leitor de livros aconchegante estilo Kindle dentro do Obsidian. Leia, destaque o que importa e transforme destaques em notas — sem sair do seu vault.",
+  "Typography, spacing and margins": "Tipografia, espaçamentos e margens",
+  "Choose your favorite fonts: Kindle classics Bookerly and Caecilia, Georgia, Lora or Inter.": "Escolha suas fontes favoritas: os clássicos do Kindle Bookerly e Caecilia, além de Georgia, Lora e Inter.",
+  "Fine-tune your reading comfort with sliders for line height, paragraph spacing, word spacing, and letter spacing directly in reading settings.": "Ajuste fino do conforto de leitura com controles para entre linhas, entre parágrafos, entre palavras e entre caracteres nas configurações de leitura.",
+  "Adjust text margins across 4 widths (Narrow, Normal, Wide, Extra wide) to fit any phone, tablet, or desktop screen.": "Ajuste as margens de texto em 4 opções (Estreita, Normal, Larga, Extra larga) para qualquer tela de celular, tablet ou computador.",
+  "Mobile reading and progress": "Leitura no celular e progresso",
+  "On Android devices, books automatically enter full-screen mode to maximize screen real estate and minimize distractions.": "No Android, os livros entram em tela cheia automaticamente para aproveitar melhor a tela e diminuir distrações.",
+  "The bottom progress bar displays hours and minutes remaining on the left (tap to toggle to pages left), a real-time clock in the center, and your overall reading percentage on the right.": "A barra de progresso inferior exibe horas e minutos restantes à esquerda (toque para alternar para páginas restantes), relógio em tempo real no centro e a porcentagem total de leitura à direita.",
+  "To open the settings: Obsidian's gear icon → Community plugins → Kindle Reader. There are tabs at the top: Reading, Appearance, Notes, Translation, Data and About.": "Para abrir as configurações: Ícone de engrenagem do Obsidian → Plugins da comunidade → Kindle Reader. Há guias no topo: Leitura, Aparência, Notas, Tradução, Dados e Sobre."
 });
 
 const __erRU = Object.create(null);
@@ -573,7 +607,10 @@ export function __ertr(s: string, ...args: unknown[]): string {
   const lang = __erLang || 'en';
   const russian = __erRU[s] || s;
   let out = lang === 'ru' ? russian : s;
-  if (lang === 'pt' && __erPT[russian] != null) { out = __erPT[russian]; }
+  if (lang === 'pt') {
+    if (__erPT[russian] != null) { out = __erPT[russian]; }
+    else if (__erPT[s] != null) { out = __erPT[s]; }
+  }
   if (args.length > 0) {
     out = String(out).replace(/\{(\d+)\}/g, function(m, d) {
       const v = args[+d];

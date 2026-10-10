@@ -9,6 +9,23 @@ export interface ReleaseItem {
 
 export function getWhatsNew(): ReleaseItem[] {
   return [
+  { v: "1.0.1", items: [
+    __ertr("Full-screen mode on Android when opening books for an immersive reading experience"),
+    __ertr("Enhanced 3-column footer: time remaining to finish reading on the left, real-time clock in the center, and book percentage on the right"),
+    __ertr("Interactive reading time: tap the time remaining in the footer to toggle between hours/minutes and pages left"),
+    __ertr("Advanced typography controls: sliders for line height, paragraph spacing, word spacing, and letter spacing"),
+    __ertr("Custom text margins: choose between Narrow, Normal, Wide, and Extra wide column margins"),
+    __ertr("Kindle fonts added: Bookerly and Caecilia are now available in the font selector"),
+    __ertr("Project stability: complete ESLint cleanup, strict code standards, and deprecation fixes for Obsidian 1.13+"),
+    __ertr("Support the project: buy me a coffee at buymeacoffee.com/bernardonogueira8 ☕")
+  ] },
+  { v: "1.0.0", items: [
+    __ertr("Welcome to Kindle Reader! Rebranded and rewritten with modern modular architecture"),
+    __ertr("Support for EPUB, FB2, and PDF books offline directly inside Obsidian"),
+    __ertr("Highlights and notes: multiple colors, attached comments, and automatic linking with book notes"),
+    __ertr("Custom themes: Light, Sepia, Dark, and E-ink modes with instant switching"),
+    __ertr("Visual library with book covers, reading progress, and categorized shelves")
+  ] },
   { v: "3.1.2", items: [
     __ertr("PDFs open again on iPhone and iPad, where the book used to be replaced by a readableStream error"),
     __ertr("PDFs whose font brings no character table are no longer shown as gibberish: the text is restored, and it can be selected and searched again"),
@@ -122,7 +139,7 @@ export class WhatsNewModal extends Modal {
     const card = c.createDiv("er-onb-card er-wn-card");
     card.createDiv("er-onb-emoji").setText("✨");
     card.createDiv("er-onb-title").setText(__ertr("What's new"));
-    card.createDiv("er-wn-sub").setText(__ertr("Book Reader updated to {0}", (this.plugin as unknown)?.manifest?.version || ""));
+    card.createDiv("er-wn-sub").setText(__ertr("Kindle Reader updated to {0}", (this.plugin as unknown)?.manifest?.version || ""));
     const wrap = card.createDiv("er-wn-wrap");
     for (const r of this.releases) {
       const grp = wrap.createDiv("er-wn-rel");
@@ -134,6 +151,17 @@ export class WhatsNewModal extends Modal {
         row.createSpan({ text: __ertr(it) });
       }
     }
+    const supportRow = card.createDiv("er-wn-support-row");
+    const supportText = supportRow.createDiv("er-wn-support-text");
+    supportText.createEl("strong", { cls: "er-wn-support-title", text: __ertr("Support the project ☕") });
+    supportText.createSpan({ text: __ertr("If you enjoy using Kindle Reader and want to support continued development, consider buying me a coffee!") });
+
+    const supportBtn = supportRow.createEl("button", { text: __ertr("Buy me a coffee") });
+    supportBtn.addClass("mod-cta", "er-wn-support-btn");
+    supportBtn.addEventListener("click", () => {
+      window.open("https://buymeacoffee.com/bernardonogueira8", "_blank");
+    });
+
     const nav = c.createDiv("er-onb-nav er-wn-nav");
     const ok = nav.createEl("button", { text: __ertr("Got it") });
     ok.addClass("er-onb-start", "er-wn-ok");
@@ -151,6 +179,11 @@ export class WhatsNewModal extends Modal {
     help.addEventListener("click", () => {
       this.close();
       new OnboardingModal(this.app, this.plugin).open();
+    });
+    const coffee = c.createDiv("er-onb-coffee");
+    coffee.setText(__ertr("Support the project ☕"));
+    coffee.addEventListener("click", () => {
+      window.open("https://buymeacoffee.com/bernardonogueira8", "_blank");
     });
   }
 

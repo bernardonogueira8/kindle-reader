@@ -553,6 +553,13 @@ body:not(.is-mobile) .er-bot {
 .er-onb-start { background:var(--interactive-accent); color:var(--text-on-accent); font-weight:700; }
 .er-onb-skip { text-align:center; margin-top:12px; min-height:18px; font-size:12px; color:var(--text-faint); cursor:pointer; user-select:none; }
 .er-onb-skip:hover { color:var(--text-muted); text-decoration:underline; }
+.er-onb-coffee { text-align:center; margin-top:10px; min-height:18px; font-size:12px; color:var(--text-accent); cursor:pointer; user-select:none; font-weight:500; }
+.er-onb-coffee:hover { text-decoration:underline; opacity:.85; }
+.er-onb-cta-btn { margin-top:14px; }
+.er-wn-support-row { margin-top:14px; padding:10px 14px; background:var(--background-secondary); border-radius:8px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.er-wn-support-text { font-size:12px; line-height:1.4; }
+.er-wn-support-title { display:block; font-weight:600; }
+.er-wn-support-btn { font-size:11px; white-space:nowrap; }
 
 /* Each screen re-mounts its card, so this keyframe replays on every page turn —
    a short, low-travel fade-up that makes paging feel like turning a page rather

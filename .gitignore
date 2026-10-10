@@ -17,6 +17,7 @@ SUBMIT.md
 Thumbs.db
 *.bak
 main.js.shipped
+/scratch
 
 # Dev tools kept with the source, not part of the plugin build.
 # eslint.config.mjs is deliberately NOT ignored: the community scanner and any

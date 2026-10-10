@@ -9,6 +9,8 @@ and reading progress that syncs with your vault.
 
 Works on desktop and on mobile (Android / iOS).
 
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/bernardonogueira8)
+
 ![Book Reader](docs/promo-hero-en.jpg)
 
 |  |  |
@@ -24,13 +26,19 @@ Works on desktop and on mobile (Android / iOS).
 
 ## What it does
 
-**Reading.** EPUB, FB2 and PDF. Paged layout in one or two columns, like a real book. Dark, light and sepia themes, plus an e-ink mode for Android readers. Adjustable font, size, line spacing, alignment and line width. Table of contents built from PDF bookmarks, headings or the book's own printed contents page. Full-text search across the whole book.
+**Reading.** EPUB, FB2 and PDF. Paged layout in one or two columns, like a real book. Dark, light and sepia themes, plus an e-ink mode for Android readers. Adjustable fonts (including Kindle classics Bookerly and Caecilia), size, line height, paragraph/word/letter spacing, 4 margin sizes, alignment and line width. Table of contents built from PDF bookmarks, headings or the book's own printed contents page. Full-text search across the whole book.
 
 **Highlights and notes.** Four colours. A comment can be attached to any highlight and travels with it into your notes. Turn a highlight into a note, or export all of a book's highlights at once — grouped by chapter, with page numbers.
 
 **Progress.** Stored as files in your vault next to the books, so it rides whatever you already use to sync (Obsidian Sync, iCloud, Google Drive, Remotely Save…). The position is anchored by paragraph, so a phone and a desktop find the same spot at any screen size.
 
 **Library.** A visual grid of every book with covers, progress and categories. Add books by dragging them in.
+
+## Support the project
+
+If you enjoy using **Kindle Reader** and want to support its ongoing development and maintenance, consider buying me a coffee:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/bernardonogueira8)
 
 ---
 
@@ -66,6 +74,27 @@ The API key you enter is stored in the plugin's settings inside your vault. If y
 No account is required for the plugin itself, and there is no telemetry, no analytics and no ads.
 
 ---
+
+## What's new in 1.0.1
+
+**Android full-screen mode.** When opening any book on Android, the reader automatically enters full-screen mode to make full use of the screen and eliminate distractions.
+
+**3-column progress footer.** The reading progress footer now features a balanced three-column layout:
+- **Left**: Hours and minutes remaining to finish reading. Tap it to toggle between remaining time and pages left.
+- **Center**: Real-time visible clock (`HH:mm`) alongside current page numbers.
+- **Right**: Exact percentage of book progress (`%`).
+
+**Kindle fonts.** Added the classic Kindle typefaces **Bookerly** and **Caecilia** to font choices, alongside Georgia, Lora, and Inter.
+
+**Advanced typography and spacing controls.** Fine-tune your layout with dedicated sliders inside reading settings:
+- Line height (spacing between lines)
+- Paragraph spacing
+- Word spacing
+- Character / letter spacing
+
+**Custom text margins.** Choose from 4 text column margin presets (**Narrow**, **Normal**, **Wide**, **Extra wide**) to comfortably fit your display.
+
+**Code quality and compatibility.** 100% ESLint compliance, fixed deprecations for Obsidian 1.13+, and performance improvements.
 
 ## What's new in 3.1
 
@@ -175,6 +204,8 @@ notas e progresso de leitura sincronizado com o seu vault.
 
 Funciona em computadores e dispositivos móveis (Android / iOS).
 
+[![Compre um café](https://img.shields.io/badge/Compre%20um%20café-Apoiar-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/bernardonogueira8)
+
 > **Envie sugestões e problemas para o bot do Telegram [@book_in_obsidian_bot](https://t.me/book_in_obsidian_bot).**
 > Encontrou um erro, sentiu falta de um recurso ou algo ficou estranho no celular? Envie uma
 > mensagem comum. Não precisa de conta no GitHub nem de formulário. Todas as mensagens são lidas
@@ -197,9 +228,10 @@ Funciona em computadores e dispositivos móveis (Android / iOS).
 
 **Leitura.** EPUB, FB2 e PDF. Layout paginado em uma ou duas colunas, como um
 livro de verdade. Temas escuro, claro e sépia, além de um modo e-ink para leitores
-Android. Ajuste a fonte, o tamanho, o espaçamento entre linhas, o alinhamento e a
-largura da linha. O sumário pode ser criado a partir dos marcadores do PDF, dos
-títulos ou do sumário impresso do próprio livro. Pesquise o texto completo.
+Android. Ajuste a fonte (incluindo as clássicas do Kindle Bookerly e Caecilia), o tamanho,
+espaçamentos detalhados (entre linhas, parágrafos, palavras e caracteres), 4 tamanhos de
+margens, alinhamento e largura da linha. O sumário pode ser criado a partir dos marcadores
+do PDF, dos títulos ou do sumário impresso do próprio livro. Pesquise o texto completo.
 
 **Destaques e notas.** Quatro cores. Você pode adicionar comentários aos
 destaques, que acompanham as citações nas notas. Transforme um destaque em nota
@@ -213,6 +245,12 @@ retomam a leitura no mesmo lugar, em qualquer tamanho de tela.
 
 **Biblioteca.** Uma grade visual com capas, progresso e categorias para todos os
 livros. Adicione livros arrastando os arquivos para a janela.
+
+## Apoie o projeto
+
+Se você gosta do **Kindle Reader** e quer apoiar o desenvolvimento contínuo de novos recursos e melhorias, considere me pagar um café:
+
+[![Compre um café](https://img.shields.io/badge/Compre%20um%20café-Apoiar-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/bernardonogueira8)
 
 ---
 
@@ -254,6 +292,27 @@ for sincronizado, a chave também será sincronizada.
 O plugin não exige uma conta e não tem telemetria, análise de uso ou anúncios.
 
 ---
+
+## Novidades da versão 1.0.1
+
+**Modo tela cheia no Android.** Ao abrir qualquer livro no Android, o leitor entra automaticamente em tela cheia para maximizar o espaço útil da tela e eliminar distrações.
+
+**Rodapé de progresso em 3 colunas.** A barra inferior agora conta com um layout em três colunas informativas:
+- **Esquerda**: Tempo restante estimado para terminar o livro (horas e minutos). Toque para alternar entre tempo e páginas restantes.
+- **Centro**: Relógio visível em tempo real (`HH:mm`) junto com o indicador de páginas.
+- **Direita**: Porcentagem exata de progresso do livro (`%`).
+
+**Fontes clássicas do Kindle.** Adicionadas as renomadas fontes **Bookerly** e **Caecilia** às opções de seleção, junto com Georgia, Lora e Inter.
+
+**Novos controles de espaçamento tipográfico.** Ajuste fino do texto diretamente no painel de configurações de leitura:
+- Espaçamento entre linhas (altura da linha)
+- Espaçamento entre parágrafos
+- Espaçamento entre palavras
+- Espaçamento entre caracteres
+
+**Margens da coluna de texto.** Escolha entre 4 opções de largura de margem (**Estreita**, **Normal**, **Larga** e **Extra larga**) para a melhor experiência em celulares, tablets ou monitores.
+
+**Qualidade e estabilidade.** 100% em conformidade com as diretrizes do Obsidian e regras do ESLint, com resolução de avisos de depreciação para o Obsidian 1.13+.
 
 ## Novidades da versão 3.1
 

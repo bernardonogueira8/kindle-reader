@@ -4036,6 +4036,10 @@ ${r.items.map((i) => `- ${i}`).join("\n")}`).join("\n\n");
     const f = await app.vault.create(path, `${__ertr("Book Reader has been updated to {0}. Here is what changed:", plugin.manifest.version)}
 
 ${body}
+
+---
+
+☕ **${__ertr("Support the project")}**: [Buy me a coffee](https://buymeacoffee.com/bernardonogueira8)
 `);
     return f instanceof TFile ? f : null;
   } catch (e) {

@@ -22,5 +22,23 @@
     "percent": 4,
     "lastRead": 1791576689017,
     "block": 31
+  },
+  "Books/LLMs in Practice Results from a Survey with Software Development Professionals In Brazil.pdf": {
+    "pct": 0.11764705882352941,
+    "percent": 12,
+    "lastRead": 1791594971050,
+    "block": 0
+  },
+  "Books/示例书库/Alice in Wonderland.epub": {
+    "pct": 0.005005005005005005,
+    "percent": 1,
+    "lastRead": 1791594979521,
+    "cfi": "epubcfi(/6/2!/4,/2,/12/1:462)"
+  },
+  "Books/andrzejczak-bc250-llm-preprint-v2.pdf": {
+    "pct": 0.10344827586206896,
+    "percent": 10,
+    "lastRead": 1791594994773,
+    "block": 3
   }
 }

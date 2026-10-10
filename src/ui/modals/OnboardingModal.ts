@@ -12,9 +12,9 @@ export function getOnboardSlides(): OnboardSlide[] {
   return [
   {
     emoji: "\u{1F4D6}",
-    title: __ertr("Welcome to Book Reader!"),
+    title: __ertr("Welcome to Kindle Reader!"),
     body: [
-      __ertr("It's a cozy book reader right inside Obsidian. Read, highlight what matters and turn highlights into notes — without leaving your vault."),
+      __ertr("It's a cozy Kindle-style book reader right inside Obsidian. Read, highlight what matters and turn highlights into notes — without leaving your vault."),
       __ertr("Flip through a few screens with the → arrow (or the \"Next\" button). It takes a minute, but then everything will be clear.")
     ]
   },
@@ -89,7 +89,7 @@ export function getOnboardSlides(): OnboardSlide[] {
     title: __ertr("Next: a tour of the settings"),
     body: [
       __ertr("The next few screens walk through the plugin's settings: what each one does, what to pick, and what happens if you change nothing."),
-      __ertr("To open the settings: Obsidian's gear icon → Community plugins → Book Reader. There are five tabs at the top: Reading, Notes, Translation, Data and About."),
+      __ertr("To open the settings: Obsidian's gear icon → Community plugins → Kindle Reader. There are tabs at the top: Reading, Appearance, Notes, Translation, Data and About."),
       __ertr("None of this has to be set up now — the plugin works as it is. This tour is here so you know what can be changed at all.")
     ]
   },
@@ -118,6 +118,23 @@ export function getOnboardSlides(): OnboardSlide[] {
       __ertr("Alignment — how the text sits in the column: left (ragged right edge, as in a browser), justified (both edges even, as in a printed book), centred or right."),
       __ertr("Position on the page — what to do when a page isn't full, at the end of a chapter for instance: leave the text at the top, centre it, or push it to the bottom."),
       __ertr("What to pick: justified + top is the most book-like. Centring is only worth it if half-empty pages at the end of chapters bother you.")
+    ]
+  },
+  {
+    emoji: "🔤",
+    title: __ertr("Typography, spacing and margins"),
+    body: [
+      __ertr("Choose your favorite fonts: Kindle classics Bookerly and Caecilia, Georgia, Lora or Inter."),
+      __ertr("Fine-tune your reading comfort with sliders for line height, paragraph spacing, word spacing, and letter spacing directly in reading settings."),
+      __ertr("Adjust text margins across 4 widths (Narrow, Normal, Wide, Extra wide) to fit any phone, tablet, or desktop screen.")
+    ]
+  },
+  {
+    emoji: "📱",
+    title: __ertr("Mobile reading and progress"),
+    body: [
+      __ertr("On Android devices, books automatically enter full-screen mode to maximize screen real estate and minimize distractions."),
+      __ertr("The bottom progress bar displays hours and minutes remaining on the left (tap to toggle to pages left), a real-time clock in the center, and your overall reading percentage on the right.")
     ]
   },
   {
@@ -249,13 +266,23 @@ export function getOnboardSlides(): OnboardSlide[] {
     ]
   },
   {
+    emoji: "☕",
+    title: __ertr("Support the project"),
+    body: [
+      __ertr("Kindle Reader is completely free, open-source and offline."),
+      __ertr("If you enjoy using the plugin and want to support continued development, consider buying me a coffee: buymeacoffee.com/bernardonogueira8."),
+      __ertr("Your support helps keep the project active and brings new improvements!")
+    ]
+  },
+  {
     emoji: "✅",
     title: __ertr("All set — enjoy your reading!"),
     body: [
       __ertr("What to set up if you like (not required right away): the books folder and the notes folder — in the plugin settings. The book note — under the ⓘ icon while reading."),
       __ertr("What you can leave alone entirely: progress and highlights work right away and save themselves."),
       __ertr("Full help for every button — the ⓘ icon in the reader. You can reopen this welcome screen in the plugin settings."),
-      __ertr("Press \"Start reading\" and open your first book 📖")
+      __ertr("Press \"Start reading\" and open your first book 📖"),
+      __ertr("Support the project: buymeacoffee.com/bernardonogueira8 ☕")
     ]
   }
 ];
@@ -324,6 +351,13 @@ export class OnboardingModal extends Modal {
     card.createDiv("er-onb-title").setText(s.title);
     const body = card.createDiv("er-onb-body");
     (Array.isArray(s.body) ? s.body : [s.body]).forEach((p) => body.createEl("p").setText(p));
+    if (s.emoji === "☕") {
+      const btn = body.createEl("button", { text: __ertr("Buy me a coffee ☕") });
+      btn.addClass("mod-cta", "er-onb-cta-btn");
+      btn.addEventListener("click", () => {
+        window.open("https://buymeacoffee.com/bernardonogueira8", "_blank");
+      });
+    }
     const dots = contentEl.createDiv("er-onb-dots");
     slides.forEach((_, i) => {
       const d = dots.createDiv("er-onb-dot" + (i === this.idx ? " er-onb-dot-on" : ""));
@@ -352,6 +386,11 @@ export class OnboardingModal extends Modal {
     if (!last) skip.addEventListener("click", () => {
       this._markSeen();
       this.close();
+    });
+    const coffee = contentEl.createDiv("er-onb-coffee");
+    coffee.setText(__ertr("Support the project ☕"));
+    coffee.addEventListener("click", () => {
+      window.open("https://buymeacoffee.com/bernardonogueira8", "_blank");
     });
   }
 

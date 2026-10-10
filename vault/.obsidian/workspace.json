@@ -4,34 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "65cd948cbd290d18",
+        "id": "1b56c30e8b90a7b8",
         "type": "tabs",
         "children": [
           {
-            "id": "ffa3a3f170e9ad3e",
+            "id": "14c52398841e3eba",
             "type": "leaf",
             "state": {
-              "type": "elton-library",
+              "type": "empty",
               "state": {},
-              "icon": "library",
-              "title": "Biblioteca"
-            }
-          },
-          {
-            "id": "ab481676ef6e715e",
-            "type": "leaf",
-            "state": {
-              "type": "kindle-reader",
-              "state": {
-                "file": "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf",
-                "path": "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf"
-              },
-              "icon": "book-open",
-              "title": "Criar um segundo cérebro (Tiago Forte)"
+              "icon": "lucide-file",
+              "title": "Nova aba"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -93,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "98629556045ac920",
@@ -178,12 +163,12 @@
               "title": "Sumário"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -194,18 +179,32 @@
       "templates:Inserir modelo": false,
       "command-palette:Abrir paleta de comandos": false,
       "bases:Criar nova base": false,
-      "kindle-reader:Kindle Reader — Library": false
+      "kindle-reader:Kindle Reader — Library": false,
+      "qiaomu-reader:Qiaomu Reader — 书库": false
     }
   },
-  "active": "ab481676ef6e715e",
+  "active": "14c52398841e3eba",
   "lastOpenFiles": [
+    "Books/Livros/_reader-rescue/_reader-rescue-2026-10-09/plugin-data.json",
+    "Books/Livros/_reader-rescue/_reader-rescue-2026-10-09/reading-highlights.json",
+    "Books/Livros/_reader-rescue/_reader-rescue-2026-10-09/reading-progress.json",
+    "Books/Livros/_reader-rescue/_reader-rescue-2026-10-09",
+    "Books/Livros/_reader-rescue",
+    "Books/Livros/Leitor de livros 1.0.1 - novidades.md",
+    "Books/Livros/reading-progress.json",
+    "Books/Livros",
+    "andrzejczak-bc250-llm-preprint-v2.md",
+    "Alice in Wonderland.md",
+    "LLMs in Practice Results from a Survey with Software Development Professionals In Brazil.md",
+    "Books/_reader-rescue/_reader-rescue-2026-10-09/plugin-data.json",
+    "Books/_reader-rescue/_reader-rescue-2026-10-09/reading-highlights.json",
+    "Books/_reader-rescue/_reader-rescue-2026-10-09/reading-progress.json",
+    "Books/_reader-rescue/_reader-rescue-2026-10-09",
     "Books/Livros/Criar um segundo cérebro (Tiago Forte).md",
     "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.md",
     "Books/Livros/12 Perguntas Essenciais para Qualquer Projeto de Dados Um guia simples e poderoso para transformar d.md",
     "Books/Livros/A cor dos dados — pág.1.md",
     "Books/Livros/do cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste cap.md",
-    "Books/Livros/reading-highlights.json",
-    "Books/Livros/var a direções bem ruins 3D, cores sem sentido, gráficos.md",
-    "Books/Livros/reading-progress.json"
+    "Books/Livros/var a direções bem ruins 3D, cores sem sentido, gráficos.md"
   ]
 }
