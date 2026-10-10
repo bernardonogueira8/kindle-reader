@@ -1,6 +1,6 @@
 ---
 book: "[[Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf]]"
-reading-progress: 16
+reading-progress: 0
 reading-updated: 2026-10-10
 ---
 # Criar um segundo cérebro (Tiago Forte)

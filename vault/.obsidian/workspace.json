@@ -16,8 +16,22 @@
               "icon": "library",
               "title": "Biblioteca"
             }
+          },
+          {
+            "id": "ab481676ef6e715e",
+            "type": "leaf",
+            "state": {
+              "type": "kindle-reader",
+              "state": {
+                "file": "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf",
+                "path": "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf"
+              },
+              "icon": "book-open",
+              "title": "Criar um segundo cérebro (Tiago Forte)"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -79,7 +93,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "98629556045ac920",
@@ -182,7 +197,7 @@
       "kindle-reader:Kindle Reader — Library": false
     }
   },
-  "active": "ffa3a3f170e9ad3e",
+  "active": "ab481676ef6e715e",
   "lastOpenFiles": [
     "Books/Livros/Criar um segundo cérebro (Tiago Forte).md",
     "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.md",
