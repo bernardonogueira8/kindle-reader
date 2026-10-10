@@ -69,7 +69,8 @@ export function buildLibChips(
         }
       }
     }
-    if (folders.get("")) chips.push({ id: "folder:", label: __ertr("No folder"), count: folders.get("")! });
+    const noFolderCount = folders.get("");
+    if (noFolderCount) chips.push({ id: "folder:", label: __ertr("No folder"), count: noFolderCount });
   }
 
   return chips;

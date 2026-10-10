@@ -1,0 +1,867 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="por">
+  <head>
+    <meta name="dtb:uid" content="fa541794-b46e-405e-ba0a-09e1a1b1a121"/>
+    <meta name="dtb:depth" content="4"/>
+    <meta name="dtb:generator" content="calibre (5.34.0)"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>Entendendo Algoritmos</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="num_1" playOrder="1" class="chapter">
+      <navLabel>
+        <text>Prefácio</text>
+      </navLabel>
+      <content src="index_split_000.html#p12"/>
+    </navPoint>
+    <navPoint id="num_2" playOrder="2" class="chapter">
+      <navLabel>
+        <text>Agradecimentos</text>
+      </navLabel>
+      <content src="index_split_000.html#p14"/>
+    </navPoint>
+    <navPoint id="num_3" playOrder="3" class="chapter">
+      <navLabel>
+        <text>Sobre este livro</text>
+      </navLabel>
+      <content src="index_split_000.html#p15"/>
+    </navPoint>
+    <navPoint id="num_4" playOrder="4" class="chapter">
+      <navLabel>
+        <text>1</text>
+      </navLabel>
+      <content src="index_split_000.html#p19"/>
+    </navPoint>
+    <navPoint id="num_5" playOrder="4" class="chapter">
+      <navLabel>
+        <text>Introdução a algoritmos</text>
+      </navLabel>
+      <content src="index_split_000.html#p19"/>
+      <navPoint id="num_6" playOrder="5" class="chapter">
+        <navLabel>
+          <text>Introdução</text>
+        </navLabel>
+        <content src="index_split_000.html#p20"/>
+        <navPoint id="num_7" playOrder="5" class="chapter">
+          <navLabel>
+            <text>O que você aprenderá sobre desempenho</text>
+          </navLabel>
+          <content src="index_split_000.html#p20"/>
+        </navPoint>
+        <navPoint id="num_8" playOrder="5" class="chapter">
+          <navLabel>
+            <text>O que você aprenderá sobre a solução de problemas</text>
+          </navLabel>
+          <content src="index_split_000.html#p20"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_9" playOrder="6" class="chapter">
+        <navLabel>
+          <text>Pesquisa binária</text>
+        </navLabel>
+        <content src="index_split_000.html#p21"/>
+        <navPoint id="num_10" playOrder="7" class="chapter">
+          <navLabel>
+            <text>Uma maneira melhor de buscar</text>
+          </navLabel>
+          <content src="index_split_000.html#p25"/>
+        </navPoint>
+        <navPoint id="num_11" playOrder="8" class="chapter">
+          <navLabel>
+            <text>Tempo de execução</text>
+          </navLabel>
+          <content src="index_split_000.html#p30"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_12" playOrder="9" class="chapter">
+        <navLabel>
+          <text>Notação Big O</text>
+        </navLabel>
+        <content src="index_split_000.html#p32"/>
+        <navPoint id="num_13" playOrder="10" class="chapter">
+          <navLabel>
+            <text>Tempo de execução dos algoritmos cresce a taxas diferentes</text>
+          </navLabel>
+          <content src="index_split_000.html#p33"/>
+        </navPoint>
+        <navPoint id="num_14" playOrder="11" class="chapter">
+          <navLabel>
+            <text>Vendo diferentes tempos de execução Big O</text>
+          </navLabel>
+          <content src="index_split_000.html#p36"/>
+        </navPoint>
+        <navPoint id="num_15" playOrder="12" class="chapter">
+          <navLabel>
+            <text>A notação Big O estabelece o tempo de execução para a pior hipótese</text>
+          </navLabel>
+          <content src="index_split_000.html#p38"/>
+        </navPoint>
+        <navPoint id="num_16" playOrder="13" class="chapter">
+          <navLabel>
+            <text>Alguns exemplos comuns de tempo de execução Big O</text>
+          </navLabel>
+          <content src="index_split_000.html#p39"/>
+        </navPoint>
+        <navPoint id="num_17" playOrder="14" class="chapter">
+          <navLabel>
+            <text>O caixeiro-viajante</text>
+          </navLabel>
+          <content src="index_split_000.html#p41"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_18" playOrder="15" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_000.html#p43"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_19" playOrder="16" class="chapter">
+      <navLabel>
+        <text>2</text>
+      </navLabel>
+      <content src="index_split_000.html#p45"/>
+    </navPoint>
+    <navPoint id="num_20" playOrder="16" class="chapter">
+      <navLabel>
+        <text>Ordenação por seleção</text>
+      </navLabel>
+      <content src="index_split_000.html#p45"/>
+      <navPoint id="num_21" playOrder="17" class="chapter">
+        <navLabel>
+          <text>Como funciona a memória</text>
+        </navLabel>
+        <content src="index_split_000.html#p46"/>
+      </navPoint>
+      <navPoint id="num_22" playOrder="18" class="chapter">
+        <navLabel>
+          <text>Arrays e listas encadeadas</text>
+        </navLabel>
+        <content src="index_split_000.html#p48"/>
+        <navPoint id="num_23" playOrder="19" class="chapter">
+          <navLabel>
+            <text>Listas encadeadas</text>
+          </navLabel>
+          <content src="index_split_000.html#p51"/>
+        </navPoint>
+        <navPoint id="num_24" playOrder="20" class="chapter">
+          <navLabel>
+            <text>Arrays</text>
+          </navLabel>
+          <content src="index_split_000.html#p52"/>
+        </navPoint>
+        <navPoint id="num_25" playOrder="21" class="chapter">
+          <navLabel>
+            <text>Terminologia</text>
+          </navLabel>
+          <content src="index_split_000.html#p54"/>
+        </navPoint>
+        <navPoint id="num_26" playOrder="22" class="chapter">
+          <navLabel>
+            <text>Inserindo algo no meio da lista</text>
+          </navLabel>
+          <content src="index_split_000.html#p55"/>
+        </navPoint>
+        <navPoint id="num_27" playOrder="23" class="chapter">
+          <navLabel>
+            <text>Deleções</text>
+          </navLabel>
+          <content src="index_split_000.html#p57"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_28" playOrder="24" class="chapter">
+        <navLabel>
+          <text>Ordenação por seleção</text>
+        </navLabel>
+        <content src="index_split_000.html#p60"/>
+      </navPoint>
+      <navPoint id="num_29" playOrder="25" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_000.html#p65"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_30" playOrder="26" class="chapter">
+      <navLabel>
+        <text>3</text>
+      </navLabel>
+      <content src="index_split_000.html#p66"/>
+    </navPoint>
+    <navPoint id="num_31" playOrder="26" class="chapter">
+      <navLabel>
+        <text>Recursão</text>
+      </navLabel>
+      <content src="index_split_000.html#p66"/>
+      <navPoint id="num_32" playOrder="27" class="chapter">
+        <navLabel>
+          <text>Recursão</text>
+        </navLabel>
+        <content src="index_split_000.html#p67"/>
+      </navPoint>
+      <navPoint id="num_33" playOrder="28" class="chapter">
+        <navLabel>
+          <text>Caso-base e caso recursivo</text>
+        </navLabel>
+        <content src="index_split_000.html#p71"/>
+      </navPoint>
+      <navPoint id="num_34" playOrder="29" class="chapter">
+        <navLabel>
+          <text>A pilha</text>
+        </navLabel>
+        <content src="index_split_000.html#p72"/>
+        <navPoint id="num_35" playOrder="30" class="chapter">
+          <navLabel>
+            <text>A pilha de chamada</text>
+          </navLabel>
+          <content src="index_split_000.html#p75"/>
+        </navPoint>
+        <navPoint id="num_36" playOrder="31" class="chapter">
+          <navLabel>
+            <text>A pilha de chamada com recursão</text>
+          </navLabel>
+          <content src="index_split_000.html#p82"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_37" playOrder="32" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_000.html#p87"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_38" playOrder="33" class="chapter">
+      <navLabel>
+        <text>4</text>
+      </navLabel>
+      <content src="index_split_000.html#p89"/>
+    </navPoint>
+    <navPoint id="num_39" playOrder="33" class="chapter">
+      <navLabel>
+        <text>Quicksort</text>
+      </navLabel>
+      <content src="index_split_000.html#p89"/>
+      <navPoint id="num_40" playOrder="34" class="chapter">
+        <navLabel>
+          <text>Dividir para conquistar</text>
+        </navLabel>
+        <content src="index_split_000.html#p91"/>
+      </navPoint>
+      <navPoint id="num_41" playOrder="35" class="chapter">
+        <navLabel>
+          <text>Quicksort</text>
+        </navLabel>
+        <content src="index_split_000.html#p101"/>
+      </navPoint>
+      <navPoint id="num_42" playOrder="36" class="chapter">
+        <navLabel>
+          <text>Notação Big O revisada</text>
+        </navLabel>
+        <content src="index_split_000.html#p109"/>
+        <navPoint id="num_43" playOrder="37" class="chapter">
+          <navLabel>
+            <text>Merge sort versus quicksort</text>
+          </navLabel>
+          <content src="index_split_000.html#p110"/>
+        </navPoint>
+        <navPoint id="num_44" playOrder="38" class="chapter">
+          <navLabel>
+            <text>Caso médio versus pior caso</text>
+          </navLabel>
+          <content src="index_split_000.html#p113"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_45" playOrder="39" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_000.html#p117"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_46" playOrder="40" class="chapter">
+      <navLabel>
+        <text>5</text>
+      </navLabel>
+      <content src="index_split_000.html#p118"/>
+    </navPoint>
+    <navPoint id="num_47" playOrder="40" class="chapter">
+      <navLabel>
+        <text>Tabelas hash</text>
+      </navLabel>
+      <content src="index_split_000.html#p118"/>
+      <navPoint id="num_48" playOrder="41" class="chapter">
+        <navLabel>
+          <text>Funções hash</text>
+        </navLabel>
+        <content src="index_split_000.html#p122"/>
+      </navPoint>
+      <navPoint id="num_49" playOrder="42" class="chapter">
+        <navLabel>
+          <text>Utilização</text>
+        </navLabel>
+        <content src="index_split_000.html#p129"/>
+        <navPoint id="num_50" playOrder="42" class="chapter">
+          <navLabel>
+            <text>Usando tabelas hash para pesquisas</text>
+          </navLabel>
+          <content src="index_split_000.html#p129"/>
+        </navPoint>
+        <navPoint id="num_51" playOrder="43" class="chapter">
+          <navLabel>
+            <text>Evitando entradas duplicadas</text>
+          </navLabel>
+          <content src="index_split_000.html#p132"/>
+        </navPoint>
+        <navPoint id="num_52" playOrder="44" class="chapter">
+          <navLabel>
+            <text>Utilizando tabelas hash como cache</text>
+          </navLabel>
+          <content src="index_split_000.html#p136"/>
+        </navPoint>
+        <navPoint id="num_53" playOrder="45" class="chapter">
+          <navLabel>
+            <text>Recapitulando</text>
+          </navLabel>
+          <content src="index_split_000.html#p139"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_54" playOrder="46" class="chapter">
+        <navLabel>
+          <text>Colisões</text>
+        </navLabel>
+        <content src="index_split_000.html#p140"/>
+      </navPoint>
+      <navPoint id="num_55" playOrder="47" class="chapter">
+        <navLabel>
+          <text>Desempenho</text>
+        </navLabel>
+        <content src="index_split_000.html#p143"/>
+        <navPoint id="num_56" playOrder="48" class="chapter">
+          <navLabel>
+            <text>Fator de carga</text>
+          </navLabel>
+          <content src="index_split_000.html#p145"/>
+        </navPoint>
+        <navPoint id="num_57" playOrder="49" class="chapter">
+          <navLabel>
+            <text>Uma boa função hash</text>
+          </navLabel>
+          <content src="index_split_000.html#p147"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_58" playOrder="50" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_000.html#p149"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_59" playOrder="51" class="chapter">
+      <navLabel>
+        <text>6</text>
+      </navLabel>
+      <content src="index_split_000.html#p151"/>
+    </navPoint>
+    <navPoint id="num_60" playOrder="51" class="chapter">
+      <navLabel>
+        <text>Pesquisa em largura</text>
+      </navLabel>
+      <content src="index_split_000.html#p151"/>
+      <navPoint id="num_61" playOrder="52" class="chapter">
+        <navLabel>
+          <text>Introdução a grafos</text>
+        </navLabel>
+        <content src="index_split_000.html#p153"/>
+      </navPoint>
+      <navPoint id="num_62" playOrder="53" class="chapter">
+        <navLabel>
+          <text>O que é um grafo?</text>
+        </navLabel>
+        <content src="index_split_000.html#p156"/>
+      </navPoint>
+      <navPoint id="num_63" playOrder="54" class="chapter">
+        <navLabel>
+          <text>Pesquisa em largura</text>
+        </navLabel>
+        <content src="index_split_000.html#p158"/>
+        <navPoint id="num_64" playOrder="55" class="chapter">
+          <navLabel>
+            <text>Encontrando o caminho mínimo</text>
+          </navLabel>
+          <content src="index_split_000.html#p162"/>
+        </navPoint>
+        <navPoint id="num_65" playOrder="56" class="chapter">
+          <navLabel>
+            <text>Filas</text>
+          </navLabel>
+          <content src="index_split_000.html#p164"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_66" playOrder="57" class="chapter">
+        <navLabel>
+          <text>Implementando o grafo</text>
+        </navLabel>
+        <content src="index_split_000.html#p166"/>
+      </navPoint>
+      <navPoint id="num_67" playOrder="58" class="chapter">
+        <navLabel>
+          <text>Implementando o algoritmo</text>
+        </navLabel>
+        <content src="index_split_000.html#p169"/>
+        <navPoint id="num_68" playOrder="59" class="chapter">
+          <navLabel>
+            <text>Tempo de execução</text>
+          </navLabel>
+          <content src="index_split_001.html#p177"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_69" playOrder="60" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_001.html#p180"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_70" playOrder="61" class="chapter">
+      <navLabel>
+        <text>7</text>
+      </navLabel>
+      <content src="index_split_001.html#p182"/>
+    </navPoint>
+    <navPoint id="num_71" playOrder="61" class="chapter">
+      <navLabel>
+        <text>Algoritmo de Dijkstra</text>
+      </navLabel>
+      <content src="index_split_001.html#p182"/>
+      <navPoint id="num_72" playOrder="62" class="chapter">
+        <navLabel>
+          <text>Trabalhando com o algoritmo de Dijkstra</text>
+        </navLabel>
+        <content src="index_split_001.html#p184"/>
+      </navPoint>
+      <navPoint id="num_73" playOrder="63" class="chapter">
+        <navLabel>
+          <text>Terminologia</text>
+        </navLabel>
+        <content src="index_split_001.html#p189"/>
+      </navPoint>
+      <navPoint id="num_74" playOrder="64" class="chapter">
+        <navLabel>
+          <text>Adquirindo um piano</text>
+        </navLabel>
+        <content src="index_split_001.html#p193"/>
+      </navPoint>
+      <navPoint id="num_75" playOrder="65" class="chapter">
+        <navLabel>
+          <text>Arestas com pesos negativos</text>
+        </navLabel>
+        <content src="index_split_001.html#p201"/>
+      </navPoint>
+      <navPoint id="num_76" playOrder="66" class="chapter">
+        <navLabel>
+          <text>Implementação</text>
+        </navLabel>
+        <content src="index_split_001.html#p205"/>
+      </navPoint>
+      <navPoint id="num_77" playOrder="67" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_001.html#p218"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_78" playOrder="68" class="chapter">
+      <navLabel>
+        <text>8</text>
+      </navLabel>
+      <content src="index_split_001.html#p219"/>
+    </navPoint>
+    <navPoint id="num_79" playOrder="68" class="chapter">
+      <navLabel>
+        <text>Algoritmos gulosos</text>
+      </navLabel>
+      <content src="index_split_001.html#p219"/>
+      <navPoint id="num_80" playOrder="69" class="chapter">
+        <navLabel>
+          <text>O problema do cronograma da sala de aula</text>
+        </navLabel>
+        <content src="index_split_001.html#p220"/>
+      </navPoint>
+      <navPoint id="num_81" playOrder="70" class="chapter">
+        <navLabel>
+          <text>O problema da mochila</text>
+        </navLabel>
+        <content src="index_split_001.html#p224"/>
+      </navPoint>
+      <navPoint id="num_82" playOrder="71" class="chapter">
+        <navLabel>
+          <text>O problema da cobertura de conjuntos</text>
+        </navLabel>
+        <content src="index_split_001.html#p227"/>
+        <navPoint id="num_83" playOrder="72" class="chapter">
+          <navLabel>
+            <text>Algoritmos de aproximação</text>
+          </navLabel>
+          <content src="index_split_001.html#p229"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_84" playOrder="73" class="chapter">
+        <navLabel>
+          <text>Problemas NP-completos</text>
+        </navLabel>
+        <content src="index_split_001.html#p236"/>
+        <navPoint id="num_85" playOrder="74" class="chapter">
+          <navLabel>
+            <text>Caixeiro-viajante, passo a passo</text>
+          </navLabel>
+          <content src="index_split_001.html#p237"/>
+        </navPoint>
+        <navPoint id="num_86" playOrder="75" class="chapter">
+          <navLabel>
+            <text>Como faço para saber se um problema é NP-completo?</text>
+          </navLabel>
+          <content src="index_split_001.html#p242"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_87" playOrder="76" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_001.html#p246"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_88" playOrder="77" class="chapter">
+      <navLabel>
+        <text>9</text>
+      </navLabel>
+      <content src="index_split_001.html#p247"/>
+    </navPoint>
+    <navPoint id="num_89" playOrder="77" class="chapter">
+      <navLabel>
+        <text>Programação dinâmica</text>
+      </navLabel>
+      <content src="index_split_001.html#p247"/>
+      <navPoint id="num_90" playOrder="78" class="chapter">
+        <navLabel>
+          <text>O problema da mochila</text>
+        </navLabel>
+        <content src="index_split_001.html#p248"/>
+        <navPoint id="num_91" playOrder="79" class="chapter">
+          <navLabel>
+            <text>A solução simples</text>
+          </navLabel>
+          <content src="index_split_001.html#p249"/>
+        </navPoint>
+        <navPoint id="num_92" playOrder="80" class="chapter">
+          <navLabel>
+            <text>Programação dinâmica</text>
+          </navLabel>
+          <content src="index_split_001.html#p250"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_93" playOrder="81" class="chapter">
+        <navLabel>
+          <text>Perguntas frequentes sobre o problema da mochila</text>
+        </navLabel>
+        <content src="index_split_001.html#p260"/>
+        <navPoint id="num_94" playOrder="81" class="chapter">
+          <navLabel>
+            <text>O que acontece se você adicionar um item?</text>
+          </navLabel>
+          <content src="index_split_001.html#p260"/>
+        </navPoint>
+        <navPoint id="num_95" playOrder="82" class="chapter">
+          <navLabel>
+            <text>O que acontece se você modificar a ordem das linhas?</text>
+          </navLabel>
+          <content src="index_split_001.html#p264"/>
+        </navPoint>
+        <navPoint id="num_96" playOrder="83" class="chapter">
+          <navLabel>
+            <text>É possível preencher a tabela a partir das colunas, em vez de a partir das linhas?</text>
+          </navLabel>
+          <content src="index_split_001.html#p265"/>
+        </navPoint>
+        <navPoint id="num_97" playOrder="83" class="chapter">
+          <navLabel>
+            <text>O que acontece se você adicionar um item menor?</text>
+          </navLabel>
+          <content src="index_split_001.html#p265"/>
+        </navPoint>
+        <navPoint id="num_98" playOrder="83" class="chapter">
+          <navLabel>
+            <text>Você consegue roubar frações de um item?</text>
+          </navLabel>
+          <content src="index_split_001.html#p265"/>
+        </navPoint>
+        <navPoint id="num_99" playOrder="84" class="chapter">
+          <navLabel>
+            <text>Otimizando o seu itinerário de viagem</text>
+          </navLabel>
+          <content src="index_split_001.html#p267"/>
+        </navPoint>
+        <navPoint id="num_100" playOrder="85" class="chapter">
+          <navLabel>
+            <text>Lidando com itens com interdependência</text>
+          </navLabel>
+          <content src="index_split_001.html#p268"/>
+        </navPoint>
+        <navPoint id="num_101" playOrder="86" class="chapter">
+          <navLabel>
+            <text>É possível que a solução requeira mais de dois subproblemas?</text>
+          </navLabel>
+          <content src="index_split_001.html#p269"/>
+        </navPoint>
+        <navPoint id="num_102" playOrder="87" class="chapter">
+          <navLabel>
+            <text>É possível que a melhor solução não utilize a capacidade total da mochila?</text>
+          </navLabel>
+          <content src="index_split_001.html#p270"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_103" playOrder="88" class="chapter">
+        <navLabel>
+          <text>Maior substring comum</text>
+        </navLabel>
+        <content src="index_split_001.html#p271"/>
+        <navPoint id="num_104" playOrder="89" class="chapter">
+          <navLabel>
+            <text>Criando a tabela</text>
+          </navLabel>
+          <content src="index_split_001.html#p273"/>
+        </navPoint>
+        <navPoint id="num_105" playOrder="90" class="chapter">
+          <navLabel>
+            <text>Preenchendo a tabela</text>
+          </navLabel>
+          <content src="index_split_001.html#p274"/>
+        </navPoint>
+        <navPoint id="num_106" playOrder="91" class="chapter">
+          <navLabel>
+            <text>A solução</text>
+          </navLabel>
+          <content src="index_split_001.html#p276"/>
+        </navPoint>
+        <navPoint id="num_107" playOrder="92" class="chapter">
+          <navLabel>
+            <text>Maior subsequência comum</text>
+          </navLabel>
+          <content src="index_split_001.html#p278"/>
+        </navPoint>
+        <navPoint id="num_108" playOrder="93" class="chapter">
+          <navLabel>
+            <text>Maior subsequência comum – solução</text>
+          </navLabel>
+          <content src="index_split_001.html#p280"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_109" playOrder="94" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_001.html#p282"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_110" playOrder="95" class="chapter">
+      <navLabel>
+        <text>10</text>
+      </navLabel>
+      <content src="index_split_001.html#p283"/>
+    </navPoint>
+    <navPoint id="num_111" playOrder="95" class="chapter">
+      <navLabel>
+        <text>K-vizinhos mais próximos</text>
+      </navLabel>
+      <content src="index_split_001.html#p283"/>
+      <navPoint id="num_112" playOrder="96" class="chapter">
+        <navLabel>
+          <text>Classificando laranja versus toranjas</text>
+        </navLabel>
+        <content src="index_split_001.html#p284"/>
+      </navPoint>
+      <navPoint id="num_113" playOrder="97" class="chapter">
+        <navLabel>
+          <text>Criando um sistema de recomendações</text>
+        </navLabel>
+        <content src="index_split_001.html#p286"/>
+        <navPoint id="num_114" playOrder="98" class="chapter">
+          <navLabel>
+            <text>Extração de características</text>
+          </navLabel>
+          <content src="index_split_001.html#p288"/>
+        </navPoint>
+        <navPoint id="num_115" playOrder="99" class="chapter">
+          <navLabel>
+            <text>Regressão</text>
+          </navLabel>
+          <content src="index_split_001.html#p293"/>
+        </navPoint>
+        <navPoint id="num_116" playOrder="100" class="chapter">
+          <navLabel>
+            <text>Escolhendo boas características</text>
+          </navLabel>
+          <content src="index_split_001.html#p297"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_117" playOrder="101" class="chapter">
+        <navLabel>
+          <text>Introdução ao aprendizado de máquina</text>
+        </navLabel>
+        <content src="index_split_001.html#p299"/>
+        <navPoint id="num_118" playOrder="101" class="chapter">
+          <navLabel>
+            <text>OCR</text>
+          </navLabel>
+          <content src="index_split_001.html#p299"/>
+        </navPoint>
+        <navPoint id="num_119" playOrder="102" class="chapter">
+          <navLabel>
+            <text>Criando um filtro de spam</text>
+          </navLabel>
+          <content src="index_split_001.html#p301"/>
+        </navPoint>
+        <navPoint id="num_120" playOrder="103" class="chapter">
+          <navLabel>
+            <text>Prevendo a bolsa de valores</text>
+          </navLabel>
+          <content src="index_split_001.html#p302"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_121" playOrder="103" class="chapter">
+        <navLabel>
+          <text>Recapitulando</text>
+        </navLabel>
+        <content src="index_split_001.html#p302"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_122" playOrder="104" class="chapter">
+      <navLabel>
+        <text>11</text>
+      </navLabel>
+      <content src="index_split_001.html#p304"/>
+    </navPoint>
+    <navPoint id="num_123" playOrder="104" class="chapter">
+      <navLabel>
+        <text>Próximos passos</text>
+      </navLabel>
+      <content src="index_split_001.html#p304"/>
+      <navPoint id="num_124" playOrder="105" class="chapter">
+        <navLabel>
+          <text>Árvores</text>
+        </navLabel>
+        <content src="index_split_001.html#p305"/>
+      </navPoint>
+      <navPoint id="num_125" playOrder="106" class="chapter">
+        <navLabel>
+          <text>Índices invertidos</text>
+        </navLabel>
+        <content src="index_split_001.html#p309"/>
+      </navPoint>
+      <navPoint id="num_126" playOrder="107" class="chapter">
+        <navLabel>
+          <text>A transformada de Fourier</text>
+        </navLabel>
+        <content src="index_split_001.html#p310"/>
+      </navPoint>
+      <navPoint id="num_127" playOrder="108" class="chapter">
+        <navLabel>
+          <text>Algoritmos paralelos</text>
+        </navLabel>
+        <content src="index_split_001.html#p311"/>
+      </navPoint>
+      <navPoint id="num_128" playOrder="109" class="chapter">
+        <navLabel>
+          <text>MapReduce</text>
+        </navLabel>
+        <content src="index_split_001.html#p312"/>
+        <navPoint id="num_129" playOrder="109" class="chapter">
+          <navLabel>
+            <text>Por que os algoritmos distribuídos são úteis?</text>
+          </navLabel>
+          <content src="index_split_001.html#p312"/>
+        </navPoint>
+        <navPoint id="num_130" playOrder="109" class="chapter">
+          <navLabel>
+            <text>Função map</text>
+          </navLabel>
+          <content src="index_split_001.html#p312"/>
+        </navPoint>
+        <navPoint id="num_131" playOrder="110" class="chapter">
+          <navLabel>
+            <text>Função reduce</text>
+          </navLabel>
+          <content src="index_split_001.html#p313"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_132" playOrder="111" class="chapter">
+        <navLabel>
+          <text>Filtro de Bloom e HyperLogLog</text>
+        </navLabel>
+        <content src="index_split_001.html#p314"/>
+        <navPoint id="num_133" playOrder="112" class="chapter">
+          <navLabel>
+            <text>Filtros de Bloom</text>
+          </navLabel>
+          <content src="index_split_001.html#p316"/>
+        </navPoint>
+        <navPoint id="num_134" playOrder="112" class="chapter">
+          <navLabel>
+            <text>HyperLogLog</text>
+          </navLabel>
+          <content src="index_split_001.html#p316"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_135" playOrder="113" class="chapter">
+        <navLabel>
+          <text>Algoritmos SHA</text>
+        </navLabel>
+        <content src="index_split_001.html#p317"/>
+        <navPoint id="num_136" playOrder="114" class="chapter">
+          <navLabel>
+            <text>Comparando arquivos</text>
+          </navLabel>
+          <content src="index_split_001.html#p318"/>
+        </navPoint>
+        <navPoint id="num_137" playOrder="115" class="chapter">
+          <navLabel>
+            <text>Verificando senhas</text>
+          </navLabel>
+          <content src="index_split_001.html#p319"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="num_138" playOrder="116" class="chapter">
+        <navLabel>
+          <text>Hash sensitivo local</text>
+        </navLabel>
+        <content src="index_split_001.html#p320"/>
+      </navPoint>
+      <navPoint id="num_139" playOrder="117" class="chapter">
+        <navLabel>
+          <text>Troca de chaves de Diffie-Hellman</text>
+        </navLabel>
+        <content src="index_split_001.html#p321"/>
+      </navPoint>
+      <navPoint id="num_140" playOrder="118" class="chapter">
+        <navLabel>
+          <text>Programação linear</text>
+        </navLabel>
+        <content src="index_split_001.html#p323"/>
+      </navPoint>
+      <navPoint id="num_141" playOrder="119" class="chapter">
+        <navLabel>
+          <text>Epílogo</text>
+        </navLabel>
+        <content src="index_split_001.html#p324"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="num_142" playOrder="120" class="chapter">
+      <navLabel>
+        <text>Respostas dos exercícios</text>
+      </navLabel>
+      <content src="index_split_001.html#p325"/>
+    </navPoint>
+  </navMap>
+</ncx>

@@ -96,22 +96,22 @@ export const DEFAULT_SETTINGS: KindleReaderSettings = {
   // Keep highlight colours when exporting: wraps each quote in a coloured
   // <mark> (renders in vanilla Obsidian). Off = plain quotes without colour.
   exportColors: true,
-  // Default reader look mimics Obsidian, including dark themes.
-  theme: "auto",
+  // Default reader look: light theme inspired by Kindle.
+  theme: "light",
   // The library has its own theme and follows Obsidian by default.
   // "reader" = use the same theme as the book page.
   libTheme: "auto",
-  fontSize: 18,
-  fontFamily: "georgia",
-  lineHeight: 1.8,
-  paragraphSpacing: 0.75,
+  fontSize: 24,
+  fontFamily: "bookerly",
+  lineHeight: 1.7,
+  paragraphSpacing: 0.85,
   wordSpacing: 0,
   letterSpacing: 0,
-  pageMargin: "normal",
-  columns: "2",
-  // Text alignment inside the reading column: "left" (default), "justify",
+  pageMargin: "wide",
+  columns: "1",
+  // Text alignment inside the reading column: "left", "justify",
   // "center" or "right".
-  textAlign: "left",
+  textAlign: "justify",
   // Where a SHORT page sits vertically: "top" (default), "center" or "bottom".
   vAlign: "top",
   // Opt-in: adds a "translate" button to the selection popup. Off by default
@@ -169,7 +169,7 @@ export const DEFAULT_SETTINGS: KindleReaderSettings = {
   einkMode: false,
   // AI translation and passage breakdown.
   aiEnabled: false,
-  aiProvider: "eltonlabs",
+  aiProvider: "openrouter",
   aiKey: "",
   aiModel: "",
   aiBase: "",
@@ -214,15 +214,14 @@ export interface AiProviderConfig {
 }
 
 export const AI_PROVIDERS: Record<string, AiProviderConfig> = {
-  eltonlabs:  { label: "Elton AI", needsKey: true,  base: "https://api.eltonlabs.org/v1", model: "anthropic/claude-haiku-4.5" },
   openrouter: { label: "OpenRouter", needsKey: true, base: "https://openrouter.ai/api/v1", model: "anthropic/claude-haiku-4.5" },
   openai:     { label: "OpenAI", needsKey: true, base: "https://api.openai.com/v1", model: "gpt-4.1-mini" },
   local:      { label: "Ollama / LM Studio", needsKey: false, base: "http://localhost:11434/v1", model: "qwen2.5:3b" },
 };
 
 export function aiConfig(settings: KindleReaderSettings) {
-  const id = settings.aiProvider || "eltonlabs";
-  const p = AI_PROVIDERS[id] || AI_PROVIDERS.eltonlabs;
+  const id = settings.aiProvider || "openrouter";
+  const p = AI_PROVIDERS[id] || AI_PROVIDERS.openrouter;
   return {
     id,
     base: (settings.aiBase || p.base).replace(/\/+$/, ""),

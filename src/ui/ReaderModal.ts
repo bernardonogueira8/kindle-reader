@@ -165,6 +165,10 @@ export class ReaderModal extends Modal {
     this.timerBtnEl.setAttribute("aria-label", __ertr("Timer: time left to the goal — start/pause"));
     this.timerBtnEl.addEventListener("click", () => toggleTimerSession(this));
     updateTimerBtn(this);
+    const tocBtn = tr.createDiv("er-ibtn er-b-toc");
+    svgIcon(tocBtn, "list");
+    tocBtn.setAttribute("aria-label", __ertr("Table of contents"));
+    tocBtn.addEventListener("click", () => this._togglePanel("toc"));
     const setBtn = tr.createDiv("er-ibtn er-b-settings");
     svgIcon(setBtn, "sliders");
     setBtn.setAttribute("aria-label", __ertr("Reading settings"));
@@ -219,11 +223,17 @@ export class ReaderModal extends Modal {
     this.locEl.setAttribute("aria-label", __ertr("Go to page"));
     this.locEl.addEventListener("click", () => {
       if (!this.file || !this.pager || !this.pager.total) return;
-      new GoToPageModal(this.app, this.pager.total, this.pager.spread, (n) => {
-        const [cur, tot] = this.pager.jumpTo(n - 1);
-        this._updateUI(cur, tot);
-        this.plugin.saveProgress(this.file.path, cur, tot, this.pager.currentBlockIndex());
-      }).open();
+      new GoToPageModal(
+        this.app,
+        this.pager.total,
+        this.pager.spread,
+        (n) => {
+          const [cur, tot] = this.pager.jumpTo(n - 1);
+          this._updateUI(cur, tot);
+          this.plugin.saveProgress(this.file.path, cur, tot, this.pager.currentBlockIndex());
+        },
+        () => this._togglePanel("toc")
+      ).open();
     });
 
     // Lado inferior direito: % do livro
@@ -375,16 +385,20 @@ export class ReaderModal extends Modal {
       this._pdfLazy?.destroy?.();
       this._pdfLazy = null;
       if (this.ext === "epub") {
-        this.bookHtml = await extractEpub(this.file, this.app);
+        const epubMeta = {};
+        this.bookHtml = await extractEpub(this.file, this.app, epubMeta);
+        this._epubToc = epubMeta.toc || null;
       } else if (this.ext === "fb2") {
+        this._epubToc = null;
         this.bookHtml = await extractFb2(this.file, this.app);
       } else {
+        this._epubToc = null;
         const res = await extractPdf(this.file, this.app, this.plugin.settings, (i, n) => loadText.setText(__ertr("Готовим книгу… {0}%", Math.round(i / n * 100))));
         this.bookHtml = res.html;
         this._pdfLazy = res.lazy;
         this._pdfOutline = res.outline;
       }
-      this.tocItems = buildTocItems(this.bookHtml, this._pdfOutline);
+      this.tocItems = buildTocItems(this.bookHtml, this._pdfOutline, this._epubToc);
       this._buildTocPanel();
       await this.plugin.refreshHighlights();
       await this.plugin.refreshProgress();
@@ -751,6 +765,7 @@ export class ReaderModal extends Modal {
     this.settPan.classList.toggle("er-panel-open", name === "settings");
     this.tocPan.classList.toggle("er-panel-open", name === "toc");
     this.hlPan.classList.toggle("er-panel-open", name === "highlights");
+    if (this.findPan) this.findPan.classList.toggle("er-panel-open", name === "find");
     this.overlayEl.classList.add("er-overlay-on");
   }
   _closePanel() {

@@ -172,16 +172,20 @@ export class ReaderView extends ItemView {
     await new Promise((r) => window.requestAnimationFrame(r));
     try {
       if (this.ext === "epub") {
-        this.bookHtml = await extractEpub(file, this.app);
+        const epubMeta = {};
+        this.bookHtml = await extractEpub(file, this.app, epubMeta);
+        this._epubToc = epubMeta.toc || null;
       } else if (this.ext === "fb2") {
+        this._epubToc = null;
         this.bookHtml = await extractFb2(file, this.app);
       } else {
+        this._epubToc = null;
         const res = await extractPdf(file, this.app, this.plugin.settings, (i, n) => loadText.setText(__ertr("Preparing the book… {0}%", Math.round(i / n * 100))));
         this.bookHtml = res.html;
         this._pdfLazy = res.lazy;
         this._pdfOutline = res.outline;
       }
-      this.tocItems = buildTocItems(this.bookHtml, this._pdfOutline);
+      this.tocItems = buildTocItems(this.bookHtml, this._pdfOutline, this._epubToc);
       this.buildTocPanel();
       await this.plugin.refreshProgress();
       await this.plugin.refreshHighlights();
@@ -196,7 +200,7 @@ export class ReaderView extends ItemView {
       updateGoalBar(this);
       updateTimerBtn(this);
     } catch (e) {
-      console.error("Elton Reader:", e);
+      console.error("Kindle Reader:", e);
       new Notice(__ertr("Error opening the file"));
     }
   }

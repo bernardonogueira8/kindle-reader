@@ -1,0 +1,933 @@
+.block_ {
+    display: block;
+    line-height: 14.4pt;
+    text-align: left;
+    margin: 0;
+    padding: 0
+    }
+.block_1 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: center;
+    margin: 0;
+    padding: 0
+    }
+.block_2 {
+    display: block;
+    font-size: 2em;
+    font-weight: normal;
+    line-height: 28.8pt;
+    text-align: left;
+    margin: 0;
+    padding: 0
+    }
+.block_3 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: left;
+    text-indent: 0;
+    margin: 0 0 0 56.7pt;
+    padding: 0
+    }
+.block_4 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: justify;
+    text-indent: 28.4pt;
+    margin: 0;
+    padding: 0
+    }
+.block_5 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: right;
+    text-indent: 0;
+    margin: 0;
+    padding: 0
+    }
+.block_6 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: justify;
+    text-indent: 0;
+    margin: 0;
+    padding: 0
+    }
+.block_7 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: center;
+    text-indent: 0;
+    margin: 0;
+    padding: 0
+    }
+.block_8 {
+    display: list-item;
+    font-family: "Liberation Sans", serif;
+    font-size: 1.29167em;
+    line-height: 1.2;
+    margin-bottom: 6pt;
+    margin-left: 0;
+    margin-top: 10pt;
+    padding-bottom: 0;
+    padding-top: 0;
+    page-break-after: avoid;
+    text-align: left
+    }
+.block_9 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: center;
+    text-indent: 28.4pt;
+    margin: 0;
+    padding: 0
+    }
+.block_10 {
+    display: block;
+    line-height: 1.2;
+    text-align: left;
+    margin: 0 0 7pt;
+    padding: 0
+    }
+.block_11 {
+    display: list-item;
+    font-family: "Liberation Sans", serif;
+    font-size: 1.29167em;
+    line-height: 1.2;
+    margin-bottom: 6pt;
+    margin-left: 0;
+    margin-top: 7pt;
+    padding-bottom: 0;
+    padding-top: 0;
+    page-break-after: avoid;
+    text-align: left
+    }
+.block_12 {
+    display: block;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 28.4pt;
+    margin: 0 0 7pt;
+    padding: 0
+    }
+.block_13 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: left;
+    text-indent: 0;
+    margin: 0;
+    padding: 0
+    }
+.block_14 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: left;
+    text-indent: 28.4pt;
+    margin: 0;
+    padding: 0
+    }
+.block_15 {
+    display: list-item;
+    line-height: 14.4pt;
+    padding-bottom: 0;
+    padding-top: 0;
+    text-align: justify;
+    margin: 0 0 0 56.7pt
+    }
+.block_16 {
+    display: block;
+    font-size: 0.83333em;
+    line-height: 14.4pt;
+    text-align: justify;
+    text-indent: 0;
+    margin: 0 0 0 28.4pt;
+    padding: 0
+    }
+.block_17 {
+    display: block;
+    font-size: 0.83333em;
+    line-height: 14.4pt;
+    text-align: justify;
+    text-indent: 28.4pt;
+    margin: 0;
+    padding: 0
+    }
+.block_18 {
+    display: list-item;
+    line-height: 14.4pt;
+    padding-bottom: 0;
+    padding-top: 0;
+    text-align: justify;
+    margin: 0 0 0 42.5pt
+    }
+.block_19 {
+    display: list-item;
+    line-height: 14.4pt;
+    margin-bottom: 0;
+    margin-left: 36pt;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+    text-align: justify
+    }
+.block_20 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: justify;
+    text-indent: 0;
+    margin: 0 0 0 56.7pt;
+    padding: 0
+    }
+.block_21 {
+    display: block;
+    line-height: 14.4pt;
+    text-align: justify;
+    text-indent: -28.4pt;
+    margin: 0 0 0 56.7pt;
+    padding: 0
+    }
+.block_22 {
+    display: block;
+    font-size: 2em;
+    font-weight: normal;
+    line-height: 28.8pt;
+    text-align: left;
+    margin: 0;
+    padding: 0
+    }
+.block_23 {
+    display: block;
+    font-size: 0.83333em;
+    line-height: 14.4pt;
+    text-align: left;
+    text-indent: -16.9pt;
+    margin: 0 0 0 16.9pt;
+    padding: 0
+    }
+.calibre {
+    color: #000;
+    display: block;
+    font-family: "Cambria", serif;
+    font-size: 1em;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 5pt
+    }
+.calibre1 {
+    display: block
+    }
+.calibre2 {
+    height: 583pt;
+    width: 386pt
+    }
+.calibre3 {
+    height: 530pt;
+    width: 356pt
+    }
+.calibre4 {
+    height: 228pt;
+    width: 320pt
+    }
+.calibre5 {
+    height: 30pt;
+    width: 32pt
+    }
+.calibre6 {
+    font-size: 0.75em;
+    line-height: normal;
+    vertical-align: super
+    }
+.calibre7 {
+    height: 377pt;
+    width: 441pt
+    }
+.calibre8 {
+    height: 451pt;
+    width: 410pt
+    }
+.calibre9 {
+    height: 186pt;
+    width: 315pt
+    }
+.calibre10 {
+    height: 226pt;
+    width: 295pt
+    }
+.calibre11 {
+    height: 133pt;
+    width: 320pt
+    }
+.calibre12 {
+    height: 196pt;
+    width: 300pt
+    }
+.calibre13 {
+    height: 168pt;
+    width: 314pt
+    }
+.calibre14 {
+    height: 201pt;
+    width: 306pt
+    }
+.calibre15 {
+    height: 162pt;
+    width: 237pt
+    }
+.calibre16 {
+    height: 241pt;
+    width: 372pt
+    }
+.calibre17 {
+    height: 440pt;
+    width: 315pt
+    }
+.calibre18 {
+    height: 482pt;
+    width: 349pt
+    }
+.calibre19 {
+    height: 348pt;
+    width: 248pt
+    }
+.calibre20 {
+    height: 132pt;
+    width: 214pt
+    }
+.calibre21 {
+    height: 79.5pt;
+    width: 392pt
+    }
+.calibre22 {
+    height: 112pt;
+    width: 315pt
+    }
+.calibre23 {
+    height: 174pt;
+    width: 227pt
+    }
+.calibre24 {
+    height: 175pt;
+    width: 228pt
+    }
+.calibre25 {
+    height: 99pt;
+    width: 315pt
+    }
+.calibre26 {
+    height: 202pt;
+    width: 294pt
+    }
+.calibre27 {
+    height: 269pt;
+    width: 252pt
+    }
+.calibre28 {
+    height: 275pt;
+    width: 258pt
+    }
+.calibre29 {
+    height: 133pt;
+    width: 179pt
+    }
+.calibre30 {
+    height: 130pt;
+    width: 315pt
+    }
+.calibre31 {
+    height: 102pt;
+    width: 320pt
+    }
+.calibre32 {
+    height: 93pt;
+    width: 315pt
+    }
+.calibre33 {
+    height: 108pt;
+    width: 315pt
+    }
+.calibre34 {
+    height: 196pt;
+    width: 314pt
+    }
+.calibre35 {
+    height: 89pt;
+    width: 315pt
+    }
+.calibre36 {
+    height: 152pt;
+    width: 282pt
+    }
+.calibre37 {
+    height: 128pt;
+    width: 191pt
+    }
+.calibre38 {
+    height: 137pt;
+    width: 232pt
+    }
+.calibre39 {
+    height: 143pt;
+    width: 235pt
+    }
+.calibre40 {
+    height: 137pt;
+    width: 217pt
+    }
+.calibre41 {
+    height: 136pt;
+    width: 118pt
+    }
+.calibre42 {
+    height: 131pt;
+    width: 219pt
+    }
+.calibre43 {
+    height: 180pt;
+    width: 212pt
+    }
+.calibre44 {
+    height: 140pt;
+    width: 315pt
+    }
+.calibre45 {
+    height: 89pt;
+    width: 259pt
+    }
+.calibre46 {
+    height: 86pt;
+    width: 90pt
+    }
+.calibre47 {
+    height: 100pt;
+    width: 141pt
+    }
+.calibre48 {
+    height: 90pt;
+    width: 219pt
+    }
+.calibre49 {
+    height: 82pt;
+    width: 243pt
+    }
+.calibre50 {
+    height: 100pt;
+    width: 103pt
+    }
+.calibre51 {
+    height: 90pt;
+    width: 91pt
+    }
+.calibre52 {
+    height: 90pt;
+    width: 239pt
+    }
+.calibre53 {
+    height: 85pt;
+    width: 218pt
+    }
+.calibre54 {
+    height: 82pt;
+    width: 74pt
+    }
+.calibre55 {
+    height: 49pt;
+    width: 257pt
+    }
+.calibre56 {
+    height: 93pt;
+    width: 248pt
+    }
+.calibre57 {
+    height: 166pt;
+    width: 315pt
+    }
+.calibre58 {
+    height: 194pt;
+    width: 315pt
+    }
+.calibre59 {
+    height: 275pt;
+    width: 281pt
+    }
+.calibre60 {
+    height: 173pt;
+    width: 315pt
+    }
+.calibre61 {
+    height: 209pt;
+    width: 315pt
+    }
+.calibre62 {
+    height: 179pt;
+    width: 315pt
+    }
+.calibre63 {
+    height: 164pt;
+    width: 315pt
+    }
+.calibre64 {
+    height: 163pt;
+    width: 310pt
+    }
+.calibre65 {
+    height: 165pt;
+    width: 315pt
+    }
+.calibre66 {
+    height: 141pt;
+    width: 317pt
+    }
+.calibre67 {
+    height: 124pt;
+    width: 315pt
+    }
+.calibre68 {
+    height: 125pt;
+    width: 315pt
+    }
+.calibre69 {
+    height: 111pt;
+    width: 315pt
+    }
+.calibre70 {
+    height: 139pt;
+    width: 315pt
+    }
+.calibre71 {
+    height: 139pt;
+    width: 189pt
+    }
+.calibre72 {
+    height: 135pt;
+    width: 189pt
+    }
+.calibre73 {
+    height: 182pt;
+    width: 316pt
+    }
+.calibre74 {
+    height: 455pt;
+    width: 392pt
+    }
+.calibre75 {
+    height: 151pt;
+    width: 357pt
+    }
+.calibre76 {
+    height: 139pt;
+    width: 314pt
+    }
+.calibre77 {
+    height: 141pt;
+    width: 321pt
+    }
+.calibre78 {
+    height: 119pt;
+    width: 315pt
+    }
+.calibre79 {
+    height: 165pt;
+    width: 317pt
+    }
+.calibre80 {
+    height: 168pt;
+    width: 315pt
+    }
+.calibre81 {
+    height: 170pt;
+    width: 313pt
+    }
+.calibre82 {
+    height: 169pt;
+    width: 315pt
+    }
+.calibre83 {
+    height: 108pt;
+    width: 314pt
+    }
+.calibre84 {
+    height: 93pt;
+    width: 117pt
+    }
+.calibre85 {
+    height: 154pt;
+    width: 145pt
+    }
+.calibre86 {
+    height: 248pt;
+    width: 248pt
+    }
+.calibre87 {
+    height: 242pt;
+    width: 247pt
+    }
+.calibre88 {
+    height: 233pt;
+    width: 247pt
+    }
+.calibre89 {
+    height: 152pt;
+    width: 315pt
+    }
+.calibre90 {
+    height: 208pt;
+    width: 315pt
+    }
+.calibre91 {
+    height: 170pt;
+    width: 297pt
+    }
+.calibre92 {
+    height: 150pt;
+    width: 275pt
+    }
+.calibre93 {
+    height: 165pt;
+    width: 275pt
+    }
+.calibre94 {
+    height: 177pt;
+    width: 323pt
+    }
+.calibre95 {
+    height: 131pt;
+    width: 50pt
+    }
+.calibre96 {
+    height: 176pt;
+    width: 267pt
+    }
+.calibre97 {
+    height: 209pt;
+    width: 269pt
+    }
+.calibre98 {
+    height: 191pt;
+    width: 315pt
+    }
+.calibre99 {
+    height: 199pt;
+    width: 315pt
+    }
+.calibre100 {
+    height: 182pt;
+    width: 315pt
+    }
+.calibre101 {
+    height: 220pt;
+    width: 315pt
+    }
+.calibre102 {
+    height: 181pt;
+    width: 315pt
+    }
+.calibre103 {
+    height: 149pt;
+    width: 98pt
+    }
+.calibre104 {
+    height: 159pt;
+    width: 241pt
+    }
+.calibre105 {
+    height: 103pt;
+    width: 149pt
+    }
+.calibre106 {
+    height: 135pt;
+    width: 234pt
+    }
+.calibre107 {
+    height: 91pt;
+    width: 147pt
+    }
+.calibre108 {
+    height: 215pt;
+    width: 312pt
+    }
+.calibre109 {
+    height: 164pt;
+    width: 280pt
+    }
+.calibre110 {
+    height: 163pt;
+    width: 280pt
+    }
+.calibre111 {
+    height: 179pt;
+    width: 312pt
+    }
+.calibre112 {
+    height: 182pt;
+    width: 314pt
+    }
+.calibre113 {
+    height: 172pt;
+    width: 315pt
+    }
+.calibre114 {
+    height: 173pt;
+    width: 316pt
+    }
+.calibre115 {
+    height: 174pt;
+    width: 316pt
+    }
+.calibre116 {
+    height: 178pt;
+    width: 315pt
+    }
+.calibre117 {
+    height: 144pt;
+    width: 310pt
+    }
+.calibre118 {
+    height: 172pt;
+    width: 257pt
+    }
+.calibre119 {
+    height: 172pt;
+    width: 259pt
+    }
+.calibre120 {
+    height: 159pt;
+    width: 315pt
+    }
+.calibre121 {
+    height: 171pt;
+    width: 273pt
+    }
+.calibre122 {
+    height: 193pt;
+    width: 314pt
+    }
+.calibre123 {
+    height: 106pt;
+    width: 315pt
+    }
+.calibre124 {
+    height: 97pt;
+    width: 315pt
+    }
+.calibre125 {
+    height: 171pt;
+    width: 315pt
+    }
+.calibre126 {
+    height: 192pt;
+    width: 314pt
+    }
+.calibre127 {
+    height: 192pt;
+    width: 315pt
+    }
+.calibre128 {
+    height: 193pt;
+    width: 315pt
+    }
+.calibre129 {
+    height: 179pt;
+    width: 293pt
+    }
+.calibre130 {
+    height: 178pt;
+    width: 289pt
+    }
+.calibre131 {
+    height: 196pt;
+    width: 315pt
+    }
+.calibre132 {
+    height: 189pt;
+    width: 315pt
+    }
+.calibre133 {
+    height: 241pt;
+    width: 315pt
+    }
+.calibre134 {
+    height: 233pt;
+    width: 315pt
+    }
+.calibre135 {
+    height: 248pt;
+    width: 315pt
+    }
+.calibre136 {
+    height: 225pt;
+    width: 315pt
+    }
+.calibre137 {
+    height: 223pt;
+    width: 315pt
+    }
+.calibre138 {
+    height: 214pt;
+    width: 315pt
+    }
+.calibre139 {
+    height: 202pt;
+    width: 315pt
+    }
+.calibre140 {
+    height: 195pt;
+    width: 315pt
+    }
+.calibre141 {
+    height: 244pt;
+    width: 309pt
+    }
+.calibre142 {
+    height: 138pt;
+    width: 315pt
+    }
+.calibre143 {
+    height: 156pt;
+    width: 269pt
+    }
+.calibre144 {
+    height: 201pt;
+    width: 305pt
+    }
+.calibre145 {
+    height: 213pt;
+    width: 312pt
+    }
+.calibre146 {
+    display: block;
+    font-size: 1.29167em;
+    line-height: 1.2
+    }
+.calibre147 {
+    line-height: 1.2;
+    text-decoration: none
+    }
+.calibre148 {
+    display: block;
+    margin-left: 40px
+    }
+.footnote {
+    display: block;
+    margin: 1em 0
+    }
+.list_ {
+    display: block;
+    list-style-type: none;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-top: 0
+    }
+.list_1 {
+    display: block;
+    list-style-type: decimal;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-top: 0
+    }
+.list_2 {
+    display: block;
+    list-style-type: disc;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-top: 0
+    }
+.noteref {
+    text-decoration: none
+    }
+.tab {
+    white-space: pre-wrap
+    }
+.text_ {
+    background-color: transparent;
+    letter-spacing: 0;
+    vertical-align: 0
+    }
+.text_1 {
+    background-color: transparent;
+    font-weight: bold;
+    letter-spacing: 0;
+    vertical-align: 0
+    }
+.text_2 {
+    background-color: transparent;
+    font-style: italic;
+    letter-spacing: 0;
+    vertical-align: 0
+    }
+.text_3 {
+    background-color: transparent;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 1.2;
+    vertical-align: 0
+    }
+.text_4 {
+    background-color: transparent;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 0;
+    vertical-align: 0
+    }
+.text_5 {
+    background-color: transparent;
+    color: #000;
+    letter-spacing: 0;
+    vertical-align: 0
+    }
+.text_6 {
+    background-color: transparent;
+    color: #000;
+    font-style: italic;
+    letter-spacing: 0;
+    vertical-align: 0
+    }
+.text_7 {
+    background-color: transparent;
+    color: #000080;
+    letter-spacing: 0;
+    text-decoration: underline;
+    vertical-align: 0
+    }
+.text_8 {
+    background-color: transparent;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 1.2;
+    vertical-align: 0
+    }
+.text_9 {
+    background-color: transparent;
+    letter-spacing: 0;
+    text-decoration: underline;
+    vertical-align: 0
+    }
+.text_10 {
+    background-color: transparent;
+    color: #FFBF00;
+    font-weight: bold;
+    letter-spacing: 0;
+    vertical-align: 0
+    }
+.text_11 {
+    background-color: transparent;
+    font-size: 1.55em;
+    letter-spacing: 0;
+    line-height: 1.2;
+    vertical-align: 0
+    }
+.text_12 {
+    background-color: transparent;
+    font-size: 1.2em;
+    letter-spacing: 0;
+    vertical-align: 0
+    }

@@ -6,12 +6,14 @@ export class GoToPageModal extends Modal {
   total: number;
   current: number;
   onSubmit: (page: number) => void;
+  onOpenToc?: () => void;
 
-  constructor(app: App, total: number, current: number, onSubmit: (page: number) => void) {
+  constructor(app: App, total: number, current: number, onSubmit: (page: number) => void, onOpenToc?: () => void) {
     super(app);
     this.total = total;
     this.current = current || 0;
     this.onSubmit = onSubmit;
+    this.onOpenToc = onOpenToc;
   }
 
   onOpen(): void {
@@ -39,6 +41,14 @@ export class GoToPageModal extends Modal {
     });
 
     const btns = contentEl.createDiv("er-confirm-btns");
+    if (this.onOpenToc) {
+      const tocBtn = btns.createEl("button", { text: __ertr("Table of contents") });
+      tocBtn.addClass("er-confirm-no", "er-confirm-toc-btn");
+      tocBtn.addEventListener("click", () => {
+        this.close();
+        if (this.onOpenToc) this.onOpenToc();
+      });
+    }
     const go = btns.createEl("button", { text: __ertr("Go") });
     go.addClass("er-confirm-yes");
     go.addEventListener("click", submit);

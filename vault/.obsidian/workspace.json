@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "1b56c30e8b90a7b8",
+        "id": "511703581de130be",
         "type": "tabs",
         "children": [
           {
-            "id": "14c52398841e3eba",
+            "id": "52dc676fa7e10d8c",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "kindle-library",
               "state": {},
-              "icon": "lucide-file",
-              "title": "Nova aba"
+              "icon": "library",
+              "title": "Biblioteca"
             }
           }
         ]
@@ -168,7 +168,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -179,27 +180,42 @@
       "templates:Inserir modelo": false,
       "command-palette:Abrir paleta de comandos": false,
       "bases:Criar nova base": false,
-      "kindle-reader:Kindle Reader — Library": false,
-      "qiaomu-reader:Qiaomu Reader — 书库": false
+      "kindle-reader:Kindle Reader — Library": false
     }
   },
-  "active": "14c52398841e3eba",
+  "active": "52dc676fa7e10d8c",
   "lastOpenFiles": [
-    "Books/Livros/_reader-rescue/_reader-rescue-2026-10-09/plugin-data.json",
-    "Books/Livros/_reader-rescue/_reader-rescue-2026-10-09/reading-highlights.json",
-    "Books/Livros/_reader-rescue/_reader-rescue-2026-10-09/reading-progress.json",
-    "Books/Livros/_reader-rescue/_reader-rescue-2026-10-09",
-    "Books/Livros/_reader-rescue",
-    "Books/Livros/Leitor de livros 1.0.1 - novidades.md",
-    "Books/Livros/reading-progress.json",
-    "Books/Livros",
-    "andrzejczak-bc250-llm-preprint-v2.md",
-    "Alice in Wonderland.md",
+    "Books/Livros/Storytelling com Dados EBUP.md",
+    "Books/Livros/Storytelling com dados PDF.md",
+    "Books/Livros/Entendendo Algoritmos EPUB.md",
+    "Books/Storytelling com dados PDF.pdf",
+    "Books/Entendendo Algoritmos EPUB.epub",
+    "Books/Storytelling com Dados EBUP.epub",
+    "Books/Storytelling com dados Cole Nussbaum.pdf",
+    "Books/Storytelling com Dados.pdf",
+    "Books/Storytelling com Dados.epub",
+    "Books/Livros/Storytelling com Dados.md",
+    "Books/Livros/A_Cor_dos_Dados_Um_Guia_Para_o_uso_de_z_library_sk,_1lib_sk,.md",
+    "Sem título.base",
+    "Books/A_Cor_dos_Dados_Um_Guia_Para_o_uso_de_z_library_sk,_1lib_sk,.pdf",
+    "Books/Livros/Entendendo Algoritmos.md",
+    "Books/Entendendo Algoritmos.epub",
+    "photo_5066576102674861145_y.jpg",
+    "photo_5066576102674861144_y.jpg",
+    "Books/Livros/Storytelling com dados Cole Nussbaum.md",
+    "Books/Livros/Storytelling com Dados (Cole Nussbaumer Knaflic Knaflic etc.).md",
+    "Books/Livros/Storytelling (2).md",
+    "Books/Livros/Storytelling (1).md",
+    "Books/Livros/reading-highlights.json",
+    "Books/Livros/Metodologia_de_Pesquisa_para_Ciência.md",
+    "Books/Livros/artigo para leitura (1).md",
+    "Books/Livros/Jekyll and Hyde.md",
     "LLMs in Practice Results from a Survey with Software Development Professionals In Brazil.md",
-    "Books/_reader-rescue/_reader-rescue-2026-10-09/plugin-data.json",
-    "Books/_reader-rescue/_reader-rescue-2026-10-09/reading-highlights.json",
-    "Books/_reader-rescue/_reader-rescue-2026-10-09/reading-progress.json",
-    "Books/_reader-rescue/_reader-rescue-2026-10-09",
+    "andrzejczak-bc250-llm-preprint-v2.md",
+    "Bem-vindo.md",
+    "Alice in Wonderland.md",
+    "Books/Livros/LLMs in Practice Results from a Survey with Software Development Professionals In Brazil.md",
+    "Books/Livros/Leitor de livros 1.0.1 - novidades.md",
     "Books/Livros/Criar um segundo cérebro (Tiago Forte).md",
     "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.md",
     "Books/Livros/12 Perguntas Essenciais para Qualquer Projeto de Dados Um guia simples e poderoso para transformar d.md",

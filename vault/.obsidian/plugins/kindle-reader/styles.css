@@ -69,17 +69,21 @@ img.er-pdf-lazy:not([data-loaded="1"]) { background:color-mix(in srgb,var(--er-t
 .er-clip { position:relative; overflow:hidden; flex-shrink:0; }
 .er-flow { overflow:hidden; }
 .er-flow-anim { transition: transform 0.3s ease; }
-.er-clip-flip { animation: clip-flip 0.45s cubic-bezier(0.4, 0.0, 0.2, 1); transform-style: preserve-3d; perspective: 1200px; }
-@keyframes clip-flip {
-  0% { transform: scale(1) rotateY(0deg); }
-  50% { transform: scale(0.96) rotateY(-6deg); }
-  100% { transform: scale(1) rotateY(0deg); }
-}
+.er-clip-flip { /* Flip mode active: stage and spine managed cleanly */ }
 .er-flow p { margin:0 0 .85em; text-align:justify; hyphens:auto; -webkit-hyphens:auto; word-break:break-word; color:inherit; font-size:inherit; font-family:inherit; line-height:inherit; break-inside:avoid-column; }
 .er-flow p:last-child { margin-bottom:0; }
-.er-flow h1,.er-flow h2,.er-flow h3,.er-flow h4 { margin:1.4em 0 .5em; font-weight:700; color:inherit; line-height:1.25; break-after:avoid-column; }
+.er-flow h1,.er-flow h2,.er-flow h3,.er-flow h4,.er-flow .er-subhead { margin:1.4em 0 .5em; font-weight:700; color:inherit; line-height:1.25; break-after:avoid-column; }
 .er-flow h1 { font-size:1.5em; } .er-flow h2 { font-size:1.3em; } .er-flow h3 { font-size:1.15em; }
-.er-flow strong { font-weight:700; } .er-flow em { font-style:italic; }
+.er-flow .er-subhead { font-size:1.22em; text-indent:0 !important; }
+.er-flow .er-subhead p { margin:0 !important; padding:0 !important; display:inline; text-indent:0 !important; font-size:inherit; font-weight:inherit; }
+.er-flow .er-list-none, .er-flow ol.er-list-none, .er-flow ul.er-list-none { list-style:none !important; list-style-type:none !important; padding-left:0 !important; margin:0 0 .8em !important; }
+.er-flow .er-list-none>li { list-style:none !important; list-style-type:none !important; padding-left:0 !important; margin:0 0 .4em; }
+.er-flow .er-list-none>li::before { display:none !important; content:none !important; }
+.er-flow b, .er-flow strong { font-weight:700 !important; }
+.er-flow i, .er-flow em, .er-flow cite, .er-flow dfn, .er-flow var { font-style:italic !important; }
+.er-flow b em, .er-flow strong em, .er-flow b i, .er-flow strong i,
+.er-flow em b, .er-flow em strong, .er-flow i b, .er-flow i strong { font-weight:700 !important; font-style:italic !important; }
+.er-flow .er-light { font-weight:300 !important; opacity:0.9; }
 .er-loading { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:var(--er-muted,#8a8678); font-family:'Inter',system-ui,sans-serif; }
 .er-spin { width:36px; height:36px; border:3px solid rgba(0,0,0,.1); border-top-color:var(--er-accent,#5548d9); border-radius:50%; animation:er-spin .7s linear infinite; }
 @keyframes er-spin { to { transform:rotate(360deg); } }
@@ -210,6 +214,10 @@ img.er-pdf-lazy:not([data-loaded="1"]) { background:color-mix(in srgb,var(--er-t
 @keyframes er-panel-slide-in { from { transform:translateX(calc(100% + 1px)); } to { transform:translateX(0); } }
 .er-toc-panel { width:280px; }
 .er-pan-title { padding:18px 18px 12px; font-family:'Inter',system-ui,sans-serif; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--er-muted); border-bottom:1px solid var(--er-border); margin-bottom:4px; flex-shrink:0; background:var(--er-ui); position:sticky; top:0; z-index:1; }
+.er-pan-title-row { display:flex; align-items:center; justify-content:space-between; }
+.er-pan-close { cursor:pointer; padding:2px 8px; font-size:14px; opacity:.7; transition:opacity .15s; }
+.er-pan-close:hover { opacity:1; }
+.er-confirm-toc-btn { margin-right:auto; }
 .er-pan-sec { font-family:'Inter',system-ui,sans-serif; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--er-muted); opacity:.65; padding:14px 16px 7px; }
 .er-theme-row { display:flex; gap:7px; padding:0 14px 4px; }
 .er-theme-btn { flex:1; padding:10px 4px; border-radius:8px; text-align:center; font-family:'Inter',system-ui,sans-serif; font-size:11px; font-weight:600; cursor:pointer; border:2px solid transparent; transition:border-color .15s,transform .1s; }
@@ -1721,7 +1729,7 @@ body:not(.is-mobile) .er-bot {
   .er-ai-modal .er-ai-act:hover { color: var(--text-normal); background: var(--background-modifier-hover); }
 }
 /* Waiting for the answer: dots that bounce, one after another. Same indicator
-   as in Elton AI, so the two windows wait the same way. */
+   as in Kindle Reader AI, so the two windows wait the same way. */
 .er-ai-typing { display: flex; align-items: center; gap: var(--size-4-2); }
 .er-ai-typing-dots { display: flex; gap: 3px; }
 .er-ai-typing-dot {
@@ -2105,13 +2113,16 @@ body:not(.is-mobile) .er-bot {
   .er-lib-fitbtn:active { opacity: 1; }
 }
 
-/* ── Realistic Flip Book (Folha Realista) ────────────────────────────────── */
+/* ── Realistic Flip Book (Kindle E-Paper Ultra-Fluid Engine - Opção A) ─── */
 .er-clip-flip {
-  perspective: 2600px;
-  -webkit-perspective: 2600px;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
+  position: relative;
   overflow: hidden !important;
+}
+
+/* Transição elástica de folha de papel física (Zero clones, GPU pura 120 FPS) */
+.er-flow-paper-anim {
+  transition: transform 0.28s cubic-bezier(0.2, 0.85, 0.3, 1) !important;
+  will-change: transform;
 }
 
 .er-clip-flip .er-book-spine {
@@ -2124,92 +2135,50 @@ body:not(.is-mobile) .er-bot {
   background: linear-gradient(
     to right,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.04) 25%,
-    rgba(0, 0, 0, 0.16) 50%,
-    rgba(0, 0, 0, 0.04) 75%,
+    rgba(0, 0, 0, 0.03) 25%,
+    rgba(0, 0, 0, 0.18) 50%,
+    rgba(0, 0, 0, 0.03) 75%,
     rgba(0, 0, 0, 0) 100%
   );
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.06);
   pointer-events: none;
   z-index: 15;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-.er-flip-leaf {
+/* Sombra física de curvatura e vinco em movimento */
+.er-paper-crease-shadow {
   position: absolute;
   top: 0;
-  height: 100%;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  bottom: 0;
+  width: 54px;
+  pointer-events: none;
   z-index: 25;
-  pointer-events: none;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.22);
-  transition: transform 0.42s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform;
+  opacity: 0.85;
+  transition: transform 0.28s cubic-bezier(0.2, 0.85, 0.3, 1), opacity 0.28s ease;
+  will-change: transform, opacity;
 }
 
-.er-flip-leaf.er-flip-left {
-  left: 0;
-  transform-origin: right center;
-  -webkit-transform-origin: right center;
-  border-right: 1px solid rgba(0, 0, 0, 0.07);
-}
-
-.er-flip-leaf.er-flip-right {
-  left: 50%;
-  transform-origin: left center;
-  -webkit-transform-origin: left center;
-  border-left: 1px solid rgba(0, 0, 0, 0.07);
-}
-
-.er-flip-leaf.er-flip-full {
-  left: 0;
-  width: 100% !important;
-  transform-origin: left center;
-  -webkit-transform-origin: left center;
-}
-
-.er-flip-leaf .er-flip-front,
-.er-flip-leaf .er-flip-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  background: var(--er-bg, var(--background-primary, #ffffff));
-}
-
-.er-flip-leaf .er-flip-back {
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-  background: color-mix(in srgb, var(--er-bg, #ffffff) 93%, var(--er-text, #000000) 7%);
-  box-shadow: inset 10px 0 20px rgba(0, 0, 0, 0.08);
-}
-
-.er-flip-leaf .er-flip-shadow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+.er-paper-crease-shadow.er-shadow-next {
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.22) 0%,
-    rgba(255, 255, 255, 0.08) 45%,
-    rgba(0, 0, 0, 0.15) 100%
+    transparent 0%,
+    rgba(0, 0, 0, 0.03) 30%,
+    rgba(0, 0, 0, 0.22) 80%,
+    rgba(0, 0, 0, 0.08) 100%
   );
-  opacity: 0;
-  transition: opacity 0.42s ease;
+  box-shadow: -4px 0 14px rgba(0, 0, 0, 0.16);
 }
 
-.er-flip-leaf.er-flip-turning .er-flip-shadow {
-  opacity: 0.7;
+.er-paper-crease-shadow.er-shadow-prev {
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    rgba(0, 0, 0, 0.03) 30%,
+    rgba(0, 0, 0, 0.22) 80%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  box-shadow: 4px 0 14px rgba(0, 0, 0, 0.16);
 }
 
 /* ══════════════════════════════════════════════════════════════════════

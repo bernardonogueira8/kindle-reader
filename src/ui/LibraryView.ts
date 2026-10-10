@@ -2,7 +2,8 @@ import { ItemView, WorkspaceLeaf } from 'obsidian';
 import { LibraryModal } from './LibraryModal';
 import { __ertr } from '../utils/i18n';
 
-export const LIB_VIEW_TYPE = "elton-library";
+export const LIB_VIEW_TYPE = "kindle-library";
+export const LEGACY_LIB_VIEW_TYPE = "elton-library";
 
 export class LibraryView extends ItemView {
   plugin: unknown;
@@ -73,10 +74,9 @@ export class LibraryView extends ItemView {
 // wholesale rather than duplicating 500 lines that would then drift apart.
 for (const name of Object.getOwnPropertyNames(LibraryModal.prototype)) {
   if (["constructor", "onOpen", "onClose", "close"].includes(name)) continue;
-  Object.defineProperty(
-    LibraryView.prototype,
-    name,
-    Object.getOwnPropertyDescriptor(LibraryModal.prototype, name)!
-  );
+  const desc = Object.getOwnPropertyDescriptor(LibraryModal.prototype, name);
+  if (desc) {
+    Object.defineProperty(LibraryView.prototype, name, desc);
+  }
 }
 

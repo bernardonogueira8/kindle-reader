@@ -630,7 +630,8 @@ export class SettingsTab extends PluginSettingTab {
         for (const [id, prov] of Object.entries(AI_PROVIDERS)) {
           d.addOption(id, prov.label);
         }
-        d.setValue(s.aiProvider || "eltonlabs").onChange(async (v) => {
+        const provKey = (s.aiProvider && AI_PROVIDERS[s.aiProvider]) ? s.aiProvider : "openrouter";
+        d.setValue(provKey).onChange(async (v) => {
           s.aiProvider = v;
           s.aiModel = "";
           await this.plugin.saveAll();
@@ -638,10 +639,11 @@ export class SettingsTab extends PluginSettingTab {
         });
       });
 
-    if (AI_PROVIDERS[s.aiProvider || "eltonlabs"]?.needsKey) {
+    const activeProv = AI_PROVIDERS[s.aiProvider] || AI_PROVIDERS.openrouter;
+    if (activeProv.needsKey) {
       new Setting(c)
         .setName(__ertr("API Key"))
-        .setDesc(__ertr("Your API key for {0}.", AI_PROVIDERS[s.aiProvider || "eltonlabs"].label))
+        .setDesc(__ertr("Your API key for {0}.", activeProv.label))
         .addText((t) => {
           t.inputEl.type = "password";
           t.setValue(s.aiKey || "").onChange(async (v) => {
@@ -653,9 +655,9 @@ export class SettingsTab extends PluginSettingTab {
 
     new Setting(c)
       .setName(__ertr("Model"))
-      .setDesc(__ertr("Leave empty to use default ({0}).", AI_PROVIDERS[s.aiProvider || "eltonlabs"]?.model || ""))
+      .setDesc(__ertr("Leave empty to use default ({0}).", activeProv.model || ""))
       .addText((t) => t
-        .setPlaceholder(AI_PROVIDERS[s.aiProvider || "eltonlabs"]?.model || "")
+        .setPlaceholder(activeProv.model || "")
         .setValue(s.aiModel || "")
         .onChange(async (v) => {
           s.aiModel = v.trim();
@@ -664,9 +666,9 @@ export class SettingsTab extends PluginSettingTab {
 
     new Setting(c)
       .setName(__ertr("Custom Base URL"))
-      .setDesc(__ertr("API endpoint URL. Default: {0}", AI_PROVIDERS[s.aiProvider || "eltonlabs"]?.base || ""))
+      .setDesc(__ertr("API endpoint URL. Default: {0}", activeProv.base || ""))
       .addText((t) => t
-        .setPlaceholder(AI_PROVIDERS[s.aiProvider || "eltonlabs"]?.base || "")
+        .setPlaceholder(activeProv.base || "")
         .setValue(s.aiBase || "")
         .onChange(async (v) => {
           s.aiBase = v.trim();
@@ -846,7 +848,7 @@ export class SettingsTab extends PluginSettingTab {
       text: __ertr("Version {0}. Read EPUB, FB2 and PDF books with realistic flip, highlights, and vault-synced progress.", this.plugin.manifest.version)
     });
     const sub = aboutCard.createDiv();
-    sub.createSpan({ text: __ertr("Based on Book Reader by Elton. Extended and maintained with modern TypeScript and responsive UI.") });
+    sub.createSpan({ text: __ertr("Kindle Reader for Obsidian. Extended and maintained with modern TypeScript and responsive UI.") });
   }
 
   private _refreshReaderViews() {

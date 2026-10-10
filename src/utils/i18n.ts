@@ -274,7 +274,7 @@ Object.assign(__erEN, {
     " means you use to sync the vault itself (Obsidian Sync, iCloud, Google Drive, Remotely Save and so on). The position is anchored by paragraph number, so PC and phone find the same spot at any screen size.",
   "Настройки оформления и кэш обложек — локальные (в ": "Appearance settings and the cover cache are local (in the plugin's ",
   " плагина) и намеренно не синхронизируются.": ") and are intentionally not synced.",
-  " — версия {0}. Автор: Elton Labs.": " — version {0}. By Elton Labs.",
+  " — версия {0}.": " — version {0}.",
   "компьютер": "computer",
   "планшет": "tablet",
   "телефон": "phone",
@@ -513,7 +513,7 @@ Object.assign(__erPT, {
   "List of new features, bug fixes and performance improvements in recent versions.": "Lista de novidades, correções e melhorias de desempenho nas versões recentes.",
   "Show": "Mostrar",
   "Version {0}. Read EPUB, FB2 and PDF books with realistic flip, highlights, and vault-synced progress.": "Versão {0}. Leia livros EPUB, FB2 e PDF com folha realista, destaques e sincronização no cofre.",
-  "Based on Book Reader by Elton. Extended and maintained with modern TypeScript and responsive UI.": "Baseado no Book Reader de Elton. Expandido e mantido com TypeScript moderno e interface responsiva.",
+  "Kindle Reader for Obsidian. Extended and maintained with modern TypeScript and responsive UI.": "Kindle Reader para Obsidian. Expandido e mantido com TypeScript moderno e interface responsiva.",
   "Paragraph spacing": "Entre parágrafos",
   "Word spacing": "Entre palavras",
   "Letter spacing": "Entre caracteres",
@@ -592,9 +592,10 @@ Object.assign(__erPT, {
   "Fine-tune your reading comfort with sliders for line height, paragraph spacing, word spacing, and letter spacing directly in reading settings.": "Ajuste fino do conforto de leitura com controles para entre linhas, entre parágrafos, entre palavras e entre caracteres nas configurações de leitura.",
   "Adjust text margins across 4 widths (Narrow, Normal, Wide, Extra wide) to fit any phone, tablet, or desktop screen.": "Ajuste as margens de texto em 4 opções (Estreita, Normal, Larga, Extra larga) para qualquer tela de celular, tablet ou computador.",
   "Mobile reading and progress": "Leitura no celular e progresso",
-  "On Android devices, books automatically enter full-screen mode to maximize screen real estate and minimize distractions.": "No Android, os livros entram em tela cheia automaticamente para aproveitar melhor a tela e diminuir distrações.",
   "The bottom progress bar displays hours and minutes remaining on the left (tap to toggle to pages left), a real-time clock in the center, and your overall reading percentage on the right.": "A barra de progresso inferior exibe horas e minutos restantes à esquerda (toque para alternar para páginas restantes), relógio em tempo real no centro e a porcentagem total de leitura à direita.",
-  "To open the settings: Obsidian's gear icon → Community plugins → Kindle Reader. There are tabs at the top: Reading, Appearance, Notes, Translation, Data and About.": "Para abrir as configurações: Ícone de engrenagem do Obsidian → Plugins da comunidade → Kindle Reader. Há guias no topo: Leitura, Aparência, Notas, Tradução, Dados e Sobre."
+  "To open the settings: Obsidian's gear icon → Community plugins → Kindle Reader. There are tabs at the top: Reading, Appearance, Notes, Translation, Data and About.": "Para abrir as configurações: Ícone de engrenagem do Obsidian → Plugins da comunidade → Kindle Reader. Há guias no topo: Leitura, Aparência, Notas, Tradução, Dados e Sobre.",
+  "Table of contents": "Índice",
+  "Contents": "Índice"
 });
 
 const __erRU = Object.create(null);

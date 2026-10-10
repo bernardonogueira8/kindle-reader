@@ -1,10 +1,10 @@
 {
-  "id": "kindle-reader",
-  "name": "Kindle Reader",
-  "version": "1.0.3",
-  "minAppVersion": "1.7.2",
-  "description": "Kindle-reader is based on Book Reader by Elton, which provided the original URL import base. This project was substantially rewritten and extended with new features.",
-  "author": "Bernardo",
-  "fundingUrl": "https://buymeacoffee.com/bernardonogueira8",
-  "isDesktopOnly": false
+	"id": "kindle-reader",
+	"name": "Kindle Reader",
+	"version": "1.0.4",
+	"minAppVersion": "1.7.2",
+	"description": "Read EPUB, FB2 and PDF books inside Obsidian with realistic page flips, highlights, notes, and reading progress synced with your vault.",
+	"author": "Bernardo",
+	"fundingUrl": "https://buymeacoffee.com/bernardonogueira8",
+	"isDesktopOnly": false
 }

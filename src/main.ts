@@ -9,7 +9,7 @@
 import { SettingsTab } from './ui/SettingsTab';
 import { registerCommands } from './commands';
 import { LibraryModal } from './ui/LibraryModal';
-import { LibraryView, LIB_VIEW_TYPE } from './ui/LibraryView';
+import { LibraryView, LIB_VIEW_TYPE, LEGACY_LIB_VIEW_TYPE } from './ui/LibraryView';
 import { App, MarkdownRenderer, Menu, Modal, Notice, Platform, Plugin, PluginManifest, Scope, Setting, TFile, requestUrl } from "obsidian";
 import * as pdfjsLib from "pdfjs-dist";
 import ePub from "epubjs";
@@ -25,7 +25,7 @@ import { erAutoFocus, erBlurOnTapOutside, erIsMobile } from './utils/dom';
 export { erPath, bookRelFolder, bookCategoryOf };
 export { bookStatusOf, buildLibChips, filterLibBooks, bookTagsOf, allBookTags, parseBookTags, pluralBooks };
 export { erAutoFocus, erBlurOnTapOutside, erIsMobile };
-export { LibraryModal, LibraryView, LIB_VIEW_TYPE };
+export { LibraryModal, LibraryView, LIB_VIEW_TYPE, LEGACY_LIB_VIEW_TYPE };
 import { ReaderView } from './ui/ReaderView';
 import { ReaderModal } from './ui/ReaderModal';
 export { ReaderView, ReaderModal };
@@ -752,7 +752,7 @@ async function setupWorker(app) {
   }
   workerReady = true;
 }
-const EltonReader = class extends Plugin {
+class KindleReaderPlugin extends Plugin {
   settings: KindleReaderSettings;
   progress: Record<string, BookProgress>;
   thumbCache: Record<string, string>;
@@ -779,6 +779,7 @@ const EltonReader = class extends Plugin {
     await this.loadAll();
     this.registerView(VIEW_TYPE, (leaf) => new ReaderView(leaf, this));
     this.registerView(LIB_VIEW_TYPE, (leaf) => new LibraryView(leaf, this));
+    this.registerView(LEGACY_LIB_VIEW_TYPE, (leaf) => new LibraryView(leaf, this));
     // Quote backlinks. A quote in a note carries an obsidian:// link back to the
     // exact paragraph it came from, so clicking it opens the book there. Using
     // the app's own URI scheme rather than something bespoke means the link
@@ -795,12 +796,12 @@ const EltonReader = class extends Plugin {
     // built-in handler for it, but another plugin might have claimed it, and that
     // must not take epub down with it.
     try { this.registerExtensions(["fb2"], VIEW_TYPE); }
-    catch (e) { console.warn("Elton Reader: could not register .fb2", e); }
+    catch (e) { console.warn("Kindle Reader: could not register .fb2", e); }
     // Also open PDFs in the reader instead of Obsidian's built-in PDF viewer.
     // Separate call in try/catch: if some other plugin already claimed "pdf",
     // we still keep epub working and fall back to the right-click menu for PDFs.
     try { this.registerExtensions(["pdf"], VIEW_TYPE); }
-    catch (e) { console.warn(__ertr("Elton Reader: could not register .pdf, use right-click → Open in Elton Reader"), e); }
+    catch (e) { console.warn(__ertr("Kindle Reader: could not register .pdf, use right-click → Open in Kindle Reader"), e); }
     this.addRibbonIcon(
       "book-open",
       __ertr("Kindle Reader — Library"),
@@ -902,7 +903,10 @@ const EltonReader = class extends Plugin {
       return;
     }
     try {
-      const existing = this.app.workspace.getLeavesOfType(LIB_VIEW_TYPE);
+      const existing = [
+        ...this.app.workspace.getLeavesOfType(LIB_VIEW_TYPE),
+        ...this.app.workspace.getLeavesOfType(LEGACY_LIB_VIEW_TYPE)
+      ];
       if (existing.length && !inNewWindow) {
         this.app.workspace.revealLeaf(existing[0]);
         return;
@@ -1192,7 +1196,7 @@ const EltonReader = class extends Plugin {
           catch { /* a broken template must not stop the note being created */ }
         }
         note = await this.app.vault.create(path5, body).catch((e) => {
-          console.error("Elton Reader: create book note failed", e);
+          console.error("Kindle Reader: create book note failed", e);
           return null;
         });
       }
@@ -1205,7 +1209,7 @@ const EltonReader = class extends Plugin {
       new Notice(__ertr("Could not create the note"));
       return null;
     } catch (e) {
-      console.error("Elton Reader: create book note failed", e);
+      console.error("Kindle Reader: create book note failed", e);
       new Notice(__ertr("Could not create the note"));
       return null;
     }
@@ -1240,7 +1244,7 @@ const EltonReader = class extends Plugin {
       const raw = await this.app.vault.adapter.read(path5);
       return JSON.parse(raw);
     } catch (e) {
-      console.error("Elton Reader: could not load progress file", e);
+      console.error("Kindle Reader: could not load progress file", e);
       return {};
     }
   }
@@ -1255,7 +1259,7 @@ const EltonReader = class extends Plugin {
       await this.app.vault.adapter.write(path5, JSON.stringify(this.progress, null, 2));
       this._writeRescue(false);
     } catch (e) {
-      console.error("Elton Reader: could not save progress file", e);
+      console.error("Kindle Reader: could not save progress file", e);
     }
   }
   // Safety net: keep a dated copy of progress + highlights + the plugin's own
@@ -1293,7 +1297,7 @@ const EltonReader = class extends Plugin {
       const dataPath = erPath(`${this.manifest.dir}/data.json`);
       if (await ad.exists(dataPath)) await ad.write(erPath(`${dir}/plugin-data.json`), await ad.read(dataPath));
     } catch (e) {
-      console.error("Elton Reader: rescue backup failed", e);
+      console.error("Kindle Reader: rescue backup failed", e);
     }
   }
   saveProgress(path5, spread, total, block) {
@@ -1416,7 +1420,7 @@ const EltonReader = class extends Plugin {
       const raw = await this.app.vault.adapter.read(path5);
       return JSON.parse(raw);
     } catch (e) {
-      console.error("Elton Reader: could not load highlights file", e);
+      console.error("Kindle Reader: could not load highlights file", e);
       return {};
     }
   }
@@ -1431,7 +1435,7 @@ const EltonReader = class extends Plugin {
       await this.app.vault.adapter.write(path5, JSON.stringify(this.highlights, null, 2));
       this._writeRescue(true);
     } catch (e) {
-      console.error("Elton Reader: could not save highlights file", e);
+      console.error("Kindle Reader: could not save highlights file", e);
     }
   }
   async refreshHighlights() {
@@ -1504,7 +1508,7 @@ const EltonReader = class extends Plugin {
           disk = JSON.parse(await this.app.vault.adapter.read(fp));
         }
       } catch (e) {
-        console.error("Elton Reader: could not re-read highlights, falling back to memory", e);
+        console.error("Kindle Reader: could not re-read highlights, falling back to memory", e);
         disk = JSON.parse(JSON.stringify(this.highlights || {}));
       }
       if (!disk || typeof disk !== "object") disk = {};
@@ -1520,7 +1524,7 @@ const EltonReader = class extends Plugin {
       this._backupHighlights(path5, disk[path5] || []);
       await this._saveHighlightsToVault();
       await this._saveLocalData();
-    }).catch((e) => console.error("Elton Reader: highlight persist failed", e));
+    }).catch((e) => console.error("Kindle Reader: highlight persist failed", e));
     return this._hlChain;
   }
   // Rolling local snapshots of a book's highlights (kept in data.json), so an
@@ -1537,7 +1541,131 @@ const EltonReader = class extends Plugin {
   }
 };
 // Paginator extracted to src/reader/Paginator.ts
-async function extractEpub(file, app) {
+async function getArchiveText(book, path) {
+  try {
+    if (typeof book.archive.getText === "function") {
+      const t = await book.archive.getText(path);
+      if (t) return t;
+    }
+  } catch { /* ignore */ }
+  try {
+    const cleanPath = path.startsWith("/") ? path.slice(1) : path;
+    const file = (book.archive && book.archive.zip && book.archive.zip.file && (book.archive.zip.file(cleanPath) || book.archive.zip.file(path))) || null;
+    if (file && typeof file.async === "function") {
+      return await file.async("text");
+    }
+  } catch { /* ignore */ }
+  return "";
+}
+
+// Classes of the LAST compound selector only: ".note a { … }" styles the link,
+// not every element carrying "note". Pseudo-classes/elements are skipped too.
+function lastCompoundClasses(selector) {
+  const out = [];
+  for (const part of String(selector || "").split(",")) {
+    const last = part.trim().split(/[\s>+~]+/).pop() || "";
+    if (!last || last.includes(":")) continue;
+    for (const m of last.matchAll(/\.([-_a-zA-Z0-9]+)/g)) out.push(m[1].toLowerCase());
+  }
+  return out;
+}
+
+function parseCssRulesForFormatting(cssText, boldClasses, italicClasses, extra) {
+  if (!cssText) return;
+  const clean = cssText.replace(/\/\*[\s\S]*?\*\//g, "");
+  const ruleRe = /([^{}]+)\{([^{}]+)\}/g;
+  let match;
+  while ((match = ruleRe.exec(clean)) !== null) {
+    const selector = match[1];
+    const body = match[2];
+    const flags = {
+      bold: /font-weight\s*:\s*(bold|bolder|[6-9]00)\b/i.test(body),
+      italic: /font-style\s*:\s*(italic|oblique)\b/i.test(body),
+      underline: /text-decoration(?:-line)?\s*:[^;}]*\bunderline\b/i.test(body),
+      strike: /text-decoration(?:-line)?\s*:[^;}]*\bline-through\b/i.test(body),
+      smallcaps: /font-variant(?:-caps)?\s*:[^;}]*\bsmall-caps\b/i.test(body),
+      listNone: /list-style(?:-type)?\s*:\s*none\b/i.test(body),
+      heading: (
+        /(?:font-size\s*:\s*(?:1\.[1-9]|[2-9]|\d{2,})\s*(?:em|rem|pt|px)|\bpage-break-after\s*:\s*avoid\b)/i.test(body) &&
+        /(?:font-weight\s*:\s*(?:bold|bolder|[6-9]00)|line-height\s*:\s*1\.[0-3]|font-family)/i.test(body)
+      ) || /(?:^|[\s.#_])(?:heading|subhead|subheading|title|titulo|subtitulo|caption|toc_id|header|h[1-6])(?:[-_0-9]|$)/i.test(selector)
+    };
+    if (!flags.bold && !flags.italic && !flags.underline && !flags.strike && !flags.smallcaps && !flags.listNone && !flags.heading) continue;
+
+    if (extra && flags.listNone) {
+      const trimmed = selector.trim().toLowerCase();
+      if (trimmed === "ol" || trimmed === "ol.er-list") extra.allOlNone = true;
+      if (trimmed === "ul" || trimmed === "ul.er-list") extra.allUlNone = true;
+    }
+
+    for (const clsName of lastCompoundClasses(selector)) {
+      if (flags.bold) boldClasses.add(clsName);
+      if (flags.italic) italicClasses.add(clsName);
+      if (extra) {
+        if (flags.underline) extra.underline.add(clsName);
+        if (flags.strike) extra.strike.add(clsName);
+        if (flags.smallcaps) extra.smallcaps.add(clsName);
+        if (flags.listNone) extra.listNone.add(clsName);
+        if (flags.heading) extra.headings.add(clsName);
+      }
+    }
+  }
+}
+
+// Package-relative path of a link target, resolved against the chapter that holds it.
+function epubResolveHref(base, href) {
+  let path = String(href || "");
+  let frag = "";
+  const hash = path.indexOf("#");
+  if (hash >= 0) { frag = path.slice(hash + 1); path = path.slice(0, hash); }
+  try { path = decodeURIComponent(path); } catch { /* keep raw */ }
+  try { frag = decodeURIComponent(frag); } catch { /* keep raw */ }
+  if (!path) path = base;
+  else if (!path.startsWith("/")) {
+    const dir = String(base || "").split("/").slice(0, -1);
+    path = [...dir, ...path.split("/")].join("/");
+  }
+  const stack = [];
+  for (const seg of path.split("/")) {
+    if (!seg || seg === ".") continue;
+    if (seg === "..") stack.pop();
+    else stack.push(seg);
+  }
+  return `${stack.join("/")}#${frag}`;
+}
+
+// Flatten the book's official table of contents into { label, key, level }.
+function epubFlattenToc(book) {
+  const out = [];
+  const spine = book.spine;
+  const keyFor = (href) => {
+    const raw = String(href || "");
+    const hash = raw.indexOf("#");
+    const path = hash >= 0 ? raw.slice(0, hash) : raw;
+    const frag = hash >= 0 ? raw.slice(hash + 1) : "";
+    let sec = null;
+    try { sec = spine.get(path); } catch { /* try a looser match below */ }
+    let secHref = sec && sec.href;
+    if (!secHref) {
+      const hit = (spine.spineItems || []).find((s) => s.href && (s.href.endsWith(path) || path.endsWith(s.href)));
+      secHref = hit && hit.href;
+    }
+    if (!secHref) return null;
+    return epubResolveHref(secHref, "#" + frag);
+  };
+  const walk = (items, level) => {
+    for (const t of items || []) {
+      const label = String(t.label || "").replace(/\s+/g, " ").trim();
+      const key = keyFor(t.href);
+      if (label && key) out.push({ label, key, level });
+      walk(t.subitems, level + 1);
+    }
+  };
+  walk(book.navigation && book.navigation.toc, 0);
+  return out;
+}
+
+async function extractEpub(file, app, meta) {
   const buf = await app.vault.readBinary(file);
   const book = ePub(buf);
   await book.ready;
@@ -1546,8 +1674,39 @@ async function extractEpub(file, app) {
   for (const item of spineItems) {
     try {
       const doc = await item.load(book.load.bind(book));
-      const body = doc.querySelector?.("body") ?? doc;
-      const imgs = Array.from(body.querySelectorAll?.("img") ?? []);
+      const body = (doc && doc.querySelector && doc.querySelector("body")) || doc;
+
+      // Mapas de classes CSS do livro: negrito, itálico, sublinhado, tachado, versaletes, sem lista, cabeçalhos/subtítulos
+      const boldClasses = new Set();
+      const italicClasses = new Set();
+      const extra = {
+        underline: new Set(),
+        strike: new Set(),
+        smallcaps: new Set(),
+        listNone: new Set(),
+        headings: new Set(),
+        allOlNone: false,
+        allUlNone: false
+      };
+
+      const styleEls = Array.from((doc && doc.querySelectorAll && doc.querySelectorAll("style")) || []);
+      for (const s of styleEls) {
+        parseCssRulesForFormatting(s.textContent || "", boldClasses, italicClasses, extra);
+      }
+
+      const linkEls = Array.from((doc && doc.querySelectorAll && doc.querySelectorAll("link[rel='stylesheet'], link[type='text/css']")) || []);
+      for (const link of linkEls) {
+        const href = link.getAttribute && link.getAttribute("href");
+        if (!href) continue;
+        try {
+          const itemDir = (item.url || "").split("/").slice(0, -1).join("/");
+          const resolved = href.startsWith("/") ? href : (itemDir ? itemDir + "/" + href : "/" + href).replace(/\/\.?\//g, "/");
+          const cssText = await getArchiveText(book, resolved);
+          if (cssText) parseCssRulesForFormatting(cssText, boldClasses, italicClasses, extra);
+        } catch { /* continua se um stylesheet específico falhar */ }
+      }
+
+      const imgs = Array.from((body && body.querySelectorAll && body.querySelectorAll("img")) || []);
       for (const img of imgs) {
         const src = img.getAttribute("src");
         if (!src || src.startsWith("data:")) continue;
@@ -1558,11 +1717,29 @@ async function extractEpub(file, app) {
           if (dataUrl) img.setAttribute("src", dataUrl);
         } catch { /* optional step; a failure here must not interrupt reading */ }
       }
-      const html = nodeToHtml(body);
+      // Cada capítulo começa com a âncora "arquivo#"; ids internos viram "arquivo#id"
+      const chapterHref = item.href || item.url || "";
+      const ctx = {
+        boldClasses,
+        italicClasses,
+        underlineClasses: extra.underline,
+        strikeClasses: extra.strike,
+        smallcapsClasses: extra.smallcaps,
+        listNoneClasses: extra.listNone,
+        headingClasses: extra.headings,
+        allOlNone: extra.allOlNone,
+        allUlNone: extra.allUlNone,
+        href: chapterHref,
+        pending: [epubResolveHref(chapterHref, "#")]
+      };
+      const html = nodeToHtml(body, ctx);
       if (html.trim())
         parts.push(`<div class="er-section">${html}</div>`);
       item.unload();
     } catch { /* a chapter that will not parse is skipped, not fatal */ }
+  }
+  if (meta) {
+    try { meta.toc = epubFlattenToc(book); } catch { meta.toc = []; }
   }
   book.destroy();
   return parts.join("\n");
@@ -1752,7 +1929,7 @@ const TranslateModal = class extends Modal {
       tr = await translateText(this.text, this.plugin.settings.translateTo || "en");
       outEl.setText(tr || __ertr("The translator returned nothing"));
     } catch (e) {
-      console.error("Elton Reader: translate failed", e);
+      console.error("Kindle Reader: translate failed", e);
       const why = e && e.erReason;
       outEl.setText(
         why === "limit"
@@ -1923,7 +2100,7 @@ async function createNoteFromPdfPage(view, pageNo, btn) {
       await openNoteBesideBook(app, plugin, note);
     }
   } catch (e) {
-    console.error("Elton Reader: note from PDF page failed", e);
+    console.error("Kindle Reader: note from PDF page failed", e);
     new Notice(__ertr("Could not create the note"));
   }
 }
@@ -2272,7 +2449,7 @@ const AiExplainModal = class extends Modal {
     const group = this.log.createDiv("er-ai-group");
     const bubble = group.createDiv("er-ai-msg er-ai-msg-ai");
     // Waiting looks like waiting: three dots that actually move, the same
-    // indicator Elton AI uses. A still line of text reads as a frozen window.
+    // indicator Kindle Reader AI uses. A still line of text reads as a frozen window.
     const ind = bubble.createDiv("er-ai-typing");
     const dots = ind.createDiv("er-ai-typing-dots");
     for (let i = 0; i < 3; i++) dots.createDiv("er-ai-typing-dot");
@@ -2500,35 +2677,44 @@ async function extractPdf(file, app, settings = {}, onProgress) {
     const view = page.view || [0, 0, 612, 792];
     const pw = Math.max(1, Math.round(Math.abs(view[2] - view[0])));
     const ph = Math.max(1, Math.round(Math.abs(view[3] - view[1])));
-    const textHtml = textLen > 0 ? pdfItemsToHtml(tc.items, tc.styles) : "";
-    let html = textHtml;
     const brokenText = textLen >= 40 && pdfTextLooksUnreadable(tc.items);
+    let html = "";
     if (textLen < 40 || brokenText) {
       const fig = await pdfFigureScore(page);
       if (brokenText || fig && (fig.imgFrac >= 0.02 || fig.vectorOps >= 20 || fig.shading > 0)) {
-        html = `<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${i}" width="${pw}" height="${ph}" alt="">${pdfNoteBtn(i)}</figure>` + (brokenText ? "" : textHtml);
+        html = `<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${i}" width="${pw}" height="${ph}" alt="">${pdfNoteBtn(i)}</figure>` + (brokenText ? "" : pdfItemsToHtml(tc.items, tc.styles));
+      } else if (textLen > 0) {
+        html = pdfItemsToHtml(tc.items, tc.styles);
       }
     } else if (alsoFigOnText) {
       const fig = await pdfFigureScore(page);
       const picked = fig ? pdfPickFigures(fig.rects, view) : [];
       if (picked.length) {
         figRects[i] = picked;
-        const figsHtml = picked.map((r, k) => {
-          const rw = Math.max(1, Math.round(r.x1 - r.x0));
-          const rh = Math.max(1, Math.round(r.y1 - r.y0));
-          return `<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${i}" data-pdf-rect="${k}" width="${rw}" height="${rh}" alt=""></figure>`;
-        }).join("");
         const inside = (it) => {
           const x = it.transform[4], y = it.transform[5];
           return picked.some((r) => x >= r.x0 - 1 && x <= r.x1 + 1 && y >= r.y0 - 1 && y <= r.y1 + 1);
         };
         const outside = tc.items.filter((it) => !inside(it));
         const keptEnough = outside.length >= tc.items.length * 0.25;
-        const bodyHtml = outside.length < tc.items.length && keptEnough ? pdfItemsToHtml(outside, tc.styles) : textHtml;
-        html = figsHtml + bodyHtml;
+        const itemsToUse = outside.length < tc.items.length && keptEnough ? outside : tc.items;
+        const pageFigures = picked.map((r, k) => ({
+          pageNum: i,
+          k,
+          r,
+          rw: Math.max(1, Math.round(r.x1 - r.x0)),
+          rh: Math.max(1, Math.round(r.y1 - r.y0)),
+          topY: r.y1,
+          bottomY: r.y0
+        }));
+        html = pdfItemsToHtml(itemsToUse, tc.styles, pageFigures);
       } else if (fig && fig.imgFrac >= 0.02) {
-        html = `<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${i}" width="${pw}" height="${ph}" alt="">${pdfNoteBtn(i)}</figure>` + textHtml;
+        html = `<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${i}" width="${pw}" height="${ph}" alt="">${pdfNoteBtn(i)}</figure>` + pdfItemsToHtml(tc.items, tc.styles);
+      } else {
+        html = pdfItemsToHtml(tc.items, tc.styles);
       }
+    } else {
+      html = pdfItemsToHtml(tc.items, tc.styles);
     }
     if (html) parts.push(`<div class="er-pdf-page-break" data-pdf-page-no="${i}">${html}</div>`);
   }
@@ -2768,7 +2954,12 @@ function buildFindPanelFor(view, p, { close, jump }) {
 }
 function buildTocPanelFor(view, p, { close, jump }) {
   p.empty();
-  p.createDiv("er-pan-title").setText(__ertr("Contents"));
+  const titleRow = p.createDiv("er-pan-title er-pan-title-row");
+  titleRow.createSpan({ text: __ertr("Contents") });
+  const closeBtn = titleRow.createDiv("er-pan-close");
+  closeBtn.setText("✕");
+  closeBtn.setAttribute("aria-label", __ertr("Close"));
+  closeBtn.addEventListener("click", () => close());
   const items = view.tocItems || [];
   if (!items.length) {
     p.createDiv("er-toc-empty").setText(__ertr("No contents and no headings were found in this book."));
@@ -2919,7 +3110,7 @@ function tocLooksLikeNoise(items, all) {
   const limit = pages.size ? Math.max(30, pages.size * 0.6) : Math.max(30, all.length / 12);
   return items.length > limit;
 }
-function buildTocItems(html, outline) {
+function buildTocItems(html, outline, epubToc) {
   try {
     const doc = new DOMParser().parseFromString(`<body>${html}</body>`, "text/html");
     const all = [...doc.body.querySelectorAll("p,h1,h2,h3,h4")];
@@ -2930,6 +3121,26 @@ function buildTocItems(html, outline) {
       return isNaN(p) ? null : p;
     };
     const withPages = (items2) => items2.map((it) => ({ ...it, page: pageOfBlock(it.block) }));
+    if (epubToc && epubToc.length) {
+      // The book's own contents: each entry points at an anchor marker that
+      // extractEpub left inside the block where that chapter/section starts.
+      const blockOfKey = /* @__PURE__ */ new Map();
+      doc.body.querySelectorAll("[data-er-id]").forEach((m) => {
+        const key = m.getAttribute("data-er-id");
+        if (blockOfKey.has(key)) return;
+        const owner = m.closest("p,h1,h2,h3,h4");
+        const idx = owner ? all.indexOf(owner) : -1;
+        if (idx >= 0) blockOfKey.set(key, idx);
+      });
+      const items3 = [];
+      for (const t of epubToc) {
+        let block = blockOfKey.get(t.key);
+        if (block === void 0) block = blockOfKey.get(t.key.split("#")[0] + "#");
+        if (block === void 0) continue;
+        items3.push({ label: String(t.label).slice(0, 60), block, level: t.level || 0 });
+      }
+      if (items3.length) return withPages(items3);
+    }
     if (outline && outline.length) {
       const firstBlockOf = /* @__PURE__ */ new Map();
       all.forEach((el, i) => {
@@ -3173,39 +3384,263 @@ function pdfPickFigures(rects, view) {
   });
   return mergeRects(big, 6).filter((r) => r.x1 - r.x0 >= 56 && r.y1 - r.y0 >= 56).sort((a, b) => b.y1 - a.y1);
 }
-const BLOCK_TAGS = /^(p|div|section|article|main|aside|figure|figcaption|h[1-6]|ul|ol|dl|li|dt|dd|table|pre|blockquote|hr|img)$/i;
-function tableToHtml(el) {
-  let _a, _b;
-  const rows = Array.from((_b = (_a = el.querySelectorAll) == null ? void 0 : _a.call(el, "tr")) != null ? _b : []);
+const BLOCK_TAGS = /^(p|div|section|article|main|aside|nav|header|footer|figure|figcaption|h[1-6]|ul|ol|dl|li|dt|dd|table|pre|blockquote|hr|img)$/i;
+const FORMAT_OWN_TAGS = new Set(["b", "strong", "i", "em", "cite", "dfn", "var", "u", "ins", "s", "strike", "del", "th"]);
+function escAttr(s) {
+  return escHtml(String(s)).replace(/"/g, "&quot;");
+}
+function tableToHtml(el, ctx) {
+  const rows = Array.from(el.querySelectorAll ? el.querySelectorAll("tr") : []);
   if (!rows.length) return "";
   const body = rows.map((tr) => {
     const cells = Array.from(tr.children || []).filter((c) => /^(td|th)$/i.test(c.tagName || ""));
     if (!cells.length) return "";
     return "<tr>" + cells.map((c) => {
       const t = (c.tagName || "").toLowerCase() === "th" ? "th" : "td";
-      const inner = inlineHtml(c).trim();
+      const inner = inlineHtml(c, ctx).trim();
       return `<${t}>${inner}</${t}>`;
     }).join("") + "</tr>";
   }).filter(Boolean).join("");
   return body ? `<table class="er-table">${body}</table>` : "";
 }
-function nodeToHtml(el) {
-  let _a2, _b2, _c2;
-  let _a, _b, _c, _d;
-  if (!el)
+function elClassMatches(el, set, re) {
+  const cls = ((el.getAttribute && el.getAttribute("class")) || "").toLowerCase();
+  if (!cls) return false;
+  for (const c of cls.split(/\s+/)) {
+    if (!c) continue;
+    if (set && set.has(c)) return true;
+    if (re && re.test(c)) return true;
+  }
+  return false;
+}
+function elStyleHas(el, re) {
+  return re.test(((el.getAttribute && el.getAttribute("style")) || "").toLowerCase());
+}
+function isElementBold(el, boldClasses) {
+  if (!el || !el.tagName) return false;
+  const tag = el.tagName.toLowerCase();
+  if (tag === "b" || tag === "strong" || tag === "th") return true;
+  if (elStyleHas(el, /font-weight\s*:\s*(bold|bolder|[6-9]00)\b/)) return true;
+  return elClassMatches(el, boldClasses, /(^|[-_])(bold|bolder|strong|negrito)([-_]|$)/);
+}
+function isElementItalic(el, italicClasses) {
+  if (!el || !el.tagName) return false;
+  const tag = el.tagName.toLowerCase();
+  if (tag === "i" || tag === "em" || tag === "cite" || tag === "dfn" || tag === "var") return true;
+  if (elStyleHas(el, /font-style\s*:\s*(italic|oblique)\b/)) return true;
+  return elClassMatches(el, italicClasses, /(^|[-_])(italic|italico|italics|oblique|emphasis|emph)([-_]|$)/);
+}
+function isElementUnderline(el, underlineClasses) {
+  if (!el || !el.tagName) return false;
+  const tag = el.tagName.toLowerCase();
+  if (tag === "a") return false; // links already have their own look
+  if (tag === "u" || tag === "ins") return true;
+  if (elStyleHas(el, /text-decoration(?:-line)?\s*:[^;]*\bunderline\b/)) return true;
+  return elClassMatches(el, underlineClasses, /(^|[-_])(underline|underlined|sublinhado)([-_]|$)/);
+}
+function isElementStrike(el, strikeClasses) {
+  if (!el || !el.tagName) return false;
+  const tag = el.tagName.toLowerCase();
+  if (tag === "s" || tag === "strike" || tag === "del") return true;
+  if (elStyleHas(el, /text-decoration(?:-line)?\s*:[^;]*\bline-through\b/)) return true;
+  return elClassMatches(el, strikeClasses, /(^|[-_])(strike|strikethrough|line-?through|riscado)([-_]|$)/);
+}
+function isElementSmallcaps(el, smallcapsClasses) {
+  if (!el || !el.tagName) return false;
+  if (elStyleHas(el, /font-variant(?:-caps)?\s*:[^;]*\bsmall-caps\b/)) return true;
+  return elClassMatches(el, smallcapsClasses, /(^|[-_])(small-?caps|smcap|versalete)([-_]|$)/);
+}
+// Wrap already-converted inline HTML with every style the element carries.
+// Tags that inlineHtml already renders itself are skipped, so nothing doubles up.
+function wrapFormat(el, inner, ctx) {
+  if (!inner || !el || !el.tagName) return inner;
+  if (FORMAT_OWN_TAGS.has(el.tagName.toLowerCase())) return inner;
+  if (isElementUnderline(el, ctx && ctx.underlineClasses)) inner = `<u>${inner}</u>`;
+  if (isElementStrike(el, ctx && ctx.strikeClasses)) inner = `<s>${inner}</s>`;
+  if (isElementSmallcaps(el, ctx && ctx.smallcapsClasses)) inner = `<span class="er-sc">${inner}</span>`;
+  if (isElementItalic(el, ctx && ctx.italicClasses)) inner = `<em>${inner}</em>`;
+  if (isElementBold(el, ctx && ctx.boldClasses)) inner = `<strong>${inner}</strong>`;
+  return inner;
+}
+// Link targets. An element carrying an id (or <a name>) queues an anchor key;
+// the next block emitted takes the queue as empty <span data-er-id> markers.
+// followFootnote() and the contents list both resolve through those markers.
+function registerAnchor(el, ctx) {
+  if (!ctx || !ctx.pending || !el || !el.getAttribute) return;
+  const tag = (el.tagName || "").toLowerCase();
+  const id = el.getAttribute("id") || (tag === "a" ? el.getAttribute("name") : "");
+  if (id) ctx.pending.push(epubResolveHref(ctx.href, "#" + id));
+}
+function takeAnchors(ctx) {
+  if (!ctx || !ctx.pending || !ctx.pending.length) return "";
+  const out = ctx.pending.map((k) => `<span class="er-anchor" data-er-id="${escAttr(k)}"></span>`).join("");
+  ctx.pending.length = 0;
+  return out;
+}
+function isQuoteLike(el) {
+  const tag = (el.tagName || "").toLowerCase();
+  if (tag === "blockquote") return true;
+  if (!["div", "section", "aside", "p"].includes(tag)) return false;
+  return elClassMatches(el, null, /(^|[-_])(quote|blockquote|epigraph|citation|cita|citacao|epigrafe)([-_]|$)/);
+}
+// The line that credits a quotation: <footer>, <figcaption>, a "— Author" line,
+// a source/attribution class, or a paragraph that is nothing but a <cite>.
+function isCiteBlock(el) {
+  const tag = (el.tagName || "").toLowerCase();
+  if (tag === "footer" || tag === "figcaption") return true;
+  if (elClassMatches(el, null, /(^|[-_])(attribution|attrib|cite|author|autor|source|fonte|credit)([-_]|$)/)) return true;
+  const txt = (el.textContent || "").trim();
+  if (!txt || txt.length > 140 || tag !== "p") return false;
+  if (/^[—–―]\s*\S/.test(txt)) return true;
+  const kids = Array.from(el.children || []);
+  return kids.length === 1 && (kids[0].tagName || "").toLowerCase() === "cite" && (kids[0].textContent || "").trim() === txt;
+}
+function citeHtml(el, ctx) {
+  const inner = inlineHtml(el, ctx).trim().replace(/^[—–―]\s*/, "");
+  return inner ? `<p class="er-cite">${takeAnchors(ctx)}${inner}</p>` : "";
+}
+function quoteHtml(el, ctx) {
+  const parts = [];
+  const lastEl = el.lastElementChild;
+  const kidCount = (el.children || []).length;
+  let buf = "";
+  const flush = () => {
+    if (buf.trim()) parts.push(`<p>${takeAnchors(ctx)}${buf}</p>`);
+    buf = "";
+  };
+  for (const node of Array.from(el.childNodes || [])) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      buf += escHtml(node.textContent || "");
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const t = (node.tagName || "").toLowerCase();
+      if (t === "footer" || t === "figcaption" || BLOCK_TAGS.test(t)) {
+        flush();
+        registerAnchor(node, ctx);
+        const credit = t === "footer" || t === "figcaption" || (node === lastEl && kidCount > 1 && isCiteBlock(node));
+        const h = credit ? citeHtml(node, ctx) : nodeToHtml(node, ctx);
+        if (h) parts.push(h);
+      } else {
+        buf += inlineHtml({ childNodes: [node] }, ctx);
+      }
+    }
+  }
+  flush();
+  return parts.length ? `<blockquote class="er-quote">${parts.join("\n")}</blockquote>` : "";
+}
+// Children of a container, keeping loose text and inline runs that sit between blocks.
+function childrenBlocksHtml(el, ctx) {
+  const out = [];
+  let buf = "";
+  const flush = () => {
+    if (buf.trim()) out.push(`<p>${takeAnchors(ctx)}${buf}</p>`);
+    buf = "";
+  };
+  for (const node of Array.from(el.childNodes || [])) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      buf += escHtml(node.textContent || "");
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      if (BLOCK_TAGS.test(node.tagName || "")) {
+        flush();
+        const h = nodeToHtml(node, ctx);
+        if (h) out.push(h);
+      } else {
+        buf += inlineHtml({ childNodes: [node] }, ctx);
+      }
+    }
+  }
+  flush();
+  return out.join("\n");
+}
+function containerHtml(el, ctx) {
+  const hasBlock = Array.from(el.children || []).some((c) => BLOCK_TAGS.test(c.tagName || ""));
+  if (hasBlock) return childrenBlocksHtml(el, ctx);
+  const inner = wrapFormat(el, inlineHtml(el, ctx), ctx);
+  return inner.trim() ? `<p>${takeAnchors(ctx)}${inner}</p>` : "";
+}
+function isListElementNone(el, ctx) {
+  if (!el || !el.tagName) return false;
+  const tag = el.tagName.toLowerCase();
+  if (tag === "ol" && ctx && ctx.allOlNone) return true;
+  if (tag === "ul" && ctx && ctx.allUlNone) return true;
+  if (elStyleHas(el, /list-style(?:-type)?\s*:\s*none\b/)) return true;
+  if (elClassMatches(el, ctx && ctx.listNoneClasses, /(^|[-_])(none|unstyled|plain|no-bullet|no-num|toc|nav)([-_]|$)/)) return true;
+  const parentTag = (el.parentElement && el.parentElement.tagName ? el.parentElement.tagName.toLowerCase() : "");
+  if (parentTag === "nav") return true;
+  return false;
+}
+
+function isHeadingLikeItem(li, ctx) {
+  if (!li || !li.tagName) return false;
+  const id = (li.getAttribute("id") || "").toLowerCase();
+  if (/^(toc_?id|sec|head|sigil_toc|tit)/i.test(id)) return true;
+  if (li.getAttribute("role") === "heading") return true;
+  if (elStyleHas(li, /page-break-after\s*:\s*avoid/)) return true;
+  if (elClassMatches(li, ctx && ctx.headingClasses, /(^|[-_])(heading|subhead|subheading|title|titulo|subtitulo|caption|toc[-_]?item)([-_]|$)/)) return true;
+  const kids = Array.from(li.children || []);
+  if (kids.some((k) => /^h[1-6]$/i.test(k.tagName || ""))) return true;
+  if (kids.length === 1 && (elClassMatches(kids[0], ctx && ctx.headingClasses, null) || elClassMatches(kids[0], ctx && ctx.boldClasses, null))) {
+    const textLen = (li.textContent || "").trim().length;
+    if (textLen > 0 && textLen < 160) return true;
+  }
+  return false;
+}
+
+function listHtml(el, ctx) {
+  const tag = (el.tagName || "").toLowerCase();
+  const liChildren = Array.from(el.children || []).filter((c) => (c.tagName || "").toLowerCase() === "li");
+  const isNone = isListElementNone(el, ctx) || (liChildren.length > 0 && liChildren.every((c) => isListElementNone(c, ctx)));
+
+  // If this list is actually a section heading/subtitle container (common in EPUBs generated
+  // from InDesign/Calibre where a single <li> in an <ol class="list_"> represents a subsection):
+  if (liChildren.length === 1 && (isNone || isHeadingLikeItem(liChildren[0], ctx))) {
+    const singleLi = liChildren[0];
+    registerAnchor(el, ctx);
+    registerAnchor(singleLi, ctx);
+    const hasBlock = Array.from(singleLi.children || []).some((c) => BLOCK_TAGS.test(c.tagName || ""));
+    const inner = hasBlock ? containerHtml(singleLi, ctx) : wrapFormat(singleLi, inlineHtml(singleLi, ctx), ctx);
+    if (!inner.trim()) return "";
+    return `<h3 class="er-subhead">${takeAnchors(ctx)}${inner}</h3>`;
+  }
+
+  const items = [];
+  let index = tag === "ol" ? parseInt(el.getAttribute("start") || "1", 10) || 1 : 0;
+  for (const child of Array.from(el.children || [])) {
+    if ((child.tagName || "").toLowerCase() !== "li") {
+      const h = nodeToHtml(child, ctx);
+      if (h) items.push(h);
+      continue;
+    }
+    registerAnchor(child, ctx);
+    const inner = containerHtml(child, ctx);
+    if (inner.trim()) {
+      if (tag === "ol" && !isNone) {
+        items.push(`<li value="${index}">${inner}</li>`);
+        index++;
+      } else {
+        items.push(`<li>${inner}</li>`);
+      }
+    }
+  }
+  if (!items.length) return "";
+  const start = tag === "ol" && !isNone ? parseInt(el.getAttribute("start") || "", 10) : NaN;
+  const listClass = isNone ? "er-list er-list-none" : "er-list";
+  return `<${tag} class="${listClass}"${isNaN(start) ? "" : ` start="${start}"`}>${items.join("")}</${tag}>`;
+}
+function nodeToHtml(el, ctx) {
+  if (!el) return "";
+  const tag = (el.tagName || "").toLowerCase();
+  registerAnchor(el, ctx);
+  const text = (el.textContent || "").trim();
+  if (!text && !["br", "hr", "img"].includes(tag) && !(el.querySelector && el.querySelector("img")))
     return "";
-  const tag = (_b = (_a = el.tagName) == null ? void 0 : _a.toLowerCase()) != null ? _b : "";
-  const text = (_d = (_c = el.textContent) == null ? void 0 : _c.trim()) != null ? _d : "";
-  if (!text && !["br", "hr", "img"].includes(tag) && !((_a2 = el.querySelector) == null ? void 0 : _a2.call(el, "img")))
-    return "";
-  if (/^h[1-6]$/.test(tag))
-    return `<${tag}>${escHtml(text)}</${tag}>`;
-  if (tag === "br")
-    return "<br>";
-  if (tag === "hr")
-    return "<hr>";
+  if (/^h[1-6]$/.test(tag)) {
+    const inner = wrapFormat(el, inlineHtml(el, ctx), ctx) || escHtml(text);
+    return `<${tag}>${takeAnchors(ctx)}${inner}</${tag}>`;
+  }
+  if (tag === "br") return "<br>";
+  if (tag === "hr") return "<hr>";
   if (tag === "img") {
-    const src = (_c2 = (_b2 = el.getAttribute) == null ? void 0 : _b2.call(el, "src")) != null ? _c2 : "";
+    const src = (el.getAttribute && el.getAttribute("src")) || "";
     if (!src) return "";
     return `<img src="${escHtml(src)}" style="max-width:100%;height:auto;display:block;margin:8px auto">`;
   }
@@ -3213,78 +3648,81 @@ function nodeToHtml(el) {
     const code = (el.textContent || "").replace(/\s+$/, "");
     return code.trim() ? `<pre class="er-code"><code>${escHtml(code)}</code></pre>` : "";
   }
-  if (tag === "table") return tableToHtml(el);
+  if (tag === "table") return tableToHtml(el, ctx);
+  if (isQuoteLike(el)) return quoteHtml(el, ctx);
   if (tag === "aside") {
-    const inner = Array.from(el.children).map((c) => nodeToHtml(c)).filter(Boolean).join("\n") || (inlineHtml(el).trim() ? `<p>${inlineHtml(el)}</p>` : "");
+    const inner = containerHtml(el, ctx);
     return inner ? `<div class="er-side-notes">${inner}</div>` : "";
   }
-  if (["div", "section", "article", "body", "main", "aside", "figure"].includes(tag)) {
-    const hasBlockChild = Array.from(el.children).some((c) => BLOCK_TAGS.test(c.tagName || ""));
-    if (!hasBlockChild) {
-      const inner = inlineHtml(el);
-      return inner.trim() ? `<p>${inner}</p>` : "";
+  if (tag === "ul" || tag === "ol") return listHtml(el, ctx);
+  if (tag === "dl") {
+    return Array.from(el.children || []).map((c) => nodeToHtml(c, ctx)).filter(Boolean).join("\n");
+  }
+  if (["div", "section", "article", "body", "main", "figure", "nav", "header"].includes(tag)) {
+    return containerHtml(el, ctx);
+  }
+  if (["p", "li", "dt", "dd"].includes(tag)) {
+    const hasLink = !!(el.querySelector && el.querySelector("a[href]"));
+    if (!hasLink) {
+      const toc = tocLineHtml(text);
+      if (toc) return toc;
     }
-    const childHtml = Array.from(el.children).map((c) => nodeToHtml(c)).filter(Boolean).join("\n");
-    if (!childHtml) {
-      const direct = directText(el).trim();
-      return direct ? `<p>${escHtml(direct)}</p>` : "";
-    }
-    return childHtml;
+    return containerHtml(el, ctx);
   }
-  if (["p", "li", "dt", "dd", "blockquote"].includes(tag)) {
-    const toc = tocLineHtml(text);
-    if (toc) return toc;
-    const inner = inlineHtml(el);
-    return inner.trim() ? `<p>${inner}</p>` : "";
-  }
-  if (["ul", "ol", "dl"].includes(tag)) {
-    return Array.from(el.children).map((c) => nodeToHtml(c)).filter(Boolean).join("\n");
-  }
-  return text ? `<p>${escHtml(text)}</p>` : "";
+  const inner = wrapFormat(el, inlineHtml(el, ctx), ctx) || escHtml(text);
+  return inner.trim() ? `<p>${takeAnchors(ctx)}${inner}</p>` : "";
 }
-function inlineHtml(el) {
-  let _a2;
-  let _a, _b, _c;
+function inlineHtml(el, ctx) {
   let out = "";
-  for (const node of Array.from(el.childNodes)) {
+  for (const node of Array.from(el.childNodes || [])) {
     if (node.nodeType === Node.TEXT_NODE) {
-      out += escHtml((_a = node.textContent) != null ? _a : "");
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      const t = (_c = (_b = node.tagName) == null ? void 0 : _b.toLowerCase()) != null ? _c : "";
-      const inner = inlineHtml(node);
-      if (["b", "strong"].includes(t))
-        out += `<strong>${inner}</strong>`;
-      else if (["i", "em"].includes(t))
-        out += `<em>${inner}</em>`;
-      else if (["code", "kbd", "samp", "tt", "var"].includes(t))
-        out += `<code>${inner}</code>`;
-      else if (t === "sup")
-        out += `<sup>${inner}</sup>`;
-      else if (t === "sub")
-        out += `<sub>${inner}</sub>`;
-      else if (t === "br")
-        out += "<br>";
-      else if (t === "img") {
-        const src = ((_a2 = node.getAttribute) == null ? void 0 : _a2.call(node, "src")) || "";
-        if (src) out += `<img src="${escHtml(src)}" style="max-width:100%;height:auto">`;
-      } else
+      out += escHtml(node.textContent || "");
+      continue;
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) continue;
+    const t = (node.tagName || "").toLowerCase();
+    registerAnchor(node, ctx);
+    let inner = inlineHtml(node, ctx);
+    if (!inner && !["br", "img"].includes(t)) continue;
+    inner = wrapFormat(node, inner, ctx);
+    if (t === "b" || t === "strong") {
+      out += `<strong>${inner}</strong>`;
+    } else if (["i", "em", "cite", "dfn", "var"].includes(t)) {
+      out += `<em>${inner}</em>`;
+    } else if (["code", "kbd", "samp", "tt"].includes(t)) {
+      out += `<code>${inner}</code>`;
+    } else if (t === "sup") {
+      out += `<sup>${inner}</sup>`;
+    } else if (t === "sub") {
+      out += `<sub>${inner}</sub>`;
+    } else if (t === "s" || t === "strike" || t === "del") {
+      out += `<s>${inner}</s>`;
+    } else if (t === "u" || t === "ins") {
+      out += `<u>${inner}</u>`;
+    } else if (t === "mark") {
+      out += `<mark>${inner}</mark>`;
+    } else if (t === "br") {
+      out += "<br>";
+    } else if (t === "img") {
+      const src = (node.getAttribute && node.getAttribute("src")) || "";
+      if (src) out += `<img src="${escHtml(src)}" style="max-width:100%;height:auto">`;
+    } else if (t === "a") {
+      const href = (node.getAttribute && node.getAttribute("href")) || "";
+      if (/^https?:\/\//i.test(href)) {
+        out += `<a class="er-xlink" href="${escAttr(href)}" target="_blank" rel="noopener">${inner}</a>`;
+      } else if (href && !/^[a-z][a-z0-9+.-]*:/i.test(href) && ctx && ctx.href) {
+        out += `<a class="er-ilink" data-er-ref="${escAttr(epubResolveHref(ctx.href, href))}">${inner}</a>`;
+      } else {
         out += inner;
+      }
+    } else {
+      out += inner;
     }
   }
   return out;
 }
-function directText(el) {
-  return Array.from(el.childNodes).filter((n) => n.nodeType === Node.TEXT_NODE).map((n) => {
-    let _a;
-    return (_a = n.textContent) != null ? _a : "";
-  }).join("");
-}
 function fixPunct(s) {
   return (s || "").replace(/­/g, "").replace(/[ \t\u00A0]+/g, " ").replace(/\s+([,.;:!?…)\]»%”’])/g, "$1").replace(/([([«“‘])\s+/g, "$1").replace(/([\u0410-\u042f\u0430-\u044f\u0401\u0451A-Za-z]) - ([\u0410-\u042f\u0430-\u044f\u0401\u0451A-Za-z])/g, "$1—$2").replace(/ +/g, " ").trim();
-}
-function dehyphenate(prev, next) {
-  if (/[\u0430-\u044f\u0451a-z]-$/i.test(prev) && /^[\u0430-\u044f\u0451]/.test(next)) return prev.slice(0, -1) + next;
-  return prev + (prev ? " " : "") + next;
 }
 function isListStart(s) {
   const t = (s || "").replace(/^[\s"«(]+/, "");
@@ -3298,6 +3736,20 @@ function isMonoRun(it, styles, measured) {
   if (st && /mono/i.test(String(st.fontFamily || ""))) return true;
   if (measured && it.fontName && measured.has(it.fontName)) return true;
   return /courier|consol|menlo|monaco|mono/i.test(String(it.fontName || ""));
+}
+function detectFontStyles(it, styles, monoFonts) {
+  const fontObj = styles && it.fontName ? styles[it.fontName] : null;
+  const rawName = String(it.fontName || "");
+  const cleanName = rawName.replace(/^[A-Z]{6}\+/, "");
+  const family = fontObj && fontObj.fontFamily ? String(fontObj.fontFamily) : "";
+  const combined = (cleanName + " " + family).toLowerCase();
+
+  const isBold = /bold|black|heavy|semibold|semi-bold|demibold|bolder|\bmedium\b|\b[6-9]00\b|\bcmbx|\bcmb\b|\bbf\b/i.test(combined);
+  const isItalic = /italic|oblique|slant|slanted|\bcmti|\bcmmi|\bcmsl|\bit\b|kursiv/i.test(combined);
+  const isLight = /light|thin|ultralight|\b[1-3]00\b/i.test(combined);
+  const mono = isMonoRun(it, styles, monoFonts) || /mono|courier|consol|menlo|monaco|cmtt|teletype/i.test(combined);
+
+  return { isBold, isItalic, isLight, mono };
 }
 function pdfMeasureMonoFonts(items) {
   let _a, _b;
@@ -3349,10 +3801,15 @@ function looksLikeCodeLine(text) {
   if (words >= 9 && /^[A-Z\u0410-\u042f\u0401][a-z\u0430-\u044f\u0451]{2,}\s/.test(s) && !/[;{}=]|>>>/.test(s)) return false;
   return true;
 }
-function pdfItemsToHtml(items, styles) {
+function pdfItemsToHtml(items, styles, figures = []) {
   let _a, _b, _c, _d, _e, _f, _g;
   const runs = items.filter((it) => it && typeof it.str === "string");
-  if (!runs.length) return "";
+  if (!runs.length) {
+    if (figures && figures.length) {
+      return figures.map((fig) => `<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${fig.pageNum}" data-pdf-rect="${fig.k}" width="${fig.rw}" height="${fig.rh}" alt=""></figure>`).join("\n");
+    }
+    return "";
+  }
   const monoFonts = pdfMeasureMonoFonts(runs);
   const sorted = runs.slice().sort((a, b) => {
     let _a2, _b2, _c2, _d2, _e2, _f2, _g2, _h;
@@ -3369,34 +3826,80 @@ function pdfItemsToHtml(items, styles) {
     let w = (_g = it.width) != null ? _g : 0;
     if (!w && str) w = str.length * size * 0.5;
     const ink = str.replace(/\s/g, "").length;
-    const mono = isMonoRun(it, styles, monoFonts);
-    const piece = { str, x, w, size, mono, ink };
+    const fontStyle = detectFontStyles(it, styles, monoFonts);
+    const piece = {
+      str,
+      x,
+      w,
+      size,
+      mono: fontStyle.mono,
+      isBold: fontStyle.isBold,
+      isItalic: fontStyle.isItalic,
+      isLight: fontStyle.isLight,
+      ink
+    };
     const last = lines[lines.length - 1];
     if (last && Math.abs(y - last.y) <= Math.max(2, size * 0.35)) {
       last.pieces.push(piece);
       last.endX = Math.max(last.endX, x + w);
       last.size = Math.max(last.size, size);
       last.x = Math.min(last.x, x);
-      if (mono) last.monoInk += ink;
+      if (piece.mono) last.monoInk += ink;
       else last.propInk += ink;
+      if (piece.isBold) last.boldInk += ink;
+      if (piece.isItalic) last.italicInk += ink;
     } else if (str.trim() !== "") {
-      lines.push({ y, x, endX: x + w, size, monoInk: mono ? ink : 0, propInk: mono ? 0 : ink, pieces: [piece] });
+      lines.push({
+        y,
+        x,
+        endX: x + w,
+        size,
+        monoInk: piece.mono ? ink : 0,
+        propInk: piece.mono ? 0 : ink,
+        boldInk: piece.isBold ? ink : 0,
+        italicInk: piece.isItalic ? ink : 0,
+        pieces: [piece]
+      });
     }
   }
   if (!lines.length) return "";
-  const stitch = (pieces) => {
-    let text = "";
+  const stitchRuns = (pieces) => {
+    const rOut = [];
     let endX = null;
     for (const p of pieces) {
-      if (endX !== null && !/\s$/.test(text) && !/^\s/.test(p.str)) {
-        const gapRight = p.x - endX > p.size * 0.2;
-        const wrapped = p.x < endX - p.size;
-        if (gapRight || wrapped) text += " ";
+      if (!p.str) continue;
+      const s = p.str;
+      if (endX !== null && rOut.length > 0) {
+        const lastRun = rOut[rOut.length - 1];
+        if (!/\s$/.test(lastRun.str) && !/^\s/.test(s)) {
+          const gapRight = p.x - endX > p.size * 0.2;
+          const wrapped = p.x < endX - p.size;
+          if (gapRight || wrapped) {
+            lastRun.str += " ";
+          }
+        }
       }
-      text += p.str;
+      const prev = rOut[rOut.length - 1];
+      const sameStyle = prev &&
+        prev.isBold === p.isBold &&
+        prev.isItalic === p.isItalic &&
+        prev.mono === p.mono &&
+        prev.isLight === p.isLight;
+
+      if (sameStyle) {
+        prev.str += s;
+      } else {
+        rOut.push({
+          str: s,
+          isBold: !!p.isBold,
+          isItalic: !!p.isItalic,
+          mono: !!p.mono,
+          isLight: !!p.isLight
+        });
+      }
       endX = p.x + p.w;
     }
-    return text;
+    return rOut;
   };
   const pageLeft = Math.min(...lines.map((l) => l.x));
   const pageRight = Math.max(...lines.map((l) => l.endX));
@@ -3413,19 +3916,35 @@ function pdfItemsToHtml(items, styles) {
       if (!moved.length) continue;
       if (!keep.length) {
         l.dropped = true;
-        asides.push({ y: l.y, text: stitch(moved) });
+        const movedRuns = stitchRuns(moved);
+        asides.push({ y: l.y, text: movedRuns.map((r) => r.str).join(""), runs: movedRuns });
         continue;
       }
       l.pieces = keep;
+      l.runs = stitchRuns(keep);
+      l.text = l.runs.map((r) => r.str).join("");
       l.endX = Math.max(...keep.map((p) => p.x + p.w));
       l.monoInk = keep.filter((p) => p.mono).reduce((s, p) => s + p.ink, 0);
       l.propInk = keep.filter((p) => !p.mono).reduce((s, p) => s + p.ink, 0);
-      asides.push({ y: l.y, text: stitch(moved) });
+      l.boldInk = keep.filter((p) => p.isBold).reduce((s, p) => s + p.ink, 0);
+      l.italicInk = keep.filter((p) => p.isItalic).reduce((s, p) => s + p.ink, 0);
+      const movedRuns = stitchRuns(moved);
+      asides.push({ y: l.y, text: movedRuns.map((r) => r.str).join(""), runs: movedRuns });
     }
   }
-  for (const l of lines) l.text = stitch(l.pieces);
+  for (const l of lines) {
+    if (!l.runs) {
+      l.runs = stitchRuns(l.pieces);
+      l.text = l.runs.map((r) => r.str).join("");
+    }
+  }
   const real = lines.filter((l) => !l.dropped && l.text.trim() !== "");
-  if (!real.length && !asides.length) return "";
+  if (!real.length && !asides.length) {
+    if (figures && figures.length) {
+      return figures.map((fig) => `<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${fig.pageNum}" data-pdf-rect="${fig.k}" width="${fig.rw}" height="${fig.rh}" alt=""></figure>`).join("\n");
+    }
+    return "";
+  }
   const avg = real.length ? real.reduce((s, l) => s + l.size, 0) / real.length : 12;
   const measure = Math.max(...real.map((l) => l.endX - l.x)) || 1;
   const gaps = [];
@@ -3453,6 +3972,10 @@ function pdfItemsToHtml(items, styles) {
   const indentMarksParas = indentedLines / (real.length || 1) <= 0.35;
   const monoInk = real.reduce((s, l) => s + l.monoInk, 0);
   const allInk = real.reduce((s, l) => s + l.monoInk + l.propInk, 0) || 1;
+  const boldInk = real.reduce((s, l) => s + (l.boldInk || 0), 0);
+  const italicInk = real.reduce((s, l) => s + (l.italicInk || 0), 0);
+  const treatBoldAsBody = boldInk / allInk > 0.85;
+  const treatItalicAsBody = italicInk / allInk > 0.85;
   const codeAllowed = monoInk / allInk < 0.8;
   const isSeed = (l) => {
     if (!codeAllowed || !(l.monoInk > 0) || l.monoInk < l.propInk) return false;
@@ -3482,14 +4005,80 @@ function pdfItemsToHtml(items, styles) {
     i = j;
   }
   const html = [];
-  let para = "";
+  let paraRuns = [];
+  let paraText = "";
   let lastY = null;
   let code = null;
+
+  const formatRunsHtml = (runsList, isHeading = false) => {
+    let out = "";
+    for (const r of runsList) {
+      if (!r.str) continue;
+      const s = fixPunct(r.str);
+      if (!s) continue;
+      let esc = escHtml(s);
+      if (r.mono && !isHeading) {
+        esc = `<code>${esc}</code>`;
+      }
+      if (r.isBold && !isHeading && !treatBoldAsBody) {
+        esc = `<strong>${esc}</strong>`;
+      }
+      if (r.isItalic && !treatItalicAsBody) {
+        esc = `<em>${esc}</em>`;
+      }
+      if (r.isLight && !r.isBold && !isHeading) {
+        esc = `<span class="er-light">${esc}</span>`;
+      }
+      out += esc;
+    }
+    return out;
+  };
+
+  const appendLineToPara = (lineRuns, lineText) => {
+    if (!paraRuns.length) {
+      paraRuns = lineRuns.map((r) => ({ ...r }));
+      paraText = lineText;
+      return;
+    }
+    const lastRun = paraRuns[paraRuns.length - 1];
+    const firstRun = lineRuns[0];
+    const isHyphenated = /[\u0430-\u044f\u0451a-z]-$/i.test(lastRun.str) && firstRun && /^[\u0430-\u044f\u0451a-z]/i.test(firstRun.str);
+
+    if (isHyphenated) {
+      lastRun.str = lastRun.str.slice(0, -1);
+      paraText = paraText.slice(0, -1);
+    } else if (!/\s$/.test(lastRun.str) && firstRun && !/^\s/.test(firstRun.str)) {
+      lastRun.str += " ";
+      paraText += " ";
+    }
+
+    for (let k = 0; k < lineRuns.length; k++) {
+      const lr = lineRuns[k];
+      const prev = paraRuns[paraRuns.length - 1];
+      const sameStyle = prev &&
+        prev.isBold === lr.isBold &&
+        prev.isItalic === lr.isItalic &&
+        prev.mono === lr.mono &&
+        prev.isLight === lr.isLight;
+
+      if (sameStyle) {
+        prev.str += lr.str;
+      } else {
+        paraRuns.push({ ...lr });
+      }
+    }
+    paraText += lineText;
+  };
+
   const flush = () => {
-    if (para.trim()) {
-      const li = isListStart(para) ? ' class="er-pdf-li"' : "";
-      html.push(`<p${li}>${escHtml(fixPunct(para))}</p>`);
-      para = "";
+    if (paraText.trim()) {
+      const li = isListStart(paraText) ? ' class="er-pdf-li"' : "";
+      const inner = formatRunsHtml(paraRuns);
+      if (inner.trim()) {
+        html.push(`<p${li}>${inner}</p>`);
+      }
+      paraRuns = [];
+      paraText = "";
     }
   };
   const flushCode = () => {
@@ -3503,8 +4092,26 @@ function pdfItemsToHtml(items, styles) {
     if (body.trim()) html.push(`<pre class="er-code"><code>${escHtml(body)}</code></pre>`);
     code = null;
   };
+
+  const sortedFigs = figures && figures.length ? figures.slice().sort((a, b) => b.topY - a.topY) : [];
+  let figIdx = 0;
+  const emitPendingFigures = (currentY) => {
+    while (figIdx < sortedFigs.length) {
+      const fig = sortedFigs[figIdx];
+      if (currentY !== null && fig.topY < currentY) {
+        break;
+      }
+      flush();
+      flushCode();
+      html.push(`<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${fig.pageNum}" data-pdf-rect="${fig.k}" width="${fig.rw}" height="${fig.rh}" alt=""></figure>`);
+      figIdx++;
+    }
+  };
+
   for (let i = 0; i < real.length; i++) {
     const line = real[i];
+    emitPendingFigures(line.y);
+
     if (codeFlag[i]) {
       flush();
       if (!code) code = { lines: [], size: line.size };
@@ -3526,32 +4133,47 @@ function pdfItemsToHtml(items, styles) {
     const fillsMeasure = line.endX - line.x > measure * 0.9;
     const isH = line.size > avg * 1.22 && !fillsMeasure && t2.length < 120;
     const gap = lastY !== null ? Math.abs(lastY - line.y) : 0;
+    const isBoldTitle = !treatBoldAsBody && (line.boldInk >= line.propInk * 0.8 || (line.runs.length === 1 && line.runs[0].isBold)) && !fillsMeasure && t2.length < 90 && (!lastY || gap > avg * 0.85);
+
     if (isH) {
       flush();
-      html.push(`<h3>${escHtml(t2)}</h3>`);
+      const hTag = line.size > avg * 1.45 ? "h2" : "h3";
+      const inner = formatRunsHtml(line.runs, true);
+      html.push(`<${hTag}>${inner || escHtml(t2)}</${hTag}>`);
+      lastY = line.y;
+      continue;
+    }
+    if (isBoldTitle && !isListStart(t2)) {
+      flush();
+      const inner = formatRunsHtml(line.runs, true);
+      html.push(`<h3 class="er-subhead">${inner || escHtml(t2)}</h3>`);
       lastY = line.y;
       continue;
     }
     if (lastY !== null && gap > paraGap) flush();
-    else if (indentMarksParas && para && line.x - bodyLeft > indentMin) flush();
-    if (para && isListStart(t2)) flush();
-    para = para ? dehyphenate(para, t2) : t2;
+    else if (indentMarksParas && paraText && line.x - bodyLeft > indentMin) flush();
+    if (paraText && isListStart(t2)) flush();
+    appendLineToPara(line.runs, t2);
     lastY = line.y;
   }
   flush();
   flushCode();
+  emitPendingFigures(null);
+
   if (asides.length) {
     const merged = [];
     for (const a of asides) {
       const prev = merged[merged.length - 1];
       if (prev && prev.y - a.y > 0 && prev.y - a.y <= avg * 1.8) {
-        prev.text += " " + a.text;
+        prev.runs.push({ str: " ", isBold: false, isItalic: false, mono: false, isLight: false }, ...a.runs);
         prev.y = a.y;
-      } else merged.push({ y: a.y, text: a.text });
+      } else {
+        merged.push({ y: a.y, runs: [...a.runs] });
+      }
     }
-    const body = merged.map((a) => fixPunct(a.text)).filter(Boolean);
+    const body = merged.map((a) => formatRunsHtml(a.runs)).filter((t) => t.trim().length > 0);
     if (body.length) {
-      html.push(`<div class="er-side-notes">${body.map((t) => `<p>${escHtml(t)}</p>`).join("")}</div>`);
+      html.push(`<div class="er-side-notes">${body.map((t) => `<p>${t}</p>`).join("")}</div>`);
     }
   }
   return html.join("\n");
@@ -3693,7 +4315,7 @@ ${link}
     if (typeof app.vault.process === "function") await app.vault.process(noteFile, add);
     else await app.vault.modify(noteFile, add(await app.vault.read(noteFile)));
   } catch (e) {
-    console.error("Elton Reader: append to book note failed", e);
+    console.error("Kindle Reader: append to book note failed", e);
   }
 }
 function processTemplateManually(tplText, title) {
@@ -3796,7 +4418,7 @@ ${quote}
     }
     return newFile;
   } catch (e) {
-    console.error("Elton Reader: note creation failed", e);
+    console.error("Kindle Reader: note creation failed", e);
     if (!silent) new Notice(__ertr("Could not create the note"));
     return null;
   }
@@ -3857,7 +4479,7 @@ function deleteBookFromVault(app, plugin, file, after) {
         new Notice(__ertr("Book deleted: {0}", file.basename));
         if (typeof after === "function") after();
       } catch (e) {
-        console.error("Elton Reader: delete book failed", e);
+        console.error("Kindle Reader: delete book failed", e);
         new Notice(__ertr("Could not delete the book"));
       }
     }
@@ -3991,7 +4613,7 @@ ${heading}
       onYes: () => openNoteInTab(app, noteFile, targetLine)
     }).open();
   } catch (e) {
-    console.error("Elton Reader: append quotes to book note failed", e);
+    console.error("Kindle Reader: append quotes to book note failed", e);
     new Notice(__ertr("Could not add quotes to the book note"));
   }
 }
@@ -4101,5 +4723,5 @@ export {
   ReadSettingsModal
 };
 
-export { EltonReader as KindleReaderPlugin };
-export default EltonReader;
+export { KindleReaderPlugin };
+export default KindleReaderPlugin;

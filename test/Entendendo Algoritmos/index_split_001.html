@@ -1,0 +1,1520 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Entendendo Algoritmos</title>
+    <meta name="generator" content="pdftohtml 0.36"/>
+    <meta name="author" content="Aditya Y. Bhargava"/>
+    <meta name="keywords" content="técnico"/>
+    <meta name="date" content="2021-09-27T16:17:29+00:00"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+<link rel="stylesheet" type="text/css" href="page_styles.css"/>
+</head>
+  <body class="calibre">
+<p class="calibre1"><b class="calibre4">if</b> not pessoa in verificadas: ❷</p>
+<p class="calibre1"><b class="calibre4">if</b> pessoa_e_vendedor(pessoa):</p>
+<p class="calibre1">print pessoa + " é um vendedor de manga!" </p>
+<p class="calibre1">return True</p>
+<p class="calibre1"><b class="calibre4">else</b>:</p>
+<p class="calibre1">fila_de_pesquisa += grafo[pessoa]</p>
+<p class="calibre1">verificadas.append(pessoa) ❸</p>
+<p class="calibre1"><b class="calibre4">return</b> False</p>
+<p class="calibre1"><a id="p177"></a><img src="index-177_1.jpg" alt="Image 236" class="calibre2"/></p>
+<p class="calibre1">pesquisa("voce")</p>
+<p class="calibre1">❶ Esse vetor é a forma pela qual você mantém o registro das pessoas que já foram veri cadas. </p>
+<p class="calibre1">❷ Veri ca essa pessoa somente se ela já não tiver sido veri cada. </p>
+<p class="calibre1">❸ Marca essa pessoa como veri cada. </p>
+<p class="calibre1">Tente executar este código e experimente modi car a função pessoa_e_vendedor para algo com uma  nalidade melhor e então veja se ela representa o que você esperava. </p>
+<p class="calibre1">Tempo de execução</p>
+<p class="calibre1">Se você procurar um vendedor de mangas em toda a sua rede, cada aresta (lembre-se de que aresta é a seta ou a conexão entre uma pessoa e outra) será analisada. Portanto o tempo de execução é, no mínimo, O(número de arestas). </p>
+<p class="calibre1">Além disso, também será mantida uma lista com as pessoas já veri cadas. </p>
+<p class="calibre1">Adicionar uma pessoa à lista leva um tempo constante: O(1). Fazer isso para cada pessoa terá tempo de execução O(número de pessoas) no total. Assim, a pesquisa em largura tem tempo de execução O(número de pessoas +</p>
+<p class="calibre1">número de arestas), que é frequentemente escrito como O(V+A) (V para número de vértices, A para número de arestas). </p>
+<p class="calibre1">EXERCÍCIOS</p>
+<p class="calibre1">Este é um pequeno grafo da minha rotina matinal. </p>
+<p class="calibre1">Ele mostra que não posso tomar café da manhã antes de escovar meus dentes. Então “tomar café da manhã”  <i class="calibre3">depende de </i>“escovar os dentes”. </p>
+<p class="calibre1"><a id="p178"></a><img src="index-178_1.jpg" alt="Image 237" class="calibre2"/></p>
+<p class="calibre1">Por outro lado, tomar banho não depende de escovar os dentes, pois posso tomar banho antes de escovar os dentes. A partir desse grafo você pode fazer uma lista relacionando a ordem das atividades da minha rotina matinal. </p>
+<p class="calibre1">1. Acordar. </p>
+<p class="calibre1">2. Tomar banho. </p>
+<p class="calibre1">3. Escovar os dentes. </p>
+<p class="calibre1">4. Tomar café da manhã. </p>
+<p class="calibre1">Note que “tomar banho” pode ser movido, logo essa lista também é válida: 1. Acordar. </p>
+<p class="calibre1">2. Escovar os dentes. </p>
+<p class="calibre1">3. Tomar banho. </p>
+<p class="calibre1">4. Tomar café da manhã. </p>
+<p class="calibre1">6.3 Quanto a estas três listas, marque se elas são válidas ou inválidas. </p>
+<p class="calibre1">6.4 Aqui temos um grafo maior. Faça uma lista válida para ele. </p>
+<p class="calibre1"><a id="p179"></a><img src="index-179_1.jpg" alt="Image 238" class="calibre2"/></p>
+<p class="calibre1"><img src="index-179_2.jpg" alt="Image 239" class="calibre2"/></p>
+<p class="calibre1">Você poderia dizer que essa lista é, de certa forma, ordenada. Se a tarefa A depende da tarefa B, a tarefa A aparece depois na lista. Isso é chamado de <i class="calibre3">ordenação topológica</i>, e é uma maneira de criar uma lista ordenada a partir de um grafo. Imagine que você esteja planejando um casamento e tenha um grafo enorme de tarefas a serem realizadas. Porém você não sabe nem por onde começar. Assim, uma  <i class="calibre3">ordenação topológica </i> do grafo poderia ser feita e, dessa forma, uma lista de tarefas já em ordem seria elaborada. </p>
+<p class="calibre1">Suponha que você tenha uma árvore genealógica. </p>
+<p class="calibre1">Esta árvore é um grafo, pois existem vértices (as pessoas) e arestas, e as arestas apontam para os pais dos vértices. Porém todas as arestas apontam para baixo, pois não faria sentido uma árvore genealógica ter arestas</p>
+<p class="calibre1"><a id="p180"></a><img src="index-180_1.jpg" alt="Image 240" class="calibre2"/></p>
+<p class="calibre1"><img src="index-180_2.jpg" alt="Image 241" class="calibre2"/></p>
+<p class="calibre1">apontando para cima! Seu pai não pode ser o pai do seu avô! </p>
+<p class="calibre1">Isso é chamado de  <i class="calibre3">árvore</i>. Uma árvore é um tipo especial de grafo em que nenhuma aresta jamais aponta de volta. </p>
+<p class="calibre1">6.5 Quais desses grafos também são árvores? </p>
+<p class="calibre1">Recapitulando</p>
+<p class="calibre1">• A pesquisa em largura lhe diz se há um caminho de A para B. </p>
+<p class="calibre1">• Se esse caminho existir, a pesquisa em largura lhe dará o caminho mínimo. </p>
+<p class="calibre1">• Se você tem um problema do tipo “encontre o menor X”, tente modelar o seu problema utilizado grafos e use a pesquisa em largura para resolvê-lo. </p>
+<p class="calibre1">• Um dígrafo contém setas e as relações seguem a direção das setas (Rama -</p>
+<p class="calibre1">&gt; Adit signi ca “Rama deve dinheiro a Adit”). </p>
+<p class="calibre1">• Grafos não direcionados não contêm setas, e a relação acontece nos dois</p>
+<p class="calibre1"><a id="p181"></a><img src="index-181_1.jpg" alt="Image 242" class="calibre2"/></p>
+<p class="calibre1">sentidos (Ross – Rachel signi ca “Ross namorou Rachel e Rachel namorou Ross”). </p>
+<p class="calibre1">• Filas são FIFO (primeiro a entrar, primeiro a sair). </p>
+<p class="calibre1">• Pilhas são LIFO (último a entrar, primeiro a sair). </p>
+<p class="calibre1">• Você precisa veri car as pessoas na ordem em que elas foram adicionadas à lista de pesquisa. Portanto a lista de pesquisa deve ser uma  la; caso contrário, você não obterá o caminho mínimo. </p>
+<p class="calibre1">• Cada vez que você precisar veri car alguém, procure não veri cá-lo novamente. Caso contrário, poderá acabar em um loop in nito. </p>
+<p class="calibre1"><a id="p182"></a><img class="calibre2" src="index-182_1.jpg" alt="Image 243"/></p>
+<p class="calibre1">7</p>
+<p class="calibre1">Algoritmo de Dijkstra</p>
+<p class="calibre1"></p>
+<p class="calibre1">Neste capítulo</p>
+<p class="calibre1">• Nós continuaremos a discutir sobre grafos e você conhecerá grafos ponderados, que é uma maneira de atribuir pesos em algumas arestas. </p>
+<p class="calibre1">• Você aprenderá o algoritmo de Dijkstra, que determina caminho mínimo até X para grafos ponderados. </p>
+<p class="calibre1"><a id="p183"></a><img src="index-183_1.jpg" alt="Image 244" class="calibre2"/></p>
+<p class="calibre1"><img src="index-183_2.jpg" alt="Image 245" class="calibre2"/></p>
+<p class="calibre1">• Você aprenderá ciclos em grafos, que são situações nas quais o algoritmo de Dijkstra não funciona. </p>
+<p class="calibre1"></p>
+<p class="calibre1">No capítulo anterior você aprendeu como chegar do ponto A ao ponto B. </p>
+<p class="calibre1">Não é necessariamente o caminho mais rápido, mas é o caminho mais curto porque tem o menor número de segmentos (três segmentos). No entanto suponha que você adicione um tempo de deslocamento aos segmentos. </p>
+<p class="calibre1">Agora é possível perceber que há um caminho mais rápido. </p>
+<p class="calibre1">Você usou a pesquisa em largura no capítulo anterior, então sabe que ela retornará o caminho com o menor número de segmentos (o primeiro grafo mostrado aqui). E se, em vez disso, quiser fazer o caminho mais rápido (o segundo grafo)? O caminho mais  <i class="calibre3">rápido</i> pode ser encontrado com um algoritmo diferente, chamado  <i class="calibre3">algoritmo de Dijkstra</i>. </p>
+<p class="calibre1"><a id="p184"></a><img src="index-184_1.jpg" alt="Image 246" class="calibre2"/></p>
+<p class="calibre1"><img src="index-184_2.jpg" alt="Image 247" class="calibre2"/></p>
+<p class="calibre1">Trabalhando com o algoritmo de Dijkstra</p>
+<p class="calibre1">Vamos ver como ele funciona com esse grafo. </p>
+<p class="calibre1">Cada segmento tem um tempo de deslocamento em minutos. Você usará o algoritmo de Dijkstra para ir do início ao  m no menor tempo possível. </p>
+<p class="calibre1">Caso a pesquisa em largura seja executada neste grafo, o algoritmo retornará o caminho mais curto. </p>
+<p class="calibre1">Porém este caminho tem duração de sete minutos. Vamos ver se é possível encontrar um caminho que leve menos tempo! O algoritmo de Dijkstra tem quatro etapas:</p>
+<p class="calibre1">1. Encontre o vértice mais “barato”. Este é o vértice em que você consegue chegar no menor tempo possível. </p>
+<p class="calibre1">2. Atualize o custo dos vizinhos desse vértice. Explicarei o que quero dizer com isso em breve. </p>
+<p class="calibre1">3. Repita até que você tenha feito isso para cada vértice do grafo. </p>
+<p class="calibre1"><a id="p185"></a><img src="index-185_1.jpg" alt="Image 248" class="calibre2"/></p>
+<p class="calibre1">4. Calcule o caminho  nal. </p>
+<p class="calibre1">Passo 1: Encontre o vértice mais barato. Você está parado no ponto inicial, pensando se deve ir ao vértice A ou ao vértice B. Quanto tempo leva para alcançar cada um? </p>
+<p class="calibre1">Você leva seis minutos para chegar ao vértice A e dois minutos para chegar ao vértice B. O tempo para chegar aos outros vértices você ainda desconhece. </p>
+<p class="calibre1"><a id="p186"></a><img src="index-186_1.jpg" alt="Image 249" class="calibre2"/></p>
+<p class="calibre1"><img src="index-186_2.jpg" alt="Image 250" class="calibre2"/></p>
+<p class="calibre1">Como você ainda não sabe quanto tempo demora para chegar até o  nal, considere-o in nito (você verá o porquê disso logo). O vértice B é o mais próximo, pois está a dois minutos de distância. </p>
+<p class="calibre1">Passo 2: Calcule quanto tempo leva para chegar até todos os vértices vizinhos de B,  <i class="calibre3">seguindo as arestas de B</i>. </p>
+<p class="calibre1">Ei, você acabou de encontrar um caminho mais curto para o vértice A! </p>
+<p class="calibre1"><a id="p187"></a><img src="index-187_1.jpg" alt="Image 251" class="calibre2"/></p>
+<p class="calibre1"><img src="index-187_2.jpg" alt="Image 252" class="calibre2"/></p>
+<p class="calibre1"><img src="index-187_3.jpg" alt="Image 253" class="calibre2"/></p>
+<p class="calibre1">Antes, você levava seis minutos para chegar até ele. </p>
+<p class="calibre1">Porém, caso você vá pelo vértice B, existe um caminho que demora apenas cinco minutos! </p>
+<p class="calibre1">Quando encontrar um caminho mais curto para um vizinho de B, atualize seu custo. Neste caso você encontrou</p>
+<p class="calibre1">• Um caminho mais curto até A (diminuiu de seis minutos para cinco minutos)</p>
+<p class="calibre1">• Um caminho mais curto até o  nal (diminuiu de in nito para sete minutos)</p>
+<p class="calibre1">Passo 3: Repita! </p>
+<p class="calibre1">Passo 1 novamente: Encontre o vértice ao qual você consegue chegar em menos tempo. Você já fez isso para o vértice B, então o vértice A tem, agora, menor estimativa de tempo. </p>
+<p class="calibre1"><a id="p188"></a><img src="index-188_1.jpg" alt="Image 254" class="calibre2"/></p>
+<p class="calibre1"><img src="index-188_2.jpg" alt="Image 255" class="calibre2"/></p>
+<p class="calibre1"><img src="index-188_3.jpg" alt="Image 256" class="calibre2"/></p>
+<p class="calibre1">Passo 2 novamente: Atualize os custos para os vizinhos do vértice A. </p>
+<p class="calibre1">Uau, agora leva apenas seis minutos para chegar até o  nal! </p>
+<p class="calibre1">Você executou o algoritmo de Dijkstra para cada vértice (não é necessário rodar para o vértice  nal). Até esse ponto, você já sabe que:</p>
+<p class="calibre1">• demora dois minutos para chegar ao vértice B. </p>
+<p class="calibre1">• demora cinco minutos para chegar ao vértice A. </p>
+<p class="calibre1">• demora seis minutos para chegar ao  nal. </p>
+<p class="calibre1">Guardarei a última etapa, que é o cálculo do caminho  nal, para a próxima seção. Por enquanto, vou apenas mostrar como é o caminho  nal. </p>
+<p class="calibre1">A pesquisa em largura não teria encontrado esse caminho como o caminho mais curto porque ele contém três segmentos, e há uma maneira de chegar do início ao  m em dois segmentos. </p>
+<p class="calibre1"><a id="p189"></a><img src="index-189_1.jpg" alt="Image 257" class="calibre2"/></p>
+<p class="calibre1"><img src="index-189_2.jpg" alt="Image 258" class="calibre2"/></p>
+<p class="calibre1">No capítulo anterior você usou a pesquisa em largura para achar o caminho mínimo entre dois pontos. Lá, “caminho mínimo” signi cava o caminho com menor número de segmentos. Porém no algoritmo de Dijkstra você atribui um peso a cada segmento. Logo, o algoritmo encontra o caminho com o menor peso total. </p>
+<p class="calibre1">Para relembrar, o algoritmo de Dijkstra tem quatro passos: 1. Encontre o vértice mais “barato”. Esse é o vértice em que você consegue chegar no menor tempo possível. </p>
+<p class="calibre1">2. Veri que se há um caminho mais barato para os vizinhos desse vértice. </p>
+<p class="calibre1">Caso exista, atualize os custos deles. </p>
+<p class="calibre1">3. Repita até que você tenha feito isso para cada vértice do grafo. </p>
+<p class="calibre1">4. Calcule o caminho  nal (abordado na próxima seção!). </p>
+<p class="calibre1">Terminologia</p>
+<p class="calibre1">Quero mostrar mais alguns exemplos do algoritmo de Dijkstra em ação, mas, primeiro, deixe-me esclarecer algumas terminologias. </p>
+<p class="calibre1"><a id="p190"></a><img src="index-190_1.jpg" alt="Image 259" class="calibre2"/></p>
+<p class="calibre1"><img src="index-190_2.jpg" alt="Image 260" class="calibre2"/></p>
+<p class="calibre1"><img src="index-190_3.jpg" alt="Image 261" class="calibre2"/></p>
+<p class="calibre1">Quando você trabalha com o algoritmo de Dijkstra, cada aresta do grafo tem um número associado a ela. Eles são chamados de  <i class="calibre3">pesos</i>. </p>
+<p class="calibre1">Um grafo com pesos é chamado de  <i class="calibre3">grafo ponderado</i> (também chamado de grafo valorado). Um grafo sem pesos é chamado de  <i class="calibre3">grafo não ponderado</i> (também chamado de grafo não valorado). </p>
+<p class="calibre1">Para calcular o caminho mínimo em um grafo não ponderado, utilize a pesquisa em largura. Já para calcular o caminho mínimo em um grafo ponderado utilize o algoritmo de Dijkstra. Além disso, grafos também podem conter ciclos que se parecem com isso. </p>
+<p class="calibre1">Ciclos indicam que é possível começar em um vértice, viajar ao redor dele e terminar no mesmo vértice. Por exemplo, suponha que esteja tentando achar o caminho mínimo deste grafo, o qual contém um ciclo. </p>
+<p class="calibre1"><a id="p191"></a><img src="index-191_1.jpg" alt="Image 262" class="calibre2"/></p>
+<p class="calibre1"><img src="index-191_2.jpg" alt="Image 263" class="calibre2"/></p>
+<p class="calibre1"><img src="index-191_3.jpg" alt="Image 264" class="calibre2"/></p>
+<p class="calibre1"><img src="index-191_4.jpg" alt="Image 265" class="calibre2"/></p>
+<p class="calibre1">Faria sentido seguir o ciclo? Bem, é possível usar o caminho que o evita. </p>
+<p class="calibre1">Ou podemos seguir o ciclo. </p>
+<p class="calibre1">Você acabará no vértice A de qualquer forma, mas o ciclo terá mais peso. </p>
+<p class="calibre1">Podemos até mesmo seguir o ciclo duas vezes. </p>
+<p class="calibre1"><a id="p192"></a><img src="index-192_1.jpg" alt="Image 266" class="calibre2"/></p>
+<p class="calibre1"><img src="index-192_2.jpg" alt="Image 267" class="calibre2"/></p>
+<p class="calibre1">Porém, cada vez que você o seguir, estará apenas adicionando 8 no peso total. Logo, seguir o ciclo jamais fornecerá o caminho mínimo. </p>
+<p class="calibre1">Você se lembra da nossa conversa sobre grafos direcionados e grafos não direcionados do Capítulo 6? </p>
+<p class="calibre1">Um grafo não direcionado indica que dois vértices podem apontar um para o outro. Ou seja, um grafo não direcionado é um ciclo! </p>
+<p class="calibre1">Com um grafo não direcionado, cada vértice adiciona um novo ciclo. O</p>
+<p class="calibre1">algoritmo de Dijkstra só funciona com  <i class="calibre3">grafos acíclicos dirigidos</i> (em inglês Directed Acyclic Graph, DAG). </p>
+<p class="calibre1"><a id="p193"></a><img src="index-193_1.jpg" alt="Image 268" class="calibre2"/></p>
+<p class="calibre1">Adquirindo um piano</p>
+<p class="calibre1">Chega de terminologia, vamos analisar outro exemplo! Este é o Rama. </p>
+<p class="calibre1">Rama está tentando trocar um livro de música por um piano. </p>
+<p class="calibre1">“Eu troco este pôster pelo seu livro”, diz Alex. “É um pôster da minha banda favorita, Destroyer. Ou então darei este LP raro do Rick Astley pelo seu livro e mais 5 reais.” “Ooh, ouvi dizer que esse LP tem músicas muito boas”, diz Amy. “Trocarei com você meu baixo ou minha bateria pelo pôster ou pelo LP.” </p>
+<p class="calibre1"><a id="p194"></a><img src="index-194_1.jpg" alt="Image 269" class="calibre2"/></p>
+<p class="calibre1">“Eu estava com vontade de aprender baixo!”, exclamou Beethoven. “Ei, troco meu piano por qualquer uma das coisas da Amy.” </p>
+<p class="calibre1">Perfeito! Com um pouco de dinheiro, Rama consegue trocar seu livro de piano por um piano de verdade. Agora ele só precisa descobrir como gastar a menor quantia ao fazer essas trocas. Vamos fazer um grafo do que foi oferecido. </p>
+<p class="calibre1"><a id="p195"></a><img src="index-195_1.jpg" alt="Image 270" class="calibre2"/></p>
+<p class="calibre1"><img src="index-195_2.jpg" alt="Image 271" class="calibre2"/></p>
+<p class="calibre1">Neste grafo, os vértices são todos os itens que Rama pode trocar. Analisando a imagem, é possível observar que ele pode trocar o pôster pelo baixo por R$</p>
+<p class="calibre1">30, ou trocar o LP pelo baixo por R$ 15. Como Rama descobrirá o caminho do livro até o piano por meio do qual ele gasta a menor quantia? Este é o papel do algoritmo de Dijkstra! Lembre-se de que o algoritmo de Dijkstra é separado em quatro passos. Assim, neste exemplo, você executará estes quatro passos e, ao  m, conseguirá calcular o caminho  nal. </p>
+<p class="calibre1">Antes de começar, você precisa de algumas coisas. Primeiro, faça uma tabela com o custo de cada vértice, registrando o quanto você gasta para chegar até cada um dos vértices. </p>
+<p class="calibre1">Você continuará atualizando esta tabela conforme o algoritmo for</p>
+<p class="calibre1"><a id="p196"></a><img src="index-196_1.jpg" alt="Image 272" class="calibre2"/></p>
+<p class="calibre1"><img src="index-196_2.jpg" alt="Image 273" class="calibre2"/></p>
+<p class="calibre1">executado. Para calcular o caminho  nal, também será necessária uma coluna  <i class="calibre3">pai </i> na tabela. </p>
+<p class="calibre1">Mostrarei como essa coluna funciona em breve. Agora vamos iniciar o algoritmo. </p>
+<p class="calibre1">Passo 1: Encontre o vértice mais barato. Neste caso, o pôster é a troca mais barata, pois tem custo de R$ 0. Existe alguma troca em que Rama possa  car com o pôster por menos de R$ 0? Leia adiante quando souber a resposta. </p>
+<p class="calibre1">Resposta: Não.  <i class="calibre3">Porque o pôster é o vértice mais barato para o qual Rama</i> <i class="calibre3">consegue ir. Logo, não há outra maneira de torná-lo mais barato</i>. Vamos analisar o problema de forma diferente agora. Para isso, suponha que você esteja indo de casa para o trabalho. </p>
+<p class="calibre1">Se pegar o caminho em direção à escola, você vai demorar dois minutos para chegar. Já o caminho em direção ao parque demora seis minutos. Existe</p>
+<p class="calibre1"><a id="p197"></a><img src="index-197_1.jpg" alt="Image 274" class="calibre2"/></p>
+<p class="calibre1"><img src="index-197_2.jpg" alt="Image 275" class="calibre2"/></p>
+<p class="calibre1">alguma maneira de ir ao parque e acabar na escola em menos de dois minutos? Não, isto é impossível, pois demora mais de dois minutos apenas para chegar até o parque. Por outro lado, você consegue achar um caminho mais rápido até o parque? Sim. </p>
+<p class="calibre1">Esta é a ideia-chave por trás do algoritmo de Dijkstra:  <i class="calibre3">Olhe para o vértice</i> <i class="calibre3">mais barato do seu grá co: não há uma maneira mais barata de chegar até</i> <i class="calibre3">ele! </i></p>
+<p class="calibre1">De volta ao exemplo do piano. O pôster é a troca mais barata. </p>
+<p class="calibre1">Passo 2: Descubra o custo para chegar aos vizinhos do pôster. </p>
+<p class="calibre1">Você tem preços para o baixo e para a bateria na tabela. Os valores deles foram registrados quando você passou pelo pôster. Logo, o pôster é de nido como o pai desses itens, o que signi ca que para chegar ao baixo você segue a aresta do pôster, e o mesmo acontece com a bateria. </p>
+<p class="calibre1"><a id="p198"></a><img src="index-198_1.jpg" alt="Image 276" class="calibre2"/></p>
+<p class="calibre1"><img src="index-198_2.jpg" alt="Image 277" class="calibre2"/></p>
+<p class="calibre1"><img src="index-198_3.jpg" alt="Image 278" class="calibre2"/></p>
+<p class="calibre1">Passo 1 novamente: O LP é o próximo vértice mais barato, pois custa R$ 5. </p>
+<p class="calibre1">Passo 2 novamente: Atualize todos os valores dos vizinhos. </p>
+<p class="calibre1">Ei, você atualizou o preço tanto da bateria quanto do baixo! Isso signi ca que é mais barato chegar até a bateria e até o baixo seguindo a aresta do LP. </p>
+<p class="calibre1">Então, coloque o LP como o pai para ambos os instrumentos. </p>
+<p class="calibre1">O baixo é o próximo item mais barato, então você atualiza os seus vizinhos. </p>
+<p class="calibre1">Ok, você  nalmente tem um preço para o piano, caso o troque pelo baixo. </p>
+<p class="calibre1">Portanto, determine o baixo como pai. Por  m, o último vértice será a bateria. </p>
+<p class="calibre1"><a id="p199"></a><img src="index-199_1.jpg" alt="Image 279" class="calibre2"/></p>
+<p class="calibre1"><img src="index-199_2.jpg" alt="Image 280" class="calibre2"/></p>
+<p class="calibre1"><img src="index-199_3.jpg" alt="Image 281" class="calibre2"/></p>
+<p class="calibre1">Rama pode conseguir o piano com um custo ainda menor caso troque-o pela bateria.  <i class="calibre3"> Assim, a série de trocas mais barata custará R$ 35</i>. </p>
+<p class="calibre1">Agora, você deve descobrir o caminho. Até o momento você já sabe quanto o caminho mínimo custa (R$ 35), mas como você descobrirá o caminho? </p>
+<p class="calibre1">Primeiro, olhe para o pai do  <i class="calibre3">piano</i>. </p>
+<p class="calibre1">O pai do piano é a bateria. Isso nos diz que Rama trocou a bateria pelo piano e, por isso, deve seguir esta aresta. </p>
+<p class="calibre1">Vamos analisar como devemos seguir esta aresta. Sabemos que  <i class="calibre3">piano</i> tem <i class="calibre3">bateria</i> como seu pai. </p>
+<p class="calibre1"><a id="p200"></a><img src="index-200_1.jpg" alt="Image 282" class="calibre2"/></p>
+<p class="calibre1"><img src="index-200_2.jpg" alt="Image 283" class="calibre2"/></p>
+<p class="calibre1"><img src="index-200_3.jpg" alt="Image 284" class="calibre2"/></p>
+<p class="calibre1">E  <i class="calibre3">bateria</i> tem o LP como pai. </p>
+<p class="calibre1">Então Rama trocará o LP pela bateria e obviamente trocará o livro pelo LP. </p>
+<p class="calibre1">Seguindo os pais, do  nal para o início, você terá o caminho completo. </p>
+<p class="calibre1">Aqui temos a série de trocas que Rama precisa fazer. </p>
+<p class="calibre1"><a id="p201"></a><img src="index-201_1.jpg" alt="Image 285" class="calibre2"/></p>
+<p class="calibre1">Até este ponto, tenho usado o termo  <i class="calibre3">caminho mínimo</i> ou  <i class="calibre3">caminho mais</i> <i class="calibre3">curto </i> de forma literal: calculando a distância entre duas localizações ou duas pessoas. Este exemplo tem por objetivo mostrar que o caminho mínimo não precisa ser somente uma distância física, mas que ele também envolve como reduzir algo, que nesse caso consistia em reduzir a quantidade de dinheiro que Rama gastaria. Obrigado, Dijkstra! </p>
+<p class="calibre1">Arestas com pesos negativos</p>
+<p class="calibre1">Nesse exemplo de troca, Alex ofereceu trocar o livro por dois itens. </p>
+<p class="calibre1">Suponha que Sarah ofereça uma troca entre o LP e o pôster, sendo que  <i class="calibre3">ela</i> <i class="calibre3">dará a Rama R$ 7 adicionais</i>. Não há nenhum custo para Rama realizar a troca, pelo contrário, ele ainda receberá R$ 7 de volta. Como você mostraria isso no grafo? </p>
+<p class="calibre1"><a id="p202"></a><img src="index-202_1.jpg" alt="Image 286" class="calibre2"/></p>
+<p class="calibre1"><img src="index-202_2.jpg" alt="Image 287" class="calibre2"/></p>
+<p class="calibre1">A aresta do LP ao pôster tem um peso negativo! Rama receberá R$ 7 de volta se ele  zer essa troca, o que faz com que ele tenha duas maneiras de conseguir o pôster. </p>
+<p class="calibre1">Então faz sentido realizar a segunda troca, pois Rama receberá R$ 2 de volta dessa maneira! Agora, se você se lembra, Rama pode trocar o pôster pela bateria. Logo, há dois caminhos que ele pode escolher. </p>
+<p class="calibre1"><a id="p203"></a><img src="index-203_1.jpg" alt="Image 288" class="calibre2"/></p>
+<p class="calibre1"><img src="index-203_2.jpg" alt="Image 289" class="calibre2"/></p>
+<p class="calibre1">O segundo caminho custa R$ 2 a menos, portanto ele poderá escolher esse caminho, certo? Bem, adivinhe só, se você executar o algoritmo de Dijkstra nesse grafo, Rama escolherá o caminho errado, pois ele pegará o caminho mais longo.  <i class="calibre3">Você não pode usar o algoritmo de Dijkstra se você tiver arestas</i> <i class="calibre3">com pesos negativos. </i> Ou seja, os números negativos estragam o algoritmo; para provar isso, vamos ver o que acontece quando executamos o algoritmo de Dijkstra nesta situação. Primeiro, crie a tabela de preços. </p>
+<p class="calibre1">Em seguida, encontre o vértice com o menor preço e atualize o preço dos seus vizinhos. Nesse caso o pôster é o vértice com o menor preço. Então, de acordo com o algoritmo de Dijkstra,  <i class="calibre3">não há uma maneira mais barata de</i> <i class="calibre3">conseguir o pôster do que pagando R$ 0</i> (mas você sabe que isso está errado). </p>
+<p class="calibre1">De qualquer forma, vamos atualizar o preço dos vizinhos. </p>
+<p class="calibre1"><a id="p204"></a><img src="index-204_1.jpg" alt="Image 290" class="calibre2"/></p>
+<p class="calibre1"><img src="index-204_2.jpg" alt="Image 291" class="calibre2"/></p>
+<p class="calibre1"><img src="index-204_3.jpg" alt="Image 292" class="calibre2"/></p>
+<p class="calibre1">A bateria custa R$ 35 agora. </p>
+<p class="calibre1">Vamos pegar o próximo vértice mais barato que ainda não foi processado. </p>
+<p class="calibre1">Atualize os preços para os seus vizinhos. </p>
+<p class="calibre1">Você já processou o vértice do pôster, mas ainda não atualizou o preço dele. </p>
+<p class="calibre1">Isso é um grande sinal de alerta, pois, uma vez que um vértice é processado, isso signi ca que não há uma maneira mais barata de chegar até ele. Porém você acabou de achar um caminho mais barato para o pôster! A bateria não tem nenhum vizinho, então esse é o  nal do algoritmo. Aqui estão os custos nais. </p>
+<p class="calibre1"><a id="p205"></a><img src="index-205_1.jpg" alt="Image 293" class="calibre2"/></p>
+<p class="calibre1"><img src="index-205_2.jpg" alt="Image 294" class="calibre2"/></p>
+<p class="calibre1">Assim, o custo para conseguir a bateria é de R$ 35. Porém você sabe que existe um caminho que custa apenas R$ 33, mas o algoritmo de Dijkstra não o encontrou. O algoritmo supôs que, por você estar processando o vértice do pôster, não havia um caminho mais rápido para chegar até esse vértice. </p>
+<p class="calibre1">Essa suposição só funciona caso não haja arestas com pesos negativos. </p>
+<p class="calibre1">Portanto você  <i class="calibre3">não pode usar arestas com pesos negativos com o algoritmo de</i> <i class="calibre3">Dijkstra</i>. Se quiser encontrar o caminho mínimo em um grafo contendo arestas com pesos negativos, existe um algoritmo especí co para isso! Ele é chamado de  <i class="calibre3">algoritmo de Bel man-Ford</i>. Este algoritmo está fora do âmbito desse livro, mas você pode encontrar ótimas explicações sobre ele na internet. </p>
+<p class="calibre1">Implementação</p>
+<p class="calibre1">Vamos aprender como implementar o algoritmo de Dijkstra em forma de código. Aqui temos o grafo que utilizarei neste exemplo. </p>
+<p class="calibre1">Para programar esse exemplo você precisará de três tabelas hash. </p>
+<p class="calibre1"><a id="p206"></a><img src="index-206_1.jpg" alt="Image 295" class="calibre2"/></p>
+<p class="calibre1"><img src="index-206_2.jpg" alt="Image 296" class="calibre2"/></p>
+<p class="calibre1">As tabelas hash relativas ao custo e aos pais serão atualizadas conforme o algoritmo for executado. Porém, antes disso, é necessário implementar o grafo, e para isso será criada uma tabela hash da forma como vimos no Capítulo 6:</p>
+<p class="calibre1">grafo = {}</p>
+<p class="calibre1">No capítulo anterior, você armazenou todos os vizinhos do vértice em uma tabela de dispersão desta forma:</p>
+<p class="calibre1">grafo["voce"] = ["alice", "bob", "claire"]</p>
+<p class="calibre1">Porém agora é necessário armazenar os vizinhos  <i class="calibre3">e</i> o custo para chegar até aquele vizinho. Por exemplo, Início tem dois vizinhos: A e B. </p>
+<p class="calibre1">Como representar os pesos dessas arestas? Por que não utilizar apenas outra tabela hash? </p>
+<p class="calibre1">grafo["inicio"] = {}</p>
+<p class="calibre1">grafo["inicio"]["a"] = 6</p>
+<p class="calibre1"><a id="p207"></a><img src="index-207_1.jpg" alt="Image 297" class="calibre2"/></p>
+<p class="calibre1">grafo["inicio"]["b"] = 2</p>
+<p class="calibre1">Portanto, grafo["inicio"] é uma tabela hash. Você conseguirá todos os vizinhos do Início da seguinte forma:</p>
+<p class="calibre1">&gt;&gt;&gt; print grafo["inicio"].keys()</p>
+<p class="calibre1">["a", "b"]</p>
+<p class="calibre1">Há uma aresta do Início para A e uma aresta do Início para B. E como você encontra o peso dessas arestas? </p>
+<p class="calibre1">&gt;&gt;&gt; print grafo["inicio"]["a"]</p>
+<p class="calibre1">6</p>
+<p class="calibre1">&gt;&gt;&gt; print grafo["inicio"]["b"]</p>
+<p class="calibre1">2</p>
+<p class="calibre1">Vamos adicionar o restante dos vértices e seus vizinhos ao grafo: grafo["a"] = {}</p>
+<p class="calibre1">grafo["a"]["fim"] = 1</p>
+<p class="calibre1">grafo["b"] = {}</p>
+<p class="calibre1">grafo["b"]["a"] = 3</p>
+<p class="calibre1">grafo["b"]["fim"] = 5</p>
+<p class="calibre1">grafo["fim"] = {} ❶</p>
+<p class="calibre1">❶ O vértice  nal não tem vizinhos. </p>
+<p class="calibre1">O grafo constituído pela tabela hash é algo assim:</p>
+<p class="calibre1"><a id="p208"></a><img src="index-208_1.jpg" alt="Image 298" class="calibre2"/></p>
+<p class="calibre1"><img src="index-208_2.jpg" alt="Image 299" class="calibre2"/></p>
+<p class="calibre1">Em seguida você precisa de uma tabela hash para armazenar os custos de cada vértice. </p>
+<p class="calibre1">O  <i class="calibre3">custo</i> de um vértice é a quantia necessária para chegar, a partir do Início, no vértice em questão. Você sabe que são necessários dois minutos para partir do Início e chegar ao vértice B. Além disso, sabe também que são necessários seis minutos para chegar ao vértice A (embora possa existir um caminho que leve menos tempo). Entretanto você não sabe o tempo necessário para chegar até o  nal. Sendo assim, este tempo é considerado in nito. Mas será que é possível representar  <i class="calibre3">in nito</i> em Python? Sim, é possível:</p>
+<p class="calibre1">infinito = float("inf")</p>
+<p class="calibre1">Aqui está o código para criar a tabela de custos:</p>
+<p class="calibre1">infinito = float("inf")</p>
+<p class="calibre1"><a id="p209"></a><img src="index-209_1.jpg" alt="Image 300" class="calibre2"/></p>
+<p class="calibre1">custos = {}</p>
+<p class="calibre1">custos["a"] = 6</p>
+<p class="calibre1">custos["b"] = 2</p>
+<p class="calibre1">custos["fim"] = infinito</p>
+<p class="calibre1">Você também precisará de outra tabela hash para os pais: Este é o código para criação da tabela hash para os pais: pais = {}</p>
+<p class="calibre1">pais["a"] = "inicio" </p>
+<p class="calibre1">pais["b"] = "inicio" </p>
+<p class="calibre1">pais["fim"] = None</p>
+<p class="calibre1">Por  m é necessário um array para manter registro de todos os vértices processados, pois eles não precisam ser processados mais de uma vez: processados = []</p>
+<p class="calibre1">Esta é toda a con guração necessária. Agora vamos olhar o algoritmo. </p>
+<p class="calibre1"><a id="p210"></a><img src="index-210_1.jpg" alt="Image 301" class="calibre2"/></p>
+<p class="calibre1">Primeiro, mostrarei o código e, depois, o comentarei. Você pode conferir o código abaixo:</p>
+<p class="calibre1">nodo = ache_no_custo_mais_baixo(custos) ❶</p>
+<p class="calibre1"><b class="calibre4">while</b> nodo is not None: ❷</p>
+<p class="calibre1">custo = custos[nodo]</p>
+<p class="calibre1">vizinhos = grafo[nodo]</p>
+<p class="calibre1"><b class="calibre4">for</b> n in vizinhos.keys(): ❸</p>
+<p class="calibre1">novo_custo = custo + vizinhos[n]</p>
+<p class="calibre1"><b class="calibre4">if</b> custos[n] &gt; novo_custo: ❹</p>
+<p class="calibre1">custos[n] = novo_custo ❺</p>
+<p class="calibre1">pais[n] = nodo ❻</p>
+<p class="calibre1">processados.append(nodo) ❼</p>
+<p class="calibre1">nodo = ache_no_custo_mais_baixo(custos) ❽</p>
+<p class="calibre1">❶ Encontra o custo mais baixo que ainda não foi processado. </p>
+<p class="calibre1">❷ Caso todos os vértices tenham sido processados, esse laço while será  nalizado. </p>
+<p class="calibre1">❸ Percorre todos os vizinhos desse vértice. </p>
+<p class="calibre1"><a id="p211"></a><img src="index-211_1.jpg" alt="Image 302" class="calibre2"/></p>
+<p class="calibre1"><img src="index-211_2.jpg" alt="Image 303" class="calibre2"/></p>
+<p class="calibre1"><img src="index-211_3.jpg" alt="Image 304" class="calibre2"/></p>
+<p class="calibre1">❹ Caso seja mais barato chegar a um vizinho a partir desse vértice. . </p>
+<p class="calibre1">❺ … atualiza o custo dele. </p>
+<p class="calibre1">❻ Esse vértice se torna o novo pai para o vizinho. </p>
+<p class="calibre1">❼ Marca o vértice como processado. </p>
+<p class="calibre1">❽ Encontra o próximo vértice a ser processado e o algoritmo é repetido. </p>
+<p class="calibre1">Esse é o algoritmo de Dijkstra em Python! Mostrarei o código para a função posteriormente. Agora, vamos ver o código do algoritmo ache_no_custo_mais_baixo em ação. </p>
+<p class="calibre1">Encontre o vértice com o menor custo. </p>
+<p class="calibre1">Pegue o custo e os vizinhos desse vértice. </p>
+<p class="calibre1">Percorra todos os vizinhos. </p>
+<p class="calibre1"><a id="p212"></a><img src="index-212_1.jpg" alt="Image 305" class="calibre2"/></p>
+<p class="calibre1"><img src="index-212_2.jpg" alt="Image 306" class="calibre2"/></p>
+<p class="calibre1"><img src="index-212_3.jpg" alt="Image 307" class="calibre2"/></p>
+<p class="calibre1">Cada vértice tem um custo, sendo o custo o tempo necessário para chegar até esse vértice partindo do início. Aqui, você está calculando o tempo necessário para chegar até o ponto A se você partir do Início e seguir o caminho Início &gt; vértice B &gt; vértice A, em vez de Início &gt; vértice A. </p>
+<p class="calibre1">Comparando os custos. </p>
+<p class="calibre1">Você achou um caminho menor para o vértice A! Agora, atualize o custo. </p>
+<p class="calibre1">O caminho novo vai pelo vértice B, então considere B como o novo pai. </p>
+<p class="calibre1"><a id="p213"></a><img src="index-213_1.jpg" alt="Image 308" class="calibre2"/></p>
+<p class="calibre1"><img src="index-213_2.jpg" alt="Image 309" class="calibre2"/></p>
+<p class="calibre1"><img src="index-213_3.jpg" alt="Image 310" class="calibre2"/></p>
+<p class="calibre1"><img src="index-213_4.jpg" alt="Image 311" class="calibre2"/></p>
+<p class="calibre1">Você está de volta ao topo do loop. O próximo vizinho do for é o vértice nal. </p>
+<p class="calibre1">Qual o tempo necessário para chegar ao  nal, caso você vá pelo vértice B? </p>
+<p class="calibre1">O tempo necessário é sete minutos, sendo que o custo anterior era de in nitos minutos e sete minutos é menor do que in nito. </p>
+<p class="calibre1"><a id="p214"></a><img src="index-214_1.jpg" alt="Image 312" class="calibre2"/></p>
+<p class="calibre1"><img src="index-214_2.jpg" alt="Image 313" class="calibre2"/></p>
+<p class="calibre1"><img src="index-214_3.jpg" alt="Image 314" class="calibre2"/></p>
+<p class="calibre1">Agora, considere o novo custo e o novo pai para o vértice  nal. </p>
+<p class="calibre1">Você atualizou todos os custos para todos os vizinhos do vértice B; marque-o como processado e continue. </p>
+<p class="calibre1">Encontre o próximo vértice a ser processado. </p>
+<p class="calibre1">Pegue os custos e os vizinhos do vértice A. </p>
+<p class="calibre1"><a id="p215"></a><img src="index-215_1.jpg" alt="Image 315" class="calibre2"/></p>
+<p class="calibre1"><img src="index-215_2.jpg" alt="Image 316" class="calibre2"/></p>
+<p class="calibre1"><img src="index-215_3.jpg" alt="Image 317" class="calibre2"/></p>
+<p class="calibre1">O vértice A só tem um vizinho: o vértice  nal. </p>
+<p class="calibre1">Atualmente o menor tempo necessário para alcançar o vértice  nal é sete minutos. Quanto tempo levaria para chegar lá se você fosse pelo vértice A? </p>
+<p class="calibre1"><a id="p216"></a><img src="index-216_1.jpg" alt="Image 318" class="calibre2"/></p>
+<p class="calibre1"><img src="index-216_2.jpg" alt="Image 319" class="calibre2"/></p>
+<p class="calibre1">É mais rápido chegar ao vértice  nal pelo vértice A! Vamos atualizar o custo e o pai. </p>
+<p class="calibre1">Uma vez que você processou todos os vértices, o algoritmo é  nalizado. </p>
+<p class="calibre1">Espero que o passo a passo tenha lhe ajudado a entender o algoritmo um pouco melhor. Encontrar o vértice de custo mínimo é uma tarefa simples utilizando a função ache_no_custo_mais_baixo. O código desta função</p>
+<p class="calibre1"><a id="p217"></a>pode ser visto a seguir. </p>
+<p class="calibre1"><b class="calibre4">def</b> ache_no_custo_mais_baixo(custos):</p>
+<p class="calibre1">custo_mais_baixo = float("inf")</p>
+<p class="calibre1">nodo_custo_mais_baixo = None</p>
+<p class="calibre1"><b class="calibre4">for</b> nodo in custos: ❶</p>
+<p class="calibre1">custo = custos[nodo]</p>
+<p class="calibre1"><b class="calibre4">if</b> custo&lt;custo_mais_baixo and nodo not in processados: ❷</p>
+<p class="calibre1">custo_mais_baixo = custo ❸</p>
+<p class="calibre1">nodo_custo_mais_baixo = nodo</p>
+<p class="calibre1"><b class="calibre4">return</b> nodo_custo_mais_baixo</p>
+<p class="calibre1">❶ Vá por cada vértice. </p>
+<p class="calibre1">❷ Se for o vértice de menor custo até o momento e ainda não tiver sido processado</p>
+<p class="calibre1">. . </p>
+<p class="calibre1">❸ … atribua como o novo vértice de menor custo. </p>
+<p class="calibre1">EXERCÍCIO</p>
+<p class="calibre1">7.1 Em cada um desses grafos, qual o peso do caminho mínimo do início ao m? </p>
+<p class="calibre1"><a id="p218"></a><img src="index-218_1.jpg" alt="Image 320" class="calibre2"/></p>
+<p class="calibre1">Recapitulando</p>
+<p class="calibre1">• A pesquisa em largura é usada para calcular o caminho mínimo para um grafo não ponderado. </p>
+<p class="calibre1">• O algoritmo de Dijkstra é usado para calcular o caminho mínimo para um grafo ponderado. </p>
+<p class="calibre1">• O algoritmo de Dijkstra funciona quando todos os pesos são positivos. </p>
+<p class="calibre1">• Se o seu grafo tiver pesos negativos, use o algoritmo de Bel man-Ford. </p>
+<p class="calibre1"><a id="p219"></a><img class="calibre2" src="index-219_1.jpg" alt="Image 321"/></p>
+<p class="calibre1">8</p>
+<p class="calibre1">Algoritmos gulosos</p>
+<p class="calibre1"></p>
+<p class="calibre1">Neste capítulo</p>
+<p class="calibre1">• Você aprenderá como lidar com o impossível: problemas que não têm um algoritmo de solução rápida (problemas NP-completo). </p>
+<p class="calibre1">• Você aprenderá como identi car esses problemas ao se deparar com eles, de forma que não perca tempo tentando achar um algoritmo rápido para solucioná-los. </p>
+<p class="calibre1"><a id="p220"></a><img src="index-220_1.jpg" alt="Image 322" class="calibre2"/></p>
+<p class="calibre1">• Você conhecerá os algoritmos de aproximação, que podem ser usados para encontrar, de maneira rápida, uma solução aproximada para um problema NP-completo. </p>
+<p class="calibre1">• Você conhecerá a estratégia gulosa, uma estratégia muito simples para resolver problemas. </p>
+<p class="calibre1"></p>
+<p class="calibre1">O problema do cronograma da sala de aula</p>
+<p class="calibre1">Suponha que você tenha uma sala de aula e queira reservar o máximo de aulas possível nela. Assim, recebe-se uma lista das aulas. </p>
+<p class="calibre1"><a id="p221"></a><img src="index-221_1.jpg" alt="Image 323" class="calibre2"/></p>
+<p class="calibre1"><img src="index-221_2.jpg" alt="Image 324" class="calibre2"/></p>
+<p class="calibre1">Você não pode reservar  <i class="calibre3">todas</i> essas aulas na sala porque os horários de algumas delas coincidem. </p>
+<p class="calibre1">Soa como um problema difícil, não? Na realidade, o algoritmo é tão simples que pode surpreender. Aqui temos o funcionamento dele: 1. Pegue a aula que termina mais cedo. Esta é a primeira aula que você colocará nessa sala. </p>
+<p class="calibre1">2. Agora você precisa pegar uma aula que comece depois da primeira aula. </p>
+<p class="calibre1">De novo, pegue a aula que termine mais cedo. Esta é a segunda aula que você colocará</p>
+<p class="calibre1">Continue fazendo isso e no  nal você terá a sua resposta! Vamos testar: Artes termina mais cedo, às 10h00, então esta é a aula escolhida. </p>
+<p class="calibre1"><a id="p222"></a><img src="index-222_1.jpg" alt="Image 325" class="calibre2"/></p>
+<p class="calibre1"><img src="index-222_2.jpg" alt="Image 326" class="calibre2"/></p>
+<p class="calibre1">Agora você precisa da próxima aula, que começa depois das 10h00 e termina mais cedo que as demais. </p>
+<p class="calibre1">Inglês não pode ser escolhido porque tem con ito com Artes, mas a aula de Matemática encaixa. </p>
+<p class="calibre1">Por  m, Ciências da Computação tem con ito com Matemática, mas a aula de Música encaixa. </p>
+<p class="calibre1"><a id="p223"></a><img src="index-223_1.jpg" alt="Image 327" class="calibre2"/></p>
+<p class="calibre1"><img src="index-223_2.jpg" alt="Image 328" class="calibre2"/></p>
+<p class="calibre1">Então, estas são as três aulas que você colocará nessa sala de aula. </p>
+<p class="calibre1">Muitas pessoas me dizem que esse algoritmo parece ser fácil. Mas ele é óbvio demais, logo, deve estar errado. No entanto essa é a beleza dos algoritmos gulosos (também chamados de algoritmos gananciosos): eles são fáceis! Um algoritmo guloso é simples: a cada etapa, deve-se escolher o movimento ideal. Nesse caso, cada vez que você escolhe uma aula, deve escolher a que acaba mais cedo. Em termos técnicos:  <i class="calibre3">a cada etapa, escolhe-se a solução</i> <i class="calibre3">ideal</i>, e no  m você tem uma solução global ideal. Acredite ou não, esse algoritmo simples acha a solução ideal para esse problema! </p>
+<p class="calibre1">Obviamente os algoritmos gulosos nem sempre funcionam, mas eles são tão simples de escrever! Vamos olhar outro exemplo. </p>
+<p class="calibre1"><a id="p224"></a><img src="index-224_1.jpg" alt="Image 329" class="calibre2"/></p>
+<p class="calibre1"><img src="index-224_2.jpg" alt="Image 330" class="calibre2"/></p>
+<p class="calibre1">O problema da mochila</p>
+<p class="calibre1">Suponha que você seja um ladrão ganancioso e esteja em uma loja com sua mochila. Na loja existem diversos itens que você pode roubar. Porém você só pode levar aquilo que caiba na sua mochila, que só suporta 16 quilos. </p>
+<p class="calibre1">Você está tentando maximizar o valor dos itens que colocará na sua mochila. Para isso, que algoritmo você usa? </p>
+<p class="calibre1"><a id="p225"></a><img src="index-225_1.jpg" alt="Image 331" class="calibre2"/></p>
+<p class="calibre1"><img src="index-225_2.jpg" alt="Image 332" class="calibre2"/></p>
+<p class="calibre1"><img src="index-225_3.jpg" alt="Image 333" class="calibre2"/></p>
+<p class="calibre1">1. Pegue o item mais caro que caiba na sua mochila. </p>
+<p class="calibre1">2. Pegue o próximo item mais caro que caiba na sua mochila, e assim por diante. </p>
+<p class="calibre1">Dessa vez, o algoritmo não funciona! Por exemplo, suponha que existam três itens que você possa roubar. </p>
+<p class="calibre1">Sua mochila suporta 16 quilos. O aparelho de som é o item mais caro, então você pode roubá-lo. Mas agora não há espaço para mais nada. </p>
+<p class="calibre1">Você roubou R$ 3.000 em bens, mas espere um pouco! Caso tivesse pegado o notebook e o violão, você poderia ter R$ 3.500! </p>
+<p class="calibre1">Claramente, a estratégia gulosa não oferece a melhor solução aqui, mas fornece um valor bem próximo. No próximo capítulo explicarei como</p>
+<p class="calibre1"><a id="p226"></a>calcular a solução correta, mas se você é um ladrão em um shopping, não se importa com a melhor solução. “Muito bom” é bom o su ciente. </p>
+<p class="calibre1">Moral da história para este exemplo: às vezes, o melhor é inimigo do bom. </p>
+<p class="calibre1">Em alguns casos, tudo o que você precisa é de um algoritmo que resolva o problema de uma maneira muito boa. E é aí que os algoritmos gulosos entram, pois eles são simples de escrever e normalmente chegam bem perto da solução perfeita. </p>
+<p class="calibre1">EXERCÍCIOS</p>
+<p class="calibre1">8.1 Você trabalha para uma empresa de mobílias e tem de enviar os móveis para todo o país. É necessário encher seu caminhão com caixas, e todas as caixas são de tamanhos diferentes. Você está tentando maximizar o espaço que consegue usar em cada caminhão. Como escolheria as caixas para maximizar o espaço? Proponha uma solução gulosa. Ela lhe dará a solução ideal? </p>
+<p class="calibre1">8.2 Você está viajando para a Europa e tem sete dias para visitar o maior número de lugares. Para cada lugar você atribui um valor (o quanto deseja ver) e estima quanto tempo demora. Como maximizar o total de pontos (passar por todos os lugares que realmente quer ver) durante sua estadia? Proponha uma solução gulosa. Ela lhe dará a solução ideal? </p>
+<p class="calibre1">Vamos analisar um último exemplo. Este é um exemplo em que algoritmos gulosos são absolutamente necessários. </p>
+<p class="calibre1"><a id="p227"></a><img src="index-227_1.jpg" alt="Image 334" class="calibre2"/></p>
+<p class="calibre1">O problema da cobertura de conjuntos</p>
+<p class="calibre1">Suponha que você esteja começando um programa de rádio e queira atingir ouvintes em todos os cinquenta estados americanos. É necessário decidir em quais estações transmitir para atingir todos os ouvintes. Porém transmitir em diferentes estações tem um custo, e você está tentando minimizar o número de estações nas quais você transmite para minimizar o custo. Temos uma lista de estações. </p>
+<p class="calibre1"><a id="p228"></a><img src="index-228_1.jpg" alt="Image 335" class="calibre2"/></p>
+<p class="calibre1"><img src="index-228_2.jpg" alt="Image 336" class="calibre2"/></p>
+<p class="calibre1">Cada estação abrange uma região e existe uma sobreposição. </p>
+<p class="calibre1">Como descobrir o menor conjunto de estações nas quais você pode transmitir e abranger os cinquenta estados? Soa fácil, não? Acontece que é extremamente difícil. Aqui está uma solução:</p>
+<p class="calibre1">1. Liste cada subconjunto possível de estações. Isso é chamado de  <i class="calibre3">conjunto</i> <i class="calibre3">de partes</i> (também conhecido como conjunto de potência). Neste caso, existem 2^ <i class="calibre3">n</i> possíveis conjuntos. </p>
+<p class="calibre1"><a id="p229"></a><img src="index-229_1.jpg" alt="Image 337" class="calibre2"/></p>
+<p class="calibre1"><img src="index-229_2.jpg" alt="Image 338" class="calibre2"/></p>
+<p class="calibre1">2. Entre eles, escolha o conjunto com o menor número de estações que abranja todos os cinquenta estados. </p>
+<p class="calibre1">O problema neste caso é que o tempo para calcular cada possível subconjunto de estações é muito longo, uma vez que o tempo de execução é O(2^ <i class="calibre3">n</i>), pois existem 2^ <i class="calibre3">n</i> subconjuntos. Seria possível calcular se você tivesse um grupo pequeno de cinco a dez estações, mas, como em todos os exemplos aqui, pense o que aconteceria se você tivesse muitos itens. O</p>
+<p class="calibre1">tempo com um maior número de estações será longo demais. Para exempli car, suponha que você consiga calcular dez subconjuntos por segundo. </p>
+<p class="calibre1"> <i class="calibre3">Não existe um algoritmo que resolva isso rápido o su ciente! </i> O que você pode fazer? </p>
+<p class="calibre1">Algoritmos de aproximação</p>
+<p class="calibre1">Algoritmos gulosos ao resgate! Aqui temos um algoritmo guloso que chega bem perto da solução:</p>
+<p class="calibre1">1. Pegue a estação que abranja o maior número de estados que ainda não foram cobertos. Tudo bem se a estação abranger alguns estados que já</p>
+<p class="calibre1"><a id="p230"></a>foram cobertos. </p>
+<p class="calibre1">2. Repita isso até que todos os estados tenham sido cobertos. </p>
+<p class="calibre1">Isto se chama  <i class="calibre3">algoritmo de aproximação</i>. Quando é necessário muito tempo para calcular a solução exata, um algoritmo de aproximação é uma boa ideia e funciona. Os algoritmos de aproximação são avaliados</p>
+<p class="calibre1">• por sua rapidez; </p>
+<p class="calibre1">• pela capacidade de chegar à solução ideal. </p>
+<p class="calibre1">Os algoritmos gulosos são uma boa escolha porque eles são de fácil compreensão e sua simplicidade também indica que geralmente eles são de rápida execução. Nesse caso, o algoritmo guloso tem tempo de execução O( <i class="calibre3">n</i>^2), em que  <i class="calibre3">n</i> é o número de estações de rádio. </p>
+<p class="calibre1">Vamos ver como é esse problema em código. </p>
+<p class="calibre1">Código para o exemplo</p>
+<p class="calibre1">Para esse exemplo, usarei um subconjunto de estados e estações para simpli car. </p>
+<p class="calibre1">Primeiro, faça uma lista dos estados que deseja abranger: estados_abranger = set(["mt", "wa", "or", "id", "nv", "ut","ca", </p>
+<p class="calibre1">"az"]) ❶</p>
+<p class="calibre1">❶ Você passa um array como entrada e ele é convertido em um conjunto. </p>
+<p class="calibre1">Usei um conjunto para isso, pois um conjunto é como uma lista, com exceção do fato de que cada item só pode aparecer uma vez.  <i class="calibre3">Conjuntos não</i> <i class="calibre3">podem ter elementos duplicados</i>. Por exemplo, suponha que você tivesse esta lista:</p>
+<p class="calibre1">&gt;&gt;&gt; arr = [1, 2, 2, 3, 3, 3]</p>
+<p class="calibre1">E a tivesse convertido para um conjunto:</p>
+<p class="calibre1">&gt;&gt;&gt; set(arr)</p>
+<p class="calibre1">set([1, 2, 3])</p>
+<p class="calibre1">Os números 1, 2 e 3 aparecerão apenas uma vez no conjunto. </p>
+<p class="calibre1"><a id="p231"></a><img src="index-231_1.jpg" alt="Image 339" class="calibre2"/></p>
+<p class="calibre1">Você também precisa da lista de estações que podem ser escolhidas. </p>
+<p class="calibre1">Eescolhi usar uma tabela hash para isso:</p>
+<p class="calibre1">estacoes = {}</p>
+<p class="calibre1">estacoes["kum"] = set(["id", "nv", "ut"]) estacoes["kdois"] = set(["wa", "id", "mt"]) estacoes["ktres"] = set(["or", "nv", "ca"]) estacoes["kquatro"] = set(["nv", "ut"]) estacoes["kcinco"] = set(["ca", "az"]) Em português, vamos chamar essas estações de kum, kdois, ktres, e assim por diante. </p>
+<p class="calibre1">As chaves são os nomes das estações, e os valores são os estados que elas abrangem. Então, neste exemplo, a estação kum abrange Idaho (id), Nevada (nv) e Utah (ut). Todos os valores também são conjuntos, pois fazer com que tudo seja um conjunto tornará sua vida mais fácil, como verá em breve. </p>
+<p class="calibre1">Finalmente, você precisa de algo para armazenar o conjunto  nal de estações. Para isso você usará:</p>
+<p class="calibre1">estacoes_final = set()</p>
+<p class="calibre1">Calculando a resposta</p>
+<p class="calibre1">Agora, você deve calcular as estações que utilizará. Dê uma olhada na imagem a seguir e veja se consegue prever qual estação deve ser utilizada. </p>
+<p class="calibre1"><a id="p232"></a><img src="index-232_1.jpg" alt="Image 340" class="calibre2"/></p>
+<p class="calibre1">Pode existir mais de uma opção correta, sendo que você deve observar cada estação e escolher uma que cubra o maior número de estados não cobertos. </p>
+<p class="calibre1">Chamarei isso de melhor_estacao:</p>
+<p class="calibre1">melhor_estacao = None</p>
+<p class="calibre1">estados_cobertos = set()</p>
+<p class="calibre1"><b class="calibre4">for</b> estacao, estados_por_estacao in estacoes.items(): estados_cobertos é um conjunto de todos os estados que essa estação abrange que ainda não foram cobertos. O loop for lhe permite percorrer todas as estações para ver qual é a melhor estação. Vamos olhar o conteúdo do loop for:</p>
+<p class="calibre1">cobertos = estados_abranger &amp; estados_por_estacao ❶</p>
+<p class="calibre1"><b class="calibre4">if</b> len(cobertos) &gt; len(estados_cobertos): melhor_estacao = estacao</p>
+<p class="calibre1">estados_cobertos = cobertos</p>
+<p class="calibre1">❶ Nova sintaxe! Isso é chamado de intersecção. </p>
+<p class="calibre1">Tem uma linha engraçada aqui:</p>
+<p class="calibre1">cobertos = estados_abranger &amp; estados_por_estacao O que está acontecendo? </p>
+<p class="calibre1">Conjuntos</p>
+<p class="calibre1">Suponha que você tenha um conjunto de frutas e também tenha um conjunto de vegetais. </p>
+<p class="calibre1"><a id="p233"></a><img src="index-233_1.jpg" alt="Image 341" class="calibre2"/></p>
+<p class="calibre1"><img src="index-233_2.jpg" alt="Image 342" class="calibre2"/></p>
+<p class="calibre1"><img src="index-233_3.jpg" alt="Image 343" class="calibre2"/></p>
+<p class="calibre1">Quando você tem dois conjuntos, é possível fazer algumas coisas legais com eles. </p>
+<p class="calibre1"></p>
+<p class="calibre1">Vou exempli car algumas coisas que você pode fazer com conjuntos. </p>
+<p class="calibre1">• Uma união signi ca “combine os dois conjuntos”. </p>
+<p class="calibre1">• Uma intersecção signi ca “encontre os itens que aparecem nos dois conjuntos” (nesse caso, apenas o tomate). </p>
+<p class="calibre1">• Uma diferença signi ca “subtraia os itens de um conjunto dos itens do outro conjunto”. </p>
+<p class="calibre1">Por exemplo:</p>
+<p class="calibre1">&gt;&gt;&gt; frutas = set(["abacate", "tomate", "banana"])</p>
+<p class="calibre1">&gt;&gt;&gt; vegetais = set(["beterraba", "cenoura", "tomate"])</p>
+<p class="calibre1"><a id="p234"></a><img src="index-234_1.jpg" alt="Image 344" class="calibre2"/></p>
+<p class="calibre1">&gt;&gt;&gt; frutas | vegetais ❶</p>
+<p class="calibre1">set(["abacate", "beterraba", "cenoura", "tomate", "banana"])</p>
+<p class="calibre1">&gt;&gt;&gt; frutas &amp; vegetais ❷</p>
+<p class="calibre1">set(["tomate"])</p>
+<p class="calibre1">&gt;&gt;&gt; frutas – vegetais ❸</p>
+<p class="calibre1">set(["abacate", "banana"])</p>
+<p class="calibre1">&gt;&gt;&gt; vegetais – frutas ❹</p>
+<p class="calibre1">❶ Isso é uma união. </p>
+<p class="calibre1">❷ Isso é uma intersecção. </p>
+<p class="calibre1">❸ Isso é uma diferença. </p>
+<p class="calibre1">❹ O que você acha que isso fará? </p>
+<p class="calibre1">Relembrando:</p>
+<p class="calibre1">• Conjuntos são como listas, exceto pelo fato de não poderem ter elementos repetidos. </p>
+<p class="calibre1">• Você pode fazer algumas operações interessantes com conjuntos como união, intersecção e diferença. </p>
+<p class="calibre1">De volta ao código</p>
+<p class="calibre1">Vamos voltar ao exemplo original. </p>
+<p class="calibre1">Isto é uma intersecção:</p>
+<p class="calibre1">cobertos = estados_abranger &amp; estados_por_estacao cobertos é um conjunto de estados que eram tanto estados_abranger</p>
+<p class="calibre1"><a id="p235"></a>quanto estados_por_estacao. Então cobertos é o conjunto de estados não cobertos que essa estação abrange! Em seguida, veri que se essa estação abrange mais estados que a atual melhor_estacao:</p>
+<p class="calibre1"><b class="calibre4">if</b> len(cobertos) &gt; len(estados_cobertos): melhor_estacao = estacao</p>
+<p class="calibre1">estados_cobertos = cobertos</p>
+<p class="calibre1">Caso ela abranja, essa estação é a nova melhor_estacao. Finalmente, depois que o loop for acabar, adicione melhor_estacao à lista  nal de estações: estacoes_finais.add(melhor_estacao)</p>
+<p class="calibre1">Você também precisará atualizar estados_abranger, pois esta estação abrange alguns estados, e esses estados não mais precisam de estações que os abranjam, ou seja, não são mais necessários para o algoritmo: estados_abranger -= estados_cobertos</p>
+<p class="calibre1">Assim, você  ca em um loop até que estados_abranger esteja vazio. Aqui está o código completo para o loop:</p>
+<p class="calibre1"><b class="calibre4">while</b> estados_abranger:</p>
+<p class="calibre1">melhor_estacao = None</p>
+<p class="calibre1">estados_cobertos = set()</p>
+<p class="calibre1"><b class="calibre4">for</b> estacao, estados in estacoes.items():</p>
+<p class="calibre1">cobertos = estados_abranger &amp; estados</p>
+<p class="calibre1"><b class="calibre4">if</b> len(cobertos) &gt; len(estados_cobertos): melhor_estacao = estacao</p>
+<p class="calibre1">estados_cobertos = cobertos</p>
+<p class="calibre1"></p>
+<p class="calibre1">estados_abranger -= estados_cobertos</p>
+<p class="calibre1">estacoes_finais.add(melhor_estacao)</p>
+<p class="calibre1">Por  m, você pode imprimir estacoes_finais, e deverá ver isto:</p>
+<p class="calibre1">&gt;&gt;&gt; print estacoes_finais</p>
+<p class="calibre1">set(['ktwo', 'kthree', 'kone', 'kfive'])</p>
+<p class="calibre1">É isso que você esperava? Em vez das estações 1, 2, 3 e 5, as estações 2, 3, 4 e 5 poderiam ter sido escolhidas. Agora, vamos comparar o tempo de execução do algoritmo guloso e do algoritmo exato. </p>
+<p class="calibre1"><a id="p236"></a><img src="index-236_1.jpg" alt="Image 345" class="calibre2"/></p>
+<p class="calibre1"><img src="index-236_2.jpg" alt="Image 346" class="calibre2"/></p>
+<p class="calibre1">EXERCÍCIOS</p>
+<p class="calibre1">Para cada um desses algoritmos, diga se ele é um algoritmo guloso ou não. </p>
+<p class="calibre1">8.3 Quicksort</p>
+<p class="calibre1">8.4 Pesquisa em largura</p>
+<p class="calibre1">8.5 Algoritmo de Dijkstra</p>
+<p class="calibre1">Problemas NP-completos</p>
+<p class="calibre1">Para resolver o problema de cobertura de conjuntos você deve calcular cada conjunto possível. </p>
+<p class="calibre1">Talvez isso o tenha feito se lembrar do problema do caixeiro-viajante do Capítulo 1. Neste problema, o caixeiro-viajante tem de visitar cinco cidades diferentes. </p>
+<p class="calibre1"><a id="p237"></a><img src="index-237_1.jpg" alt="Image 347" class="calibre2"/></p>
+<p class="calibre1"><img src="index-237_2.jpg" alt="Image 348" class="calibre2"/></p>
+<p class="calibre1">Ele está tentando descobrir a rota mais curta que o levará até as cinco cidades. Para encontrar a rota mais curta, primeiro devem-se calcular todas as rotas possíveis. </p>
+<p class="calibre1">Quantas rotas devem-se calcular para cinco cidades? </p>
+<p class="calibre1">Caixeiro-viajante, passo a passo</p>
+<p class="calibre1">Vamos começar do básico. Suponha que você deseja visitar apenas duas cidades. Há duas rotas que você pode escolher. </p>
+<p class="calibre1"><a id="p238"></a><img src="index-238_1.jpg" alt="Image 349" class="calibre2"/></p>
+<p class="calibre1">Mesma rota ou rota diferente? </p>
+<p class="calibre1">Você pode pensar que essa deveria ser a mesma rota. Porque, no  m das contas, SF &gt; Marin acaba  tendo  a  mesma  distância  que  Marin  &gt;  SF,  certo?  Não  necessariamente.  Algumas cidades (como San Francisco) têm muitas ruas de sentido único, então você não pode voltar por onde veio. Ou seja, pode ser necessário seguir alguns quilômetros na direção errada para pegar o acesso a uma rodovia. Logo, duas rotas não são necessariamente a mesma coisa. </p>
+<p class="calibre1">Você deve estar pensando “No problema do caixeiro-viajante, existe uma cidade especí ca de onde devo partir?”. Vamos dizer, por exemplo, que sou o caixeiro-viajante e que vivo em San Francisco e preciso ir para quatro cidades. San Francisco seria minha cidade de partida. </p>
+<p class="calibre1">Porém, às vezes, a cidade de partida não está de nida. Suponha que você seja o FedEx (serviço postal americano) tentando entregar um pacote em Bay Area (área da Baía de San Francisco). Esse pacote está vindo de Chicago para uma das cinquenta unidades da FedEx em Bay Area. Logo depois, o pacote será transportado em um caminhão que viajará para diferentes locais fazendo as entregas. Quando vindo de Chicago, para qual unidade em San Francisco o pacote deve ser enviado? Aqui o local de partida é desconhecido. Cabe a você calcular o caminho ideal e o local de partida para o caixeiro-viajante. </p>
+<p class="calibre1">O tempo de execução das duas versões é o mesmo, mas o exemplo  cará mais fácil se não houver uma cidade de partida, então vou usar esta versão. </p>
+<p class="calibre1">Duas cidades = duas rotas possíveis. </p>
+<p class="calibre1">Três cidades</p>
+<p class="calibre1"><a id="p239"></a><img src="index-239_1.jpg" alt="Image 350" class="calibre2"/></p>
+<p class="calibre1"><img src="index-239_2.jpg" alt="Image 351" class="calibre2"/></p>
+<p class="calibre1">Agora suponha que você tenha adicionado mais uma cidade. Quantas rotas existem? </p>
+<p class="calibre1">Se você começar em Berkeley, ainda deverá visitar mais duas cidades. </p>
+<p class="calibre1">Há um total de seis rotas, duas para cada cidade em que pode começar. </p>
+<p class="calibre1">Então três cidades = seis rotas possíveis. </p>
+<p class="calibre1">Quatro cidades</p>
+<p class="calibre1">Vamos adicionar outra cidade: Fremont. Suponha que você inicie lá. </p>
+<p class="calibre1"><a id="p240"></a><img src="index-240_1.jpg" alt="Image 352" class="calibre2"/></p>
+<p class="calibre1">Há seis rotas possíveis partindo de Fremont, e olhe só! Elas se parecem muito com as seis rotas que você calculou anteriormente, quando tinha apenas três cidades. Com exceção de que agora todas as rotas têm uma cidade adicional: Fremont! Há um padrão aqui, e para visualizá-lo, suponha que existam quatro cidades e que você possa escolher a cidade de partida. </p>
+<p class="calibre1">Você escolhe Fremont. Há três cidades sobrando, e se há três cidades, existem seis rotas diferentes para trafegar entre elas. Caso você inicie em Fremont, existem seis rotas possíveis. Também pode-se iniciar em uma das outras cidades. </p>
+<p class="calibre1"><a id="p241"></a><img src="index-241_1.jpg" alt="Image 353" class="calibre2"/></p>
+<p class="calibre1"><img src="index-241_2.jpg" alt="Image 354" class="calibre2"/></p>
+<p class="calibre1">Quatro cidades de partida possíveis, com seis rotas possíveis para cada cidade de partida = 4 * 6 = 24 rotas possíveis. </p>
+<p class="calibre1">Percebe o padrão? Cada vez que uma cidade é adicionada, o número de rotas que devem ser calculadas aumenta. </p>
+<p class="calibre1">Quantas rotas possíveis existem para seis cidades? Se você disse 720, está certo. Além disso, existem 5.040 rotas para sete cidades e 40.320 para oito cidades. </p>
+<p class="calibre1">Isso é chamado de  <i class="calibre3">função fatorial</i> (Você se lembra de ter lido sobre isso no Capítulo 3?). Então 5! = 120. Suponha que você tenha dez cidades. Quantas rotas possíveis existem? 10! = 3.628.800. Devem-se calcular perto de  <i class="calibre3">3</i></p>
+<p class="calibre1"> <i class="calibre3">milhões</i> de rotas possíveis para dez cidades. Como você pode notar, o número de rotas possíveis cresce rapidamente! É por isso que é impossível calcular a solução “correta” para o problema do caixeiro-viajante caso o número de cidades seja muito elevado. </p>
+<p class="calibre1">Tanto o problema do caixeiro-viajante quanto o problema da cobertura de</p>
+<p class="calibre1"><a id="p242"></a><img src="index-242_1.jpg" alt="Image 355" class="calibre2"/></p>
+<p class="calibre1">conjuntos têm algo em comum: calcula-se cada solução possível e escolhe-se a menor. Esses dois problemas são  <i class="calibre3">NP-completos</i>. </p>
+<p class="calibre1">Aproximando</p>
+<p class="calibre1">Qual  é  uma  aproximação  boa  para  o  algoritmo  do  caixeiro-viajante?  Algo  simples  que encontre um caminho curto. Veja se consegue pensar em uma resposta antes de continuar a leitura. </p>
+<p class="calibre1">Como eu faria: aleatoriamente, escolheria uma cidade de partida. Em seguida, toda vez que o caixeiro-viajante  tivesse  de  escolher  a  próxima  cidade,  ele  escolheria  a  cidade  não  visitada mais próxima. Suponha que ele tenha começado em Marin. </p>
+<p class="calibre1">Distância total: 71 quilômetros. Talvez não seja o menor caminho, mas, ainda assim, é bem curto. </p>
+<p class="calibre1">Uma breve explicação sobre NP-completo: alguns problemas são notoriamente difíceis de resolver. O caixeiro-viajante e o problema de cobertura de conjuntos são dois exemplos. Diversas pessoas duvidam da possibilidade de criar um algoritmo que resolva esses problemas de forma rápida. </p>
+<p class="calibre1">Como faço para saber se um problema é NP-completo? </p>
+<p class="calibre1"><a id="p243"></a><img src="index-243_1.jpg" alt="Image 356" class="calibre2"/></p>
+<p class="calibre1">Jonah está escolhendo jogadores para o seu time de futebol americano de mentira. Ele tem uma lista de características as quais gostaria que seu time tivesse: um bom quarterback, um bom running back, jogadores que joguem bem na chuva e que joguem bem sob pressão, entre outras habilidades. Ele tem uma lista de jogadores, e cada jogador preenche algumas dessas habilidades. </p>
+<p class="calibre1"><a id="p244"></a><img src="index-244_1.jpg" alt="Image 357" class="calibre2"/></p>
+<p class="calibre1"><img src="index-244_2.jpg" alt="Image 358" class="calibre2"/></p>
+<p class="calibre1">Jonah precisa de um time que preencha todas as características desejadas, mas o tamanho do time é limitado. “Espere um segundo”, Jonah pensa. “Este é um problema de cobertura de conjuntos!” </p>
+<p class="calibre1">Jonah pode usar o mesmo algoritmo de aproximação para criar seu time: 1. Encontre o jogador que preenche o maior número de habilidades que ainda não foram preenchidas. </p>
+<p class="calibre1">2. Repita até que o time tenha preenchido todas as habilidades (ou até que você  que sem espaço no time). </p>
+<p class="calibre1">Problemas NP-completos aparecem em todo lugar! É sempre bom saber se o problema que você está tentando resolver é NP-completo, pois nesta situação você pode parar de tentar resolvê-lo perfeitamente e, em vez disso, resolvê-lo usando um algoritmo de aproximação. Porém é difícil perceber se o problema em que você está trabalhando é um problema NP-completo, pois normalmente a diferença entre um problema que é fácil de resolver e um NP-completo é muito pequena. Por exemplo, nos capítulos anteriores falei muito sobre caminhos mínimos. Você sabe como calcular o caminho</p>
+<p class="calibre1"><a id="p245"></a><img src="index-245_1.jpg" alt="Image 359" class="calibre2"/></p>
+<p class="calibre1">mínimo para chegar do ponto A ao ponto B. </p>
+<p class="calibre1">Entretanto, se quiser encontrar o caminho mínimo que conecta vários pontos, cairá no problema do caixeiro-viajante, que é um problema NP-completo. A resposta simples é: não há uma maneira fácil de dizer se o problema em que você está trabalhando é NP-completo. Aqui temos alguns indicativos:</p>
+<p class="calibre1">• Seu algoritmo roda rápido para alguns itens, mas  ca muito lento com o aumento de itens. </p>
+<p class="calibre1">• “Todas as combinações de X” geralmente signi cam um problema NP-completo. </p>
+<p class="calibre1">• Você tem de calcular “cada possível versão” de X porque não pode dividir em subproblemas menores? Talvez seja um problema NP-completo. </p>
+<p class="calibre1">• Se o seu problema envolve uma sequência (como uma sequência de cidades, como o problema do caixeiro-viajante) e é difícil de resolver, pode ser um NP-completo. </p>
+<p class="calibre1">• Se o seu problema envolve um conjunto (como um conjunto de estações de rádio) e é difícil de resolver, ele pode ser um problema NP-completo. </p>
+<p class="calibre1">• Você pode reescrever o seu problema como o problema de cobertura mínima de conjuntos ou o problema do caixeiro-viajante? Então seu problema de nitivamente é NP-completo. </p>
+<p class="calibre1">EXERCÍCIOS</p>
+<p class="calibre1">8.6 Um carteiro deve entregar correspondências para vinte casas. Ele deve</p>
+<p class="calibre1"><a id="p246"></a>encontrar a rota mais curta que passe por todas as vinte casas. Esse é um problema NP-completo? </p>
+<p class="calibre1">8.7 Encontrar o maior cliqu<a href="#p246">e1 </a>em um conjunto de pessoas (um  <i class="calibre3">clique, </i> para este exemplo, é um conjunto de pessoas em que todos se conhecem). Isso é um problema NP-completo? </p>
+<p class="calibre1">8.8 Você está fazendo um mapa dos Estados Unidos e precisa colorir estados adjacentes com cores diferentes. Para isso, deve encontrar o número mínimo de cores para que não existam dois estados adjacentes com a mesma cor. Isso é um problema NP-completo? </p>
+<p class="calibre1">Recapitulando</p>
+<p class="calibre1">• Algoritmos gulosos otimizam localmente na esperança de acabar em uma otimização global. </p>
+<p class="calibre1">• Problemas NP-completo não têm uma solução rápida. </p>
+<p class="calibre1">• Se você estiver tentando resolver um problema NP-completo, o melhor a fazer é usar um algoritmo de aproximação. </p>
+<p class="calibre1">• Algoritmos gulosos são fáceis de escrever e têm tempo de execução baixo, portanto eles são bons algoritmos de aproximação. </p>
+<p class="calibre1"><a href="#p246">1</a> N.T.: Na área da matemática da teoria dos grafos, um clique em um grafo não orientado é um subconjunto de seus vértices tais que cada dois vértices do subconjunto são conectados por uma aresta. </p>
+<p class="calibre1"><a id="p247"></a><img class="calibre2" src="index-247_1.jpg" alt="Image 360"/></p>
+<p class="calibre1">9</p>
+<p class="calibre1">Programação dinâmica</p>
+<p class="calibre1"></p>
+<p class="calibre1">Neste capítulo</p>
+<p class="calibre1">• Você aprenderá programação dinâmica, uma técnica para resolução de problemas complexos que se baseia na divisão de um problema em subproblemas, os quais são resolvidos separadamente. </p>
+<p class="calibre1">• Você aprenderá, a partir de exemplos, como criar uma solução em programação dinâmica para resolver um novo problema. </p>
+<p class="calibre1"><a id="p248"></a><img src="index-248_1.jpg" alt="Image 361" class="calibre2"/></p>
+<p class="calibre1"><img src="index-248_2.jpg" alt="Image 362" class="calibre2"/></p>
+<p class="calibre1"></p>
+<p class="calibre1">O problema da mochila</p>
+<p class="calibre1">Vamos rever o problema da mochila, visto no Capítulo 8. Você é um ladrão com uma mochila que consegue carregar apenas 16 quilos. </p>
+<p class="calibre1">Você tem três itens disponíveis para colocar dentro da sua mochila. </p>
+<p class="calibre1"><a id="p249"></a><img src="index-249_1.jpg" alt="Image 363" class="calibre2"/></p>
+<p class="calibre1">Quais itens você deveria roubar para maximizar o valor roubado? </p>
+<p class="calibre1">A solução simples</p>
+<p class="calibre1">O algoritmo mais simples é o seguinte: você deve testar para todos os conjuntos de itens possíveis e descobrir qual conjunto maximizará o valor roubado. </p>
+<p class="calibre1">Isto funciona, mas é uma solução muito lenta, pois para três itens você deverá calcular oito conjuntos possíveis. Para quatro itens, são 16 conjuntos. </p>
+<p class="calibre1">Cada item adicionado dobrará o número de cálculos. Este algoritmo tem tempo de execução O(2^ <i class="calibre3">n</i>); é muito, muito lento. </p>
+<p class="calibre1">Esta solução não é prática para qualquer número razoável de itens. No Capítulo 8, vimos como calcular uma solução  <i class="calibre3">aproximada</i>. Esta solução é próxima o su ciente da solução ideal, mas talvez não seja a própria. </p>
+<p class="calibre1"><a id="p250"></a><img src="index-250_1.jpg" alt="Image 364" class="calibre2"/></p>
+<p class="calibre1"><img src="index-250_2.jpg" alt="Image 365" class="calibre2"/></p>
+<p class="calibre1">Então, como calcularemos a solução ideal? </p>
+<p class="calibre1">Programação dinâmica</p>
+<p class="calibre1">Resposta: Usando a programação dinâmica! Vamos observar como o algoritmo da programação dinâmica funciona. Ele começa com a resolução de subproblemas e vai escalando-os até resolver o problema geral. </p>
+<p class="calibre1">No problema da mochila, você começaria resolvendo o problema para mochilas menores (ou “submochilas”) e iria escalando estes problemas até resolver o problema original. </p>
+<p class="calibre1"> <i class="calibre3">A programação dinâmica representa um conceito complexo, então não se</i> <i class="calibre3">preocupe se você não a entender logo de cara</i>, pois vamos analisar diversos exemplos. </p>
+<p class="calibre1"><a id="p251"></a><img src="index-251_1.jpg" alt="Image 366" class="calibre2"/></p>
+<p class="calibre1">Vou começar mostrando o algoritmo na prática. Depois disso, você com certeza terá muitas dúvidas! Darei o meu melhor para tentar respondê-las. </p>
+<p class="calibre1">Cada algoritmo de programação dinâmica começa com uma tabela. Aqui está a tabela para o problema da mochila. </p>
+<p class="calibre1">As linhas da tabela são os itens e as colunas são as capacidades das mochilas, com valores de 1 quilo, 2 quilos, 3 quilos e 4 quilos. Você precisa destes valores porque eles auxiliarão na resolução dos subproblemas. </p>
+<p class="calibre1">A tabela começa vazia, mas você preencherá cada célula dela. Quando a tabela for preenchida, a resposta do problema terá sido encontrada! Por favor, faça a sua própria tabela e me acompanhe. </p>
+<p class="calibre1">A linha do violão</p>
+<p class="calibre1">Mostrarei a fórmula para calcular esta tabela mais tarde. Primeiro, vamos seguir um passo a passo, começando na primeira linha da tabela. </p>
+<p class="calibre1"><a id="p252"></a><img src="index-252_1.jpg" alt="Image 367" class="calibre2"/></p>
+<p class="calibre1"><img src="index-252_2.jpg" alt="Image 368" class="calibre2"/></p>
+<p class="calibre1">Esta é a linha do  <i class="calibre3">violão</i>, isso indica que você está tentando colocá-lo na sua mochila. Em cada célula, uma decisão simples será tomada: Você roubará ou não o violão? Lembre-se de que você está tentando encontrar o conjunto de itens perfeito para roubar, o qual maximizará o valor do roubo. </p>
+<p class="calibre1">A primeira célula indica uma capacidade de peso para mochila igual a 1</p>
+<p class="calibre1">quilo. O violão pesa exatamente isso, o que nos con rma que ele cabe na mochila! Assim, o valor desta célula é R$ 1.500 e ela contém um violão. </p>
+<p class="calibre1">Vamos começar a preencher a tabela. </p>
+<p class="calibre1">Cada célula da tabela conterá uma lista de todos os itens que cabem na mochila. </p>
+<p class="calibre1">Vamos para a próxima célula, que tem uma capacidade de 2 quilos. Bom, com certeza o violão cabe! </p>
+<p class="calibre1"><a id="p253"></a><img src="index-253_1.jpg" alt="Image 369" class="calibre2"/></p>
+<p class="calibre1"><img src="index-253_2.jpg" alt="Image 370" class="calibre2"/></p>
+<p class="calibre1">E fazemos o mesmo para o restante desta linha. Lembre-se: esta é a primeira linha, portanto você tem  <i class="calibre3">apenas</i> o violão para escolher, pois estamos considerando os outros itens como indisponíveis para o roubo. </p>
+<p class="calibre1">Você provavelmente está confuso em relação ao  <i class="calibre3">porquê</i> de utilizarmos mochilas com capacidades de 1 quilo, 2 quilos e assim por diante, quando o problema especi cou que a sua mochila tem capacidade para 16 quilos. </p>
+<p class="calibre1">Você se lembra de quando eu disse que a programação dinâmica inicia com problemas menores e os resolve até chegar ao problema geral? Você está resolvendo subproblemas que o ajudarão a resolver o problema especi cado. </p>
+<p class="calibre1">Continue lendo com atenção, e as coisas começarão a fazer mais sentido. </p>
+<p class="calibre1">Agora, sua tabela deve estar assim:</p>
+<p class="calibre1"><a id="p254"></a><img src="index-254_1.jpg" alt="Image 371" class="calibre2"/></p>
+<p class="calibre1"><img src="index-254_2.jpg" alt="Image 372" class="calibre2"/></p>
+<p class="calibre1">Lembre-se de que estamos tentando maximizar o valor contido na mochila. </p>
+<p class="calibre1"> <i class="calibre3">Esta linha representa o melhor palpite atual para este máximo</i>. Assim, agora, de acordo com esta linha, se você tivesse uma mochila com capacidade de 4</p>
+<p class="calibre1">quilos, o valor máximo que você poderia roubar seria R$ 1.500. </p>
+<p class="calibre1">Você sabe que esta não é a solução  nal. Ao adentrarmos no algoritmo, teremos estimativas mais re nadas. </p>
+<p class="calibre1">A linha do rádio</p>
+<p class="calibre1">Vamos preencher a próxima linha, a qual é relativa ao rádio. Agora que você está na segunda linha, pode roubar tanto o rádio quanto o violão. Em cada linha, será possível roubar o item relativo àquela linha e todos os itens das linhas anteriores. Porém o notebook ainda não é uma possibilidade. Vamos começar com a primeira célula, relativa a uma mochila com capacidade de 1</p>
+<p class="calibre1">quilo. O máximo valor atual que você pode roubar com uma mochila de 1</p>
+<p class="calibre1">quilo é R$ 1.500. </p>
+<p class="calibre1"><a id="p255"></a><img src="index-255_1.jpg" alt="Image 373" class="calibre2"/></p>
+<p class="calibre1"><img src="index-255_2.jpg" alt="Image 374" class="calibre2"/></p>
+<p class="calibre1">Você deveria roubar o rádio? </p>
+<p class="calibre1">Você tem uma mochila com capacidade de 1 quilo. O rádio pode ser colocado dentro dela? Não, ele é muito pesado! E como você não consegue roubar o rádio, o palpite para maximizar o roubo com uma mochila de 1</p>
+<p class="calibre1">quilo  <i class="calibre3">continua</i> sendo R$ 1.500. </p>
+<p class="calibre1">A mesma situação se repete nas próximas duas células, pois a mochila tem capacidade de 2 quilos e 3 quilos, respectivamente. Ou seja, o valor máximo continua sendo R$ 1.500. </p>
+<p class="calibre1"><a id="p256"></a><img src="index-256_1.jpg" alt="Image 375" class="calibre2"/></p>
+<p class="calibre1"><img src="index-256_2.jpg" alt="Image 376" class="calibre2"/></p>
+<p class="calibre1"><img src="index-256_3.jpg" alt="Image 377" class="calibre2"/></p>
+<p class="calibre1">O rádio não pode ser roubado, então o seu palpite continua o mesmo. </p>
+<p class="calibre1">E se você tiver uma mochila com capacidade para 4 quilos? Ahá! O rádio nalmente pode ser roubado! O valor máximo antigo era R$ 1.500, mas, com a possibilidade de roubar o rádio, o valor se torna R$ 3.000! Ou seja, vamos roubar o rádio. </p>
+<p class="calibre1">Você acabou de atualizar a sua estimativa! Se você tiver uma mochila com capacidade para 4 quilos, conseguirá roubar itens que valem R$ 3.000. É</p>
+<p class="calibre1">possível visualizar na tabela que a sua estimativa está sendo incrementada. </p>
+<p class="calibre1">A linha do notebook</p>
+<p class="calibre1">Vamos fazer o mesmo com o notebook! Ele pesa 3 quilos, portanto não será possível roubá-lo com a mochila de 1 quilo e 2 quilos. Assim, a estimativa</p>
+<p class="calibre1"><a id="p257"></a><img src="index-257_1.jpg" alt="Image 378" class="calibre2"/></p>
+<p class="calibre1"><img src="index-257_2.jpg" alt="Image 379" class="calibre2"/></p>
+<p class="calibre1"><img src="index-257_3.jpg" alt="Image 380" class="calibre2"/></p>
+<p class="calibre1">para as primeiras duas células continua sendo R$ 1.500. </p>
+<p class="calibre1">Com a mochila de 3 quilos, a estimativa antiga para o valor máximo era de R$ 1.500. Porém você pode escolher roubar o notebook agora, que vale R$</p>
+<p class="calibre1">2.000. Logo, o novo máximo estimado é R$ 2.000! </p>
+<p class="calibre1">Com a mochila de 4 quilos as coisas  cam interessantes. Esta é uma parte importante, pois a estimativa atual é de R$ 3.000. Você pode colocar o notebook na mochila, mas ele vale apenas R$ 2.000. </p>
+<p class="calibre1">Humm, isso não é tão bom quanto a outra estimativa. Mas espere aí! O</p>
+<p class="calibre1">notebook pesa apenas 3 quilos, o que deixa a mochila com capacidade para mais 1 quilo. Ou seja, você pode colocar mais alguma coisa que pese 1 quilo na mochila. </p>
+<p class="calibre1"><a id="p258"></a><img src="index-258_1.jpg" alt="Image 381" class="calibre2"/></p>
+<p class="calibre1"><img src="index-258_2.jpg" alt="Image 382" class="calibre2"/></p>
+<p class="calibre1"><img src="index-258_3.jpg" alt="Image 383" class="calibre2"/></p>
+<p class="calibre1">Qual o valor máximo que você consegue colocar em uma mochila com 1</p>
+<p class="calibre1">quilo livre? Bem, você já calculou isso. </p>
+<p class="calibre1">De acordo com a última estimativa, é possível colocar um violão em 1 quilo de espaço livre, sabendo que ele vale R$ 1.500. Portanto a comparação real é a seguinte:</p>
+<p class="calibre1">Você pode estar se perguntando por que estivemos calculando os valores máximos para mochilas menores. Espero que agora tudo faça sentido! </p>
+<p class="calibre1">Quando você tem espaço sobrando, é possível usar as respostas dos subproblemas para descobrir o que colocar no espaço livre. Assim, a melhor opção é levar o notebook + violão, com valor de R$ 3.500. </p>
+<p class="calibre1">A tabela  nal  cará assim:</p>
+<p class="calibre1"><a id="p259"></a><img src="index-259_1.jpg" alt="Image 384" class="calibre2"/></p>
+<p class="calibre1"><img src="index-259_2.jpg" alt="Image 385" class="calibre2"/></p>
+<p class="calibre1"><img src="index-259_3.jpg" alt="Image 386" class="calibre2"/></p>
+<p class="calibre1">E ali está a resposta: O valor máximo que caberá na mochila é R$ 3.500, referentes a um violão e um notebook! </p>
+<p class="calibre1">Você pode achar que usei uma fórmula diferente para calcular o valor da última célula, mas isso é impressão, pois pulei algumas complexidades desnecessárias enquanto preenchia os valores das células anteriores. Cada célula é calculada com a mesma fórmula, que pode ser vista a seguir: Você pode usar esta fórmula em cada célula da tabela e deverá encontrar uma tabela igual a esta demonstrada aqui. Você se lembra de quando falei sobre resolver subproblemas? Combinamos as soluções de dois subproblemas para resolver um problema maior. </p>
+<p class="calibre1"><a id="p260"></a><img src="index-260_1.jpg" alt="Image 387" class="calibre2"/></p>
+<p class="calibre1">Perguntas frequentes sobre o problema da mochila</p>
+<p class="calibre1">Talvez você ainda pense nessa solução como se fosse algum tipo de mágica. </p>
+<p class="calibre1">Pois bem, nesta seção trataremos de algumas perguntas frequentes. </p>
+<p class="calibre1">O que acontece se você adicionar um item? </p>
+<p class="calibre1">Imagine que há um quarto item que você pode roubar, o qual você não havia percebido. Suponha que este item seja um iPhone. </p>
+<p class="calibre1">Você deve calcular novamente tudo para levar este item em consideração? </p>
+<p class="calibre1">Claro que não. Lembre-se: a programação dinâmica continua construindo progressivamente a sua estimativa. Até agora, estes são os valores máximos. </p>
+<p class="calibre1"><a id="p261"></a><img src="index-261_1.jpg" alt="Image 388" class="calibre2"/></p>
+<p class="calibre1"><img src="index-261_2.jpg" alt="Image 389" class="calibre2"/></p>
+<p class="calibre1">O que signi ca que para uma mochila de 4 quilos você conseguirá roubar um total de R$ 3.500 em itens. Você achou que este era o valor máximo nal, mas agora vamos adicionar uma linha para o iPhone. </p>
+<p class="calibre1">E agora temos o valor máximo atualizado! Tente preencher esta linha nova antes de prosseguir. </p>
+<p class="calibre1">Vamos começar com a primeira célula. O iPhone pode ser levado com uma mochila de 1 quilo. O valor máximo antigo era R$ 1.500, mas o iPhone custa R$ 2.000. Assim, levaremos o iPhone. </p>
+<p class="calibre1"><a id="p262"></a><img src="index-262_1.jpg" alt="Image 390" class="calibre2"/></p>
+<p class="calibre1"><img src="index-262_2.jpg" alt="Image 391" class="calibre2"/></p>
+<p class="calibre1">Na próxima célula é possível levar o iPhone  <i class="calibre3">e</i> o violão. </p>
+<p class="calibre1">Para a célula 3, não há opção melhor do que levar o iPhone e o violão novamente, então deixe esta célula como está. </p>
+<p class="calibre1">Na última célula as coisas  cam interessantes. O valor máximo atual é R$</p>
+<p class="calibre1">3.500, mas você pode roubar o iPhone e ainda ter 3 quilos de espaço sobrando. </p>
+<p class="calibre1"><a id="p263"></a><img src="index-263_1.jpg" alt="Image 392" class="calibre2"/></p>
+<p class="calibre1"><img src="index-263_2.jpg" alt="Image 393" class="calibre2"/></p>
+<p class="calibre1">Estes 3 quilos valem R$ 2.000, sendo R$ 2.000 do iPhone + R$ 2.000 do subproblema antigo, totalizando R$ 4.000! Ou seja, temos um novo máximo! </p>
+<p class="calibre1">Aqui está a tabela  nal:</p>
+<p class="calibre1">Pergunta: O valor da coluna poderá  <i class="calibre3">diminuir</i>? Isto é possível? </p>
+<p class="calibre1"><a id="p264"></a><img src="index-264_1.jpg" alt="Image 394" class="calibre2"/></p>
+<p class="calibre1"><img src="index-264_2.jpg" alt="Image 395" class="calibre2"/></p>
+<p class="calibre1">Pense na resposta antes de continuar. </p>
+<p class="calibre1">Resposta: Não. A cada iteração, você armazenará a estimativa máxima atual. </p>
+<p class="calibre1">A estimativa nunca poderá  car abaixo do que ela já é! </p>
+<p class="calibre1">EXERCÍCIOS</p>
+<p class="calibre1">9.1 Imagine que você consegue roubar outro item: um MP3 player. Ele pesa 1 quilo e vale R$ 1.000. Você deveria roubá-lo? </p>
+<p class="calibre1">O que acontece se você modi car a ordem das linhas? </p>
+<p class="calibre1">A resposta mudará? Imagine que você preenche as linhas nesta ordem: rádio, notebook, violão. Como a tabela  cará? Preencha-a antes de prosseguir. </p>
+<p class="calibre1">A tabela terá a seguinte forma:</p>
+<p class="calibre1">A resposta não muda. Logo, a ordem das linhas não importa. </p>
+<p class="calibre1"><a id="p265"></a><img src="index-265_1.jpg" alt="Image 396" class="calibre2"/></p>
+<p class="calibre1">É possível preencher a tabela a partir das colunas, em vez de a partir das linhas? </p>
+<p class="calibre1">Tente você mesmo! Neste problema, isso não fará diferença. Porém, poderia fazer para outros problemas. </p>
+<p class="calibre1">O que acontece se você adicionar um item menor? </p>
+<p class="calibre1">Imagine que você possa roubar uma joia que pese 0,5 quilo e valha R$ 1.000. </p>
+<p class="calibre1">Até agora, sua tabela assumiu apenas que os pesos eram inteiros. Porém, com a decisão de roubar um colar, você acaba com 3,5 quilos sobrando. </p>
+<p class="calibre1">Qual o valor máximo para 3,5 quilos livres? Você não sabe, pois calculou apenas para mochilas de 1 quilo, 2 quilos, 3 quilos e 4 quilos. Ou seja, precisa saber o valor para uma mochila de 3,5 quilos. </p>
+<p class="calibre1"> <i class="calibre3">Por causa da joia você deverá re nar a sua tabela, a qual será modi cada. </i></p>
+<p class="calibre1">Você consegue roubar frações de um item? </p>
+<p class="calibre1">Imagine que você seja um ladrão que esteja em um mercado. Você pode roubar pacotes de lentilhas e arroz, e caso não seja possível roubar o pacote inteiro, existe a possibilidade de abrir o pacote e pegar a quantidade que você conseguir roubar. Logo, não é mais tudo ou nada, pois é possível levar uma fração de um item. Como você lida com isso usando programação dinâmica? </p>
+<p class="calibre1">Resposta: você não lida, pois não é possível. Com a programação dinâmica, é tudo ou nada. Não há uma maneira de levar metade de um item. </p>
+<p class="calibre1">Porém este caso é facilmente resolvido por meio do uso de um algoritmo guloso! Primeiro, pegue o quanto você pode do item mais valioso. Depois que você pegar tudo desse item, pegue o máximo do próximo item mais</p>
+<p class="calibre1"><a id="p266"></a><img src="index-266_1.jpg" alt="Image 397" class="calibre2"/></p>
+<p class="calibre1"><img src="index-266_2.jpg" alt="Image 398" class="calibre2"/></p>
+<p class="calibre1">valioso, e assim por diante. </p>
+<p class="calibre1">Suponha, por exemplo, que você possa escolher entre estes itens: O quilo da quinoa é mais caro do que todo o resto. Sendo assim, pegue o máximo de quinoa que você conseguir carregar! Se sua mochila  car cheia, esta é a melhor opção possível. </p>
+<p class="calibre1">Se pegar toda a quinoa e ainda tiver espaço em sua mochila, pegue o próximo item mais valioso, e assim por diante. </p>
+<p class="calibre1"><a id="p267"></a><img src="index-267_1.jpg" alt="Image 399" class="calibre2"/></p>
+<p class="calibre1"><img src="index-267_2.jpg" alt="Image 400" class="calibre2"/></p>
+<p class="calibre1">Otimizando o seu itinerário de viagem</p>
+<p class="calibre1">Imagine que você esteja indo a Londres para passar férias. Você tem dois dias para  car por lá, mas deseja ver muitas coisas. Porém não é possível fazer tudo, então você organiza uma lista. </p>
+<p class="calibre1">Este é o problema da mochila se repetindo! No entanto, em vez de uma mochila, agora você tem tempo limitado e, em vez de rádios e notebooks, existe uma lista de lugares que você quer visitar. Faça a tabela de programação dinâmica para esta lista antes de prosseguir. </p>
+<p class="calibre1">Ela deve  car assim:</p>
+<p class="calibre1">Você acertou? Agora preencha a lista. Quais lugares você visitará? Aqui está a resposta:</p>
+<p class="calibre1"><a id="p268"></a><img src="index-268_1.jpg" alt="Image 401" class="calibre2"/></p>
+<p class="calibre1"><img src="index-268_2.jpg" alt="Image 402" class="calibre2"/></p>
+<p class="calibre1">Lidando com itens com interdependência</p>
+<p class="calibre1">Imagine que você queira ir a Paris e tenha uma lista de coisas que deseja ver. </p>
+<p class="calibre1">Visitar estes lugares demora bastante tempo, pois primeiro você deve viajar de Londres a Paris, o que leva metade de um dia. Se você quiser visitar os três lugares, precisará de quatro dias e meio. </p>
+<p class="calibre1">Mas espere aí, isso não está correto. Você não precisa ir a Paris para visitar cada item, pois, assim que você estiver na cidade, cada item deverá levar apenas um dia. Dessa forma, o cálculo deveria ser um dia por item + meio dia de viagem = 3,5 dias, e não 4,5 dias. </p>
+<p class="calibre1">Portanto, se você colocar a Torre Ei el em sua mochila, o Louvre se tornará mais “barato”, pois custará apenas um dia em vez de custar 1,5 dia (um dia e meio). Como você modela estas situações em programação dinâmica? </p>
+<p class="calibre1">Não é possível porque a programação dinâmica é uma ferramenta poderosa para resolver subproblemas utilizando estas respostas para resolver um</p>
+<p class="calibre1"><a id="p269"></a><img src="index-269_1.jpg" alt="Image 403" class="calibre2"/></p>
+<p class="calibre1">problema geral. Porém  <i class="calibre3">a programação dinâmica só funciona quando os seus</i> <i class="calibre3">subproblemas são discretos, ou seja, quando eles não são dependentes entre si</i>. </p>
+<p class="calibre1">Visto isso, não há maneira de levar em consideração as viagens a Paris utilizando o algoritmo de programação dinâmica. </p>
+<p class="calibre1">É possível que a solução requeira mais de dois subproblemas? </p>
+<p class="calibre1">É possível que a melhor solução envolva o roubo de mais de dois itens. </p>
+<p class="calibre1">Porém, da maneira como este algoritmo foi con gurado, você está combinando apenas duas mochilas no máximo e, sendo assim, jamais terá mais de duas submochilas. No entanto é possível que as suas submochilas tenham submochilas. </p>
+<p class="calibre1"><a id="p270"></a><img src="index-270_1.jpg" alt="Image 404" class="calibre2"/></p>
+<p class="calibre1">É possível que a melhor solução não utilize a capacidade total da mochila? </p>
+<p class="calibre1">Sim. Imagine que você possa roubar também um diamante. </p>
+<p class="calibre1">Este diamante é enorme, pesa 3,5 quilos e vale milhões de reais, muito mais do que todos os outros itens. Você obviamente deve roubá-lo! Porém ainda há meio quilo de capacidade em sua mochila, mas nada pesa tão pouco. </p>
+<p class="calibre1">EXERCÍCIOS</p>
+<p class="calibre1">9.2 Suponha que você esteja indo acampar e que sua mochila tenha capacidade para 6 quilos. Sendo assim, você pode escolher entre os itens abaixo para levar. Cada item tem um valor, e quanto mais alto este valor, mais importante o item é. </p>
+<p class="calibre1">• Água, 3 kg, 10</p>
+<p class="calibre1">• Livro, 1 kg, 3</p>
+<p class="calibre1"><a id="p271"></a><img src="index-271_1.jpg" alt="Image 405" class="calibre2"/></p>
+<p class="calibre1">• Comida, 2 kg, 9</p>
+<p class="calibre1">• Casaco, 2 kg, 5</p>
+<p class="calibre1">• Câmera, 1 kg, 6</p>
+<p class="calibre1">Qual é o conjunto de itens ideal que deve ser levado para o acampamento? </p>
+<p class="calibre1">Maior substring comum</p>
+<p class="calibre1">Já vimos um problema de programação dinâmica até agora. Quais eram as características que auxiliavam na identi cação deste tipo de problema? </p>
+<p class="calibre1">• A programação dinâmica é útil  <i class="calibre3">quando você está tentando otimizar em</i> <i class="calibre3">relação a um limite</i>. No problema da mochila, era necessário maximizar o valor dos itens roubados, limitados pela capacidade da mochila. </p>
+<p class="calibre1">• Você pode utilizar a programação dinâmica quando o problema puder ser separado em subproblemas discretos que não dependam um do outro. </p>
+<p class="calibre1"><a id="p272"></a><img src="index-272_1.jpg" alt="Image 406" class="calibre2"/></p>
+<p class="calibre1">Pode ser difícil encontrar uma solução com programação dinâmica, e é isso que esta seção focará. Algumas dicas gerais são:</p>
+<p class="calibre1">• Toda solução de programação dinâmica envolve uma tabela. </p>
+<p class="calibre1">• Os valores nas células são, geralmente, o que você está tentando otimizar. </p>
+<p class="calibre1">Para o problema da mochila, os valores nas células eram os valores dos itens. </p>
+<p class="calibre1">• Cada célula é um subproblema, portanto, pense em como você pode dividi-lo em outros subproblemas, pois isso lhe ajudará a descobrir quais são os seus eixos. </p>
+<p class="calibre1">Vamos analisar outro exemplo. Imagine que você seja o dono do <i class="calibre3">dicionario.com</i>. Assim, alguma pessoa digita uma palavra e você retorna a de nição. </p>
+<p class="calibre1">Porém, se alguém digitar uma palavra com algum erro ortográ co, você vai querer que o seu sistema consiga dar um palpite referente à palavra correta</p>
+<p class="calibre1"><a id="p273"></a><img src="index-273_1.jpg" alt="Image 407" class="calibre2"/></p>
+<p class="calibre1">que a pessoa gostaria de ter digitado. Então, Alex está pesquisando a palavra <i class="calibre3">sh </i>(peixe, em inglês), mas ele acabou digitando  <i class="calibre3">hish</i>. Esta palavra não existe em seu dicionário, mas você tem uma lista de palavras semelhantes. </p>
+<p class="calibre1">(Este exemplo é apenas informativo, e você limitará a sua lista a somente duas palavras. Na realidade, esta lista teria milhares de palavras). </p>
+<p class="calibre1">Alex digitou  <i class="calibre3">hish</i>, mas que palavra ele quis digitar:   <i class="calibre3">sh</i> ou  <i class="calibre3">vist<a href="#p282">a</a></i><a href="#p282"> 1</a>? </p>
+<p class="calibre1">Criando a tabela</p>
+<p class="calibre1">Como montamos a tabela deste problema? Você deve responder às seguintes perguntas:</p>
+<p class="calibre1">• O que são os valores das células? </p>
+<p class="calibre1">• Como é possível dividir este problema em subproblemas? </p>
+<p class="calibre1">• O que são os eixos da tabela? </p>
+<p class="calibre1">Em programação dinâmica, tentamos  <i class="calibre3">maximizar </i> algo. Neste caso, estamos tentando encontrar a maior substring comum que duas palavras têm em comum. Assim, qual substring  <i class="calibre3">hish</i> e   <i class="calibre3">sh</i> têm em comum? E  <i class="calibre3">hish</i> e  <i class="calibre3">vista</i>? </p>
+<p class="calibre1">Isto é o que você quer calcular. </p>
+<p class="calibre1">Lembre-se: os valores das células são o que você geralmente está tentando otimizar. Neste caso, os valores serão provavelmente números relativos ao comprimento da maior substring que duas strings têm em comum. </p>
+<p class="calibre1">Como dividimos este problema em subproblemas? Comparando substrings. </p>
+<p class="calibre1">Assim, em vez de comparar  <i class="calibre3">hish</i> e   <i class="calibre3">sh</i>, você compararia  <i class="calibre3">his</i> e   <i class="calibre3">s</i> antes. Cada célula conterá o comprimento da maior substring que duas substrings têm em comum. Isso também dá uma dica sobre os eixos, que provavelmente serão duas palavras. Portanto, a tabela  ca deste jeito:</p>
+<p class="calibre1"><a id="p274"></a><img src="index-274_1.jpg" alt="Image 408" class="calibre2"/></p>
+<p class="calibre1">Se isso parece magia negra, não se preocupe. Este tópico é bem complicado, e é por esta razão que estou ensinando ele nesta altura do livro! Mais adiante, darei um exercício para você praticar programação dinâmica por si mesmo. </p>
+<p class="calibre1">Preenchendo a tabela</p>
+<p class="calibre1">Agora você já tem uma boa ideia de como a tabela deve ser. Qual é a fórmula para preencher cada célula da tabela? Aqui deixo você colar um pouco, visto que já sabemos como a solução deve ser, pois  <i class="calibre3">hish</i> e   <i class="calibre3">sh</i> têm uma substring de comprimento igual a 3 em comum ( <i class="calibre3">ish</i>). </p>
+<p class="calibre1"><a id="p275"></a><img src="index-275_1.jpg" alt="Image 409" class="calibre2"/></p>
+<p class="calibre1">Porém isso ainda não nos diz a fórmula que devemos utilizar. Cientistas da computação muitas vezes fazem piadas sobre a utilização do  <i class="calibre3">algoritmo de</i> <i class="calibre3">Feynman</i>. </p>
+<p class="calibre1">1. Escreva o problema. </p>
+<p class="calibre1">2. Pense muito sobre ele. </p>
+<p class="calibre1">3. Escreva a solução. </p>
+<p class="calibre1">Cientistas da computação são pessoas bem engraçadas! </p>
+<p class="calibre1">Na realidade, não existe uma maneira de calcular a fórmula neste caso. </p>
+<p class="calibre1">Assim, você terá de experimentar e tentar encontrar algo que funcione. Às vezes, algoritmos não são uma receita exata, mas sim uma estrutura na qual você constrói a sua ideia. </p>
+<p class="calibre1">Tente encontrar uma solução para este problema sozinho. Vou dar uma dica: uma parte da tabela deve ser assim:</p>
+<p class="calibre1"><a id="p276"></a><img src="index-276_1.jpg" alt="Image 410" class="calibre2"/></p>
+<p class="calibre1"><img src="index-276_2.jpg" alt="Image 411" class="calibre2"/></p>
+<p class="calibre1">O que são os outros valores? Lembre-se que cada célula é o valor de um <i class="calibre3">subproblema</i>. Por que a célula (3, 3) tem o valor 2? Por que a célula (3, 4) tem o valor 0? </p>
+<p class="calibre1">Continue lendo após tentar descobrir uma fórmula sozinho, pois, mesmo que você não acerte, minha explicação fará mais sentido. </p>
+<p class="calibre1">A solução</p>
+<p class="calibre1">Aqui está a tabela  nal. </p>
+<p class="calibre1">E aqui está a fórmula para preenchimento de cada célula. </p>
+<p class="calibre1"><a id="p277"></a><img src="index-277_1.jpg" alt="Image 412" class="calibre2"/></p>
+<p class="calibre1">A fórmula, em pseudocódigo, é assim:</p>
+<p class="calibre1"><b class="calibre4">if</b> palavra_a[i] == palavra_b[j]: ❶</p>
+<p class="calibre1">celula[i][j] = celula[i-1][j-1] + 1</p>
+<p class="calibre1"><b class="calibre4">else</b>: ❷</p>
+<p class="calibre1">celula[i][j] = 0</p>
+<p class="calibre1">❶ As letras combinam. </p>
+<p class="calibre1">❷ As letras não combinam. </p>
+<p class="calibre1">E aqui está a tabela para  <i class="calibre3">hish vs. vista</i>:</p>
+<p class="calibre1"><a id="p278"></a><img src="index-278_1.jpg" alt="Image 413" class="calibre2"/></p>
+<p class="calibre1">Note que: para este problema, a solução  nal pode não estar na última célula! Para o problema da mochila, a última célula sempre retornaria a solução  nal, mas para a maior substring comum, a solução será o maior número da tabela, que pode não estar na última célula. </p>
+<p class="calibre1">Vamos voltar para a questão original: qual string tem mais em comum com <i class="calibre3">hish</i>? Tanto  <i class="calibre3">hish</i> quanto   <i class="calibre3">sh</i> têm uma substring de três letras em comum. Já <i class="calibre3">hish</i> e  <i class="calibre3">vista</i> têm uma substring de duas letras em comum. </p>
+<p class="calibre1">Alex provavelmente quis digitar   <i class="calibre3">sh</i>. </p>
+<p class="calibre1">Maior subsequência comum</p>
+<p class="calibre1">Suponha que Alex acidentalmente tenha procurado por  <i class="calibre3">fosh</i>. Qual palavra ele quis digitar:   <i class="calibre3">sh</i> ou  <i class="calibre3">fort </i>(forte, em inglês)? </p>
+<p class="calibre1">Vamos compará-las usando a fórmula da maior substring comum. </p>
+<p class="calibre1"><a id="p279"></a><img src="index-279_1.jpg" alt="Image 414" class="calibre2"/></p>
+<p class="calibre1"><img src="index-279_2.jpg" alt="Image 415" class="calibre2"/></p>
+<p class="calibre1"><img src="index-279_3.jpg" alt="Image 416" class="calibre2"/></p>
+<p class="calibre1">Elas são iguais: duas letras! Porém  <i class="calibre3">fosh</i> é mais semelhante a   <i class="calibre3">sh</i>. </p>
+<p class="calibre1">Você está comparando a maior  <i class="calibre3">substring</i> comum, mas neste exemplo deveria comparar a maior  <i class="calibre3">subsequência</i> comum, que é o número de letras em sequência que duas palavras têm em comum. Mas como fazer isso? </p>
+<p class="calibre1">Aqui está a tabela parcial para   <i class="calibre3">sh</i> e  <i class="calibre3">fosh</i>. </p>
+<p class="calibre1">Você consegue descobrir a fórmula para esta tabela? A maior subsequência comum é semelhante a maior substring comum, o que faz com que as suas fórmulas também sejam bem semelhantes. Tente resolver sozinho. Darei a</p>
+<p class="calibre1"><a id="p280"></a><img src="index-280_1.jpg" alt="Image 417" class="calibre2"/></p>
+<p class="calibre1">resposta em seguida. </p>
+<p class="calibre1">Maior subsequência comum – solução</p>
+<p class="calibre1">Aqui está a tabela  nal:</p>
+<p class="calibre1">E aqui está a fórmula para preenchimento de cada célula:</p>
+<p class="calibre1"><a id="p281"></a><img src="index-281_1.jpg" alt="Image 418" class="calibre2"/></p>
+<p class="calibre1">E o pseudocódigo relativo:</p>
+<p class="calibre1"><b class="calibre4">if</b> palavra_a[i] == palavra_b[j]: ❶</p>
+<p class="calibre1">celula[i][j] = celula[i-1][j-1] + 1</p>
+<p class="calibre1"><b class="calibre4">else</b>: ❷</p>
+<p class="calibre1">celula[i][j] = max(celula[i-1][j], celula[i][j-1]) ❶ As letras combinam. </p>
+<p class="calibre1">❷ As letras não combinam. </p>
+<p class="calibre1">Uau, você conseguiu! Este com certeza é um dos capítulos mais complicados do livro. E então, a programação dinâmica realmente é utilizada na prática? </p>
+<p class="calibre1"> <i class="calibre3">Sim</i>:</p>
+<p class="calibre1">• Biólogos utilizam a maior subsequência comum para encontrar similaridades em  tas de DNA, para então dizer o quão semelhante são</p>
+<p class="calibre1"><a id="p282"></a>dois animais ou duas doenças. A maior subsequência comum está sendo usada para encontrar a cura para a esclerose múltipla. </p>
+<p class="calibre1">• Você já utilizou o comando di  (como git diff)? Di  informa a diferença entre dois arquivos usando programação dinâmica para isso. </p>
+<p class="calibre1">• Falamos sobre similaridade entre strings. A  <i class="calibre3">distância Levenshtein</i> mede o quão similar são duas strings usando também a programação dinâmica. A distância Levenshtein é utilizada tanto para simples corretores ortográ cos quanto para descobrir se um usuário está fazendo upload de dados com direitos autorais associados. </p>
+<p class="calibre1">• Você já usou algum aplicativo que faz quebras de linhas, como o Microso  Word, por exemplo? Como o so ware sabe onde quebrar a linha para que o comprimento de todas as linhas permaneça igual? </p>
+<p class="calibre1">Programação dinâmica! </p>
+<p class="calibre1">EXERCÍCIOS</p>
+<p class="calibre1">9.3 Desenhe e preencha uma tabela para calcular a maior substring comum entre  <i class="calibre3">blue</i> (azul, em inglês) e  <i class="calibre3">clues </i>(pistas, em inglês). </p>
+<p class="calibre1">Recapitulando</p>
+<p class="calibre1">• A programação dinâmica é útil quando você está tentando otimizar algo em relação a um limite. </p>
+<p class="calibre1">• Você pode utilizar a programação dinâmica quando o problema puder ser dividido em subproblemas discretos. </p>
+<p class="calibre1">• Todas as soluções em programação dinâmica envolvem uma tabela. </p>
+<p class="calibre1">• Os valores nas células são, geralmente, o que você está tentando otimizar. </p>
+<p class="calibre1">• Cada célula é um subproblema, então pense sobre como é possível dividir este subproblema em outros subproblemas. </p>
+<p class="calibre1">• Não existe uma fórmula única para calcular uma solução em programação dinâmica. </p>
+<p class="calibre1"><a href="#p273">1</a> N. T.: Essas são as palavras originais em inglês, escolhidas pelo autor. Por motivos de lógica das  guras e códigos que você verá a seguir, foram mantido os termos originais. </p>
+<p class="calibre1"><a id="p283"></a><img class="calibre2" src="index-283_1.jpg" alt="Image 419"/></p>
+<p class="calibre1">10</p>
+<p class="calibre1">K-vizinhos mais próximos</p>
+<p class="calibre1"></p>
+<p class="calibre1">Neste capítulo</p>
+<p class="calibre1">• Você aprenderá como construir um sistema de classi cação utilizando o algoritmo dos k-vizinhos mais próximos. </p>
+<p class="calibre1">• Você conhecerá a extração de características. </p>
+<p class="calibre1">• Conhecerá a regressão: como prever um número, como estará o valor da bolsa de valores amanhã ou quanto um usuário gostará de</p>
+<p class="calibre1"><a id="p284"></a><img src="index-284_1.jpg" alt="Image 420" class="calibre2"/></p>
+<p class="calibre1">um  lme. </p>
+<p class="calibre1">• Você vai aprender a reconhecer em que casos deverá usar o algoritmo dos k-vizinhos mais próximos e também as suas limitações. </p>
+<p class="calibre1"></p>
+<p class="calibre1">Classi cando laranja versus toranjas</p>
+<p class="calibre1">Olhe para esta fruta: ela é uma laranja ou uma toranja? Bem, eu sei que toranjas geralmente são maiores e mais avermelhadas. </p>
+<p class="calibre1">Minha linha de pensamento é esta: tenho um grá co na minha mente. </p>
+<p class="calibre1"><a id="p285"></a><img src="index-285_1.jpg" alt="Image 421" class="calibre2"/></p>
+<p class="calibre1"><img src="index-285_2.jpg" alt="Image 422" class="calibre2"/></p>
+<p class="calibre1">Falando de maneira geral, frutas maiores e mais avermelhadas são toranjas, e como essa fruta é bem grande e vermelha, ela provavelmente é uma toranja. Mas e se tivéssemos uma fruta parecida com esta? </p>
+<p class="calibre1">Como você  <i class="calibre3">classi caria</i> essa fruta? Uma maneira de fazer isso é observar os</p>
+<p class="calibre1"><a id="p286"></a><img src="index-286_1.jpg" alt="Image 423" class="calibre2"/></p>
+<p class="calibre1"><img src="index-286_2.jpg" alt="Image 424" class="calibre2"/></p>
+<p class="calibre1">vizinhos dela. Dê uma olhada nos três vizinhos mais próximos. </p>
+<p class="calibre1">A maioria dos vizinhos é composta de laranjas, e não de toranjas. Logo, essa fruta provavelmente é uma laranja. Parabéns! Você acabou de usar o algoritmo dos  <i class="calibre3">k-vizinhos mais próximos</i> para fazer uma  <i class="calibre3">classi cação</i>! O</p>
+<p class="calibre1">algoritmo é bem simples. </p>
+<p class="calibre1">Mesmo que ele seja simples, este algoritmo é muito útil! Se você estiver tentando classi car alguma coisa, talvez seja uma boa ideia tentar usá-lo primeiro. Vamos olhar mais alguns exemplos práticos. </p>
+<p class="calibre1">Criando um sistema de recomendações</p>
+<p class="calibre1">Suponha que você seja o dono do Net ix e queira criar um sistema de</p>
+<p class="calibre1"><a id="p287"></a><img src="index-287_1.jpg" alt="Image 425" class="calibre2"/></p>
+<p class="calibre1"><img src="index-287_2.jpg" alt="Image 426" class="calibre2"/></p>
+<p class="calibre1">recomendações de  lmes para os seus usuários. De certa forma, este problema é semelhante ao problema das toranjas! </p>
+<p class="calibre1">Pode-se criar um grá co com todos os usuários. </p>
+<p class="calibre1">Esses usuários são agrupados por similaridades, ou seja, usuários com gostos similares são colocados próximos uns dos outros. Imagine agora que você queira recomendar  lmes para Priyanka. Para isso, encontre os cinco usuários mais próximos dela. </p>
+<p class="calibre1">Justin, JC, Joey, Lance e Chris têm gostos similares para  lmes. Logo, qualquer  lme que  <i class="calibre3">eles</i> gostem Priyanka provavelmente gostará! </p>
+<p class="calibre1">Feito este grá co, será fácil criar o sistema de recomendações. Se Justin gostou de um  lme, recomende este  lme para Priyanka. </p>
+<p class="calibre1"><a id="p288"></a><img src="index-288_1.jpg" alt="Image 427" class="calibre2"/></p>
+<p class="calibre1"><img src="index-288_2.jpg" alt="Image 428" class="calibre2"/></p>
+<p class="calibre1">Mas ainda está faltando uma parte importante: você agrupa os usuários por similaridade, mas como faz para descobrir o quão semelhante dois usuários são? </p>
+<p class="calibre1">Extração de características</p>
+<p class="calibre1">No exemplo da toranja, compararam-se as frutas baseando-se em seu tamanho e sua cor. Ou seja, o tamanho e a cor são as  <i class="calibre3">características</i> que você está comparando. Agora suponha que você tenha três frutas e que as características de cada uma sejam extraídas. </p>
+<p class="calibre1">Podemos plotar as três frutas. </p>
+<p class="calibre1"><a id="p289"></a><img src="index-289_1.jpg" alt="Image 429" class="calibre2"/></p>
+<p class="calibre1"><img src="index-289_2.jpg" alt="Image 430" class="calibre2"/></p>
+<p class="calibre1"><img src="index-289_3.jpg" alt="Image 431" class="calibre2"/></p>
+<p class="calibre1">Olhando para o grá co é possível identi car visualmente que as frutas A e B</p>
+<p class="calibre1">são similares. Vamos medir o quão próximas elas são. Lembre-se de que para encontrar a distância entre dois pontos utilizamos o teorema de Pitágoras. </p>
+<p class="calibre1">Por exemplo, aqui temos a distância entre A e B:</p>
+<p class="calibre1">A distância entre A e B é 1. Sabendo disso, você também pode encontrar o restante das distâncias. </p>
+<p class="calibre1"><a id="p290"></a><img src="index-290_1.jpg" alt="Image 432" class="calibre2"/></p>
+<p class="calibre1"><img src="index-290_2.jpg" alt="Image 433" class="calibre2"/></p>
+<p class="calibre1">A fórmula da distância con rma o que você observou visualmente: as frutas A e B são semelhantes. </p>
+<p class="calibre1">Agora, suponha que você esteja comparando usuários do Net ix. Para isso é necessário criar o grá co de usuários de alguma maneira e converter cada usuário em um conjunto de coordenadas, assim como  zemos com a fruta. </p>
+<p class="calibre1">Uma vez que os usuários estejam em um grá co, é possível medir a distância entre eles. </p>
+<p class="calibre1">Quando os usuários se registrarem no Net ix, faça-os avaliar algumas categorias de  lmes de acordo com o quanto eles gostam delas. Dessa maneira, será possível converter os usuários em números. Para cada usuário você terá um conjunto de notas! </p>
+<p class="calibre1"><a id="p291"></a><img src="index-291_1.jpg" alt="Image 434" class="calibre2"/></p>
+<p class="calibre1"><img src="index-291_2.jpg" alt="Image 435" class="calibre2"/></p>
+<p class="calibre1"><img src="index-291_3.jpg" alt="Image 436" class="calibre2"/></p>
+<p class="calibre1">Priyanka e Justin gostam de  lmes de romance e odeiam  lmes de terror. Já Morpheus gosta de  lmes de ação, mas odeia  lmes de romance (ele detesta quando um bom  lme de ação é arruinado por uma cena de romance cafona). Você se lembra de como, no exemplo das laranjas versus toranjas, cada fruta era representada por um conjunto de dois números? Aqui, cada usuário é representado por um conjunto de cinco números. </p>
+<p class="calibre1">Um matemático diria que, em vez de calcular a distância em duas dimensões, você agora está calculando a distância em  <i class="calibre3">cinco</i> dimensões, mas a fórmula da distância continua a mesma. </p>
+<p class="calibre1">Porém agora ela envolve um conjunto de cinco números em vez de apenas</p>
+<p class="calibre1"><a id="p292"></a><img src="index-292_1.jpg" alt="Image 437" class="calibre2"/></p>
+<p class="calibre1">dois números. </p>
+<p class="calibre1">A fórmula da distância é  exível: você poderia ter um conjunto de  <i class="calibre3">milhões</i> de números e ainda assim usar a mesma fórmula para encontrar a distância. </p>
+<p class="calibre1">Talvez você esteja pensando “O que a  <i class="calibre3">distância</i> signi ca quando temos cinco números?”. A distância informa a similaridade entre estes conjuntos. </p>
+<p class="calibre1">Aqui temos a distância entre Priyanka e Justin. </p>
+<p class="calibre1">Priyanka e Justin são muito semelhantes, mas qual a diferença entre Priyanka e Morpheus? Calcule a distância antes de seguir adiante. </p>
+<p class="calibre1">Você acertou? Priyanka e Morpheus estão a 24 unidades de distância. Desta forma, a distância mostra que os gostos de Priyanka são mais semelhantes aos de Justin do que aos de Morpheus. </p>
+<p class="calibre1">Ótimo! Agora é fácil recomendar  lmes para Priyanka: se Justin gostar de um  lme, recomende-o a Priyanka e vice-versa. Você acabou de construir um sistema de recomendações de  lmes! </p>
+<p class="calibre1">Se você é um usuário do Net ix, sabe que às vezes ele mostra mensagens como “Por favor, avalie seus  lmes. Quanto mais  lmes avaliar, melhores serão as suas recomendações.”. Agora você entende o motivo. Quanto mais lmes avaliar, maior será a precisão do Net ix ao calcular o quão similar você e outros usuários são. </p>
+<p class="calibre1">EXERCÍCIOS</p>
+<p class="calibre1">10.1 No exemplo do Net ix, calculou-se a distância entre dois usuários diferentes utilizando a fórmula da distância, mas nem todos os usuários avaliam  lmes da mesma maneira. Suponha que você tenha dois</p>
+<p class="calibre1"><a id="p293"></a><img src="index-293_1.jpg" alt="Image 438" class="calibre2"/></p>
+<p class="calibre1">usuários, Yogi e Pinky, os quais têm gostos similares. No entanto Yogi avalia qualquer  lme que ele goste com 5, enquanto Pinky é mais seletivo e reserva o 5 somente para os melhores  lmes. Eles têm gostos bem similares, mas, de acordo com o algoritmo da distância, eles não são vizinhos. Como você poderia levar em conta o sistema de avaliação diferente deles? </p>
+<p class="calibre1">10.2 Suponha que o Net ix nomeie um grupo de “in uenciadores”. Por exemplo, Quentin Tarantino e Wes Anderson são in uenciadores no Net ix, portanto as avaliações deles contam mais do que as de um usuário comum. Como você poderia modi car o sistema de recomendações de forma que as avaliações dos in uenciadores tenham um peso maior? </p>
+<p class="calibre1">Regressão</p>
+<p class="calibre1">Imagine que você queira fazer mais do que apenas recomendar  lmes: você deseja adivinhar como Priyanka avaliará determinado  lme. Pegue as cinco pessoas mais próximas dela. </p>
+<p class="calibre1">Aliás,  co falando sobre as cinco pessoas mais próximas, mas não há nada de especial no número 5; você poderia utilizar as duas, dez ou 10 mil pessoas mais próximas. É por isso que o algoritmo é chamado de “k-vizinhos mais próximos” e não “cinco vizinhos mais próximos”! </p>
+<p class="calibre1"><a id="p294"></a><img src="index-294_1.jpg" alt="Image 439" class="calibre2"/></p>
+<p class="calibre1">Suponha que esteja tentando adivinhar uma nota para  <i class="calibre3">A Escolha Perfeita</i>. </p>
+<p class="calibre1">Bem, como Justin, JC, Joey, Lance e Chris avaliaram este  lme? </p>
+<p class="calibre1">Seria possível utilizar a média das avaliações deles, que é 4,2 estrelas. Isso é chamado de  <i class="calibre3">regressão</i>. Estas são as duas coisas básicas que você fará com o algoritmo dos k-vizinhos mais próximos: a classi cação e a regressão. </p>
+<p class="calibre1">• Classi cação = classi car em grupos. </p>
+<p class="calibre1">• Regressão = adivinhar uma resposta (como um número). </p>
+<p class="calibre1">A regressão é muito útil. Por exemplo, suponha que você administre uma pequena padaria em Berkeley e nela você produza pão fresco diariamente, mas esteja tentando prever quantos pães deve fazer por dia. Existe um conjunto de características sobre este problema:</p>
+<p class="calibre1"><a id="p295"></a><img src="index-295_1.jpg" alt="Image 440" class="calibre2"/></p>
+<p class="calibre1">• O clima em uma escala de 1 a 5 (1 = ruim, 5 = ótimo). </p>
+<p class="calibre1">• Fim de semana ou feriado? (1 se for um  m de semana ou feriado; 0, caso contrário). </p>
+<p class="calibre1">• Há um jogo nesse dia? (1 caso tenha; 0, caso contrário). </p>
+<p class="calibre1">Além disso, você sabe quantos pães vendeu anteriormente para cada conjunto diferente de características. </p>
+<p class="calibre1"><a id="p296"></a><img src="index-296_1.jpg" alt="Image 441" class="calibre2"/></p>
+<p class="calibre1"><img src="index-296_2.jpg" alt="Image 442" class="calibre2"/></p>
+<p class="calibre1"><img src="index-296_3.jpg" alt="Image 443" class="calibre2"/></p>
+<p class="calibre1">Hoje é um  m de semana de clima bom. Assim, baseado nos dados que você observou há pouco, quantos pães venderá? Utilizaremos o algoritmo dos k-vizinhos mais próximos, em que K = 4. Para isso, primeiro descubra os quatro pontos mais próximos desse ponto. </p>
+<p class="calibre1">Aqui temos as distâncias, onde é possível observar que os pontos A, B, D e E</p>
+<p class="calibre1">são os mais próximos. </p>
+<p class="calibre1">Faça uma média do número de pães vendidos nesses dias: 218,75. Esse é o número de pães que você deveria fazer hoje! </p>
+<p class="calibre1">Similaridade de cosseno</p>
+<p class="calibre1">Até o momento, você tem usado a fórmula da distância para comparar a distância entre dois usuários. Será que essa é a melhor fórmula a ser utilizada? Uma fórmula bastante usada na prática é a  <i class="calibre3">similaridade de cosseno</i>. Suponha que dois usuários sejam similares, mas um deles</p>
+<p class="calibre1"><a id="p297"></a><img src="index-297_1.jpg" alt="Image 444" class="calibre2"/></p>
+<p class="calibre1">seja  mais  conservativo  em  suas  avaliações.  Os  dois  adoraram   <i class="calibre3">Amar  Akbar  Anthony</i>,  de Manmohan Desai. Paul deu 5 estrelas, mas Rowan deu apenas 4 estrelas. Assim, caso você continue  usando  a  fórmula  da  distância,  esses  dois  usuários  podem  acabar  não  sendo vizinhos, mesmo tendo um gosto similar. </p>
+<p class="calibre1">A similaridade de cosseno não mede a distância entre dois vetores, em vez disso, compara o ângulo entre dois vetores. Sendo assim, ela lida melhor com os casos apresentados até então. </p>
+<p class="calibre1">A similaridade de cosseno está fora do escopo deste livro, mas pesquise sobre ela caso utilize o algoritmo dos k-vizinhos mais próximos! </p>
+<p class="calibre1">Escolhendo boas características</p>
+<p class="calibre1">Para recomendar  lmes, você solicitou aos usuários uma avaliação sobre as categorias de  lmes de que eles gostavam. E se, em vez disso, solicitasse aos usuários uma avaliação baseada em imagens de gatos? Dessa forma, seria possível encontrar usuários que avaliaram as  guras de maneira similar. </p>
+<p class="calibre1">Porém este provavelmente seria o pior sistema de recomendações de  lmes, pois as “características” não têm relação alguma com  lmes! </p>
+<p class="calibre1"><a id="p298"></a>Imagine agora que você peça aos usuários uma avaliação sobre alguns lmes, de forma que seja possível recomendar outros baseados nas respostas fornecidas. Porém nesta avaliação as únicas opções são  <i class="calibre3">Toy Story</i>,  <i class="calibre3">Toy Story</i> <i class="calibre3">2</i>, e  <i class="calibre3">Toy Story 3</i>. Ela não dirá muito sobre o gênero de  lme que os usuários preferem! </p>
+<p class="calibre1">Ao trabalhar com o algoritmo dos k-vizinhos mais próximos, é muito importante escolher as características certas a serem comparadas, que são:</p>
+<p class="calibre1">• Características diretamente correlacionadas aos  lmes que você está tentando recomendar. </p>
+<p class="calibre1">• Características imparciais (se as únicas opções fornecidas aos usuários forem  lmes de comédia, esta avaliação não fornecerá nenhuma informação útil sobre o gosto dos usuários em relação a  lmes de ação, por exemplo). </p>
+<p class="calibre1">Você acha que notas são uma boa maneira de recomendar  lmes? Talvez eu tenha dado uma nota maior a   <i class="calibre3">e Wire</i> do que a  <i class="calibre3">House Hunters</i>, mesmo que na realidade tenha passado mais tempo assistindo a  <i class="calibre3">House Hunters</i>. Como você melhoraria esse sistema de recomendações do Net ix? </p>
+<p class="calibre1">Voltando ao exemplo da padaria: você consegue imaginar duas características boas e também duas características ruins que poderiam ter sido escolhidas neste exemplo? Talvez seja necessário fazer mais pães depois de anunciar sua padaria no jornal, ou talvez você tenha de fazer mais pães nas segundas-feiras. </p>
+<p class="calibre1">Quando o assunto é escolher boas características, não existe apenas uma resposta correta, pois é preciso pensar sobre todos os diferentes aspectos que devem ser considerados. </p>
+<p class="calibre1">EXERCÍCIO</p>
+<p class="calibre1">10.3 O Net ix tem milhões de usuários, e no exemplo anterior consideraram-se os cinco vizinhos mais próximos ao criar o sistema de recomendações. Esse número é baixo demais? Ou talvez alto demais? </p>
+<p class="calibre1"><a id="p299"></a><img src="index-299_1.jpg" alt="Image 445" class="calibre2"/></p>
+<p class="calibre1">Introdução ao aprendizado de máquina</p>
+<p class="calibre1">O algoritmo dos k-vizinhos mais próximos é muito útil e é a sua introdução ao mundo mágico do aprendizado de máquina! O aprendizado de máquina é uma maneira de fazer com que o seu computador  que mais inteligente. </p>
+<p class="calibre1">Você já viu um exemplo de aprendizado de máquina ao criar um sistema de recomendações. Vamos olhar mais alguns exemplos. </p>
+<p class="calibre1">OCR</p>
+<p class="calibre1">O OCR é um acrônimo para  <i class="calibre3">optical character recognition </i>(reconhecimento óptico de caracteres). Com o OCR é possível fotografar um texto fazendo com que o seu computador leia este texto a partir da imagem. A Google, por exemplo, utiliza o OCR na digitalização de livros. Mas como essa tecnologia funciona? Por exemplo, considere o número abaixo:</p>
+<p class="calibre1"><a id="p300"></a><img src="index-300_1.jpg" alt="Image 446" class="calibre2"/></p>
+<p class="calibre1"><img src="index-300_2.jpg" alt="Image 447" class="calibre2"/></p>
+<p class="calibre1">Como você poderia reconhecer este número de forma automática? Podemos utilizar os k-vizinhos mais próximos nesta tarefa da seguinte maneira: 1. Percorra diversas imagens de números e extraia as características de cada um deles. </p>
+<p class="calibre1">2. Quando obtiver uma nova imagem, extraia as características dessa imagem e veja quais são os vizinhos mais próximos! </p>
+<p class="calibre1">Este é um problema semelhante ao das laranjas versus toranjas. De um modo geral, algoritmos OCR medem linhas, pontos e curvas. </p>
+<p class="calibre1">Portanto, quando você recebe um novo caractere, é possível extrair as suas características. </p>
+<p class="calibre1">A extração de características é muito mais complicada quando falamos em OCR do que quando falamos em frutas, mas é importante entender que até mesmo tecnologias complexas são criadas a partir de ideias simples como os k-vizinhos mais próximos. Além disso, esta mesma lógica poderia ser utilizada no reconhecimento de fala ou para o reconhecimento facial. Já reparou que quando você posta uma foto no Facebook, às vezes, ele é esperto o su ciente para marcar as pessoas presentes na foto automaticamente? Isso é aprendizado de máquina em ação! </p>
+<p class="calibre1">A primeira etapa do OCR, onde você percorre todas as imagens de números e extrai as características, é chamada de  <i class="calibre3">treinamento</i>. A maioria dos algoritmos de aprendizado de máquina tem uma etapa de treinamento, pois antes de fazer com que o seu computador execute uma tarefa ele deve ser</p>
+<p class="calibre1"><a id="p301"></a><img src="index-301_1.jpg" alt="Image 448" class="calibre2"/></p>
+<p class="calibre1">treinado. O próximo exemplo envolve  ltros de spam e ele tem uma etapa de treinamento. </p>
+<p class="calibre1">Criando um  ltro de spam</p>
+<p class="calibre1">Os  ltros de spam utilizam outro algoritmo simples chamado de classi cador Naive Bayes. Assim, primeiro treinamos o  <i class="calibre3">classi cador Naive</i> <i class="calibre3">Bayes </i> com alguns dados. </p>
+<p class="calibre1">Suponha que você tenha recebido um e-mail com o assunto “Você ganhou dez milhões de reais!”. Isto é um spam? Você pode dividir essa frase em palavras e veri car, para cada palavra, qual a probabilidade de ela aparecer em e-mails que sejam spam. Nesse simples modelo, por exemplo, a palavra <i class="calibre3">milhões</i> só aparece em e-mails que são spam. O Naive Bayes descobre qual a probabilidade de algo ser um spam se suas aplicações forem similares às dos k-vizinhos mais próximos. </p>
+<p class="calibre1">Você poderia também utilizar o Naive Bayes para classi car frutas: você tem uma fruta que é grande e vermelha, qual a probabilidade de ela ser uma toranja? Este é outro algoritmo simples que é razoavelmente efetivo. Nós amamos esses algoritmos! </p>
+<p class="calibre1"><a id="p302"></a><img src="index-302_1.jpg" alt="Image 449" class="calibre2"/></p>
+<p class="calibre1">Prevendo a bolsa de valores</p>
+<p class="calibre1">Este é um exemplo de uma tarefa complexa e de difícil realização com aprendizado de máquina: prever se as ações da bolsa de valores vão subir ou descer. Como extraímos boas características da bolsa de valores? Imagine que você tenha estipulado que se as ações subiram ontem, elas subirão hoje. </p>
+<p class="calibre1">Isso é uma boa característica? Ou suponha que você tenha determinado que as ações cairão em maio. Isso funcionará? Não existe uma maneira garantida de utilizar valores anteriores para prever o futuro. Prever o futuro é difícil e praticamente impossível quando há tantas variáveis envolvidas. </p>
+<p class="calibre1">Recapitulando</p>
+<p class="calibre1">Espero que este capítulo tenha fornecido uma boa ideia sobre todas as diferentes aplicações que você pode criar utilizando os k-vizinhos mais próximos e o aprendizado de máquina! O aprendizado de máquina é uma área interessante na qual é possível se aprofundar muito, caso seja de seu interesse. </p>
+<p class="calibre1">• O algoritmo dos k-vizinhos mais próximos é utilizado na classi cação e também na regressão. Ele envolve observar os K-vizinhos mais próximos. </p>
+<p class="calibre1">• Classi cação = classi car em grupos. </p>
+<p class="calibre1">• Regressão = adivinhar uma resposta (como um número). </p>
+<p class="calibre1">• Extrair características signi ca converter um item (como uma fruta ou um usuário) em uma lista de números que podem ser comparados. </p>
+<p class="calibre1"><a id="p303"></a>• Escolher boas características é uma parte importante para que um algoritmo dos k-vizinhos mais próximos opere corretamente. </p>
+<p class="calibre1"><a id="p304"></a><img class="calibre2" src="index-304_1.jpg" alt="Image 450"/></p>
+<p class="calibre1">11</p>
+<p class="calibre1">Próximos passos</p>
+<p class="calibre1"></p>
+<p class="calibre1">Neste capítulo</p>
+<p class="calibre1">• Você verá um breve resumo dos dez algoritmos que não foram cobertos neste livro e uma explicação sobre suas utilizações. </p>
+<p class="calibre1">• Você receberá dicas sobre o que ler, conforme seus interesses. </p>
+<p class="calibre1"><a id="p305"></a><img src="index-305_1.jpg" alt="Image 451" class="calibre2"/></p>
+<p class="calibre1">Árvores</p>
+<p class="calibre1">Vamos voltar ao exemplo da pesquisa binária. Quando um usuário acessa o Facebook, o Facebook precisa pesquisar, em um longo array, se este nome de usuário realmente existe. Como comentado anteriormente, a maneira mais rápida de realizar uma pesquisa em um array é por meio da execução de uma pesquisa binária. Porém há um problema: cada vez que um novo usuário for criado, será necessário inserir o seu nome de usuário no array, sendo preciso reordená-lo, pois a pesquisa binária funciona apenas em arrays ordenados. Não seria bom se fosse possível inserir o novo nome de usuário diretamente no slot correto do array sem que fosse necessário reordená-lo? Esta é a ideia da estrutura de dados  <i class="calibre3">árvore binária de busca</i>. </p>
+<p class="calibre1">Uma árvore binária de busca se parece com isto:</p>
+<p class="calibre1"><a id="p306"></a><img src="index-306_1.jpg" alt="Image 452" class="calibre2"/></p>
+<p class="calibre1"><img src="index-306_2.jpg" alt="Image 453" class="calibre2"/></p>
+<p class="calibre1"><img src="index-306_3.jpg" alt="Image 454" class="calibre2"/></p>
+<p class="calibre1">Separando um nó como exemplo, temos que os nós à esquerda dele têm valores  <i class="calibre3">menores</i>, enquanto os nós à direita dele têm valores  <i class="calibre3">maiores</i>. </p>
+<p class="calibre1">Suponha que você esteja procurando Maggie. Para isso, a pesquisa será iniciada pelo nó-raiz. </p>
+<p class="calibre1"> <i class="calibre3">Maggie</i> vem depois de  <i class="calibre3">David</i>, então devemos ir para a direita. </p>
+<p class="calibre1"><a id="p307"></a><img src="index-307_1.jpg" alt="Image 455" class="calibre2"/></p>
+<p class="calibre1"><img src="index-307_2.jpg" alt="Image 456" class="calibre2"/></p>
+<p class="calibre1"><img src="index-307_3.jpg" alt="Image 457" class="calibre2"/></p>
+<p class="calibre1"> <i class="calibre3">Maggie</i> vem antes de  <i class="calibre3">Manning</i>, então devemos ir para a esquerda. </p>
+<p class="calibre1">Encontramos a Maggie! Esta prática é muito semelhante a executar uma pesquisa binária! A procura por um elemento em uma pesquisa binária tem tempo de execução O(log  <i class="calibre3">n</i>),  <i class="calibre3">em média</i>, e O( <i class="calibre3">n</i>) no  <i class="calibre3">pior caso</i>. A procura em arrays ordenados tem tempo de execução O(log  <i class="calibre3">n</i>) no  <i class="calibre3">pior caso</i>, o que pode passar a impressão que um array ordenado é mais e ciente. Porém a árvore binária de busca é muito mais rápida para inserções e remoções, em média. </p>
+<p class="calibre1"><a id="p308"></a><img src="index-308_1.jpg" alt="Image 458" class="calibre2"/></p>
+<p class="calibre1">Entretanto a árvore binária de busca tem algumas desvantagens: não é possível utilizar acesso aleatório. Isso faz com que seja impossível dizer, por exemplo, “Me dê o quinto elemento desta árvore”. Além disso, o bom desempenho relacionado ao tempo de execução não acontece em todos os casos, mas sim em uma  <i class="calibre3">média</i>, e este tempo de execução é fortemente dependente da necessidade de a árvore ser balanceada. Imagine que você tenha uma árvore desbalanceada, como a mostrada a seguir. </p>
+<p class="calibre1">Você percebe como ela está pendendo para a direita? Esta árvore não apresenta um bom desempenho, pois não está balanceada. Existem árvores binárias de busca especiais que se balanceiam automaticamente. Um exemplo desta árvore é a árvore vermelho-preto (também conhecidas como árvore rubro-negra). </p>
+<p class="calibre1">Então, quando utilizamos as árvores binárias de busca? As  <i class="calibre3">Árvores B</i>, um tipo especial de árvore binária, são comumente usadas para armazenar dados em bancos de dados. </p>
+<p class="calibre1">Se você se interessa por bancos de dados ou estruturas de dados mais avançadas, leia sobre os seguintes itens:</p>
+<p class="calibre1">• árvores B</p>
+<p class="calibre1"><a id="p309"></a><img src="index-309_1.jpg" alt="Image 459" class="calibre2"/></p>
+<p class="calibre1"><img src="index-309_2.jpg" alt="Image 460" class="calibre2"/></p>
+<p class="calibre1">• árvores rubro-negra (red-black tree)</p>
+<p class="calibre1">• heaps</p>
+<p class="calibre1">• árvores splay (árvores espalhadas)</p>
+<p class="calibre1">Índices invertidos</p>
+<p class="calibre1">A seguir, pode-se observar uma versão simpli cada de como uma ferramenta de busca funciona. Imagine que você tenha três páginas da web com conteúdo simples. </p>
+<p class="calibre1">Vamos construir uma tabela hash a partir deste conteúdo. </p>
+<p class="calibre1">As chaves da tabela hash são as palavras e os valores informam em qual página cada palavra aparece. Agora, considere que um usuário procura a palavra  <i class="calibre3">oi</i>. Vamos ver em quais páginas esta palavra aparece. </p>
+<p class="calibre1"><a id="p310"></a><img src="index-310_1.jpg" alt="Image 461" class="calibre2"/></p>
+<p class="calibre1">Ahá! Ela aparece nas páginas A e B. Assim, vamos mostrar ao usuário estas páginas como resultado de sua pesquisa. Suponha agora que o usuário pesquisou a palavra  <i class="calibre3">lá</i>. Bom, você sabe que esta palavra aparece na página A e na página C. Fácil, não? Esta é uma estrutura de dados muito útil: uma hash que mapeia palavras para lugares onde elas aparecem. Esta estrutura de dados é chamada de  <i class="calibre3">índice invertido</i> e é muito usada na construção de ferramentas de busca. Se você se interessa por ferramentas de busca, este é um lugar para começar. </p>
+<p class="calibre1">A transformada de Fourier</p>
+<p class="calibre1">A transformada de Fourier é um dos raros algoritmos que conseguem ser brilhantes, elegantes e ter milhares de formas de utilização. A melhor analogia para explicar a transformada de Fourier vem do Better Explained (um ótimo website que explica matemática de forma simples): dado um smoothie (uma espécie de suco de frutas batidas) qualquer, a transformada de Fourier informará os ingredientes do smoothi<a href="#p324">e1. </a> Em outras palavras, dada uma música, a transformada a separará em frequências individuais. </p>
+<p class="calibre1">Assim, veri ca-se que esta simples ideia tem uma ampla utilização. Um exemplo disso é baseado na ideia de que se você consegue separar uma música em frequências individuais, é possível aumentar uma frequência especí ca desejada. Assim, é possível aumentar os graves de uma música e diminuir seus agudos. A transformada de Fourier é uma ótima ferramenta para o processamento de sinais. Além disso, ela pode ser utilizada na compressão de músicas. Para isto, primeiro a música é separada em suas notas individuais. Então, a transformada de Fourier informa o quanto exatamente cada nota contribui para a música como um todo. Sabendo disso é possível eliminar notas que não são importantes para a música. Este é o modo de funcionamento do formato MP3! </p>
+<p class="calibre1"><a id="p311"></a>No entanto a música não é o único tipo de sinal digital. O formato JPG é outro formato comprimido que funciona da mesma maneira. A transformada de Fourier também é usada para tentar prever terremotos e analisar DNA. </p>
+<p class="calibre1">Você pode usá-la para desenvolver um aplicativo como o Shazam, que identi ca qual música está tocando. A transformada de Fourier tem diversas nalidades, e são altas as chances de você se deparar com ela. </p>
+<p class="calibre1">Algoritmos paralelos</p>
+<p class="calibre1">Os próximos três tópicos tratam de escalabilidade e da manipulação de uma grande quantidade de dados. Antigamente, computadores se tornavam cada vez mais rápidos. Assim, se você queria que o seu algoritmo fosse mais rápido, era necessário apenas aguardar alguns meses e os computadores se tornariam mais velozes. Porém atualmente estamos próximos do  m deste período. Em vez disso, notebooks e computadores fornecem diversos núcleos de processamento. Para que o seu algoritmo se torne mais rápido, é necessário fazer com que ele seja executado paralelamente, em todos os núcleos de uma só vez! </p>
+<p class="calibre1">Vamos analisar um exemplo simples. O melhor desempenho possível para um algoritmo de ordenação é aproximadamente O( <i class="calibre3">n</i> log  <i class="calibre3">n</i>). Sabemos também que não é possível ordenar um array em tempo de execução O( <i class="calibre3">n</i>),  <i class="calibre3">a</i> <i class="calibre3">menos que seja utilizado um algoritmo paralelo</i>! Há uma versão paralela do quicksort que consegue ordenar um array com tempo de execução O( <i class="calibre3">n</i>). </p>
+<p class="calibre1">Algoritmos paralelos são difíceis de projetar, além de ser difícil fazer com que funcionem corretamente e também estimar o incremento de velocidade que fornecerão. Então, se você tem dois núcleos no seu notebook em vez de somente um, isso quase nunca signi ca que seu algoritmo será duas vezes mais rápido. Existem alguns motivos para isso:</p>
+<p class="calibre1">•  <i class="calibre3">Gerenciamento do paralelismo</i> – Imagine que você deva ordenar um array de 1.000 itens. Como você divide esta tarefa entre dois núcleos? Você fornece 500 itens para cada núcleo ordenar e então une ambos os arrays ordenados em um grande array? Unir os arrays leva tempo. </p>
+<p class="calibre1">•  <i class="calibre3">Balanceamento de carga</i> – Suponha que você tenha dez tarefas que devam ser executadas e, portanto, cada núcleo receba cinco tarefas. Porém o</p>
+<p class="calibre1"><a id="p312"></a>núcleo A recebe todas as tarefas simples e as  naliza em dez segundos, enquanto o núcleo B recebe todas as tarefas complexas e leva um minuto. </p>
+<p class="calibre1">Ou seja, o núcleo A  cou parado durante cinquenta segundos enquanto o núcleo B esteve fazendo todo o trabalho duro! </p>
+<p class="calibre1">Se você se interessa pelo aspecto teórico do desempenho e da escalabilidade, dê uma olhada em algoritmos paralelos! </p>
+<p class="calibre1">MapReduce</p>
+<p class="calibre1">Existe um tipo especial de algoritmo paralelo que está se tornando muito popular: o  <i class="calibre3">algoritmo distribuído</i>. Não há problema em executar um algoritmo paralelo no seu notebook caso você necessite de dois a quatro núcleos, mas o que acontecerá se você precisar de centenas de núcleos? </p>
+<p class="calibre1">Nestas situações, é possível escrever o seu algoritmo para ser executado por diversas máquinas. O algoritmo MapReduce é um algoritmo distribuído popular que pode ser usado no framework livre Apache Hadoop. </p>
+<p class="calibre1">Por que os algoritmos distribuídos são úteis? </p>
+<p class="calibre1">Considere que você tem uma tabela hash com bilhões ou trilhões de linhas e queira executar uma consulta SQL complexa nesta tabela. Não será possível executar isto no MySQL, pois existem problemas quando o número de linhas chega aos bilhões. Sendo assim, utilize o MapReduce por intermédio do Hadoop! </p>
+<p class="calibre1">Imagine agora que você deve processar uma longa lista de tarefas, em que cada tarefa leva dez segundos para ser processada, e você precisa processar 1</p>
+<p class="calibre1">milhão de tarefas como essa. Se você tentar fazer isso em apenas uma máquina, levará meses! Assim, uma opção seria executá-las em diversas máquinas,  nalizando o processamento em alguns dias. </p>
+<p class="calibre1">Algoritmos distribuídos são ótimos quando você tem muito trabalho a ser feito e quer diminuir o tempo necessário. O MapReduce, em particular, é baseado em duas ideias simples: a função map (mapa) e a função reduce (reduzir). </p>
+<p class="calibre1">Função map</p>
+<p class="calibre1">A função map é muito simples: ela pega um array e aplica a mesma função</p>
+<p class="calibre1"><a id="p313"></a><img src="index-313_1.jpg" alt="Image 462" class="calibre2"/></p>
+<p class="calibre1">para cada item no array. Por exemplo, abaixo estamos dobrando todos os itens do array:</p>
+<p class="calibre1">&gt;&gt;&gt; arr1 = [1, 2, 3, 4, 5]</p>
+<p class="calibre1">&gt;&gt;&gt; arr2 = map(lambda x: 2 * x, arr1)</p>
+<p class="calibre1">[2, 4, 6, 8, 10]</p>
+<p class="calibre1">O arr2 contém [2, 4, 6, 8, 10] – cada elemento do arr1 foi dobrado! </p>
+<p class="calibre1">Dobrar um elemento é uma tarefa bem rápida, mas imagine que você esteja utilizando uma função que precisa de mais tempo para ser processada. </p>
+<p class="calibre1">Observe este pseudocódigo:</p>
+<p class="calibre1">&gt;&gt;&gt; arr1 = # uma lista de URLs</p>
+<p class="calibre1">&gt;&gt;&gt; arr2 = map(download_page, arr1)</p>
+<p class="calibre1">Temos uma lista de URLs e você deseja baixar cada página e armazenar o seu conteúdo no in arr2. Isto poderia levar alguns segundos para cada URL. </p>
+<p class="calibre1">Se você tiver 1.000 URLs, isto levará algumas horas! </p>
+<p class="calibre1">Não seria ótimo ter cem máquinas, sabendo que a função map poderia dividir automaticamente as tarefas entre todas elas? Desta forma você estaria baixando cem páginas ao mesmo tempo e o trabalho estaria acabado muito antes! Esta é a ideia por trás da função “map” do MapReduce. </p>
+<p class="calibre1">Função reduce</p>
+<p class="calibre1">A função reduce confunde as pessoas algumas vezes, pois a ideia central desta função é “reduzir” uma lista inteira para apenas um item. Com a função map você vai de um array para outro. </p>
+<p class="calibre1"><a id="p314"></a><img src="index-314_1.jpg" alt="Image 463" class="calibre2"/></p>
+<p class="calibre1"><img src="index-314_2.jpg" alt="Image 464" class="calibre2"/></p>
+<p class="calibre1">Com a função reduce, você transforma um array em um simples item. </p>
+<p class="calibre1">Aqui está um exemplo:</p>
+<p class="calibre1">&gt;&gt;&gt; arr1 = [1, 2, 3, 4, 5]</p>
+<p class="calibre1">&gt;&gt;&gt; reduce(lambda x,y: x+y, arr1)</p>
+<p class="calibre1">15</p>
+<p class="calibre1">Neste exemplo você soma todos os elementos do array: 1 + 2 + 3 + 4 +</p>
+<p class="calibre1">5 = 15! Não explicarei a função reduce em mais detalhes, pois existem diversos tutoriais online. </p>
+<p class="calibre1">O MapReduce usa dois conceitos simples para executar consultas de dados em diversas máquinas. Quando você tiver um grande conjunto de dados (bilhões de linhas), o MapReduce poderá fornecer uma resposta em minutos, enquanto um banco de dados tradicional pode levar horas. </p>
+<p class="calibre1">Filtro de Bloom e HyperLogLog</p>
+<p class="calibre1">Imagine que você está no comando do Reddit. Quando alguém posta um link, você quer ver se ele já não foi postado antes, pois histórias que não foram postadas antes são consideradas mais valiosas. Assim, é preciso descobrir se este link já foi postado antes ou não. </p>
+<p class="calibre1">Considere que você é a Google e que esteja rastreando páginas da web. Você</p>
+<p class="calibre1"><a id="p315"></a><img src="index-315_1.jpg" alt="Image 465" class="calibre2"/></p>
+<p class="calibre1"><img src="index-315_2.jpg" alt="Image 466" class="calibre2"/></p>
+<p class="calibre1">deseja apenas rastrear uma página da web caso ela não tenha sido rastreada antes. Assim, é preciso encontrar uma maneira de saber se esta página já foi rastreada ou não. </p>
+<p class="calibre1">Considere este outro exemplo, em que você está no comando do bit.ly, um encurtador de URLs. Você não quer redirecionar os usuários para sites maliciosos. Você tem um conjunto de URLs que são consideradas maliciosas. Agora, é preciso descobrir uma maneira de saber se você está redirecionando o usuário para uma URL daquele conjunto. </p>
+<p class="calibre1">Todos estes exemplos são baseados no mesmo problema: você tem um conjunto muito grande. </p>
+<p class="calibre1">Agora, você tem um novo item e quer conferir se este item pertence ao conjunto. Isso poderia ser feito rapidamente com uma hash. Por exemplo, imagine que a Google tem uma hash enorme em que as chaves são todas as páginas da web que já foram rastreadas. </p>
+<p class="calibre1">Você quer conferir se adit.io já foi rastreada. </p>
+<p class="calibre1"><a id="p316"></a><img src="index-316_1.jpg" alt="Image 467" class="calibre2"/></p>
+<p class="calibre1">adit.io é uma chave da hash, então você já rastreou este site. O tempo médio de busca para uma tabela hash é O(1). adit.io está na hash, então este site já foi rastreado. Você o encontrou em tempo constante. Muito bom! </p>
+<p class="calibre1">Acontece que esta hash precisa ser  <i class="calibre3">enorme</i>. A Google indexa trilhões de páginas da web, por isso, se esta hash contiver todas as URLs indexadas, ocupará muito espaço. O Reddit e o bit.ly têm o mesmo problema de espaço. </p>
+<p class="calibre1">Quando se lida com tantos dados, é preciso ser criativo! </p>
+<p class="calibre1">Filtros de Bloom</p>
+<p class="calibre1">Os  ltros de Bloom oferecem uma solução. Eles são  <i class="calibre3">estruturas de dados</i> <i class="calibre3">probabilísticas</i> que fornecem uma resposta que pode estar errada, mas que provavelmente estará correta. Em vez de perguntar a uma hash, é possível perguntar a um  ltro de bloom se a URL já foi rastreada antes. Uma tabela hash forneceria um resultado exato, mas um  ltro de bloom fornecerá um resultado que provavelmente estará correto:</p>
+<p class="calibre1">• Falsos positivos são possíveis. A Google poderá dizer “Você já rastreou este site”, mesmo que isso não seja verdade. </p>
+<p class="calibre1">• Falsos negativos não são possíveis. Caso o  ltro de bloom diga “Você ainda não rastreou este site”, então você  <i class="calibre3">de nitivamente</i> não o rastreou. </p>
+<p class="calibre1">Os  ltros de bloom são ótimos porque eles usam pouco espaço. Uma tabela hash teria de armazenar cada URL rastreada pela Google, enquanto um ltro de bloom não precisa. Eles são ótimos pois você não precisa de uma resposta exata em todos os exemplos fornecidos. O bit.ly pode dizer “Nós achamos que este site é malicioso, então tenha cuidado”. </p>
+<p class="calibre1">HyperLogLog</p>
+<p class="calibre1">No mesmo estilo, há outro algoritmo, chamado HyperLogLog. Imagine que a Google deseja contabilizar o número de pesquisas  <i class="calibre3">únicas</i> realizadas por seus usuários, ou suponha que a Amazon queira contar o número de itens únicos que os usuários olharam em um dia. Responder a estas questões requer bastante espaço! Com a Google, seria necessário manter um registro</p>
+<p class="calibre1"><a id="p317"></a><img src="index-317_1.jpg" alt="Image 468" class="calibre2"/></p>
+<p class="calibre1"><img src="index-317_2.jpg" alt="Image 469" class="calibre2"/></p>
+<p class="calibre1"><img src="index-317_3.jpg" alt="Image 470" class="calibre2"/></p>
+<p class="calibre1">de todas as pesquisas únicas. Quando um usuário pesquisasse algo, seria preciso checar se esta pesquisa já se encontrava no registro. Caso contrário, ela seria adicionada ao registro. Mesmo para um único dia este registro seria massivo! </p>
+<p class="calibre1">O HyperLogLog aproxima o número de elementos únicos em um conjunto. </p>
+<p class="calibre1">Assim como o  ltro de bloom, ele não fornecerá uma resposta exata, mas se aproximará muito desta, usando apenas uma fração da memória de que a tarefa necessitaria se fosse implementada da maneira tradicional. </p>
+<p class="calibre1">Se você tem muitos dados e  ca satisfeito com uma resposta aproximada, dê uma olhada nos algoritmos probabilísticos! </p>
+<p class="calibre1">Algoritmos SHA</p>
+<p class="calibre1">Você se lembra da técnica de hashing, do Capítulo 5? Apenas para recapitular, suponha que você tenha uma chave e queira colocar o valor associado em um array. </p>
+<p class="calibre1">Você usa a função hash para informá-lo sobre o espaço no qual o valor deve ser inserido</p>
+<p class="calibre1">E você coloca o valor naquele espaço. </p>
+<p class="calibre1">Isso permite que você pesquise o array em tempo constante. Quando você quiser saber o valor de uma chave, poderá utilizar a função hash novamente, e ela retornará o resultado em tempo de execução O(1). </p>
+<p class="calibre1"><a id="p318"></a><img src="index-318_1.jpg" alt="Image 471" class="calibre2"/></p>
+<p class="calibre1"><img src="index-318_2.jpg" alt="Image 472" class="calibre2"/></p>
+<p class="calibre1">Neste caso, você deseja que a função hash retorne uma boa distribuição. </p>
+<p class="calibre1">Assim, a função hash recebe uma string e retorna o número do slot para esta string. </p>
+<p class="calibre1">Comparando arquivos</p>
+<p class="calibre1">Outra função hash é uma função de algoritmo de hash seguro (do inglês Secure Hash Algorithm – SHA). Dada uma string, o SHA retorna uma hash para esta string. </p>
+<p class="calibre1">A terminologia pode parecer um pouco confusa neste ponto. O SHA é uma <i class="calibre3">função hash</i>. Ele gera um  <i class="calibre3">hash</i>, que é apenas uma string curta. A função hash faz a ligação entre string e índice de arrays, enquanto o SHA faz a ligação entre string e string. </p>
+<p class="calibre1">A função SHA gera uma string diferente para cada string de entrada. </p>
+<p class="calibre1">Nota</p>
+<p class="calibre1">Strings SHA são mais longas, mas elas foram cortadas aqui. </p>
+<p class="calibre1">Você pode utilizar o SHA para veri car se dois arquivos são iguais. Isso é útil quando você tem arquivos muito grandes. Suponha que você tenha um arquivo de 4 GB e queira checar se o seu amigo tem este mesmo arquivo. </p>
+<p class="calibre1">Você não precisará tentar enviar este arquivo por e-mail. Em vez disso, vocês dois podem calcular a hash SHA e compará-la. </p>
+<p class="calibre1"><a id="p319"></a><img src="index-319_1.jpg" alt="Image 473" class="calibre2"/></p>
+<p class="calibre1"><img src="index-319_2.jpg" alt="Image 474" class="calibre2"/></p>
+<p class="calibre1"><img src="index-319_3.jpg" alt="Image 475" class="calibre2"/></p>
+<p class="calibre1">Veri cando senhas</p>
+<p class="calibre1">O SHA é útil também quando você quer comparar string sem revelar a string original. Por exemplo, imagine que o Gmail foi hackeado e o atacante roubou todas as senhas! O seu password está por aí, para qualquer um ver? </p>
+<p class="calibre1">Não, ele não está. A Google não armazena a senha original, mas apenas a hash SHA da senha! Quando você digita a sua senha, a Google veri ca a hash do que você digitou e a compara com o que está no banco de dados. </p>
+<p class="calibre1">Assim, a comparação é feita apenas entre as hashes e a sua senha não precisa ser armazenada! O SHA é utilizado amplamente para criar hash de senhas, como neste caso. Ele funciona como uma hash de apenas uma direção onde você pode gerar uma hash a partir de uma string. </p>
+<p class="calibre1"><a id="p320"></a><img src="index-320_1.jpg" alt="Image 476" class="calibre2"/></p>
+<p class="calibre1"><img src="index-320_2.jpg" alt="Image 477" class="calibre2"/></p>
+<p class="calibre1"><img src="index-320_3.jpg" alt="Image 478" class="calibre2"/></p>
+<p class="calibre1">No entanto não é possível descobrir a string original a partir da hash. </p>
+<p class="calibre1">Isso signi ca que, caso um hacker consiga todas as hashes SHA do Gmail, ele não conseguirá convertê-las para a forma das senhas originas! Ou seja, você pode converter uma senha em uma hash, mas não consegue fazer o processo inverso. </p>
+<p class="calibre1">Os algoritmos SHA são, na verdade, uma família de algoritmos: SHA-0, SHA-1, SHA-2 e SHA-3. No período em que este livro foi escrito, SHA-0 e SHA-1 tinham algumas fraquezas. Caso você esteja utilizando SHA em algum algoritmo para criar hash de senhas, use SHA-2 ou SHA-3. A melhor escolha para hash de senhas, atualmente, é bcrypt (porém nada é à prova de balas). </p>
+<p class="calibre1">Hash sensitivo local</p>
+<p class="calibre1">O algoritmo SHA tem outra característica importante: ele é localmente insensitivo. Imagine que você tenha uma string e que você calcule uma hash para ela. </p>
+<p class="calibre1">Se você modi car apenas um caractere e recalcular a hash, ela será totalmente diferente! </p>
+<p class="calibre1">Isto é bom porque não será possível comparar as hashes para veri car se a senha está perto de ser quebrada. </p>
+<p class="calibre1">Porém às vezes você quer o contrário: uma função hash localmente sensitiva. É aí que a  <i class="calibre3">Simhash</i> entra. Caso você faça uma pequena mudança na string, a Simhash criará uma hash que é levemente diferente. Isto permite que você compare ambas as hashes geradas para veri car o quão</p>
+<p class="calibre1"><a id="p321"></a>semelhantes elas são, o que é muito útil! </p>
+<p class="calibre1">• A Google utiliza Simhash para detectar duplicatas enquanto rastreia a web. </p>
+<p class="calibre1">• Um professor poderia utilizar Simhash para veri car se um estudante copiou um trabalho da internet. </p>
+<p class="calibre1">• O Scribd permite que os usuários façam upload de documentos e livros para compartilhar com outros. Porém o Scribd não deseja que usuários façam upload de material com direitos autorais. Assim, o site poderia utilizar Simhash para veri car se o upload é semelhante a um dos livros do Harry Potter, por exemplo, e o rejeitar automaticamente caso fosse. </p>
+<p class="calibre1">O Simhash é útil quando você quer veri car itens similares. </p>
+<p class="calibre1">Troca de chaves de Di e-Hel man</p>
+<p class="calibre1">A troca de chaves do  <i class="calibre3">algoritmo de Di e-Hel man</i> merece uma menção, pois ela resolve um problema muito antigo de uma maneira elegante. Como você encriptaria uma mensagem para que ela pudesse ser lida apenas pelo destinatário? </p>
+<p class="calibre1">A maneira mais simples de fazer isto é por intermédio de um código secreto, como por exemplo a = 1, b = 2 e assim por diante. Então, se eu lhe enviasse a mensagem “15,12,1”, você poderia traduzi-la para “o,l,a”. Porém, para que isso funcione, nós dois devemos concordar no código secreto utilizado. Não podemos concordar via e-mail, visto que alguém pode hackear o seu e-mail, descobrir a cifra e decodi car nossas mensagens. Mesmo que o encontro seja feito pessoalmente, alguém ainda pode descobrir a cifra, pois ela não é complicada. Assim, devemos mudá-la diariamente. Porém teremos que nos encontrar diariamente para modi cá-la todos os dias! </p>
+<p class="calibre1">E mesmo que conseguíssemos modi cá-la diariamente, uma cifra tão simples quanto essa é facilmente quebrável com ataques de força bruta. </p>
+<p class="calibre1">Considere que eu enviei a mensagem “9,6,13,13,16 24,16,19,13,5”. Vou chutar que a cifra utilizada seja a = 1, b = 2, e assim por diante. </p>
+<p class="calibre1"><a id="p322"></a><img src="index-322_1.jpg" alt="Image 479" class="calibre2"/></p>
+<p class="calibre1"><img src="index-322_2.jpg" alt="Image 480" class="calibre2"/></p>
+<p class="calibre1">Isso não faz sentido. Vamos tentar com a = 2, b = 3, e por assim diante. </p>
+<p class="calibre1">Funcionou! Uma cifra tão simples quanto essa é fácil de ser quebrada. Os alemães utilizaram cifras muito mais complexas na Segunda Guerra Mundial, mas, mesmo assim, elas foram quebradas. A troca de chaves Di e-Hel man resolve ambos os problemas:</p>
+<p class="calibre1">• Ambas as partes não precisam saber da cifra. Assim, não precisamos nos encontrar para combinar que cifra utilizar. </p>
+<p class="calibre1">• As mensagens encriptadas são  <i class="calibre3">extremamente</i> difíceis de ser decodi cadas. </p>
+<p class="calibre1">A troca de chaves Di e-Hel man contém duas chaves: uma chave pública e uma chave privada. A chave pública é exatamente isto: pública. Você pode divulgá-la no seu website, enviar por e-mail para amigos ou fazer o que você quiser com ela, pois não é necessário escondê-la. Quando alguém quiser enviar uma mensagem, ele a encripta usando a chave pública. Uma mensagem encriptada pode ser decodi cada apenas com a utilização de uma chave privada. Assim, enquanto você for a única pessoa com a chave privada, somente você será capaz de decodi car as mensagens! </p>
+<p class="calibre1">O algoritmo de Di e-Hel man ainda é usado na prática, em conjunto com o seu sucessor, o RSA. Se você se interessar por criptogra a, o algoritmo de Di e-Hel man é um lugar para começar: ele é elegante e não muito complexo de seguir. </p>
+<p class="calibre1"><a id="p323"></a>Programação linear</p>
+<p class="calibre1">Guardei o melhor para o  nal. Programação linear é uma das coisas mais legais que conheço. </p>
+<p class="calibre1">A programação linear é usada para maximizar algo em relação a um limite. </p>
+<p class="calibre1">Por exemplo, suponha que sua companhia faz dois produtos: camisetas e bolsas. Camisetas precisam de 1 metro de tecido e cinco botões, enquanto bolsas precisam de 2 metros de tecido e dois botões. Você tem 11 metros de tecido e vinte botões. O seu lucro é de R$ 2 por camiseta e de R$ 3 por bolsa. </p>
+<p class="calibre1">Quantas camisetas e bolsas você deve fabricar para maximizar o seu lucro? </p>
+<p class="calibre1">Neste exemplo você está tentando maximizar o lucro, enquanto seus limites são a quantidade de material disponível. </p>
+<p class="calibre1">Outro exemplo: você é um político e quer maximizar o total de votos que receberá. A sua pesquisa informou que leva em torno de uma hora de trabalho (marketing, pesquisa e assim por diante) para conseguir o voto de um morador de San Francisco, enquanto levam 1,5 hora para conseguir o voto de um morador de Chicago. Você precisa de, pelo menos, 500</p>
+<p class="calibre1">moradores de San Francisco e de 300 moradores de Chicago e, para isto, você tem 50 dias. O custo para conseguir o voto de um morador de San Francisco é de R$ 2, enquanto para um morador de Chicago é de R$ 1. O</p>
+<p class="calibre1">seu orçamento total é R$ 1.500. Qual é o número de votos máximo que pode conseguir (San Francisco + Chicago)? </p>
+<p class="calibre1">Aqui você está tentando maximizar votos, considerando como limites o tempo e o dinheiro. </p>
+<p class="calibre1">Você pode estar pensando “Você falou sobre vários tópicos de otimização neste livro. Qual é a relação deles com a programação linear?”. Todos os algoritmos de grafos podem ser feitos por meio de programação linear. A programação linear é um framework muito mais geral, enquanto o problema de grafos é apenas um subconjunto dela. Espero que a sua mente tenha explodido com esta revelação! </p>
+<p class="calibre1">A programação linear utiliza o algoritmo Simplex, que é um algoritmo complexo. Por este motivo não o incluí neste livro. Se você se interessa por otimização, dê uma olhada em programação linear! </p>
+<p class="calibre1"><a id="p324"></a>Epílogo</p>
+<p class="calibre1">Espero que este breve passeio pelos dez algoritmos tenha mostrado como ainda temos coisas para descobrir. Acredito que a melhor maneira de aprender é encontrar algo do seu interesse e então mergulhar de cabeça, pois este livro forneceu uma fundação sólida para fazer exatamente isso. </p>
+<p class="calibre1"><a href="#p310">1</a> Kalid, “An Interactive Guide to the Fourier Transform”, Better Explained, <i class="calibre3">http://mng.bx/874X</i>. </p>
+<p class="calibre1"><a id="p325"></a><img class="calibre2" src="index-325_1.jpg" alt="Image 481"/></p>
+<p class="calibre1">Respostas dos exercícios</p>
+<p class="calibre1">CAPÍTULO 1</p>
+<p class="calibre1">1.1 Suponha que você tenha uma lista com 128 nomes e esteja fazendo uma pesquisa binária. Qual é o número máximo de etapas pelas quais você passaria para encontrar o nome desejado? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: 7. </p>
+<p class="calibre1">1.2 Suponha que você duplique o tamanho da lista. Qual é o número máximo de etapas agora? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: 8. </p>
+<p class="calibre1">1.3 Você tem um nome e deseja encontrar o número de telefone para esse nome em uma agenda telefônica. </p>
+<p class="calibre1"><a id="p326"></a><img src="index-326_1.jpg" alt="Image 482" class="calibre2"/></p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O(log  <i class="calibre3">n</i>). </p>
+<p class="calibre1">1.4 Você tem um número de telefone e deseja encontrar o dono dele em uma agenda telefônica. (Dica: Você tem de procurar pela agenda inteira!) <i class="calibre3">Resposta</i>: O( <i class="calibre3">n</i>). </p>
+<p class="calibre1">1.5 Você deseja ler o número de cada pessoa da agenda telefônica. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O( <i class="calibre3">n</i>). </p>
+<p class="calibre1">1.6 Você deseja ler os números apenas dos nomes que começam com  <i class="calibre3">A</i>. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O( <i class="calibre3">n</i>). Você pode pensar: “Só estou fazendo isso para 1 dentre 26</p>
+<p class="calibre1">caracteres, portanto o tempo de execução deve ser O( <i class="calibre3">n</i>/26).” Uma regra simples é a de ignorar números que são somados, subtraídos, multiplicados ou divididos. Nenhum desses são tempos de execução Big O: O( <i class="calibre3">n</i> + 26), O( <i class="calibre3">n</i> - 26), O( <i class="calibre3">n</i> * 26), O( <i class="calibre3">n</i> / 26). Eles são todos o mesmo que O( <i class="calibre3">n</i>)! Por quê? Se você está com dúvidas, vá para “Notação Big O</p>
+<p class="calibre1">revisada”, no Capítulo 4, e leia a parte sobre constantes na notação Big O</p>
+<p class="calibre1">(uma constante é apenas um número; 26 era a constante desta questão). </p>
+<p class="calibre1">CAPÍTULO 2</p>
+<p class="calibre1">2.1 Suponha que você esteja criando um aplicativo para acompanhar as suas nanças. </p>
+<p class="calibre1">Todos os dias você escreve tudo o que gastou e onde. No  nal do mês, você revisa os seus gastos e resume o quanto gastou. Logo, você tem um monte de inserções e poucas leituras. Você deve usar um array ou uma lista para implementar este aplicativo? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Neste caso, você está adicionando despesas na lista todos os dias e lendo todas as despesas uma vez por mês. Arrays têm leitura rápida, mas inserção lenta. Listas encadeadas têm leituras lentas e rápidas inserções. </p>
+<p class="calibre1">Como você inserirá mais vezes do que lerá, faz mais sentido usar uma</p>
+<p class="calibre1"><a id="p327"></a><img src="index-327_1.jpg" alt="Image 483" class="calibre2"/></p>
+<p class="calibre1">lista encadeada. Além disso, listas encadeadas têm leitura lenta somente quando você acessa elementos aleatórios da lista. Como estará lendo <i class="calibre3">todos</i> os elementos da lista, a lista encadeada terá também uma boa velocidade de  <i class="calibre3">leitura</i>. Portanto, uma lista encadeada é uma boa solução para este problema. </p>
+<p class="calibre1">2.2 Suponha que você esteja criando um aplicativo para anotar os pedidos dos clientes em um restaurante. Seu aplicativo precisa de uma lista de pedidos. Os garçons adicionam os pedidos a essa lista e os chefes retiram os pedidos da lista. Funciona como uma  la. Os garçons colocam os pedidos no  nal da  la e os chefes retiram os pedidos do começo dela para cozinhá-los. </p>
+<p class="calibre1">Você utilizaria um array ou lista encadeada para implementar essa lista? </p>
+<p class="calibre1">(Dica: Listas encadeadas são boas para inserções/eliminações e arrays são bons para acesso aleatório. O que vai fazer nesse caso?) <i class="calibre3">Resposta</i>: Uma lista encadeada. Muitas inserções estão ocorrendo (garçons adicionando ordens), sendo essa uma das vantagens da lista encadeada. </p>
+<p class="calibre1">Você não precisa pesquisar ou ter acesso aleatório (nisso os arrays são bons), pois o chef sempre pega a primeira ordem da  la. </p>
+<p class="calibre1">2.3 Vamos analisar um experimento. Imagine que o Facebook guarde uma lista de usuários. Quando alguém tenta acessar o Facebook, uma busca é feita pelo nome de usuário. Se o nome da pessoa está na lista, ela pode continuar o acesso. As pessoas acessam o Facebook com muita frequência, então existem muitas buscas nessa lista. Presuma que o Facebook use a pesquisa binária para procurar um nome na lista. A pesquisa binária precisa de acesso aleatório – você precisa ser capaz de</p>
+<p class="calibre1"><a id="p328"></a>acessar o meio da lista de nomes instantaneamente. Sabendo disso, você implementaria essa lista como um array ou uma lista encadeada? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Um array ordenado. Arrays fornecem acesso aleatório, então você pode pegar um elemento do meio do array instantaneamente. Isso não é possível com listas encadeadas. Para acessar o elemento central de uma lista encadeada, você deve iniciar com o primeiro elemento e seguir por todos os links até o elemento central. </p>
+<p class="calibre1">2.4 As pessoas se inscrevem no Facebook com muita frequência também. </p>
+<p class="calibre1">Suponha que você decida usar um array para armazenar a lista de usuários. Quais as desvantagens de um array em relação às inserções? Em particular, imagine que você esteja usando a pesquisa binária para buscar os logins. O que acontece quando você adiciona novos usuários em um array? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Inserções em arrays são lentas. Além disso, se você estiver utilizando a pesquisa binária para procurar os nomes de usuário, o array precisará estar ordenado. Suponha que alguém chamado Adit B se registre no Facebook. O nome dele será inserido no  nal do array. Assim, você precisa ordenar o array cada vez que um nome for inserido! </p>
+<p class="calibre1">2.5 Na verdade, o Facebook não usa nem arrays nem listas encadeadas para armazenar informações. Vamos considerar uma estrutura de dados híbrida: um array de listas encadeadas. Você tem um array com 26 slots. </p>
+<p class="calibre1">Cada slot aponta para uma lista encadeada. Por exemplo, o primeiro slot do array aponta para uma lista encadeada que contém todos os usuários que começam com a letra A. O segundo slot aponta para a lista encadeada que contém todos os usuários que começam com a letra B, e assim por diante. </p>
+<p class="calibre1"><a id="p329"></a><img src="index-329_1.jpg" alt="Image 484" class="calibre2"/></p>
+<p class="calibre1">Suponha que o Adit B se inscreva no Facebook e você queira adicioná-lo à lista. Você vai ao slot 1 do array, a seguir para a lista encadeada do slot 1, e adiciona Adit B no  nal. Agora, suponha que você queira procurar o Zakhir H. Você vai ao slot 26, que aponta para a lista encadeada de todos os nomes começados em Z. Então, procura a lista até encontrar o Zakhir H. </p>
+<p class="calibre1">Compare esta estrutura híbrida com arrays e listas encadeadas. É mais lento ou mais rápido fazer inserções e eliminações nesse caso? Você não precisa responder dando o tempo de execução Big(O), apenas diga se a nova estrutura de dados é mais rápida ou mais lenta do que os arrays e as listas encadeadas. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Para buscas – mais lenta do que arrays, mais rápida do que listas encadeadas. Para inserções – mais rápida do que arrays, mesmo tempo que as listas encadeadas. Portanto é mais lenta para buscas que os arrays, porém mais rápida ou igual às listas encadeadas para tudo. Falaremos sobre outra estrutura de dados híbridos chamada tabela hash depois. Isto deve dar uma ideia sobre como é possível construir estruturas de dados mais complexas a partir das estruturas mais simples. </p>
+<p class="calibre1">Então, o que o Facebook realmente utiliza? Provavelmente uma dúzia de diferentes bancos de dados com diferentes estruturas por trás deles, como tabelas hash, árvores B e outras. Os arrays e as listas encadeadas são os blocos fundamentais para estruturas de dados mais complexas. </p>
+<p class="calibre1">CAPÍTULO 3</p>
+<p class="calibre1">3.1 Suponha que eu forneça uma pilha de chamada como esta:</p>
+<p class="calibre1"><a id="p330"></a><img src="index-330_1.jpg" alt="Image 485" class="calibre2"/></p>
+<p class="calibre1">Quais informações você pode retirar baseando-se apenas nesta pilha de chamada? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Aqui estão algumas coisas que você poderia me dizer:</p>
+<p class="calibre1">• A função sauda é chamada primeiro, com nome = maggie. </p>
+<p class="calibre1">• Então a função sauda chama sauda2, com nome = maggie. </p>
+<p class="calibre1">• Neste ponto, a função greet está em um estado incompleto e suspenso. </p>
+<p class="calibre1">• A atual função de chamada é a função sauda2. </p>
+<p class="calibre1">• Após esta função de chamada ser  nalizada, a função sauda será retomada. </p>
+<p class="calibre1">3.2 Suponha que você acidentalmente escreva uma função recursiva que que executando in nitamente. Como você viu, seu computador aloca memória na pilha para cada chamada de função. O que acontece com a pilha quando a função recursiva  ca executando in nitamente? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: A pilha cresce eternamente. Cada programa tem uma limitada quantidade de espaço na pilha de chamada. Quando o seu programa  ca sem espaço (o que eventualmente acontece), ele é  nalizado com um erro de over ow (estouro) da pilha. </p>
+<p class="calibre1">CAPÍTULO 4</p>
+<p class="calibre1">4.1 Escreva o código para a função sum, vista anteriormente. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>:</p>
+<p class="calibre1"><b class="calibre4">def</b> soma(lista):</p>
+<p class="calibre1"><b class="calibre4">if</b> lista == []:</p>
+<p class="calibre1"><b class="calibre4">return</b> 0</p>
+<p class="calibre1"><b class="calibre4">return</b> lista[0] + soma(lista[1:])</p>
+<p class="calibre1"><a id="p331"></a>4.2 Escreva uma função recursiva que conte o número de itens em uma lista. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>:</p>
+<p class="calibre1"><b class="calibre4">def</b> conta(lista):</p>
+<p class="calibre1"><b class="calibre4">if</b> lista == []:</p>
+<p class="calibre1"><b class="calibre4">return</b> 0</p>
+<p class="calibre1"><b class="calibre4">return</b> 1 + conta(lista[1:])</p>
+<p class="calibre1">4.3 Encontre o valor mais alto em uma lista. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>:</p>
+<p class="calibre1"><b class="calibre4">def</b> maximo(lista):</p>
+<p class="calibre1"><b class="calibre4">if</b> len(lista) == 2:</p>
+<p class="calibre1"><b class="calibre4">return</b> lista[0] if lista[0] &gt; lista[1] else lista[1]</p>
+<p class="calibre1">sub_max = maximo(lista[1:])</p>
+<p class="calibre1"><b class="calibre4">return</b> lista[0] if lista[0] &gt; sub_max else sub_max 4.4 Você se lembra da pesquisa binária do Capítulo 1? Ela também é um algoritmo do tipo dividir para conquistar. Você consegue determinar o caso-base e o caso recursivo para a pesquisa binária? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O caso-base para a pesquisa binária é um array com um item. Se o item que você está procurando combina com o item presente no array, você o encontrou! Caso contrário, ele não está no array. </p>
+<p class="calibre1">No caso recursivo para a pesquisa binária, você divide o array pela metade, joga fora uma metade e executa uma pesquisa binária na outra metade. </p>
+<p class="calibre1">Quanto tempo levaria, em notação Big O, para completar cada uma dessas operações? </p>
+<p class="calibre1">4.5 Imprimir o valor de cada elemento em um array. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O( <i class="calibre3">n</i>)</p>
+<p class="calibre1">4.6 Duplicar o valor de cada elemento em um array. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O( <i class="calibre3">n</i>)</p>
+<p class="calibre1">4.7 Duplicar o valor apenas do primeiro elemento do array. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O(1)</p>
+<p class="calibre1">4.8 Criar uma tabela de multiplicação com todos os elementos do array. </p>
+<p class="calibre1">Assim, caso o seu array seja [2, 3, 7, 8, 10], você primeiro multiplicará cada elemento por 2. Depois, multiplicará cada elemento por 3 e então</p>
+<p class="calibre1"><a id="p332"></a>por 7, e assim por diante. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O( <i class="calibre3">n</i> 2)</p>
+<p class="calibre1">CAPÍTULO 5</p>
+<p class="calibre1">Quais destas funções hash são consistentes? </p>
+<p class="calibre1">5.1 f(x) = 1 ❶</p>
+<p class="calibre1">❶ Retorna “1” para qualquer entrada</p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Consistente. </p>
+<p class="calibre1">5.2 f(x) = rand() ❶</p>
+<p class="calibre1">❶ Retorna um número aleatório a cada execução. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Inconsistente. </p>
+<p class="calibre1">5.3 f(x) = proximo_espaco_vazio() ❶</p>
+<p class="calibre1">❶ Retorna o índice do próximo espaço livre da tabela hash. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Inconsistente. </p>
+<p class="calibre1">5.4 f(x) = len(x) ❶</p>
+<p class="calibre1">❶ Usa o comprimento da string como índice. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Consistente. </p>
+<p class="calibre1">Suponha que tenha estas quatro funções hash que operam com strings: A. Retorne “1” para qualquer entrada. </p>
+<p class="calibre1">B. Utilize o comprimento da string como o índice. </p>
+<p class="calibre1">C. Utilize o primeiro caractere da string como índice. Assim, todas as strings que iniciam com a letra  <i class="calibre3">a</i> são hasheadas juntas e assim por diante. </p>
+<p class="calibre1">D. Mapeie cada letra para um número primo: a = 2, b = 3, c = 5, d = 7, e =</p>
+<p class="calibre1">11 e assim por diante. Para uma string, a função hash é a soma de todos os caracteres-módulo conforme o tamanho da hash. Se o tamanho de sua hash for 10, por exemplo, e a string for “bag”, o índice é (3 + 2 + 17) % 10</p>
+<p class="calibre1">= 22 % 10 = 2. </p>
+<p class="calibre1">Para cada um destes exemplos, qual função hash fornecerá uma boa distribuição? Assuma o tamanho da tabela hash como sendo dez espaços. </p>
+<p class="calibre1"><a id="p333"></a><img src="index-333_1.jpg" alt="Image 486" class="calibre2"/></p>
+<p class="calibre1">5.5 Uma lista telefônica, onde as chaves são os nomes e os valores são os números telefônicos. Os nomes são os seguintes: Esther, Ben, Bob e Dan. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: As funções hash C e D fornecerão uma boa distribuição. </p>
+<p class="calibre1">5.6 Um mapeamento do tamanho de baterias e sua devida potência. Os tamanhos são A, AA, AAA e AAAA. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: As funções hash B e D fornecerão uma boa distribuição. </p>
+<p class="calibre1">5.7 Um mapeamento de títulos de livros e autores. Os títulos são  <i class="calibre3">Maus</i>,  <i class="calibre3">Fun</i> <i class="calibre3">Home</i> e  <i class="calibre3">Watchmen</i>. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: As funções hash B, C e D fornecerão uma boa distribuição. </p>
+<p class="calibre1">CAPÍTULO 6</p>
+<p class="calibre1">Execute o algoritmo de pesquisa em largura em cada um desses grafos para encontrar a solução. </p>
+<p class="calibre1">6.1 Encontre o menor caminho do início ao  m. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O caminho mais curto tem comprimento de 2. </p>
+<p class="calibre1">6.2 Encontre o menor caminho de “jato” até “gato”. </p>
+<p class="calibre1"><a id="p334"></a><img src="index-334_1.jpg" alt="Image 487" class="calibre2"/></p>
+<p class="calibre1"><img src="index-334_2.jpg" alt="Image 488" class="calibre2"/></p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: O caminho mais curto tem comprimento de 2. </p>
+<p class="calibre1">6.3 Esse é um pequeno grafo da minha rotina matinal. </p>
+<p class="calibre1">Para essas três listas, marque se elas são válidas ou inválidas. </p>
+<p class="calibre1"><a id="p335"></a><img src="index-335_1.jpg" alt="Image 489" class="calibre2"/></p>
+<p class="calibre1"><img src="index-335_2.jpg" alt="Image 490" class="calibre2"/></p>
+<p class="calibre1"><img src="index-335_3.jpg" alt="Image 491" class="calibre2"/></p>
+<p class="calibre1"> <i class="calibre3">Respostas</i>: A – Inválida; B – Válida; C – Inválida. </p>
+<p class="calibre1">6.4 Aqui temos um grafo maior. Faça uma lista válida para ele. </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: 1 – Acordar; 2 – Praticar exercício; 3 – Tomar banho; 4 – Escovar os dentes; 5 – Trocar de roupa; 6 – Embrulhar o lanche; 7 – Tomar café da manhã. </p>
+<p class="calibre1">6.5 Quais desses grafos também são árvores? </p>
+<p class="calibre1"> <i class="calibre3">Respostas</i>: A – Árvore; B – Não é uma árvore; C – Árvore. O último exemplo é uma árvore na lateral. Árvores são um subconjunto dos grafos. Assim, </p>
+<p class="calibre1"><a id="p336"></a><img src="index-336_1.jpg" alt="Image 492" class="calibre2"/></p>
+<p class="calibre1">uma árvore sempre será um grafo, mas um grafo pode ou não ser uma árvore. </p>
+<p class="calibre1">CAPÍTULO 7</p>
+<p class="calibre1">7.1 Em cada um desses grafos, qual o peso do caminho mínimo do início ao m? </p>
+<p class="calibre1"> <i class="calibre3">Respostas</i>: A – 8; B – 60; C – Pergunta capciosa. Nenhum caminho mínimo é possível (ciclo do peso negativo). </p>
+<p class="calibre1">CAPÍTULO 8</p>
+<p class="calibre1">8.1 Você trabalha para uma empresa de mobílias e tem de enviar os móveis para todo o país. É necessário encher seu caminhão com caixas, e todas as caixas são de tamanhos diferentes. Você está tentando maximizar o espaço que consegue usar em cada caminhão. Como escolheria as caixas para maximizar o espaço? Proponha uma solução gulosa. Ela lhe dará a</p>
+<p class="calibre1"><a id="p337"></a>solução ideal? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Uma estratégia gulosa seria escolher a maior caixa que cabe no espaço restante, repetindo até que não seja mais possível colocar nenhuma caixa. Não, a solução ideal não será alcançada. </p>
+<p class="calibre1">8.2 Você está viajando para a Europa e tem sete dias para visitar o maior número de lugares. Para cada lugar, você atribui um valor (o quanto deseja ver) e estima quanto tempo demora. Como maximizar o total de pontos (passar por todos os lugares que você realmente quer ver) durante sua estadia? Proponha uma solução gulosa. Ela lhe dará a solução ideal? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Continue escolhendo a atividade com a maior pontuação possível que você ainda consegue fazer com o tempo que sobra. Pare quando não houver mais tempo para nenhuma atividade. Não, isto não lhe dará a solução ideal. </p>
+<p class="calibre1">Para cada um desses algoritmos, diga se ele é um algoritmo guloso ou não. </p>
+<p class="calibre1">8.3 Quicksort</p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Não. </p>
+<p class="calibre1">8.4 Pesquisa em largura</p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Sim. </p>
+<p class="calibre1">8.5 Algoritmo de Dijkstra</p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Sim. </p>
+<p class="calibre1">8.6 Um carteiro precisa entregar correspondências para 20 casas. Ele precisa encontrar a rota mais curta que passe por todas as 20 casas. Esse é um problema NP-completo? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Sim. </p>
+<p class="calibre1">8.7 Encontrar o maior clique em um conjunto de pessoas (um  <i class="calibre3">clique, </i> para este exemplo, é um conjunto de pessoas em que todos se conhecem). Isso é um problema NP-completo? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Sim. </p>
+<p class="calibre1">8.8 Você está fazendo um mapa dos EUA e precisa colorir estados adjacentes com cores diferentes. Para isso, deve encontrar o número mínimo de cores para que não existam dois estados adjacentes com a mesma cor. Isso é um problema NP-completo? </p>
+<p class="calibre1"><a id="p338"></a><img src="index-338_1.jpg" alt="Image 493" class="calibre2"/></p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Sim. </p>
+<p class="calibre1">CAPÍTULO 9</p>
+<p class="calibre1">9.1 Imagine que você consiga roubar outro item: um MP3 player. Ele pesa 1</p>
+<p class="calibre1">quilo e vale R$ 1.000. Você deveria roubá-lo? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Sim. Então serial possível roubar o MP3, o iPhone e o violão, itens estes que valem um total de R$ 4.500. </p>
+<p class="calibre1">9.2 Suponha que você esteja indo acampar e que sua mochila tenha capacidade para 6 quilos. Sendo assim, você pode escolher entre os itens abaixo para levar. Cada item tem um valor, e quanto mais alto este valor, mais importante o item é:</p>
+<p class="calibre1">• Água, 3 kg, 10</p>
+<p class="calibre1">• Livro, 1 kg, 3</p>
+<p class="calibre1">• Comida, 2 kg, 9</p>
+<p class="calibre1">• Casaco, 2 kg, 5</p>
+<p class="calibre1">• Câmera, 1 kg, 6</p>
+<p class="calibre1">Qual é o conjunto de itens ideal que deve ser levado para o acampamento? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Você deveria levar água, comida e a câmera. </p>
+<p class="calibre1">9.3 Desenhe e preencha uma tabela para calcular a maior substring comum entre  <i class="calibre3">blue</i> (azul, em inglês) e  <i class="calibre3">clues </i>(pistas, em inglês). </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>:</p>
+<p class="calibre1">CAPÍTULO 10</p>
+<p class="calibre1"><a id="p339"></a>10.1 No exemplo do Net ix, calculou-se a distância entre dois usuários diferentes utilizando a fórmula da distância, mas nem todos os usuários avaliam  lmes da mesma maneira. Suponha que você tenha dois usuários, Yogi e Pinky, os quais têm gostos similares. Porém Yogi avalia qualquer  lme que ele goste com 5, enquanto Pinky é mais seletivo e reserva o 5 somente para os melhores  lmes. Eles têm gostos bem similares, mas de acordo com o algoritmo da distância, eles não são vizinhos. Como você poderia levar em conta o sistema de avaliação diferente deles? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Você poderia usar algo chamado  <i class="calibre3">normalização</i>. Você observa as avaliações médias para cada pessoa e usa este valor como escala para as avaliações. Por exemplo, deve ter percebido que o valor médio das avaliações de Pinky é 3, enquanto o valor médio de Yogi é 3,5. Portanto você aumenta um pouco as avaliações de Pinky até que a sua média também seja 3,5. Aí então é possível comparar as avaliações na mesma escala. </p>
+<p class="calibre1">10.2 Suponha que o Net ix nomeie um grupo de “in uenciadores”. Por exemplo, Quentin Tarantino e Wes Anderson são in uenciadores no Net ix, portanto as avaliações deles contam mais do que as de um usuário comum. Como você poderia modi car o sistema de recomendações de forma que as avaliações dos in uenciadores tivessem um peso maior? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Você poderia dar maior peso para as avaliações dos in uenciadores usando o algoritmo dos k-vizinhos mais próximos. </p>
+<p class="calibre1">Imagine que você tenha três vizinhos: Joe, Dave e Wes Anderson (um in uenciador). Eles avaliaram  <i class="calibre3">Clube dos Pilantras</i> como 3, 4 e 5, respectivamente. Em vez de calcular a média das avaliações (3 + 4 + 5 / 3</p>
+<p class="calibre1">= 4 estrelas), você poderia dar maior peso para a avaliação de Wes Anderson: 3 + 4 + 5 + 5 + 5 / 5 = 4,4 estrelas. </p>
+<p class="calibre1">10.3 O Net ix tem milhões de usuários, e no exemplo anterior consideraram-se os cinco vizinhos mais próximos ao criar-se o sistema de recomendações. Esse número é baixo demais? Ou alto demais? </p>
+<p class="calibre1"> <i class="calibre3">Resposta</i>: Baixo demais. Se você olhar para menos vizinhos, haverá uma chance maior de que o resultado seja tendencioso. Uma boa regra é a</p>
+<p class="calibre1"><a id="p340"></a>seguinte: se você tem N usuários, deve considerar sqrt( <i class="calibre3">N</i>) vizinhos. </p>
+<p class="calibre1"><a id="p341"></a><img src="index-341_1.jpg" alt="Image 494" class="calibre2"/></p>
+<p class="calibre1"><a id="p342"></a>Estruturas de dados e algoritmos com JavaScript</p>
+<p class="calibre1">Groner, Loiane</p>
+<p class="calibre1">9788575227282</p>
+<p class="calibre1">408 páginas</p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575227282/560ec6fa0050fcb564fefadf34be3b55">Compre agora e leia</a></p>
+<p class="calibre1">Uma estrutura de dados é uma maneira particular de organizar dados em um computador com o intuito de</p>
+<p class="calibre1">usar os recursos de modo eficaz. As estruturas de</p>
+<p class="calibre1">dados e os algoritmos são a base de todas as</p>
+<p class="calibre1">soluções para qualquer problema de programação. </p>
+<p class="calibre1">Com este livro, você aprenderá a escrever códigos</p>
+<p class="calibre1">complexos e eficazes usando os recursos mais</p>
+<p class="calibre1">recentes da ES 2017. O livro Estruturas de dados e algoritmos com JavaScript começa abordando o</p>
+<p class="calibre1">básico sobre JavaScript e apresenta a ECMAScript</p>
+<p class="calibre1">2017, antes de passar gradualmente para as</p>
+<p class="calibre1">estruturas de dados mais importantes, como arrays, filas, pilhas e listas ligadas. Você adquirirá um</p>
+<p class="calibre1">conhecimento profundo sobre como as tabelas hash</p>
+<p class="calibre1">e as estruturas de dados para conjuntos funcionam, assim como de que modo as árvores e os mapas</p>
+<p class="calibre1">hash podem ser usados para buscar arquivos em um</p>
+<p class="calibre1">disco rígido ou para representar um banco de dados. </p>
+<p class="calibre1">Este livro serve como um caminho para você</p>
+<p class="calibre1">mergulhar mais fundo no JavaScript. Você também</p>
+<p class="calibre1"><a id="p343"></a>terá uma melhor compreensão de como e por que os grafos – uma das estruturas de dados mais</p>
+<p class="calibre1">complexas que há – são amplamente usados em</p>
+<p class="calibre1">sistemas de navegação por GPS e em redes sociais. </p>
+<p class="calibre1">Próximo ao final do livro, você descobrirá como todas as teorias apresentadas podem ser aplicadas para</p>
+<p class="calibre1">solucionar problemas do mundo real, trabalhando</p>
+<p class="calibre1">com as próprias redes de computador e com</p>
+<p class="calibre1">pesquisas no Facebook. Você aprenderá a: • declarar, inicializar, adicionar e remover itens de arrays, pilhas e filas; • criar e usar listas ligadas, duplamente ligadas e ligadas circulares; • armazenar elementos únicos em tabelas hash, dicionários e conjuntos; •</p>
+<p class="calibre1">explorar o uso de árvores binárias e árvores binárias de busca; • ordenar estruturas de dados usando</p>
+<p class="calibre1">algoritmos como bubble sort, selection sort, insertion sort, merge sort e quick sort; • pesquisar elementos em estruturas de dados usando ordenação</p>
+<p class="calibre1">sequencial e busca binária</p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575227282/560ec6fa0050fcb564fefadf34be3b55">Compre agora e leia</a></p>
+<p class="calibre1"><a id="p344"></a><img src="index-344_1.jpg" alt="Image 495" class="calibre2"/></p>
+<p class="calibre1"><a id="p345"></a>Padrões para Kubernetes</p>
+<p class="calibre1">Ibryam, Bilgin</p>
+<p class="calibre1">9788575228159</p>
+<p class="calibre1">272 páginas</p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575228159/d6086f378b7324b5f6cf02058e3b0a6d">Compre agora e leia</a></p>
+<p class="calibre1">O modo como os desenvolvedores projetam, </p>
+<p class="calibre1">desenvolvem e executam software mudou</p>
+<p class="calibre1">significativamente com a evolução dos</p>
+<p class="calibre1">microsserviços e dos contêineres. Essas arquiteturas modernas oferecem novas primitivas distribuídas que exigem um conjunto diferente de práticas, distinto daquele com o qual muitos desenvolvedores, líderes técnicos e arquitetos estão acostumados. Este guia apresenta padrões comuns e reutilizáveis, além de</p>
+<p class="calibre1">princípios para o design e a implementação de</p>
+<p class="calibre1">aplicações nativas de nuvem no Kubernetes. Cada</p>
+<p class="calibre1">padrão inclui uma descrição do problema e uma</p>
+<p class="calibre1">solução específica no Kubernetes. Todos os padrões acompanham e são demonstrados por exemplos</p>
+<p class="calibre1">concretos de código. Este livro é ideal para</p>
+<p class="calibre1">desenvolvedores e arquitetos que já tenham</p>
+<p class="calibre1">familiaridade com os conceitos básicos do</p>
+<p class="calibre1">Kubernetes, e que queiram aprender a solucionar</p>
+<p class="calibre1">desafios comuns no ambiente nativo de nuvem, </p>
+<p class="calibre1">usando padrões de projeto de uso comprovado. Você</p>
+<p class="calibre1">conhecerá as seguintes classes de padrões: •</p>
+<p class="calibre1">Padrões básicos, que incluem princípios e práticas</p>
+<p class="calibre1"><a id="p346"></a>essenciais para desenvolver aplicações nativas de nuvem com base em contêineres. • Padrões</p>
+<p class="calibre1">comportamentais, que exploram conceitos mais</p>
+<p class="calibre1">específicos para administrar contêineres e interações com a plataforma. • Padrões estruturais, que ajudam você a organizar contêineres em um Pod para tratar casos de uso específicos. • Padrões de configuração, que oferecem insights sobre como tratar as</p>
+<p class="calibre1">configurações das aplicações no Kubernetes. •</p>
+<p class="calibre1">Padrões avançados, que incluem assuntos mais</p>
+<p class="calibre1">complexos, como operadores e escalabilidade</p>
+<p class="calibre1">automática (autoscaling). </p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575228159/d6086f378b7324b5f6cf02058e3b0a6d">Compre agora e leia</a></p>
+<p class="calibre1"><a id="p347"></a><img src="index-347_1.jpg" alt="Image 496" class="calibre2"/></p>
+<p class="calibre1"><a id="p348"></a>Candlestick</p>
+<p class="calibre1">Debastiani, Carlos Alberto</p>
+<p class="calibre1">9788575225943</p>
+<p class="calibre1">200 páginas</p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575225943/95b0e489b2490ae545bbd326179aa7c3">Compre agora e leia</a></p>
+<p class="calibre1">A análise dos gráficos de Candlestick é uma técnica amplamente utilizada pelos operadores de bolsas de valores no mundo inteiro. De origem japonesa, este refinado método avalia o comportamento do</p>
+<p class="calibre1">mercado, sendo muito eficaz na previsão de</p>
+<p class="calibre1">mudanças em tendências, o que permite desvendar</p>
+<p class="calibre1">fatores psicológicos por trás dos gráficos, </p>
+<p class="calibre1">incrementando a lucratividade dos investimentos. </p>
+<p class="calibre1">Candlestick – Um método para ampliar lucros na</p>
+<p class="calibre1">Bolsa de Valores é uma obra bem estruturada e</p>
+<p class="calibre1">totalmente ilustrada. A preocupação do autor em</p>
+<p class="calibre1">utilizar uma linguagem clara e acessível a torna leve e de fácil assimilação, mesmo para leigos. Cada</p>
+<p class="calibre1">padrão de análise abordado possui um modelo com</p>
+<p class="calibre1">sua figura clássica, facilitando a identificação. Depois das características, das peculiaridades e dos fatores psicológicos do padrão, é apresentado o gráfico de um caso real aplicado a uma ação negociada na</p>
+<p class="calibre1">Bovespa. Este livro possui, ainda, um índice resumido dos padrões para pesquisa rápida na utilização</p>
+<p class="calibre1">cotidiana. </p>
+<p class="calibre1"><a id="p349"></a><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575225943/95b0e489b2490ae545bbd326179aa7c3">Compre agora e leia</a></p>
+<p class="calibre1"><a id="p350"></a><img src="index-350_1.jpg" alt="Image 497" class="calibre2"/></p>
+<p class="calibre1"><a id="p351"></a>Avaliando Empresas, Investindo em Ações</p>
+<p class="calibre1">Debastiani, Carlos Alberto</p>
+<p class="calibre1">9788575225974</p>
+<p class="calibre1">224 páginas</p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575225974/5b1e661bd22da993d926714410664acd">Compre agora e leia</a></p>
+<p class="calibre1">Avaliando Empresas, Investindo em Ações é um livro destinado a investidores que desejam conhecer, em</p>
+<p class="calibre1">detalhes, os métodos de análise que integram a linha de trabalho da escola fundamentalista, trazendo ao leitor, em linguagem clara e acessível, o</p>
+<p class="calibre1">conhecimento profundo dos elementos necessários a</p>
+<p class="calibre1">uma análise criteriosa da saúde financeira das</p>
+<p class="calibre1">empresas, envolvendo indicadores de balanço e de</p>
+<p class="calibre1">mercado, análise de liquidez e dos riscos pertinentes a fatores setoriais e conjunturas econômicas nacional e internacional. Por meio de exemplos práticos e</p>
+<p class="calibre1">ilustrações, os autores exercitam os conceitos</p>
+<p class="calibre1">teóricos abordados, desde os fundamentos básicos</p>
+<p class="calibre1">da economia até a formulação de estratégias para</p>
+<p class="calibre1">investimentos de longo prazo. </p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575225974/5b1e661bd22da993d926714410664acd">Compre agora e leia</a></p>
+<p class="calibre1"><a id="p352"></a><img src="index-352_1.jpg" alt="Image 498" class="calibre2"/></p>
+<p class="calibre1"><a id="p353"></a>Manual de Análise Técnica</p>
+<p class="calibre1">Abe, Marcos</p>
+<p class="calibre1">9788575227022</p>
+<p class="calibre1">256 páginas</p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575227022/ee51d146a88d9e51f76f0b07087d8d5a">Compre agora e leia</a></p>
+<p class="calibre1">Este livro aborda o tema Investimento em Ações de</p>
+<p class="calibre1">maneira inédita e tem o objetivo de ensinar os</p>
+<p class="calibre1">investidores a lucrarem nas mais diversas condições do mercado, inclusive em tempos de crise. Ensinará ao leitor que, para ganhar dinheiro, não importa se o mercado está em alta ou em baixa, mas sim saber</p>
+<p class="calibre1">como operar em cada situação. Com o Manual de</p>
+<p class="calibre1">Análise Técnica o leitor aprenderá: - os conceitos clássicos da Análise Técnica de forma diferenciada, de maneira que assimile não só os princípios, mas</p>
+<p class="calibre1">que desenvolva o raciocínio necessário para utilizar os gráficos como meio de interpretar os movimentos da massa de investidores do mercado; - identificar oportunidades para lucrar na bolsa de valores, a</p>
+<p class="calibre1">longo e curto prazo, até mesmo em mercados</p>
+<p class="calibre1">baixistas; um sistema de investimentos completo</p>
+<p class="calibre1">com estratégias para abrir, conduzir e fechar</p>
+<p class="calibre1">operações, de forma que seja possível maximizar</p>
+<p class="calibre1">lucros e minimizar prejuízos; - estruturar e proteger operações por meio do gerenciamento de capital. </p>
+<p class="calibre1">Destina-se a iniciantes na bolsa de valores e</p>
+<p class="calibre1"><a id="p354"></a>investidores que ainda não desenvolveram uma metodologia própria para operar lucrativamente. </p>
+<p class="calibre1"><a href="http://www.mynextread.de/redirect/Amazon+%28BR%29/3036000/9788575226629/9788575227022/ee51d146a88d9e51f76f0b07087d8d5a">Compre agora e leia</a></p>
+<p class="calibre1"><a id="outline"></a></p></body></html>

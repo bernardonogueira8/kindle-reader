@@ -3,7 +3,6 @@
 Read EPUB, FB2 and PDF books inside Obsidian — with highlights, comments, notes
 and reading progress that syncs with your vault.
 
-*Kindle-reader is based on Book Reader by Elton, which provided the original URL import base. This project was substantially rewritten and extended with new features.*
 
 **[English](#-kindle-reader) · [Português](#-kindle-reader-em-português)**
 
@@ -112,7 +111,7 @@ No account is required for the plugin itself, and there is no telemetry, no anal
 
 **Fixes.** Tapping a highlight in the list now jumps to its place even on pages that have not been drawn yet; the selection bar no longer lands on empty space at the start of a paragraph or across a page break; on Android the top bar keeps clear of the clock, with a manual inset for skins that hide the status-bar height. What's new is also saved as a note in your vault.
 
-**Ask an AI about a passage.** Select text and press ✨: a translation, a breakdown of the words that are actually hard, why the phrasing is what it is, and the etymology where it helps you remember. Use your own OpenRouter or OpenAI key, the Elton AI proxy, or a **local Ollama / LM Studio** — with a local model the passage never leaves your machine. Off until you set it up.
+**Ask an AI about a passage.** Select text and press ✨: a translation, a breakdown of the words that are actually hard, why the phrasing is what it is, and the etymology where it helps you remember. Use your own OpenRouter or OpenAI key, or a **local Ollama / LM Studio** — with a local model the passage never leaves your machine. Off until you set it up.
 
 **Copy a passage as a quote, in one click.** The clipboard gets the quote, the book, the page and a link that opens the book at that exact paragraph — ready to paste into any note. The shape is a template you can change.
 
@@ -187,8 +186,6 @@ byte for byte.
 
 ---
 
-## 🙏 Credits
-Kindle Reader is based on elton-reader by @swayinfo, which provided the original URL import foundation. This project has since been substantially rewritten and extended with new features.
 
 
 ## Licence
@@ -202,7 +199,6 @@ MIT — see [LICENSE](LICENSE).
 Leia livros EPUB, FB2 e PDF dentro do Obsidian — com destaques, comentários,
 notas e progresso de leitura sincronizado com o seu vault.
 
-*O Kindle Reader é baseado no Book Reader, de Elton, que forneceu a base original para importação por URL. Este projeto foi amplamente reescrito e expandido com novos recursos.*
 
 **[English](#-kindle-reader) · Português**
 
@@ -348,7 +344,7 @@ salvas como uma nota no vault.
 **Converse com uma IA sobre um trecho.** Selecione o texto e pressione ✨ para
 obter uma tradução, entender as palavras realmente difíceis, descobrir por que a
 frase foi construída daquela forma e conhecer a etimologia quando ela ajudar na
-memorização. Use sua chave do OpenRouter ou OpenAI, o proxy Elton AI ou uma
+memorização. Use sua chave do OpenRouter ou OpenAI ou uma
 **instalação local do Ollama / LM Studio** — com um modelo local, o trecho não
 sai do seu computador. O recurso fica desativado até ser configurado.
 
@@ -431,11 +427,6 @@ gerado pelo esbuild e inclui pdf.js, epub.js, JSZip e localForage. Executar
 
 ---
 
-## 🙏 Créditos
-
-O Kindle Reader é baseado no elton-reader, de @swayinfo, que forneceu a base
-original para a importação por URL. Desde então, este projeto foi amplamente
-reescrito e expandido com novos recursos.
 
 ---
 

@@ -41,7 +41,7 @@ export class Paginator {
   private _html: string = '';
   private _scrollT: number | null = null;
   private _isFlipping: boolean = false;
-  private _activeLeaf: HTMLElement | null = null;
+  private _activeStage: HTMLElement | null = null;
   private _flipTimeout: number | null = null;
 
   constructor() {
@@ -166,7 +166,40 @@ export class Paginator {
 
     /* Padding via <style> so every column gets consistent margins */
     const markup = `<style>
-.er-flow p{text-align:${settings.textAlign || 'left'}}
+.er-flow b,.er-flow strong{font-weight:700 !important}
+.er-flow i,.er-flow em,.er-flow cite,.er-flow dfn,.er-flow var{font-style:italic !important}
+.er-flow b em,.er-flow strong em,.er-flow b i,.er-flow strong i,
+.er-flow em b,.er-flow em strong,.er-flow i b,.er-flow i strong{font-weight:700 !important;font-style:italic !important}
+.er-flow p{text-align:${settings.textAlign || 'justify'};text-indent:1.2em}
+.er-flow p:first-of-type,.er-flow h1+p,.er-flow h2+p,.er-flow h3+p,.er-flow h4+p,.er-flow .er-subhead+p,.er-flow .er-quote p,.er-flow .er-list p{text-indent:0}
+.er-flow u,.er-flow ins{text-decoration:underline;text-decoration-thickness:from-font;text-underline-offset:.16em}
+.er-flow s,.er-flow del,.er-flow strike{text-decoration:line-through}
+.er-flow .er-sc{font-variant:small-caps;letter-spacing:.03em}
+.er-flow ul.er-list:not(.er-list-none){list-style-type:disc !important}
+.er-flow ol.er-list:not(.er-list-none){list-style-type:decimal !important;counter-reset:none !important}
+.er-flow ul.er-list:not(.er-list-none),.er-flow ol.er-list:not(.er-list-none){margin:.2em ${pad}px .9em;padding:0 0 0 2em}
+.er-flow .er-list-none,.er-flow ol.er-list-none,.er-flow ul.er-list-none{list-style:none !important;list-style-type:none !important;padding-left:${pad}px !important;padding-right:${pad}px !important;margin:.2em 0 .8em !important}
+.er-flow .er-list-none>li{list-style:none !important;list-style-type:none !important;padding-left:0 !important;margin:0 0 .4em}
+.er-flow .er-list-none>li::before{display:none !important;content:none !important}
+.er-flow ul.er-list ul.er-list,.er-flow ol.er-list ol.er-list,.er-flow ul.er-list ol.er-list,.er-flow ol.er-list ul.er-list{margin:.25em 0 .35em;padding-left:1.5em}
+.er-flow .er-list li{margin:0 0 .3em;break-inside:auto;-webkit-column-break-inside:auto;list-style-position:outside}
+.er-flow .er-list li::before{display:none !important;content:none !important}
+.er-flow .er-list li>p{padding:0 !important;margin:0 0 .3em !important;text-align:left;text-indent:0}
+.er-flow .er-subhead{font-weight:700 !important;font-size:1.22em;line-height:1.3;margin:1.3em 0 .45em;padding-left:${pad}px;padding-right:${pad}px;text-align:left;text-indent:0 !important;break-after:avoid;-webkit-column-break-after:avoid}
+.er-flow .er-subhead p{padding:0 !important;margin:0 !important;text-indent:0 !important;font-size:inherit;font-weight:inherit;text-align:left;display:inline}
+.er-flow blockquote.er-quote{margin:.5em ${pad}px 1em;padding:.4em 1em .4em 1.05em;
+  border-left:3px solid var(--er-accent);border-radius:0 10px 10px 0;
+  background:color-mix(in srgb,var(--er-text) 5%,transparent);font-style:italic;
+  break-inside:auto;-webkit-column-break-inside:auto;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.er-flow blockquote.er-quote p{padding:0 !important;margin:0 0 .55em !important;text-align:left}
+.er-flow blockquote.er-quote p:last-child{margin-bottom:0 !important}
+.er-flow blockquote.er-quote p.er-cite{font-style:normal;font-size:.88em;opacity:.78;text-align:right;margin-top:.5em !important}
+.er-flow blockquote.er-quote p.er-cite::before{content:"— "}
+.er-flow a.er-ilink{color:var(--er-accent);text-decoration:none;border-bottom:1px dotted currentColor;cursor:pointer}
+.er-flow a.er-xlink{color:var(--er-accent);text-decoration:underline;text-underline-offset:.16em}
+.er-flow .er-anchor{display:inline;width:0;height:0;padding:0;margin:0}
+.er-eink .er-flow blockquote.er-quote{background:none;border-left-color:#000}
 .er-flow .er-section,.er-flow .er-pdf-page-break{
   display:block;overflow:visible;contain:none;
   break-inside:auto;-webkit-column-break-inside:auto}
@@ -213,6 +246,7 @@ export class Paginator {
 .er-flow table.er-table th,.er-flow table.er-table td{border:1px solid var(--er-border);
   padding:.3em .5em;text-align:left;vertical-align:top;overflow-wrap:anywhere}
 .er-flow table.er-table th{background:var(--er-ui);font-weight:700}
+.er-flow .er-light{font-weight:300 !important;opacity:.9}
 .er-flow .er-end{display:block;height:0;margin:0;padding:0;border:0;visibility:hidden}
 </style>${html}<div class="er-end" aria-hidden="true"></div>`;
 
@@ -325,11 +359,11 @@ export class Paginator {
     return [this.spread, this.total];
   }
 
-  _vOffset(): number {
+  _vOffsetFor(s: number): number {
     const mode = this._vAlign || 'top';
     if (mode === 'top' || !this.flow) return 0;
     if (!this._vCache) this._vCache = new Map();
-    const cached = this._vCache.get(this.spread);
+    const cached = this._vCache.get(s);
     if (cached !== undefined) return cached;
     let off = 0;
     try {
@@ -340,7 +374,7 @@ export class Paginator {
           return { x: r.left - fRect.left, bottom: r.bottom - fRect.top };
         });
       }
-      const from = this._spreadOffset();
+      const from = this._spreadOffsetFor(s);
       const to = from + this.sw;
       let maxBottom = 0;
       for (const g of this._blockGeom) {
@@ -355,13 +389,17 @@ export class Paginator {
       off = 0;
     }
     off = Math.round(off);
-    this._vCache.set(this.spread, off);
+    this._vCache.set(s, off);
     return off;
   }
 
-  _spreadOffset(): number {
+  _vOffset(): number {
+    return this._vOffsetFor(this.spread);
+  }
+
+  _spreadOffsetFor(s: number): number {
     if (this.scrollMode) return this.clip ? this.clip.scrollTop : 0;
-    const k = this.spread * (this.cols || 1);
+    const k = s * (this.cols || 1);
     const exact = this._colX && this._colX.get(k);
     if (typeof exact === 'number') return exact;
     if (this._colX && this._colX.size) {
@@ -374,7 +412,11 @@ export class Paginator {
         return base + (k - bestK) * (this._pitch || this.sw / (this.cols || 1));
       }
     }
-    return this.spread * this.sw;
+    return s * this.sw;
+  }
+
+  _spreadOffset(): number {
+    return this._spreadOffsetFor(this.spread);
   }
 
   applyTransform(animate = true): void {
@@ -389,21 +431,25 @@ export class Paginator {
     const t = `translate3d(${-Math.round(this._spreadOffset())}px, 0, 0)`;
 
     if (this.flipMode) {
-      // In flip mode, horizontal translation is always instantaneous
+      // No modo flip, aplicamos a transição elástica de folha de papel física diretamente na GPU
       this.flow.removeClass('er-flow-anim');
+      this.flow.toggleClass('er-flow-paper-anim', animate && this.animate !== false);
       this.flow.style.transform = t;
     } else if (!animate) {
       this.flow.removeClass('er-flow-anim');
+      this.flow.removeClass('er-flow-paper-anim');
       this.flow.getBoundingClientRect();
       this.flow.style.transform = t;
       window.requestAnimationFrame(() => this.flow?.toggleClass('er-flow-anim', this.animate !== false));
     } else {
+      this.flow.removeClass('er-flow-paper-anim');
       this.flow.style.transform = t;
     }
   }
 
   /**
-   * Realistic 3D Page Flip (Flip book effect)
+   * Realistic Page Flip (Kindle E-Paper Ultra-Fluid Engine - Opção A)
+   * Zero DOM clones, aceleração pura de hardware GPU, 120 FPS
    */
   performRealisticFlip(direction: 1 | -1, fromSpread: number, toSpread: number): void {
     if (!this.clip || !this.flow) return;
@@ -411,66 +457,50 @@ export class Paginator {
     this._isFlipping = true;
 
     const clipW = this.clip.offsetWidth || 400;
-    const clipH = this.clip.offsetHeight || 700;
-    const isTwoCol = this.cols === 2;
 
-    const leaf = createDiv();
-    leaf.className = `er-flip-leaf ${isTwoCol ? (direction === 1 ? 'er-flip-right' : 'er-flip-left') : 'er-flip-full'}`;
-    leaf.style.width = isTwoCol ? `${clipW / 2}px` : `${clipW}px`;
-    leaf.style.height = `${clipH}px`;
+    // Sombra dinâmica de curvatura de papel deslizando sobre a borda da folha
+    const shadow = this.clip.createDiv('er-paper-crease-shadow');
+    this._activeStage = shadow;
 
-    const front = createDiv();
-    front.className = 'er-flip-front';
-    const back = createDiv();
-    back.className = 'er-flip-back';
-    const shadow = createDiv();
-    shadow.className = 'er-flip-shadow';
-
-    // Clone flow content to show on turning front leaf
-    const cloneFront = this.flow.cloneNode(true) as HTMLElement;
-    cloneFront.setCssStyles({
-      position: 'absolute',
-      top: this.flow.style.top,
-      pointerEvents: 'none',
-    });
-
-    const currentOffset = this._spreadOffset();
-    const leftVal = (isTwoCol && direction === 1) ? `-${clipW / 2}px` : '0px';
-    cloneFront.setCssStyles({
-      left: leftVal,
-      transform: `translate3d(${-Math.round(currentOffset)}px, 0, 0)`,
-    });
-
-    front.appendChild(cloneFront);
-    front.appendChild(shadow);
-    leaf.appendChild(front);
-    leaf.appendChild(back);
-    this.clip.appendChild(leaf);
-    this._activeLeaf = leaf;
-
-    // Set initial 3D orientation
-    leaf.setCssStyles({
-      transform: direction === 1 ? 'rotateY(0deg)' : 'rotateY(-180deg)',
-    });
-
-    // Force style calculation
-    leaf.getBoundingClientRect();
-
-    // Settle underflow immediately to destination spread
-    this.spread = toSpread;
-    this.applyTransform(false);
-
-    // Trigger smooth 3D flip animation
-    window.requestAnimationFrame(() => {
-      leaf.classList.add('er-flip-turning');
-      leaf.setCssStyles({
-        transform: direction === 1 ? 'rotateY(-180deg)' : 'rotateY(0deg)',
+    if (direction === 1) {
+      // AVANÇAR: sombra desliza da direita para a esquerda
+      shadow.addClass('er-shadow-next');
+      shadow.setCssStyles({
+        left: `${clipW}px`,
+        transform: 'translate3d(0, 0, 0)',
+        opacity: '0.85',
       });
-    });
+      shadow.getBoundingClientRect();
+      window.requestAnimationFrame(() => {
+        shadow.setCssStyles({
+          transform: `translate3d(-${clipW}px, 0, 0)`,
+          opacity: '0',
+        });
+      });
+    } else {
+      // VOLTAR: sombra desliza da esquerda para a direita
+      shadow.addClass('er-shadow-prev');
+      shadow.setCssStyles({
+        left: '-54px',
+        transform: 'translate3d(0, 0, 0)',
+        opacity: '0.85',
+      });
+      shadow.getBoundingClientRect();
+      window.requestAnimationFrame(() => {
+        shadow.setCssStyles({
+          transform: `translate3d(${clipW + 54}px, 0, 0)`,
+          opacity: '0',
+        });
+      });
+    }
+
+    // Executa a transição de papel diretamente no flow
+    this.spread = toSpread;
+    this.applyTransform(true);
 
     this._flipTimeout = window.setTimeout(() => {
       this._cleanupFlip();
-    }, 450);
+    }, 290);
   }
 
   private _cleanupFlip(): void {
@@ -478,10 +508,10 @@ export class Paginator {
       window.clearTimeout(this._flipTimeout);
       this._flipTimeout = null;
     }
-    if (this._activeLeaf && this._activeLeaf.parentElement) {
-      this._activeLeaf.parentElement.removeChild(this._activeLeaf);
+    if (this._activeStage && this._activeStage.parentElement) {
+      this._activeStage.parentElement.removeChild(this._activeStage);
     }
-    this._activeLeaf = null;
+    this._activeStage = null;
     this._isFlipping = false;
   }
 
