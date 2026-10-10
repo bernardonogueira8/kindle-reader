@@ -12,15 +12,27 @@
     "block": 54
   },
   "Books/Storytelling com dados PDF.pdf": {
-    "pct": 0.38940092165898615,
-    "percent": 39,
-    "lastRead": 1791646173962,
-    "block": 503
+    "pct": 0.6558891454965358,
+    "percent": 66,
+    "lastRead": 1791647852041,
+    "block": 881
   },
   "Books/Storytelling com Dados EBUP.epub": {
-    "pct": 0.7472283813747228,
-    "percent": 75,
-    "lastRead": 1791646312858,
-    "block": 1246
+    "pct": 0.3325942350332594,
+    "percent": 33,
+    "lastRead": 1791646363625,
+    "block": 596
+  },
+  "Books/Entendendo Algoritmos EPUB.epub": {
+    "pct": 0.3572778827977316,
+    "percent": 36,
+    "lastRead": 1791646478008,
+    "block": 972
+  },
+  "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf": {
+    "pct": 0.06088560885608856,
+    "percent": 6,
+    "lastRead": 1791647786968,
+    "block": 111
   }
 }

@@ -29,19 +29,21 @@
       "Books/Entendendo Algoritmos.epub": "Entendendo Algoritmos",
       "Books/Entendendo Algoritmos EPUB.epub": "Entendendo Algoritmos EPUB",
       "Books/Storytelling com dados PDF.pdf": "Storytelling com dados PDF",
-      "Books/Storytelling com Dados EBUP.epub": "Storytelling com Dados EBUP"
+      "Books/Storytelling com Dados EBUP.epub": "Storytelling com Dados EBUP",
+      "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf": "A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings)"
     },
     "bookNotePrompted": {
       "Books/Storytelling com Dados.pdf": true,
       "Books/Entendendo Algoritmos.epub": true,
       "Books/Entendendo Algoritmos EPUB.epub": true,
       "Books/Storytelling com dados PDF.pdf": true,
-      "Books/Storytelling com Dados EBUP.epub": true
+      "Books/Storytelling com Dados EBUP.epub": true,
+      "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf": true
     },
     "coverFits": {},
     "syncMode": "auto",
     "pdfShowFiguresOnTextPages": true,
-    "libCoverSize": 204,
+    "libCoverSize": 176,
     "libCategory": "all",
     "readerAdvOpen": false,
     "readerHistOpen": false,
@@ -79,7 +81,7 @@
     "notesNextToBook": false,
     "perDevice": false,
     "deviceProfiles": {},
-    "lastSeenVersion": "1.0.4",
+    "lastSeenVersion": "1.0.5",
     "whatsNewNote": true,
     "lastNoteFolder": "Books/Livros",
     "lastNoteTags": ""
@@ -461,6 +463,12 @@
         "percent": 29,
         "lastRead": 1791646118775,
         "ts": 1791646122681
+      },
+      {
+        "pct": 0.38940092165898615,
+        "percent": 39,
+        "lastRead": 1791646173962,
+        "ts": 1791647807590
       }
     ],
     "Books/Storytelling com Dados EBUP.epub": [
@@ -475,6 +483,34 @@
         "percent": 40,
         "lastRead": 1791646230702,
         "ts": 1791646312858
+      },
+      {
+        "pct": 0.7028824833702882,
+        "percent": 70,
+        "lastRead": 1791646331441,
+        "ts": 1791646337653
+      }
+    ],
+    "Books/Entendendo Algoritmos EPUB.epub": [
+      {
+        "pct": 0.3348115299334812,
+        "percent": 33,
+        "lastRead": 1791646431679,
+        "ts": 1791646432303
+      }
+    ],
+    "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf": [
+      {
+        "pct": 0.0018552875695732839,
+        "percent": 0,
+        "lastRead": 1791647293024,
+        "ts": 1791647293689
+      },
+      {
+        "pct": 0.012987012987012988,
+        "percent": 1,
+        "lastRead": 1791647302257,
+        "ts": 1791647751046
       }
     ]
   },
@@ -812,6 +848,25 @@
             "pre": "e- tween Jan 1st 2004 and June 3",
             "post": "ata collection",
             "created": 1791601866186
+          }
+        ]
+      }
+    ],
+    "Books/Storytelling com Dados EBUP.epub": [
+      {
+        "ts": 1791648317707,
+        "count": 1,
+        "sig": "hmv2l5djq4gaq",
+        "items": [
+          {
+            "id": "hmv2l5djq4gaq",
+            "color": "yellow",
+            "text": "Por isso, quando se trata de tabelas e gráficos, gosto de justificar o texto mais à esquerda e acima (título, títulos de eixo, legendas). Isso significa que o público vai ver os detalhes que informam como ler a tabela ou gráfico antes de chegar aos dados em si.",
+            "block": 596,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791648317654
           }
         ]
       }

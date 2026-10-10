@@ -4,17 +4,53 @@
     "type": "split",
     "children": [
       {
-        "id": "511703581de130be",
+        "id": "578a242a0ae12391",
         "type": "tabs",
+        "dimension": 66.66666666666666,
         "children": [
           {
-            "id": "52dc676fa7e10d8c",
+            "id": "80cace08f81719ac",
             "type": "leaf",
             "state": {
               "type": "kindle-library",
               "state": {},
               "icon": "library",
               "title": "Biblioteca"
+            }
+          },
+          {
+            "id": "c8c5aad680947f83",
+            "type": "leaf",
+            "state": {
+              "type": "kindle-reader",
+              "state": {
+                "file": "Books/Storytelling com Dados EBUP.epub",
+                "path": "Books/Storytelling com Dados EBUP.epub"
+              },
+              "icon": "book-open",
+              "title": "Storytelling com Dados EBUP"
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "efb30749a925e186",
+        "type": "tabs",
+        "dimension": 33.33333333333333,
+        "children": [
+          {
+            "id": "e630d8a1fd68213f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Books/Livros/Storytelling com Dados EBUP.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Storytelling com Dados EBUP"
             }
           }
         ]
@@ -79,7 +115,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "98629556045ac920",
@@ -183,30 +220,31 @@
       "kindle-reader:Kindle Reader — Library": false
     }
   },
-  "active": "52dc676fa7e10d8c",
+  "active": "e630d8a1fd68213f",
   "lastOpenFiles": [
+    "Books/Livros/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).md",
+    "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf",
+    "Books/Internet das Coisas com ESP8266.pdf",
+    "Books/Princípios de Design e Padrões de Projeto - Autor (Robert C. Martin).pdf",
+    "Books/UX e Usabilidade Aplicados em Mobile e Web - Autor (Caelum).pdf",
+    "Books/Sistemas Operacionais Modernos Andre.pdf",
+    "Books/A Cor dos Dados.pdf",
+    "Books/Como mentir com estatística - Auto (Darrell-Heff).pdf",
+    "Books/Business Intelligence - Implementar do jeito certo e a custo zero - Autor (Casa do Código).pdf",
+    "Books/Big Data - Técnicas e tecnologias para extração de valor dos dados - Autor (Casa do Código).pdf",
     "Books/Livros/Storytelling com Dados EBUP.md",
     "Books/Livros/Storytelling com dados PDF.md",
     "Books/Livros/Entendendo Algoritmos EPUB.md",
     "Books/Storytelling com dados PDF.pdf",
-    "Books/Entendendo Algoritmos EPUB.epub",
-    "Books/Storytelling com Dados EBUP.epub",
-    "Books/Storytelling com dados Cole Nussbaum.pdf",
-    "Books/Storytelling com Dados.pdf",
-    "Books/Storytelling com Dados.epub",
     "Books/Livros/Storytelling com Dados.md",
     "Books/Livros/A_Cor_dos_Dados_Um_Guia_Para_o_uso_de_z_library_sk,_1lib_sk,.md",
-    "Sem título.base",
-    "Books/A_Cor_dos_Dados_Um_Guia_Para_o_uso_de_z_library_sk,_1lib_sk,.pdf",
     "Books/Livros/Entendendo Algoritmos.md",
-    "Books/Entendendo Algoritmos.epub",
     "photo_5066576102674861145_y.jpg",
     "photo_5066576102674861144_y.jpg",
     "Books/Livros/Storytelling com dados Cole Nussbaum.md",
     "Books/Livros/Storytelling com Dados (Cole Nussbaumer Knaflic Knaflic etc.).md",
     "Books/Livros/Storytelling (2).md",
     "Books/Livros/Storytelling (1).md",
-    "Books/Livros/reading-highlights.json",
     "Books/Livros/Metodologia_de_Pesquisa_para_Ciência.md",
     "Books/Livros/artigo para leitura (1).md",
     "Books/Livros/Jekyll and Hyde.md",

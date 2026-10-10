@@ -10,22 +10,22 @@ Works on desktop and on mobile (Android / iOS).
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/bernardonogueira8)
 
-![Book Reader](docs/promo-hero-en.jpg)
+![Book Reader](docs/promo-hero.jpg)
 
 |  |  |
 | --- | --- |
-| ![Library](docs/promo-library-en.jpg) | ![Reading](docs/promo-reading-en.jpg) |
+| ![Library](docs/promo-library.png) | ![Reading](docs/promo-reading.jpg) |
 | **Library** — covers, progress and categories for every book. | **Reading** — a two-column spread, your font, size and theme. |
-| ![Highlights](docs/promo-highlights-en.jpg) | ![AI](docs/promo-ai-en.jpg) |
+| ![Highlights](docs/promo-highlights.png) | ![Option](docs/promo-options.png) |
 | **Highlights → notes** — four colours, a comment, and a note with the quote, the book link and the page. | **Explain a passage** — a conversation, with the book's title sent as background context. |
-| ![Mobile](docs/promo-mobile-en.jpg) | ![Themes](docs/promo-themes-en.jpg) |
+| ![Mobile](docs/promo-mobile.jpg) | ![Themes](docs/promo-themes.jpg) |
 | **On the phone** — its own layout: gestures and «⋯», nothing else. Position and highlights travel with your vault. | **Four themes** — light, sepia, dark and e-ink, plus auto that follows your Obsidian theme. |
 
 ---
 
 ## What it does
 
-**Reading.** EPUB, FB2 and PDF. Paged layout in one or two columns, like a real book. Dark, light and sepia themes, plus an e-ink mode for Android readers. Adjustable fonts (including Kindle classics Bookerly and Caecilia), size, line height, paragraph/word/letter spacing, 4 margin sizes, alignment and line width. Table of contents built from PDF bookmarks, headings or the book's own printed contents page. Full-text search across the whole book.
+**Reading.** EPUB, FB2 and PDF. Paged layout in one or two columns, like a real book. Choose from multiple stunning themes (Dark, Light, Sepia, E-ink, and Auto) and highly configurable options. Fully customize your typography (including Kindle classics Bookerly and Caecilia), size, line height, paragraph/word/letter spacing, 4 margin sizes, alignment and line width to your heart's content. Table of contents built from PDF bookmarks, headings or the book's own printed contents page. Full-text search across the whole book.
 
 **Highlights and notes.** Four colours. A comment can be attached to any highlight and travels with it into your notes. Turn a highlight into a note, or export all of a book's highlights at once — grouped by chapter, with page numbers.
 
@@ -211,24 +211,23 @@ Funciona em computadores e dispositivos móveis (Android / iOS).
 > mensagem comum. Não precisa de conta no GitHub nem de formulário. Todas as mensagens são lidas
 > e ajudam a orientar as próximas versões.
 
-![Book Reader](docs/promo-hero-en.jpg)
+![Book Reader](docs/promo-hero.jpg)
 
 |  |  |
 | --- | --- |
-| ![Biblioteca](docs/promo-library-en.jpg) | ![Leitura](docs/promo-reading-en.jpg) |
+| ![Biblioteca](docs/promo-library.png) | ![Leitura](docs/promo-reading.jpg) |
 | **Biblioteca** — capas, progresso e categorias para cada livro. | **Leitura** — páginas em duas colunas, com sua fonte, tamanho e tema. |
-| ![Destaques](docs/promo-highlights-en.jpg) | ![IA](docs/promo-ai-en.jpg) |
-| **Destaques → notas** — quatro cores, comentários e notas com a citação, o link para o livro e a página. | **Explique um trecho** — uma conversa com o título do livro enviado como contexto. |
-| ![Celular](docs/promo-mobile-en.jpg) | ![Temas](docs/promo-themes-en.jpg) |
-| **No celular** — um layout próprio, com gestos e «⋯». A posição e os destaques acompanham o vault. | **Quatro temas** — claro, sépia, escuro e e-ink, além do modo automático que segue o tema do Obsidian. |
+| ![Destaques](docs/promo-highlights.png) | ![Opções](docs/promo-options.png) |
+| **Destaques → notas** — quatro cores, comentários e notas com a citação, o link para o livro e a página. | **Múltiplas opções** — configurações de IA, tradução, pesquisa, temas, e mais. |
+| ![Celular](docs/promo-mobile.jpg) | ![Temas](docs/promo-themes.jpg) |
+| **No celular** — um layout próprio, com gestos e «⋯». A posição e os destaques acompanham o vault. | **Mais de quatro temas** — claro, sépia, escuro e e-ink, além do automático que segue o tema do Obsidian. |
 
 ---
 
 ## Recursos
 
 **Leitura.** EPUB, FB2 e PDF. Layout paginado em uma ou duas colunas, como um
-livro de verdade. Temas escuro, claro e sépia, além de um modo e-ink para leitores
-Android. Ajuste a fonte (incluindo as clássicas do Kindle Bookerly e Caecilia), o tamanho,
+livro de verdade. Escolha entre múltiplos temas deslumbrantes (Escuro, Claro, Sépia, E-ink e Automático) e opções de layout altamente configuráveis. Ajuste à vontade a tipografia (incluindo as clássicas do Kindle Bookerly e Caecilia), o tamanho,
 espaçamentos detalhados (entre linhas, parágrafos, palavras e caracteres), 4 tamanhos de
 margens, alinhamento e largura da linha. O sumário pode ser criado a partir dos marcadores
 do PDF, dos títulos ou do sumário impresso do próprio livro. Pesquise o texto completo.

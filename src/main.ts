@@ -2688,7 +2688,23 @@ async function extractPdf(file, app, settings = {}, onProgress) {
       }
     } else if (alsoFigOnText) {
       const fig = await pdfFigureScore(page);
-      const picked = fig ? pdfPickFigures(fig.rects, view) : [];
+      let picked = fig ? pdfPickFigures(fig.rects, view) : [];
+      if (picked.length) {
+        // Prevent layout blocks or text backgrounds from being extracted as images
+        // by filtering out rectangles that contain a high amount of text.
+        picked = picked.filter(r => {
+          let textInRect = 0;
+          for (const it of tc.items) {
+            const x = it.transform[4], y = it.transform[5];
+            if (x >= r.x0 - 5 && x <= r.x1 + 5 && y >= r.y0 - 5 && y <= r.y1 + 5) {
+              textInRect += (typeof it.str === "string" ? it.str.replace(/\s+/g, "").length : 0);
+            }
+          }
+          // If the rectangle overlaps with more than 100 characters, it is likely a text block
+          return textInRect < 100;
+        });
+      }
+      
       if (picked.length) {
         figRects[i] = picked;
         const inside = (it) => {
@@ -2708,8 +2724,6 @@ async function extractPdf(file, app, settings = {}, onProgress) {
           bottomY: r.y0
         }));
         html = pdfItemsToHtml(itemsToUse, tc.styles, pageFigures);
-      } else if (fig && fig.imgFrac >= 0.02) {
-        html = `<figure class="er-pdf-figure"><img class="er-pdf-page-img er-pdf-lazy" data-pdf-page="${i}" width="${pw}" height="${ph}" alt="">${pdfNoteBtn(i)}</figure>` + pdfItemsToHtml(tc.items, tc.styles);
       } else {
         html = pdfItemsToHtml(tc.items, tc.styles);
       }
