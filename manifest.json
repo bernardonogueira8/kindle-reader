@@ -1,7 +1,7 @@
 {
 	"id": "kindle-reader",
 	"name": "Kindle Reader",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"minAppVersion": "1.7.2",
 	"description": "Read EPUB, FB2 and PDF books inside Obsidian with realistic page flips, highlights, notes, and reading progress synced with your vault.",
 	"author": "Bernardo",
