@@ -115,8 +115,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "98629556045ac920",
@@ -220,7 +219,7 @@
       "kindle-reader:Kindle Reader — Library": false
     }
   },
-  "active": "e630d8a1fd68213f",
+  "active": "c8c5aad680947f83",
   "lastOpenFiles": [
     "Books/Livros/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).md",
     "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf",

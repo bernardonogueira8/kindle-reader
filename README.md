@@ -73,101 +73,23 @@ The API key you enter is stored in the plugin's settings inside your vault. If y
 No account is required for the plugin itself, and there is no telemetry, no analytics and no ads.
 
 ---
-## What's Changed in v1.0.3
+## Release History
 
-- **Bundle Optimization**: Minified production build, reducing `main.js` from 5.25 MB to 3.87 MB (fully compatible with Obsidian Sync Standard).
-- **Security & Dependencies**: Removed deprecated and vulnerable dependencies (`safe-eval`, `jquery`, `translate-google`). Native Obsidian `requestUrl` is used for in-app translation.
-- **Code Quality**: Resolved all TypeScript and ESLint warnings.
-- **Reader Enhancements**: Layout margin presets (Narrow, Medium, Wide), immersive full-screen toggle on mobile, improved progress footer with estimated reading time, current clock, and percentage.
+**v2.0.1**
+- Documentation cleanup and historical changelog reorganization.
 
-## What's new in 1.0.2
+**v2.0.0 (The Kindle-like Update)**
+- **Premium Aesthetics:** Completely redesigned with a Kindle-inspired look, featuring the Bookerly font, light theme, and highly customizable typography (line height, margins, letter spacing).
+- **Rich PDF Engine:** Major rendering fixes for PDFs. Bold, italic, and light fonts are now preserved. Fixed a critical bug where text blocks were incorrectly rasterized as blurry, cropped images.
+- **EPUB Improvements:** Corrected HTML structure detection to prevent subtitles from being erroneously numbered as list items.
+- **Mobile Enhancements:** Added a dedicated Table of Contents (TOC) and Close button to the mobile top bar.
 
-**Android full-screen mode.** When opening any book on Android, the reader automatically enters full-screen mode to make full use of the screen and eliminate distractions.
+**v1.0.x**
+- **1.0.3:** Bundle optimization, security updates, and a new 3-column progress footer (time remaining, clock, percentage).
+- **1.0.2:** Android full-screen mode and introduction of Kindle classic fonts (Bookerly, Caecilia).
+- **1.0.1 - 1.0.0:** Initial robust releases featuring offline EPUB/FB2/PDF reading, built-in translation, AI passage breakdown, highlight extraction, and a visual grid library.
 
-**3-column progress footer.** The reading progress footer now features a balanced three-column layout:
-- **Left**: Hours and minutes remaining to finish reading. Tap it to toggle between remaining time and pages left.
-- **Center**: Real-time visible clock (`HH:mm`) alongside current page numbers.
-- **Right**: Exact percentage of book progress (`%`).
-
-**Kindle fonts.** Added the classic Kindle typefaces **Bookerly** and **Caecilia** to font choices, alongside Georgia, Lora, and Inter.
-
-**Advanced typography and spacing controls.** Fine-tune your layout with dedicated sliders inside reading settings:
-- Line height (spacing between lines)
-- Paragraph spacing
-- Word spacing
-- Character / letter spacing
-
-**Custom text margins.** Choose from 4 text column margin presets (**Narrow**, **Normal**, **Wide**, **Extra wide**) to comfortably fit your display.
-
-**Code quality and compatibility.** 100% ESLint compliance, fixed deprecations for Obsidian 1.13+, and performance improvements.
-
-## What's new in 1.0.0
-
-**It loads where it used to refuse to.** On older Obsidian builds, Huawei tablets and some Windows installs the plugin failed with "Failed to load plugin" — the PDF engine expected a JavaScript feature those browser engines do not have. It is supplied now, so those devices get a working reader.
-
-**Quotes can pile up in one book note.** The title dialog has an *Into the book's note* button, and the selection menu an *As text into the book's note* item — the second and third quote join the first instead of making new files.
-
-**The link back to the book is worded by you.** Set your own label instead of "↪ to this spot in the book" in the settings.
-
-**Fixes.** Tapping a highlight in the list now jumps to its place even on pages that have not been drawn yet; the selection bar no longer lands on empty space at the start of a paragraph or across a page break; on Android the top bar keeps clear of the clock, with a manual inset for skins that hide the status-bar height. What's new is also saved as a note in your vault.
-
-**Ask an AI about a passage.** Select text and press ✨: a translation, a breakdown of the words that are actually hard, why the phrasing is what it is, and the etymology where it helps you remember. Use your own OpenRouter or OpenAI key, or a **local Ollama / LM Studio** — with a local model the passage never leaves your machine. Off until you set it up.
-
-**Copy a passage as a quote, in one click.** The clipboard gets the quote, the book, the page and a link that opens the book at that exact paragraph — ready to paste into any note. The shape is a template you can change.
-
-**Quotes link back to the book.** Every exported quote carries a link that opens the book at the paragraph it came from, and lands there whatever your font size or column count.
-
-**Read by scrolling** instead of turning pages, if that suits you better.
-
-**Footnotes work in FB2.** Tapping a note number takes you to the note, and a
-"back to the text" pill takes you back where you were.
-
-**Highlighting across paragraphs.** A selection spanning several paragraphs used
-to be cut off at the end of the first one.
-
-**Nested folders in the library.** Picking a folder now includes everything
-inside it, and opens its subfolders as the next step down.
-
-**Reading progress in the book note's properties**, so Bases can chart and sort
-it. Off by default.
-
-**Books no longer lose their ending.** The reader measured a book's width using
-only its paragraphs, and cut the page flow off at that point — so a book whose
-tail was a list, a code listing or a table simply stopped early. Measured in a
-real browser: a book needing 119 spreads showed 5. Fixed, and the column stride
-is now exact instead of drifting, which also removed the biggest cause of slow
-loading in very long books.
-
-**PDF text is no longer glued together.** Title pages came out as
-`PRO ВластьRobert GREENEThe 48 laws ofPOWER`. Lines that wrapped back to the left
-margin were being joined with nothing between them.
-
-**No more phantom headings in PDFs.** Ordinary sentences were promoted to bold
-headings on any page whose average type size was dragged down by small print.
-
-**Separate look on each device.** Font size, theme, spacing and column count are
-remembered separately for computer, tablet and phone — a comfortable size on a
-tablet no longer makes the text enormous on a phone. Folders, templates and
-reading progress stay shared.
-
-**Comments reach your notes.** A comment written under a highlight was dropped
-when that highlight became a note. It now travels with the quote.
-
-**Works in a separate window.** Selecting text, page keys and the fullscreen
-image viewer were all broken when the book was dragged out into its own window.
-
-**Line width.** Cap lines at 60–90 characters so a maximised window stays
-readable.
-
-**Notes open beside the book** instead of replacing it, and can be filed in the
-book's own folder.
-
-**Typing a folder path no longer creates a folder per keystroke** on Windows.
-
-**Book files behave like files.** Reveal the open book in the folder tree,
-rename, move or delete it from the tab menu.
-
-Full history: [`versions.json`](versions.json) and the release notes.
+Full technical history: [`versions.json`](versions.json) and GitHub release notes.
 
 ---
 
@@ -292,123 +214,23 @@ O plugin não exige uma conta e não tem telemetria, análise de uso ou anúncio
 
 ---
 
-## Novidades da versão 1.0.1
+## Histórico de Versões
 
-**Modo tela cheia no Android.** Ao abrir qualquer livro no Android, o leitor entra automaticamente em tela cheia para maximizar o espaço útil da tela e eliminar distrações.
+**v2.0.1**
+- Limpeza na documentação e reorganização do histórico de novidades.
 
-**Rodapé de progresso em 3 colunas.** A barra inferior agora conta com um layout em três colunas informativas:
-- **Esquerda**: Tempo restante estimado para terminar o livro (horas e minutos). Toque para alternar entre tempo e páginas restantes.
-- **Centro**: Relógio visível em tempo real (`HH:mm`) junto com o indicador de páginas.
-- **Direita**: Porcentagem exata de progresso do livro (`%`).
+**v2.0.0 (A Atualização "Kindle")**
+- **Estética Premium:** Redesign completo inspirado no Kindle, com fonte Bookerly, tema claro e tipografia altamente customizável (altura de linha, margens, espaçamento de letras).
+- **Motor de PDF Aprimorado:** Correções severas de renderização. O sistema agora preserva negrito, itálico e fontes finas no PDF, e corrige definitivamente o bug onde textos com fundo vetorial viravam imagens recortadas.
+- **Melhorias em EPUB:** Detecção de estrutura HTML corrigida para impedir que subtítulos fossem lidos erroneamente como itens de lista enumerada.
+- **Interface Mobile:** Adicionado botão de Índice (TOC) e Fechar direto na barra superior do celular.
 
-**Fontes clássicas do Kindle.** Adicionadas as renomadas fontes **Bookerly** e **Caecilia** às opções de seleção, junto com Georgia, Lora e Inter.
+**v1.0.x**
+- **1.0.3:** Otimização do pacote, atualizações de segurança e novo rodapé de progresso triplo (tempo restante, relógio e porcentagem).
+- **1.0.2:** Tela cheia automática no Android e introdução das fontes clássicas do Kindle (Bookerly, Caecilia).
+- **1.0.1 - 1.0.0:** Lançamentos iniciais robustos com leitura de EPUB/FB2/PDF offline, tradução nativa, explicação avançada com IA, biblioteca visual e exportação rica de citações.
 
-**Novos controles de espaçamento tipográfico.** Ajuste fino do texto diretamente no painel de configurações de leitura:
-- Espaçamento entre linhas (altura da linha)
-- Espaçamento entre parágrafos
-- Espaçamento entre palavras
-- Espaçamento entre caracteres
-
-**Margens da coluna de texto.** Escolha entre 4 opções de largura de margem (**Estreita**, **Normal**, **Larga** e **Extra larga**) para a melhor experiência em celulares, tablets ou monitores.
-
-**Qualidade e estabilidade.** 100% em conformidade com as diretrizes do Obsidian e regras do ESLint, com resolução de avisos de depreciação para o Obsidian 1.13+.
-
-**Apoie o projeto.** Se você gosta de usar o Kindle Reader e quer apoiar o
-desenvolvimento e a manutenção contínua, considere comprar um café em
-buymeacoffee.com/bernardonogueira8 ☕
-
-## Novidades da versão 1.0.0
-
-**Funciona em dispositivos onde antes não carregava.** Em versões antigas do
-Obsidian, tablets Huawei e algumas instalações do Windows, o plugin falhava com
-“Failed to load plugin”: o mecanismo de PDF dependia de um recurso JavaScript
-incompatível com esses navegadores. Esse recurso agora vem incluído, permitindo
-que o leitor funcione nesses dispositivos.
-
-**Reúna citações em uma nota do livro.** A janela de título tem o botão *Into the
-book's note*, e o menu de seleção tem a opção *As text into the book's note* —
-a segunda e a terceira citações são adicionadas à primeira, em vez de criar
-novos arquivos.
-
-**Personalize o texto do link de volta ao livro.** Defina nas configurações um
-rótulo próprio em vez de “↪ to this spot in the book”.
-
-**Correções.** Clicar em um destaque na lista agora leva ao trecho, mesmo em
-páginas ainda não renderizadas. A barra de seleção não para mais em um espaço
-vazio no início de um parágrafo ou entre páginas. No Android, a barra superior
-não fica sobre o relógio; também é possível definir manualmente o espaçamento em
-interfaces que não informam a altura da barra de status. As novidades também são
-salvas como uma nota no vault.
-
-**Converse com uma IA sobre um trecho.** Selecione o texto e pressione ✨ para
-obter uma tradução, entender as palavras realmente difíceis, descobrir por que a
-frase foi construída daquela forma e conhecer a etimologia quando ela ajudar na
-memorização. Use sua chave do OpenRouter ou OpenAI ou uma
-**instalação local do Ollama / LM Studio** — com um modelo local, o trecho não
-sai do seu computador. O recurso fica desativado até ser configurado.
-
-**Copie um trecho como citação com um clique.** A área de transferência recebe a
-citação, o livro, a página e um link que abre o livro naquele parágrafo — pronto
-para colar em qualquer nota. Você pode personalizar o formato com um modelo.
-
-**As citações levam de volta ao livro.** Cada citação exportada inclui um link
-para o parágrafo de origem e abre o trecho corretamente, independentemente do
-tamanho da fonte ou do número de colunas.
-
-**Leia rolando a página**, em vez de virar páginas, se preferir.
-
-**Notas de rodapé funcionam em FB2.** Toque no número da nota para abri-la; o
-botão “back to the text” leva você de volta ao ponto anterior.
-
-**Destaque trechos em vários parágrafos.** Antes, a seleção era cortada no fim
-do primeiro parágrafo.
-
-**Pastas aninhadas na biblioteca.** Selecionar uma pasta agora inclui todo o seu
-conteúdo e permite abrir as subpastas no próximo nível.
-
-**O progresso de leitura fica nas propriedades da nota do livro**, para que o
-Bases possa exibi-lo em gráficos e classificações. Desativado por padrão.
-
-**Os livros não perdem mais o final.** A largura era calculada usando apenas os
-parágrafos, e o fluxo das páginas era cortado nesse ponto. Assim, um livro que
-terminava com uma lista, um trecho de código ou uma tabela parava antes da hora.
-Em um navegador real, um livro que precisava de 119 páginas duplas mostrava
-apenas 5. Isso foi corrigido, e o avanço entre colunas agora é exato, sem
-acumular desvios — o que também eliminou a principal causa de lentidão em livros
-muito longos.
-
-**O texto dos PDFs não fica mais grudado.** Páginas de título apareciam com Linhas que voltavam para a margem
-esquerda eram unidas sem espaço.
-
-**Chega de títulos falsos nos PDFs.** Frases comuns eram transformadas em
-cabeçalhos em negrito nas páginas cujo tamanho médio da fonte era reduzido por
-textos em corpo pequeno.
-
-**Personalize a aparência em cada dispositivo.** Tamanho da fonte, tema,
-espaçamento e número de colunas são salvos separadamente para computador, tablet
-e celular. Um tamanho confortável no tablet não deixa mais o texto enorme no
-celular. Pastas, modelos e progresso de leitura continuam compartilhados.
-
-**Os comentários acompanham as notas.** Antes, o comentário de um destaque era
-perdido quando ele virava nota. Agora, ele acompanha a citação.
-
-**Abra o livro em uma janela separada.** Selecionar texto, virar páginas pelo
-teclado e visualizar imagens em tela cheia não funcionavam quando o livro era
-arrastado para outra janela.
-
-**Largura da linha.** Limite as linhas a 60–90 caracteres para manter a leitura
-confortável em uma janela maximizada.
-
-**Abra notas ao lado do livro**, em vez de substituir a leitura, e salve-as na
-pasta do próprio livro.
-
-**Digitar o caminho de uma pasta não cria mais uma pasta a cada tecla** no
-Windows.
-
-**Os arquivos dos livros funcionam como arquivos.** Localize o livro aberto na
-árvore de pastas, renomeie, mova ou exclua pelo menu da aba.
-
-Histórico completo: [`versions.json`](versions.json) e notas dos lançamentos.
+Histórico completo: [`versions.json`](versions.json) e notas dos lançamentos no GitHub.
 
 ---
 
