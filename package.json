@@ -1,6 +1,6 @@
 {
   "name": "kindle-reader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Read EPUB, FB2 and PDF books inside Obsidian, with highlights, notes, and reading progress that syncs with your vault.",
   "main": "main.js",
   "type": "module",
@@ -8,7 +8,8 @@
     "postinstall": "node patch-pdfjs.cjs",
     "dev": "cross-env PLUGIN_DIR=vault/.obsidian/plugins/kindle-reader node esbuild.config.mjs",
     "build": "cross-env PLUGIN_DIR=vault/.obsidian/plugins/kindle-reader node esbuild.config.mjs production && node patch-pdfjs.cjs",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "version": "node version-bump.mjs && git add manifest.json versions.json"
   },
   "keywords": [
     "obsidian",
