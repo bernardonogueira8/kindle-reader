@@ -3,7 +3,7 @@
 	"name": "Kindle Reader",
 	"version": "2.0.1",
 	"minAppVersion": "1.7.2",
-	"description": "Read EPUB, FB2 and PDF books inside Obsidian with realistic page flips, highlights, notes, and reading progress synced with your vault.",
+	"description": "Read EPUB, FB2 and PDF books with realistic page flips, highlights, notes, and reading progress synced with your vault.",
 	"author": "Bernardo",
 	"fundingUrl": "https://buymeacoffee.com/bernardonogueira8",
 	"isDesktopOnly": false
