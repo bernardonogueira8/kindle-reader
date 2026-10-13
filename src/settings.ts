@@ -1,4 +1,7 @@
+import type { BookmarkEntry } from './types';
+
 export interface KindleReaderSettings {
+  bookmarks: Record<string, BookmarkEntry[]>;
   language: string;
   booksFolder: string;
   noteTemplate: string;
@@ -23,6 +26,7 @@ export interface KindleReaderSettings {
   vAlign: string;
   translateEnabled: boolean;
   translateTo: string;
+  dictionaryEnabled: boolean;
   bookNoteLinks: Record<string, string>;
   bookNotePrompted: Record<string, boolean>;
   coverFits: Record<string, string>;
@@ -61,6 +65,10 @@ export interface KindleReaderSettings {
   quoteTemplate: string;
   quoteBacklinks: boolean;
   quoteBacklinkLabel: string;
+  exportCallouts: boolean;
+  exportCalloutType: string;
+  keepScreenAwake: boolean;
+  timeLeftMode: string;
   noteOpenMode: string;
   maxLineCh: number;
   notesNextToBook: boolean;
@@ -71,6 +79,7 @@ export interface KindleReaderSettings {
 }
 
 export const DEFAULT_SETTINGS: KindleReaderSettings = {
+  bookmarks: {},
   // Interface language: "en", "pt", or "ru" when explicitly selected.
   language: "en",
   booksFolder: "",
@@ -118,6 +127,8 @@ export const DEFAULT_SETTINGS: KindleReaderSettings = {
   translateEnabled: false,
   // Target language for that button (ISO code Google Translate understands).
   translateTo: "en",
+  // Dictionary / Quick definition lookup
+  dictionaryEnabled: true,
   // Per-book override for the backlink inserted into notes created from a
   // selection. Keyed by the book file's path -> the note name to link to.
   // Empty/unset -> fall back to the book file's own name.
@@ -180,13 +191,21 @@ export const DEFAULT_SETTINGS: KindleReaderSettings = {
   readMode: "pages",
   // Does a page slide when turned?
   pageTurnAnimation: true,
-  // Copy the reading percentage into the book note's frontmatter.
-  progressToFrontmatter: false,
+  // Copy the reading progress and Dataview metadata into the book note's frontmatter.
+  progressToFrontmatter: true,
   // How a copied quote is shaped.
   quoteTemplate: "",
   quoteBacklinks: true,
   // Backlink label. Empty = use interface language default.
   quoteBacklinkLabel: "",
+  // Format exported quotes as native Obsidian callouts (e.g. > [!quote|yellow])
+  exportCallouts: true,
+  // Callout type: "quote", "book", "note"
+  exportCalloutType: "quote",
+  // Keep the device screen awake while reading (Screen Wake Lock API)
+  keepScreenAwake: true,
+  // Footer time left display mode: "chapter_time", "book_time", "chapter_pages", "book_pages"
+  timeLeftMode: "chapter_time",
   // Where a note made from a highlight opens: "split", "tab", "none".
   noteOpenMode: "split",
   // Widest a single reading column may get, in characters.

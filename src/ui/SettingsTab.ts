@@ -3,13 +3,11 @@ import { __ertr, __erSetLang } from '../utils/i18n';
 import { AI_PROVIDERS, QUOTE_TEMPLATE_DEFAULT } from '../settings';
 import { SettingsGroupModal } from './SettingsGroupModal';
 import { OnboardingModal, WhatsNewModal, WHATS_NEW, attachPathInput } from './modals';
+import { renderReadingInsights } from './ReadingInsights';
 import { HL_COLORS } from '../utils/theme';
 import {
   VIEW_TYPE,
-  erDeviceKey,
-  readerTodayKey,
-  fmtReadTime,
-  readingStats
+  erDeviceKey
 } from '../main';
 
 export class SettingsTab extends PluginSettingTab {
@@ -99,51 +97,9 @@ export class SettingsTab extends PluginSettingTab {
     else this._tabAbout(body);
   }
 
-  // Lifetime reading stats card
+  // Lifetime reading stats card with streak & heatmap
   _statsCard(c: HTMLElement) {
-    const st = readingStats(this.plugin.settings.readingLog, this.plugin.settings.lifetimeSeconds, readerTodayKey());
-    const card = c.createDiv({ cls: "er-stats" });
-
-    const head = card.createDiv({ cls: "er-stats-head" });
-    const total = head.createDiv({ cls: "er-stats-total" });
-    total.createDiv({ cls: "er-stats-big", text: fmtReadTime(st.total) });
-    total.createDiv({ cls: "er-stats-cap", text: __ertr("all-time with books") });
-
-    if (st.streak > 0) {
-      const fl = head.createDiv({ cls: "er-stats-streak" });
-      fl.createSpan({ cls: "er-stats-flame", text: "🔥" });
-      fl.createSpan({ text: __ertr("{0} days in a row", st.streak) });
-    }
-
-    const grid = card.createDiv({ cls: "er-stats-grid" });
-    const cell = (label: string, value: string) => {
-      const d = grid.createDiv({ cls: "er-stats-cell" });
-      d.createDiv({ cls: "er-stats-val", text: value });
-      d.createDiv({ cls: "er-stats-lab", text: label });
-    };
-
-    cell(__ertr("today"), fmtReadTime(st.today));
-    cell(__ertr("days with a book"), st.daysRead ? String(st.daysRead) : "—");
-    cell(__ertr("daily average"), fmtReadTime(st.avgPerDay));
-    cell(__ertr("best day"), fmtReadTime(st.best));
-
-    const peak = st.recent.reduce((a: number, r: unknown) => Math.max(a, r.sec), 0);
-    if (peak > 0) {
-      const chart = card.createDiv({ cls: "er-stats-chart" });
-      const bars = chart.createDiv({ cls: "er-stats-bars" });
-      for (const r of st.recent) {
-        const col = bars.createDiv({ cls: "er-stats-col" });
-        const barWrap = col.createDiv({ cls: "er-stats-bwrap" });
-        const fill = barWrap.createDiv({ cls: "er-stats-bfill" });
-        const pct = Math.round((r.sec / peak) * 100);
-        fill.style.height = `${pct}%`;
-        if (r.sec === 0) fill.addClass("er-stats-zero");
-        col.createDiv({ cls: "er-stats-day", text: r.day });
-      }
-      const leg = chart.createDiv({ cls: "er-stats-leg" });
-      leg.createSpan({ text: __ertr("14 days ago") });
-      leg.createSpan({ text: __ertr("today") });
-    }
+    renderReadingInsights(c, (this.plugin as unknown).settings);
   }
 
   // ── Tab: Reading ──────────────────────────────────────────────────────────
@@ -511,10 +467,39 @@ export class SettingsTab extends PluginSettingTab {
         }));
 
     new Setting(c)
+      .setName(__ertr("Export as Obsidian Callouts"))
+      .setDesc(__ertr("Format quotes and exports using native Obsidian callouts (e.g. > [!quote|yellow]), preserving highlight colors."))
+      .addToggle((t) => t.setValue(this.plugin.settings.exportCallouts !== false).onChange(async (v) => {
+        this.plugin.settings.exportCallouts = v;
+        await this.plugin.saveAll();
+      }));
+
+    new Setting(c)
+      .setName(__ertr("Callout style"))
+      .setDesc(__ertr("Choose the callout type to use for exported quotes."))
+      .addDropdown((d) => d
+        .addOption("quote", "Quote (> [!quote])")
+        .addOption("book", "Book (> [!book])")
+        .addOption("note", "Note (> [!note])")
+        .setValue(this.plugin.settings.exportCalloutType || "quote")
+        .onChange(async (v) => {
+          this.plugin.settings.exportCalloutType = v;
+          await this.plugin.saveAll();
+        }));
+
+    new Setting(c)
       .setName(__ertr("Keep highlight color on export"))
       .setDesc(__ertr("Wrap quotes in a colored <mark> tag so the highlight color shows in reading mode."))
       .addToggle((t) => t.setValue(this.plugin.settings.exportColors !== false).onChange(async (v) => {
         this.plugin.settings.exportColors = v;
+        await this.plugin.saveAll();
+      }));
+
+    new Setting(c)
+      .setName(__ertr("Keep screen awake while reading"))
+      .setDesc(__ertr("Prevent the screen from dimming or locking while reading a book (Screen Wake Lock API)."))
+      .addToggle((t) => t.setValue(this.plugin.settings.keepScreenAwake !== false).onChange(async (v) => {
+        this.plugin.settings.keepScreenAwake = v;
         await this.plugin.saveAll();
       }));
 
@@ -549,8 +534,8 @@ export class SettingsTab extends PluginSettingTab {
       });
 
     new Setting(c)
-      .setName(__ertr("Progress in the book note's properties"))
-      .setDesc(__ertr("Adds reading-progress (%) and reading-updated date to the book note frontmatter properties."))
+      .setName(__ertr("Progress and Dataview metadata in book notes"))
+      .setDesc(__ertr("Automatically writes autor, paginas_lidas, total_paginas, progresso_percentual, status (lendo/lido), data_inicio and data_conclusao into the note frontmatter."))
       .addToggle((t) => t.setValue(this.plugin.settings.progressToFrontmatter === true).onChange(async (v) => {
         this.plugin.settings.progressToFrontmatter = v;
         await this.plugin.saveAll();
@@ -599,6 +584,14 @@ export class SettingsTab extends PluginSettingTab {
       .setDesc(__ertr("Adds a Google Translate button to the selection popup to translate passages instantly."))
       .addToggle((t) => t.setValue(this.plugin.settings.translateEnabled === true).onChange(async (v) => {
         this.plugin.settings.translateEnabled = v;
+        await this.plugin.saveAll();
+      }));
+
+    new Setting(c)
+      .setName(__ertr("Dictionary & definitions"))
+      .setDesc(__ertr("Show dictionary lookup and Wikipedia summaries for selected words."))
+      .addToggle((t) => t.setValue(this.plugin.settings.dictionaryEnabled !== false).onChange(async (v) => {
+        this.plugin.settings.dictionaryEnabled = v;
         await this.plugin.saveAll();
       }));
 

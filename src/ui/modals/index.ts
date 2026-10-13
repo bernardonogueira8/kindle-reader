@@ -16,3 +16,5 @@ export {
 } from './SuggestModals';
 export { SettingsGroupModal } from './SettingsGroupModal';
 export { ReadSettingsModal, ReaderViewLike } from './ReadSettingsModal';
+export { DictionaryModal } from './DictionaryModal';
+export { BookmarksModal } from './BookmarksModal';

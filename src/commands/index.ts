@@ -4,6 +4,7 @@ import { erAutoFocus } from '../utils/dom';
 import { ReaderView } from '../ui/ReaderView';
 import { OnboardingModal } from '../ui/modals';
 import { BookQuickOpen } from '../ui/BookQuickOpen';
+import { ReadingInsightsModal } from '../ui/ReadingInsights';
 
 export interface CommandHostPlugin extends Plugin {
   app: App;
@@ -109,6 +110,37 @@ export function registerCommands(plugin: CommandHostPlugin) {
     name: __ertr("Open a book…"),
     callback: () => {
       new BookQuickOpen(plugin.app, plugin).open();
+    }
+  });
+  plugin.addCommand({
+    id: "reading-insights",
+    name: __ertr("Reading insights & heatmap"),
+    callback: () => {
+      new ReadingInsightsModal(plugin.app, plugin).open();
+    }
+  });
+  plugin.addCommand({
+    id: "toggle-bookmark",
+    name: __ertr("Toggle bookmark on current page"),
+    checkCallback: (checking: boolean) => {
+      const view = plugin.app.workspace.getActiveViewOfType(ReaderView);
+      if (!(view && view.file)) return false;
+      if (!checking) {
+        void (view as unknown).toggleBookmark();
+      }
+      return true;
+    }
+  });
+  plugin.addCommand({
+    id: "open-bookmarks",
+    name: __ertr("Open bookmarks"),
+    checkCallback: (checking: boolean) => {
+      const view = plugin.app.workspace.getActiveViewOfType(ReaderView);
+      if (!(view && view.file)) return false;
+      if (!checking) {
+        (view as unknown).openBookmarksModal();
+      }
+      return true;
     }
   });
 }

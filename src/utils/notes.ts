@@ -71,13 +71,45 @@ export function resolveBookNote(app: App, name: string): TFile | null {
   return hit instanceof TFile ? hit : null;
 }
 
-export async function writeBookProperty(app: App, noteName: string, bookFile: TFile | null): Promise<void> {
+export async function writeBookProperty(
+  app: App,
+  noteName: string,
+  bookFile: TFile | null,
+  initialData?: { author?: string; curPage?: number; totalPages?: number; pct?: number }
+): Promise<void> {
   try {
     if (!noteName || !bookFile) return;
     const note = resolveBookNote(app, noteName);
     if (!note) return;
     await (app as unknown).fileManager.processFrontMatter(note, (fm: unknown) => {
       fm.book = `[[${bookFile.path}]]`;
+
+      let authorGuess = initialData?.author || "";
+      if (!authorGuess && bookFile.basename.includes(" - ")) {
+        authorGuess = bookFile.basename.split(" - ")[0].trim();
+      }
+      if (fm.autor === undefined) {
+        fm.autor = authorGuess;
+      }
+      if (fm.paginas_lidas === undefined) {
+        fm.paginas_lidas = initialData?.curPage ?? 0;
+      }
+      if (fm.total_paginas === undefined) {
+        fm.total_paginas = initialData?.totalPages ?? 0;
+      }
+      const pct = initialData?.pct ?? 0;
+      if (fm.progresso_percentual === undefined) {
+        fm.progresso_percentual = Math.round(pct);
+      }
+      if (fm.status === undefined) {
+        fm.status = pct >= 100 ? "lido" : "lendo";
+      }
+      if (fm.data_inicio === undefined) {
+        fm.data_inicio = new Date().toISOString().slice(0, 10);
+      }
+      if (fm.data_conclusao === undefined) {
+        fm.data_conclusao = pct >= 100 ? new Date().toISOString().slice(0, 10) : "";
+      }
     });
   } catch (e) {
     console.warn("Book Reader: could not write the book property into the note", e);

@@ -211,16 +211,18 @@ export class Paginator {
 .er-flow>p:first-of-type,.er-flow .er-section:first-child>p:first-child,
 .er-flow .er-section:first-child>h1:first-child,.er-flow .er-section:first-child>h2:first-child,
 .er-flow .er-section:first-child>h3:first-child{padding-top:${padVt}px}
-.er-flow img{max-width:calc(100% - ${pad * 2}px);max-height:${aHinner - 12}px;height:auto;width:auto;object-fit:contain;display:block;margin:8px auto;break-inside:avoid;page-break-inside:avoid;-webkit-column-break-inside:avoid}
-.er-flow figure{break-inside:avoid;-webkit-column-break-inside:avoid;margin:8px auto}
-.er-flow .er-pdf-figure{margin:0 0 .9em;padding:0 ${pad}px;break-inside:avoid;-webkit-column-break-inside:avoid;text-align:center;position:relative}
+.er-flow img{max-width:calc(100% - ${pad * 2}px);max-height:${Math.max(40, aHinner - 32)}px;height:auto;width:auto;object-fit:contain;display:block;margin:6px auto;break-inside:avoid;page-break-inside:avoid;-webkit-column-break-inside:avoid}
+.er-flow figure{break-inside:avoid;-webkit-column-break-inside:avoid;margin:6px auto}
+.er-flow p:has(> img),.er-flow p:has(> figure),.er-flow p:has(> a > img),.er-flow p:has(> span > img){text-indent:0 !important;text-align:center}
+.er-flow p:has(> img:only-child),.er-flow p:has(> a:only-child > img:only-child),.er-flow p:has(> span:only-child > img:only-child){padding-left:0 !important;padding-right:0 !important}
+.er-flow .er-pdf-figure{margin:0 0 .5em;padding:0 ${pad}px;break-inside:avoid;-webkit-column-break-inside:avoid;text-align:center;position:relative}
 .er-flow .er-pdf-note-btn{position:absolute;top:8px;right:${pad + 8}px;width:34px;height:34px;
   display:flex;align-items:center;justify-content:center;padding:6px;cursor:pointer;
   background:var(--er-ui);color:var(--er-text);border:1px solid var(--er-border);border-radius:9px;
   opacity:.55;transition:opacity .15s,transform .15s;z-index:2}
 .er-flow .er-pdf-note-btn:hover{opacity:1;transform:scale(1.06)}
 .er-flow .er-pdf-note-btn svg{width:18px;height:18px}
-.er-flow .er-pdf-page-img{max-width:100%;max-height:${aHinner - 24}px;width:auto;height:auto;object-fit:contain;margin:4px auto;border:1px solid var(--er-border);border-radius:10px;break-inside:avoid;-webkit-column-break-inside:avoid}
+.er-flow .er-pdf-page-img{max-width:100%;max-height:${Math.max(40, aHinner - 36)}px;width:auto;height:auto;object-fit:contain;margin:4px auto;border:1px solid var(--er-border);border-radius:10px;break-inside:avoid;-webkit-column-break-inside:avoid}
 .er-flow pre.er-code{margin:0 0 .85em;padding:.55em .7em;box-sizing:border-box;
   max-width:calc(100% - ${pad * 2}px);margin-left:${pad}px;margin-right:${pad}px;
   white-space:pre-wrap;overflow-wrap:anywhere;tab-size:2;
@@ -253,13 +255,13 @@ export class Paginator {
     const markup = `<style>${styleCss}</style>${html}<div class="er-end" aria-hidden="true"></div>`;
 
     if (isReusedLayout && this.flow) {
-      const existingStyle = this.flow.querySelector('style');
+      const existingStyle = this.flow.querySelector("style");
       if (existingStyle) {
         existingStyle.textContent = styleCss;
       } else {
-        const st = document.createElement('style');
-        st.textContent = styleCss;
-        this.flow.prepend(st);
+        const parsedStyle = new DOMParser().parseFromString(`<style>${styleCss}</style>`, "text/html");
+        const stNode = parsedStyle.head.querySelector("style");
+        if (stNode) this.flow.prepend(document.importNode(stNode, true));
       }
     } else {
       const parsed = new DOMParser().parseFromString(markup, 'text/html');
@@ -276,7 +278,7 @@ export class Paginator {
     await new Promise((r) => window.requestAnimationFrame(r));
 
     /* 4b. Reserve lazy figure boxes */
-    const figMaxH = Math.max(40, aHinner - 24);
+    const figMaxH = Math.max(40, aHinner - 36);
     for (const img of Array.from(this.flow.querySelectorAll('img.er-pdf-lazy'))) {
       const aw = parseFloat(img.getAttribute('width') || '0') || 0;
       const ah = parseFloat(img.getAttribute('height') || '0') || 0;

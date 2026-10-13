@@ -1,4 +1,5 @@
 import { Modal, App, Notice, Menu, TFile } from 'obsidian';
+import { ReadingInsightsModal } from './ReadingInsights';
 import * as pdfjsLib from 'pdfjs-dist';
 import ePub from 'epubjs';
 import {
@@ -110,6 +111,11 @@ export class LibraryModal extends Modal {
     };
     mkSz("−", -28, __ertr("Smaller covers"));
     mkSz("+", 28, __ertr("Larger covers"));
+
+    const statsBtn = hdr.createDiv("er-lib-szbtn er-lib-stats-btn");
+    svgIcon(statsBtn, "flame");
+    statsBtn.setAttribute("aria-label", __ertr("Reading insights & heatmap"));
+    statsBtn.addEventListener("click", () => new ReadingInsightsModal(this.app, this.plugin).open());
 
     await this.plugin.refreshProgress();
     const folder = erPath(this.plugin.settings.booksFolder);

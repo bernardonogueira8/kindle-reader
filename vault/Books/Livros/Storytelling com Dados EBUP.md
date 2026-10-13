@@ -1,7 +1,13 @@
 ---
 book: "[[Books/Storytelling com Dados EBUP.epub]]"
-reading-progress: 33
-reading-updated: 2026-10-10
+reading-progress: 14
+reading-updated: 2026-10-13
+progresso_percentual: 14
+paginas_lidas: 58
+total_paginas: 406
+status: lendo
+data_inicio: 2026-10-13
+autor: ""
 ---
 # Storytelling com Dados EBUP
 

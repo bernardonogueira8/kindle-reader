@@ -1,0 +1,888 @@
+{
+  "settings": {
+    "bookmarks": {},
+    "language": "pt",
+    "booksFolder": "Books",
+    "noteTemplate": "",
+    "notesFolder": "Books/Livros",
+    "bookNotesFolder": "Books/Livros",
+    "autoBookNote": true,
+    "quotesToBookNote": true,
+    "dataFolder": "Books/Livros",
+    "bookTemplates": {},
+    "exportColors": true,
+    "theme": "light",
+    "libTheme": "reader",
+    "fontSize": 24,
+    "fontFamily": "bookerly",
+    "lineHeight": 1.7,
+    "paragraphSpacing": 0.85,
+    "wordSpacing": 0,
+    "letterSpacing": 0,
+    "pageMargin": "wide",
+    "columns": "1",
+    "textAlign": "justify",
+    "vAlign": "top",
+    "translateEnabled": false,
+    "translateTo": "pt",
+    "dictionaryEnabled": true,
+    "bookNoteLinks": {
+      "Books/Storytelling com Dados.pdf": "Storytelling com Dados",
+      "Books/Entendendo Algoritmos.epub": "Entendendo Algoritmos",
+      "Books/Entendendo Algoritmos EPUB.epub": "Entendendo Algoritmos EPUB",
+      "Books/Storytelling com dados PDF.pdf": "Storytelling com dados PDF",
+      "Books/Storytelling com Dados EBUP.epub": "Storytelling com Dados EBUP",
+      "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf": "A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings)"
+    },
+    "bookNotePrompted": {
+      "Books/Storytelling com Dados.pdf": true,
+      "Books/Entendendo Algoritmos.epub": true,
+      "Books/Entendendo Algoritmos EPUB.epub": true,
+      "Books/Storytelling com dados PDF.pdf": true,
+      "Books/Storytelling com Dados EBUP.epub": true,
+      "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf": true
+    },
+    "coverFits": {},
+    "syncMode": "auto",
+    "pdfShowFiguresOnTextPages": true,
+    "libCoverSize": 176,
+    "libCategory": "status:reading",
+    "readerAdvOpen": false,
+    "readerHistOpen": false,
+    "askNoteTitle": false,
+    "shortNoteTitles": true,
+    "defaultHlColor": "yellow",
+    "bookTags": {},
+    "navMode": "buttons",
+    "timerEnabled": true,
+    "dailyGoalMin": 30,
+    "readingLog": {},
+    "lifetimeSeconds": 0,
+    "immersive": true,
+    "mobileTopInset": 0,
+    "onboarded": true,
+    "promptedRepaired": true,
+    "figuresShownByDefault": true,
+    "einkMode": false,
+    "aiEnabled": false,
+    "aiProvider": "openrouter",
+    "aiKey": "",
+    "aiModel": "",
+    "aiBase": "",
+    "aiInto": "English",
+    "aiSystem": "",
+    "languagePicked": true,
+    "readMode": "flip",
+    "pageTurnAnimation": true,
+    "progressToFrontmatter": true,
+    "quoteTemplate": "",
+    "quoteBacklinks": true,
+    "quoteBacklinkLabel": "",
+    "exportCallouts": true,
+    "exportCalloutType": "quote",
+    "keepScreenAwake": true,
+    "timeLeftMode": "chapter_time",
+    "noteOpenMode": "tab",
+    "maxLineCh": 0,
+    "notesNextToBook": false,
+    "perDevice": false,
+    "deviceProfiles": {},
+    "lastSeenVersion": "2.0.3",
+    "whatsNewNote": true,
+    "lastNoteFolder": "Books/Livros",
+    "lastNoteTags": ""
+  },
+  "progressBackups": {
+    "Books/Livros/Storytelling com dados Cole Nussbaum.pdf": [
+      {
+        "pct": 0.04294478527607362,
+        "percent": 4,
+        "lastRead": 1791576689017,
+        "ts": 1791584849692
+      }
+    ],
+    "Books/Livros/Aplicando Aprendizado De Máquina À Prontuários Eletrônicos Do Paciente.pdf": [
+      {
+        "pct": 0.07377049180327869,
+        "percent": 7,
+        "lastRead": 1791553336327,
+        "ts": 1791585589091
+      }
+    ],
+    "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.pdf": [
+      {
+        "pct": 0.0012165450121654502,
+        "percent": 0,
+        "lastRead": 1791585624421,
+        "ts": 1791591566159
+      },
+      {
+        "pct": 0.014627659574468085,
+        "percent": 1,
+        "lastRead": 1791591598066,
+        "ts": 1791591598066,
+        "manual": true,
+        "block": 49
+      },
+      {
+        "pct": 0.018731988472622477,
+        "percent": 2,
+        "lastRead": 1791591721995,
+        "ts": 1791591721995,
+        "manual": true,
+        "block": 11
+      },
+      {
+        "pct": 0.005580357142857143,
+        "percent": 1,
+        "lastRead": 1791591723285,
+        "ts": 1791591723285,
+        "manual": true,
+        "block": 11
+      }
+    ],
+    "Books/Livros/12 Perguntas Essenciais para Qualquer Projeto de Dados Um guia simples e poderoso para transformar dados em decisões.pdf": [
+      {
+        "pct": 0,
+        "percent": 0,
+        "lastRead": 1791591455689,
+        "ts": 1791591455689,
+        "manual": true,
+        "block": 0
+      },
+      {
+        "pct": 0.014705882352941176,
+        "percent": 1,
+        "lastRead": 1791591496133,
+        "ts": 1791591496133,
+        "manual": true,
+        "block": 0
+      },
+      {
+        "pct": 0.16176470588235295,
+        "percent": 16,
+        "lastRead": 1791591527146,
+        "ts": 1791591527146,
+        "manual": true,
+        "block": 83
+      },
+      {
+        "pct": 0.1111111111111111,
+        "percent": 11,
+        "lastRead": 1791591528298,
+        "ts": 1791591528298,
+        "manual": true,
+        "block": 80
+      },
+      {
+        "pct": 0.14516129032258066,
+        "percent": 15,
+        "lastRead": 1791591533052,
+        "ts": 1791591533052,
+        "manual": true,
+        "block": 78
+      }
+    ],
+    "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf": [
+      {
+        "pct": 0.0030959752321981426,
+        "percent": 0,
+        "lastRead": 1791591828701,
+        "ts": 1791591829824
+      },
+      {
+        "pct": 0.16408668730650156,
+        "percent": 16,
+        "lastRead": 1791591886890,
+        "ts": 1791592108948
+      }
+    ],
+    "Books/LLMs in Practice Results from a Survey with Software Development Professionals In Brazil.pdf": [
+      {
+        "pct": 0.029411764705882353,
+        "percent": 3,
+        "lastRead": 1791601702502,
+        "ts": 1791601703644
+      }
+    ],
+    "Books/artigo para leitura (1).pdf": [
+      {
+        "pct": 0.027777777777777776,
+        "percent": 3,
+        "lastRead": 1791601851044,
+        "ts": 1791601851413
+      }
+    ],
+    "Books/Metodologia_de_Pesquisa_para_Ciência.epub": [
+      {
+        "pct": 0.0037313432835820895,
+        "percent": 0,
+        "lastRead": 1791601892057,
+        "ts": 1791601892830
+      },
+      {
+        "pct": 0.033582089552238806,
+        "percent": 3,
+        "lastRead": 1791601898611,
+        "ts": 1791635362408
+      }
+    ],
+    "Books/Storytelling com dados Cole Nussbaum.pdf": [
+      {
+        "pct": 0.0032679738562091504,
+        "percent": 0,
+        "lastRead": 1791637241106,
+        "ts": 1791637241750
+      },
+      {
+        "pct": 0.016339869281045753,
+        "percent": 2,
+        "lastRead": 1791637250889,
+        "ts": 1791637250889,
+        "manual": true,
+        "block": 3
+      },
+      {
+        "pct": 0.06666666666666667,
+        "percent": 7,
+        "lastRead": 1791637675457,
+        "ts": 1791637675457,
+        "manual": true,
+        "block": 94
+      },
+      {
+        "pct": 0.0392156862745098,
+        "percent": 4,
+        "lastRead": 1791637678831,
+        "ts": 1791637678831,
+        "manual": true,
+        "block": 18
+      },
+      {
+        "pct": 0,
+        "percent": 0,
+        "lastRead": 1791637678943,
+        "ts": 1791637678943,
+        "manual": true,
+        "block": 94
+      },
+      {
+        "pct": 0.028925619834710745,
+        "percent": 3,
+        "lastRead": 1791637771153,
+        "ts": 1791637771153,
+        "manual": true,
+        "block": 48
+      },
+      {
+        "pct": 0,
+        "percent": 0,
+        "lastRead": 1791637771625,
+        "ts": 1791637771625,
+        "manual": true,
+        "block": 0
+      },
+      {
+        "pct": 0.03571428571428571,
+        "percent": 4,
+        "lastRead": 1791637780429,
+        "ts": 1791637780429,
+        "manual": true,
+        "block": 17
+      },
+      {
+        "pct": 0,
+        "percent": 0,
+        "lastRead": 1791637780700,
+        "ts": 1791637780700,
+        "manual": true,
+        "block": 0
+      },
+      {
+        "pct": 1,
+        "percent": 100,
+        "lastRead": 1791637780963,
+        "ts": 1791637780963,
+        "manual": true,
+        "block": 1243
+      },
+      {
+        "pct": 0.028688524590163935,
+        "percent": 3,
+        "lastRead": 1791637785425,
+        "ts": 1791637803180,
+        "manual": true,
+        "block": 17
+      },
+      {
+        "pct": 0.22745901639344263,
+        "percent": 23,
+        "lastRead": 1791637816282,
+        "ts": 1791637994900
+      },
+      {
+        "pct": 0.23877551020408164,
+        "percent": 24,
+        "lastRead": 1791638008681,
+        "ts": 1791638008681,
+        "manual": true,
+        "block": 292
+      },
+      {
+        "pct": 0.0020408163265306124,
+        "percent": 0,
+        "lastRead": 1791638587349,
+        "ts": 1791638588067
+      },
+      {
+        "pct": 0.030612244897959183,
+        "percent": 3,
+        "lastRead": 1791638608363,
+        "ts": 1791638615200
+      },
+      {
+        "pct": 0.38979591836734695,
+        "percent": 39,
+        "lastRead": 1791638643085,
+        "ts": 1791639454101
+      },
+      {
+        "pct": 0.009852216748768473,
+        "percent": 1,
+        "lastRead": 1791639454101,
+        "ts": 1791641651732
+      }
+    ],
+    "Books/Storytelling (2).epub": [
+      {
+        "pct": 0.002028397565922921,
+        "percent": 0,
+        "lastRead": 1791638547564,
+        "ts": 1791638550019
+      },
+      {
+        "pct": 0.008113590263691683,
+        "percent": 1,
+        "lastRead": 1791638551099,
+        "ts": 1791638671110
+      },
+      {
+        "pct": 0.43006993006993005,
+        "percent": 43,
+        "lastRead": 1791639374420,
+        "ts": 1791639374420,
+        "manual": true,
+        "block": 631
+      },
+      {
+        "pct": 0.4106280193236715,
+        "percent": 41,
+        "lastRead": 1791639375132,
+        "ts": 1791639375132,
+        "manual": true,
+        "block": 631
+      }
+    ],
+    "Books/Storytelling (1).epub": [
+      {
+        "pct": 0.004830917874396135,
+        "percent": 0,
+        "lastRead": 1791639461692,
+        "ts": 1791639462500
+      },
+      {
+        "pct": 0.01932367149758454,
+        "percent": 2,
+        "lastRead": 1791639466844,
+        "ts": 1791639477991
+      },
+      {
+        "pct": 0.4975845410628019,
+        "percent": 50,
+        "lastRead": 1791639518410,
+        "ts": 1791639518410,
+        "manual": true,
+        "block": 739
+      },
+      {
+        "pct": 0.5174825174825175,
+        "percent": 52,
+        "lastRead": 1791639518833,
+        "ts": 1791640473687,
+        "manual": true,
+        "block": 739
+      },
+      {
+        "pct": 0.3375,
+        "percent": 34,
+        "lastRead": 1791640536942,
+        "ts": 1791641312186
+      },
+      {
+        "pct": 0.053830227743271224,
+        "percent": 5,
+        "lastRead": 1791641333950,
+        "ts": 1791641344925
+      }
+    ],
+    "Books/Entendendo Algoritmos.epub": [
+      {
+        "pct": 0.0017574692442882249,
+        "percent": 0,
+        "lastRead": 1791641401422,
+        "ts": 1791641403558
+      },
+      {
+        "pct": 0.054481546572934976,
+        "percent": 5,
+        "lastRead": 1791641418867,
+        "ts": 1791641418867,
+        "manual": true,
+        "block": 226
+      },
+      {
+        "pct": 0.001890359168241966,
+        "percent": 0,
+        "lastRead": 1791644041135,
+        "ts": 1791644041647
+      }
+    ],
+    "Books/A_Cor_dos_Dados_Um_Guia_Para_o_uso_de_z_library_sk,_1lib_sk,.pdf": [
+      {
+        "pct": 0.0036363636363636364,
+        "percent": 0,
+        "lastRead": 1791641612623,
+        "ts": 1791641614519
+      }
+    ],
+    "Books/Storytelling com Dados.pdf": [
+      {
+        "pct": 0.3695652173913043,
+        "percent": 37,
+        "lastRead": 1791641680938,
+        "ts": 1791641684951
+      }
+    ],
+    "Books/Storytelling com dados PDF.pdf": [
+      {
+        "pct": 0.2857142857142857,
+        "percent": 29,
+        "lastRead": 1791646118775,
+        "ts": 1791646122681
+      },
+      {
+        "pct": 0.38940092165898615,
+        "percent": 39,
+        "lastRead": 1791646173962,
+        "ts": 1791647807590
+      },
+      {
+        "pct": 0.6558891454965358,
+        "percent": 66,
+        "lastRead": 1791647852041,
+        "ts": 1791858777043
+      }
+    ],
+    "Books/Storytelling com Dados EBUP.epub": [
+      {
+        "pct": 0.391705069124424,
+        "percent": 39,
+        "lastRead": 1791646229678,
+        "ts": 1791646230278
+      },
+      {
+        "pct": 0.39631336405529954,
+        "percent": 40,
+        "lastRead": 1791646230702,
+        "ts": 1791646312858
+      },
+      {
+        "pct": 0.7028824833702882,
+        "percent": 70,
+        "lastRead": 1791646331441,
+        "ts": 1791646337653
+      }
+    ],
+    "Books/Entendendo Algoritmos EPUB.epub": [
+      {
+        "pct": 0.3348115299334812,
+        "percent": 33,
+        "lastRead": 1791646431679,
+        "ts": 1791646432303
+      }
+    ],
+    "Books/A Regra é Não Ter Regras - A Netflix e a Cultura da Reinvenção - Autor (Reed Hastings).pdf": [
+      {
+        "pct": 0.0018552875695732839,
+        "percent": 0,
+        "lastRead": 1791647293024,
+        "ts": 1791647293689
+      },
+      {
+        "pct": 0.012987012987012988,
+        "percent": 1,
+        "lastRead": 1791647302257,
+        "ts": 1791647751046
+      }
+    ]
+  },
+  "highlightsBackups": {
+    "Books/Livros/Storytelling com dados Cole Nussbaum.pdf": [
+      {
+        "ts": 1791584872454,
+        "count": 1,
+        "sig": "hmv1jdiw12z93",
+        "items": [
+          {
+            "id": "hmv1jdiw12z93",
+            "color": "yellow",
+            "text": "o cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "d",
+            "post": "",
+            "created": 1791584872417
+          }
+        ]
+      },
+      {
+        "ts": 1791584879318,
+        "count": 2,
+        "sig": "hmv1jdiw12z93,hmv1jdo7d9e2e",
+        "items": [
+          {
+            "id": "hmv1jdiw12z93",
+            "color": "yellow",
+            "text": "o cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "d",
+            "post": "",
+            "created": 1791584872417
+          },
+          {
+            "id": "hmv1jdo7d9e2e",
+            "color": "yellow",
+            "text": "do cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791584879305
+          }
+        ]
+      },
+      {
+        "ts": 1791584888649,
+        "count": 1,
+        "sig": "hmv1jdiw12z93",
+        "items": [
+          {
+            "id": "hmv1jdiw12z93",
+            "color": "yellow",
+            "text": "o cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "d",
+            "post": "",
+            "created": 1791584872417
+          }
+        ]
+      },
+      {
+        "ts": 1791584892031,
+        "count": 0,
+        "sig": "",
+        "items": []
+      },
+      {
+        "ts": 1791584895084,
+        "count": 1,
+        "sig": "hmv1je0d5pxtw",
+        "items": [
+          {
+            "id": "hmv1je0d5pxtw",
+            "color": "yellow",
+            "text": "do cérebro desnecessariamente e removê-las. Identificar e eliminar a saturação é o enfoque deste capítulo. Como parte dessa conversa, apresento e discuto os Princípios da Gestalt para Percepção Visual e como podemos aplicá-los em apresentações visuais de informação, como tabelas e gráficos. Discutimos também o alinhamento, o uso estratégico do espaço em branco e o contraste como importantes componentes de um design criterioso. Vários exemplos são usados para ilustrar as lições.",
+            "block": 91,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791584895065
+          }
+        ]
+      },
+      {
+        "ts": 1791584915398,
+        "count": 0,
+        "sig": "",
+        "items": []
+      }
+    ],
+    "Books/Livros/Análise prática de séries temporais predição com estatística e aprendizado de máquina.pdf": [
+      {
+        "ts": 1791585628839,
+        "count": 1,
+        "sig": "hmv1jtqhdlwgd",
+        "items": [
+          {
+            "id": "hmv1jtqhdlwgd",
+            "color": "yellow",
+            "text": "Simulação versus previsão Simulações em código Fazendo o trabalho sozinho Construindo um universo de simulação que funciona sozinho Uma simulação de física Notas Finais sobre Simulações Simulações Estatísticas Simulações de aprendizagem profunda Mais recursos Capítulo 5. Armazenando Dados Temporais Definindo Requisitos Dados ativos versus dados armazenados Soluções de banco de dados SQL versus NoSQL Soluções populares de banco de dados e arquivos de séries temporais Soluções de arquivos NumPy Pandas Equivalentes R padrão Matriz X",
+            "block": 5,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791585628753
+          }
+        ]
+      },
+      {
+        "ts": 1791585663398,
+        "count": 3,
+        "sig": "hmv1jtqhdlwgd,hmv1juh4pm09a,hmv1juh4qbynl",
+        "items": [
+          {
+            "id": "hmv1jtqhdlwgd",
+            "color": "yellow",
+            "text": "Simulação versus previsão Simulações em código Fazendo o trabalho sozinho Construindo um universo de simulação que funciona sozinho Uma simulação de física Notas Finais sobre Simulações Simulações Estatísticas Simulações de aprendizagem profunda Mais recursos Capítulo 5. Armazenando Dados Temporais Definindo Requisitos Dados ativos versus dados armazenados Soluções de banco de dados SQL versus NoSQL Soluções populares de banco de dados e arquivos de séries temporais Soluções de arquivos NumPy Pandas Equivalentes R padrão Matriz X",
+            "block": 5,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791585628753
+          },
+          {
+            "id": "hmv1juh4pm09a",
+            "color": "yellow",
+            "text": "não é muito surpreendente que uma das primeiras inovações em séries temporais na saúde da população tenha vindo de um vendedor de chapéus e não de um médico. Pensando bem, isso faz sentido: nos séculos anteriores, um vendedor de chapéus urbanos provavelmente teria mais prática na manutenção de registros e na arte de detectar tendências do que um médico.",
+            "block": 183,
+            "occ": 0,
+            "pre": "s médicos, mas explicar por que ",
+            "post": "",
+            "created": 1791585663289
+          },
+          {
+            "id": "hmv1juh4qbynl",
+            "color": "yellow",
+            "text": "O inovador foi John Graunt, um armarinho londrino do século XVII. Graunt realizou um estudo dos registros de óbitos mantidos ",
+            "block": 184,
+            "occ": 0,
+            "pre": "",
+            "post": "nas paróquias de Londres desde 2",
+            "created": 1791585663290
+          }
+        ]
+      },
+      {
+        "ts": 1791591763183,
+        "count": 9,
+        "sig": "hmv1nh6myzauo,hmv1nh6mzzb67,hmv1nh6n00gzr,hmv1nh6n0r0kk,hmv1nh6n1c4sd,hmv1nh6n1pxs2,hmv1nh6n2l5gu,hmv1nh6n2qxee,hmv1nh6n3nyls",
+        "items": [
+          {
+            "id": "hmv1nh6myzauo",
+            "color": "yellow",
+            "text": "Encontrar e organizar dados de séries temporais — Dr. Andreas W. Kempa-Liehr Análise Professor experiente,",
+            "block": 19,
+            "occ": 0,
+            "pre": "• ",
+            "post": "",
+            "created": 1791591761626
+          },
+          {
+            "id": "hmv1nh6mzzb67",
+            "color": "yellow",
+            "text": "• Realizar análise exploratória de dados de séries temporais",
+            "block": 20,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761627
+          },
+          {
+            "id": "hmv1nh6n00gzr",
+            "color": "yellow",
+            "text": "Departamento de Ciências da Engenharia,",
+            "block": 21,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761628
+          },
+          {
+            "id": "hmv1nh6n0r0kk",
+            "color": "yellow",
+            "text": "• Armazenar dados temporais Universidade de Auckland",
+            "block": 22,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761628
+          },
+          {
+            "id": "hmv1nh6n1c4sd",
+            "color": "yellow",
+            "text": "• Simular dados de séries temporais",
+            "block": 23,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761629
+          },
+          {
+            "id": "hmv1nh6n1pxs2",
+            "color": "yellow",
+            "text": "• Gerar e selecionar recursos para uma série temporal Aileen Nielsen é uma Nova York Engenheiro de software baseado na cidade",
+            "block": 24,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761629
+          },
+          {
+            "id": "hmv1nh6n2qxee",
+            "color": "yellow",
+            "text": "• Medir erro e analista de dados. Ela trabalhou em séries temporais em uma variedade de é",
+            "block": 25,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761630
+          },
+          {
+            "id": "hmv1nh6n2l5gu",
+            "color": "yellow",
+            "text": "• Prever e classificar séries temporais com aprendizado de máquina ou profundo disciplinas, de uma área de saúde é",
+            "block": 26,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791591761630
+          },
+          {
+            "id": "hmv1nh6n3nyls",
+            "color": "yellow",
+            "text": "• Avaliar precisão e desempenho início d",
+            "block": 27,
+            "occ": 0,
+            "pre": "",
+            "post": "e uma campanha política, de um l",
+            "created": 1791591761631
+          }
+        ]
+      }
+    ],
+    "Books/Livros/Criar um segundo cérebro (Tiago Forte).pdf": [
+      {
+        "ts": 1791591834125,
+        "count": 1,
+        "sig": "hmv1niqk94rc3",
+        "items": [
+          {
+            "id": "hmv1niqk94rc3",
+            "color": "yellow",
+            "text": "Relacionar ideias e reconhecer padrões em diferentes áreas da sua vida, para que saiba como viver melhor.",
+            "block": 26,
+            "occ": 0,
+            "pre": "• ",
+            "post": "",
+            "created": 1791591834105
+          }
+        ]
+      },
+      {
+        "ts": 1791591889905,
+        "count": 2,
+        "sig": "hmv1niqk94rc3,hmv1njxltq6gx",
+        "items": [
+          {
+            "id": "hmv1niqk94rc3",
+            "color": "yellow",
+            "text": "Relacionar ideias e reconhecer padrões em diferentes áreas da sua vida, para que saiba como viver melhor.",
+            "block": 26,
+            "occ": 0,
+            "pre": "• ",
+            "post": "",
+            "created": 1791591834105
+          },
+          {
+            "id": "hmv1njxltq6gx",
+            "color": "yellow",
+            "text": " atual das suas vidas. À medida que as suas vidas forem mudando, eles serão capazes de adaptar a forma como usam as notas, para que continuem a ser relevantes e úteis.",
+            "block": 261,
+            "occ": 0,
+            "pre": "ormas que complementam o período",
+            "post": "",
+            "created": 1791591889889
+          }
+        ]
+      }
+    ],
+    "Books/artigo para leitura (1).pdf": [
+      {
+        "ts": 1791601860204,
+        "count": 1,
+        "sig": "hmv1thmqinkb2",
+        "items": [
+          {
+            "id": "hmv1thmqinkb2",
+            "color": "pink",
+            "text": ".3. Inclusion and exclusion criteria and asked them to provide the relevant information and the que",
+            "block": 21,
+            "occ": 0,
+            "pre": "2",
+            "post": "s-",
+            "created": 1791601860186
+          }
+        ]
+      },
+      {
+        "ts": 1791601866201,
+        "count": 2,
+        "sig": "hmv1thmqinkb2,hmv1thrd6cprw",
+        "items": [
+          {
+            "id": "hmv1thmqinkb2",
+            "color": "pink",
+            "text": ".3. Inclusion and exclusion criteria and asked them to provide the relevant information and the que",
+            "block": 21,
+            "occ": 0,
+            "pre": "2",
+            "post": "s-",
+            "created": 1791601860186
+          },
+          {
+            "id": "hmv1thrd6cprw",
+            "color": "pink",
+            "text": "0th 2007, were included: 2.5. D",
+            "block": 22,
+            "occ": 0,
+            "pre": "e- tween Jan 1st 2004 and June 3",
+            "post": "ata collection",
+            "created": 1791601866186
+          }
+        ]
+      }
+    ],
+    "Books/Storytelling com Dados EBUP.epub": [
+      {
+        "ts": 1791648317707,
+        "count": 1,
+        "sig": "hmv2l5djq4gaq",
+        "items": [
+          {
+            "id": "hmv2l5djq4gaq",
+            "color": "yellow",
+            "text": "Por isso, quando se trata de tabelas e gráficos, gosto de justificar o texto mais à esquerda e acima (título, títulos de eixo, legendas). Isso significa que o público vai ver os detalhes que informam como ler a tabela ou gráfico antes de chegar aos dados em si.",
+            "block": 596,
+            "occ": 0,
+            "pre": "",
+            "post": "",
+            "created": 1791648317654
+          }
+        ]
+      }
+    ]
+  },
+  "lastBookPath": "Books/Storytelling com dados PDF.pdf"
+}

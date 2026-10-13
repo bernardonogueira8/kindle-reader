@@ -6,6 +6,7 @@ export interface BookProgress {
   lastRead: number;
   block?: number;
   page?: number;
+  total?: number;
 }
 
 export interface ProgressBackup {
@@ -14,6 +15,8 @@ export interface ProgressBackup {
   percent?: number;
   block?: number;
   page?: number;
+  total?: number;
+  manual?: boolean;
 }
 
 export interface BookHighlight {
@@ -61,3 +64,16 @@ export interface PluginSavedData {
 }
 
 export type BookExtension = 'epub' | 'pdf' | 'fb2';
+
+export interface BookmarkEntry {
+  id: string;
+  spread: number;
+  block?: number;
+  page?: number;
+  title?: string;
+  chapter?: string;
+  created: number;
+}
+
+export const VIEW_TYPE = 'kindle-reader';
+
