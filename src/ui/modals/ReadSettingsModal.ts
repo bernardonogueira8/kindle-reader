@@ -544,7 +544,7 @@ export class ReadSettingsModal extends Modal {
     const marginSec = host.createDiv('er-rs-sec-card');
     marginSec.createDiv('er-rs-sec-title').setText(__ertr('Margins'));
     const marginRow = marginSec.createDiv('er-rs-segmented-row');
-    const curMargin = s.pageMargin || 'normal';
+    const curMargin = s.pageMargin || 'wide';
 
     const marginOptions = [
       { key: 'compact', iconName: 'margin-compact', label: __ertr('Narrow') },

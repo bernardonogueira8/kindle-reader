@@ -356,12 +356,16 @@ export class ReaderModal extends Modal {
   async _applyContentStyle() {
     await this._repaginate();
   }
+  async repaginate() {
+    await this._repaginate();
+  }
   async _repaginate() {
     if (!this.bookHtml || !this.areaEl || !this.areaEl.clientWidth) return;
     const savedBlock = this.pager.currentBlockIndex();
     const savedPct = this.pager.currentPct;
     this.areaEl.addClass("er-booting");
     erShowVeil(this);
+    this.areaEl.empty();
     const [, total] = await this.pager.build(this.areaEl, this.bookHtml, this.plugin.settings, 0);
     const target = typeof savedBlock === "number" && savedBlock >= 0 ? this.pager.spreadForBlock(savedBlock) : Math.round(savedPct * Math.max(0, total - 1));
     this._renderFlowHighlights();

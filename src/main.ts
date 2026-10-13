@@ -609,6 +609,7 @@ function buildReaderExtraSettings(view, p) {
       alRow.querySelectorAll(".er-col-btn").forEach((b) => b.removeClass("active"));
       btn.addClass("active");
       if (view.bookHtml && typeof view.repaginate === "function") await view.repaginate();
+      else if (view.bookHtml && typeof view._repaginate === "function") await view._repaginate();
     });
   });
   sec(__ertr("Position on the page"));

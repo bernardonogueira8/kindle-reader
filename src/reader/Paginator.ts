@@ -165,7 +165,7 @@ export class Paginator {
       will-change:transform;`;
 
     /* Padding via <style> so every column gets consistent margins */
-    const markup = `<style>
+    const styleCss = `
 .er-flow b,.er-flow strong{font-weight:700 !important}
 .er-flow i,.er-flow em,.er-flow cite,.er-flow dfn,.er-flow var{font-style:italic !important}
 .er-flow b em,.er-flow strong em,.er-flow b i,.er-flow strong i,
@@ -248,9 +248,20 @@ export class Paginator {
 .er-flow table.er-table th{background:var(--er-ui);font-weight:700}
 .er-flow .er-light{font-weight:300 !important;opacity:.9}
 .er-flow .er-end{display:block;height:0;margin:0;padding:0;border:0;visibility:hidden}
-</style>${html}<div class="er-end" aria-hidden="true"></div>`;
+`;
 
-    if (!isReusedLayout) {
+    const markup = `<style>${styleCss}</style>${html}<div class="er-end" aria-hidden="true"></div>`;
+
+    if (isReusedLayout && this.flow) {
+      const existingStyle = this.flow.querySelector('style');
+      if (existingStyle) {
+        existingStyle.textContent = styleCss;
+      } else {
+        const st = document.createElement('style');
+        st.textContent = styleCss;
+        this.flow.prepend(st);
+      }
+    } else {
       const parsed = new DOMParser().parseFromString(markup, 'text/html');
       this.flow.empty();
       const nodes = [...Array.from(parsed.head.childNodes), ...Array.from(parsed.body.childNodes)];
